@@ -1,0 +1,213 @@
+.product-of-the-day.mod-product-of-the-day-1 {
+  max-width: $pageWidth;
+	width: 100%;
+	margin: 0 auto;
+  & .special-offer-box {
+    width: 100%;
+    margin: 0 0 30px 0;
+    border: 2px solid $mainColor;
+    background: white;
+    & .special-offer-box-content {
+      padding: 15px;
+      & .carousel {
+        opacity: 0;
+        @import "../../../_common/scss/_owl_controls.scss";
+        & .product-tile {
+          margin-bottom: 30px;
+          & .product-img {
+            padding-bottom: 100%;
+          }
+          & .product-desc {
+            padding: 0;
+            height: auto;
+            display: block;
+            
+            & .product-name {
+              font-size: 17px;
+              line-height: 1.2;
+              display: block;
+              flex-direction: unset;
+              justify-content: unset;
+              padding: 15px 0;
+
+            }
+            & .product-price {
+              margin: 0 0 15px;
+              font-size: 24px;
+              .price-special {
+                font-size: 24px;
+              }
+            }
+            & .product-name, & .product-price {
+              text-align: center;
+            }
+          }
+        }
+        & .owl-controls {
+          & .owl-prev {
+            left: 0;
+            background: transparent;
+          }
+          & .owl-next {
+            right: 0;
+            background: transparent;
+          }
+        }
+        & .availability {
+          text-align: center;
+          margin: 0 0 15px;
+          display: inline-block;
+          width: 100%;
+          font-size: 16px;
+          > span {
+            display: block;
+            margin-bottom: 15px;
+          }
+          & strong {
+            display: block;
+            font-size: 22px;
+            padding: 12px 21px;
+            background-color: $light-grey;
+            display: inline-block
+          }
+          & img {
+            display: inline-block;
+            width: 15px;
+          }
+        }
+        & .counter {
+          text-align: center;
+          display: inline-block;
+          position: relative;
+          left: 50%;
+          @include transform(translateX(-50%));
+          > span {
+            font-size: 20px;
+            font-weight: 700;
+            color: $mainColor;
+            margin-bottom: 15px;
+            display: block;
+          }
+          &.space {
+            margin: 80px 0 0;
+          }
+          & .counter-time {
+            display: block;
+            margin: 10px 0 0;
+            font-size: 22px;
+            font-weight: 700;
+            & > span {
+              background: $mainColor;
+              padding: 10px;
+              margin: 0 5px;
+              line-height: 55px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .col-lg-8 .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  & .tab {
+    &.tab-hidden {
+      @include opacity(0);
+      display: none;
+    }
+    @import "../../../_common/scss/_owl_controls.scss";
+  }
+  @import "../../../_common/classicrwd2/scss/_product_tile.scss";
+  .product-tile {
+    .product-desc {
+      .product-price {
+        font-size: 15px;
+        .price-special {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+@media(min-width: 1200px) {
+  .product-of-the-day.mod-product-of-the-day-1 .container-fluid {
+    & > .row {
+      display: flex;
+      .special-offer-box-wrapper {
+        padding-bottom: 30px;
+        height: 100%;
+        .special-offer-box {
+          height: 100%;
+        }
+      }
+    }   
+  }
+}
+
+
+@media(min-width: 1025px) {
+  .product-of-the-day.mod-product-of-the-day-1 .container-fluid > .row .special-offer-box-wrapper .special-offer-box {
+    position: relative;
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: rgba(#404040, 0.8);
+      transition: all 0.35s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+      height: 100%;
+      width: 100%;
+      opacity: 0;
+    }
+    &:hover {
+      &:before {
+        opacity: 1;
+      }
+      .product-desc {
+        &:before {
+          opacity: 1;
+        } 
+        .product-name a span{
+          color: white;
+        }
+        .product-price {
+          .price-normal { 
+            color: white;
+            span {
+              color: white;
+            }
+          }
+          .price-special {
+            color: white;
+          }
+        }
+      }
+      .product-img .product-actions .row [class*='col-'] .fa {
+        transform: translateX(-50%) rotateX(0deg);
+        opacity: 1;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 991px) {
+  .product-of-the-day.mod-product-of-the-day-1 {
+    & .special-offer-box {
+
+    }
+  }
+}
+
+@media all and (max-width: 767px) {
+  .product-of-the-day.mod-product-of-the-day-1 {
+    & .heading {
+      & ul {
+        & li {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

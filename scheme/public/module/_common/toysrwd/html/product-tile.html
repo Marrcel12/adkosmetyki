@@ -1,0 +1,150 @@
+<figure class="product-tile box-shadow">
+  <div class="product-img showcase-next-photo-fade">
+    <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+    <a href="{$PRODUCT_ITEM.url}" title="{$PRODUCT_ITEM.name}">
+      <img src="{$PRODUCT_ITEM.img}_{IF !$PRODUCT_IMAGE_SIZE}260{ELSE}{$PRODUCT_IMAGE_SIZE}{/IF}.jpg" {IF $PRODUCT_RWD}data-rwd="{$PRODUCT_RWD}"{/IF} alt="{$PRODUCT_ITEM.name}" class="product-main-img {IF $PRODUCT_TILE_HOVER == 'second_image' && !empty($PRODUCT_ITEM.THUMBS) && count($PRODUCT_ITEM.THUMBS) >= 2}is-next{/IF} {IF $PRODUCT_RATIO} {IF $PRODUCT_ITEM.img_ratio > $PRODUCT_RATIO || $PRODUCT_ITEM.img_ratio == $PRODUCT_RATIO}horizontal{ELSE}vertical{/IF} {ELSE} {IF $PRODUCT_ITEM.img_ratio > 0.8 || $PRODUCT_ITEM.img_ratio == 0.0}horizontal{ELSE}vertical{/IF} {/IF}" onLoad="imageLoaded(this,'link')" />
+      {IF $PRODUCT_TILE_HOVER == 'second_image' && !empty($PRODUCT_ITEM.THUMBS) && count($PRODUCT_ITEM.THUMBS) >= 2}
+        <div class="product-img-next">
+          {IF $PRODUCT_ITEM.THUMBS[0].src == $PRODUCT_ITEM.img}
+            <img src="{$PRODUCT_ITEM.THUMBS[1].src}_{IF !$PRODUCT_IMAGE_SIZE}260{ELSE}{$PRODUCT_IMAGE_SIZE}{/IF}.jpg" {IF $PRODUCT_RWD}data-rwd="{$PRODUCT_RWD}"{/IF} alt="{$PRODUCT_ITEM.name}" class="
+              {IF $PRODUCT_RATIO}
+                {IF $PRODUCT_ITEM.THUMBS[1].ratio > $PRODUCT_RATIO || $PRODUCT_ITEM.THUMBS[1].ratio == $PRODUCT_RATIO}
+                  horizontal
+                {ELSE}
+                  vertical
+                {/IF}
+              {ELSE}
+                {IF $PRODUCT_ITEM.THUMBS[1].ratio > 0.8 || $PRODUCT_ITEM.THUMBS[1].ratio == 0.0}
+                  horizontal
+                {ELSE}
+                  vertical
+                {/IF}
+              {/IF}
+            " />
+          {ELSE}
+            <img src="{$PRODUCT_ITEM.THUMBS[0].src}_{IF !$PRODUCT_IMAGE_SIZE}260{ELSE}{$PRODUCT_IMAGE_SIZE}{/IF}.jpg" {IF $PRODUCT_RWD}data-rwd="{$PRODUCT_RWD}"{/IF} alt="{$PRODUCT_ITEM.name}" class="
+              {IF $PRODUCT_RATIO}
+                {IF $PRODUCT_ITEM.THUMBS[0].ratio > $PRODUCT_RATIO || $PRODUCT_ITEM.THUMBS[0].ratio == $PRODUCT_RATIO}
+                  horizontal
+                {ELSE}
+                  vertical
+                {/IF}
+              {ELSE}
+                {IF $PRODUCT_ITEM.THUMBS[0].ratio > 0.8 || $PRODUCT_ITEM.THUMBS[0].ratio == 0.0}
+                  horizontal
+                {ELSE}
+                  vertical
+                {/IF}
+              {/IF}
+            " />
+          {/IF}
+        </div>
+      {/IF}
+      {IF $PRODUCT_STATUS && $PRODUCT_STATUS == "TRUE" && !empty($PRODUCT_ITEM.STATUS)}
+        <div class="product-labels">
+          {LOOP FROM=$PRODUCT_ITEM.STATUS VALUE=P_STATUS}
+            <div class="label-{$P_STATUS.status}">{$P_STATUS.txt}</div>
+          {/LOOP}
+        </div>
+      {/IF}
+    </a>
+    <div class="product-actions {IF !$PRODUCT_ITEM.can_buy}product-actions-with-info{/IF}">
+      {IF !$PRODUCT_ITEM.can_buy}
+        <div class="product-actions-info">
+            <span>{$L_PRODUCT_UNAVAILABLE}</span>
+        </div>
+      {/IF}
+
+      <div class="product-tile-icon-wrapper">
+        {IF $PRODUCT_ITEM.can_buy}
+          {IF !$TURN_OFF_SALES}
+            <div class="product-tile-icon shopping-basket-icon">
+              <a href="#" class="core_addToCart" data-product-id="{$PRODUCT_ITEM.id}">
+                <i class="fa fa-shopping-basket"><span>{$L_ADD_TO_CART}</span></i>
+              </a>
+            </div>
+          {/IF}
+        {/IF}
+
+
+        <div class="product-tile-icon">
+          <a href="{$PRODUCT_ITEM.url}">
+            <i class="fa fa-eye"></i>
+          </a>
+        </div>
+        
+
+        {IF $STORE_PRODUCT_IN_SHOP}
+          {IF !$TURN_OFF_SALES}
+            <div class="product-tile-icon">
+              {IF $STORE}
+                <a href="#" class="core_removeFromStore" data-product-id="{$PRODUCT_ITEM.id}">
+                  <i class="fa fa-trash-o"></i>
+                </a>
+              {ELSE}
+                <a href="#" class="core_addToStore" data-product-id="{$PRODUCT_ITEM.id}">
+                  <i class="fa fa-heart"></i>
+                </a>
+              {/IF}
+            </div>
+            {/IF}
+        {/IF}
+
+
+      </div>
+
+    </div>
+  </div>
+  <div class="product-desc">
+    {IF !$PRODUCT_NAME || ($PRODUCT_NAME && $PRODUCT_NAME != 'FALSE')}
+      <div class="product-name">
+        <a href="{$PRODUCT_ITEM.url}" title="{$PRODUCT_ITEM.name}">
+          <span>{$PRODUCT_ITEM.name}</span>
+        </a>
+      </div>
+    {/IF}    
+      <div class="product-price">
+        <div class="price-discount-wrapper">
+          <span class="price-special">
+            <span class="core_priceFormat" data-price="{$PRODUCT_ITEM.price}" data-tax="{$PRODUCT_ITEM.tax}" data-price-type="{$PRICE_TYPE}|show_type">{$PRODUCT_ITEM.price}</span>
+          </span>
+          {IF $PRODUCT_ITEM.oldprice && strlen($PRODUCT_ITEM.oldprice) < 11}
+            {IF $STRIKE_PRICE == 'percent_and_strike' || $STRIKE_PRICE == 'percent'}
+              {IF $PRODUCT_ITEM.old_price_percent != 0}
+                <span class="price-discount-percent">{IF $STRIKE_PRICE != 'percent'}-{/IF}{$PRODUCT_ITEM.old_price_percent}%</span>
+              {/IF}
+            {/IF}
+          {/IF}
+
+
+          {IF $PRODUCT_ITEM.oldprice && strlen($PRODUCT_ITEM.oldprice) < 11 && $PRODUCT_ITEM.oldprice != $PRODUCT_ITEM.price}
+            <span class="price-normal discount">
+              <span class="core_priceFormat" data-price="{$PRODUCT_ITEM.oldprice}" data-tax="{$PRODUCT_ITEM.tax}" data-price-type="{$PRICE_TYPE}">{$PRODUCT_ITEM.oldprice}</span>
+            </span>
+          {/IF}
+        </div>
+
+
+        {IF $PRICE_TYPE == 'netto_brutto' && $PRODUCT_BRUTTO == "TRUE"}
+          <div class="price-discount-wrapper">
+            <span class="price-special">
+              <span class="core_priceFormat" data-price="{$PRODUCT_ITEM.price}" data-tax="{$PRODUCT_ITEM.tax}" data-price-type="brutto|show_type">{$PRODUCT_ITEM.price}</span>
+            </span>
+            {IF $PRODUCT_ITEM.oldprice && strlen($PRODUCT_ITEM.oldprice) < 11}
+              {IF $STRIKE_PRICE == 'percent_and_strike' || $STRIKE_PRICE == 'percent'}
+                {IF $PRODUCT_ITEM.old_price_percent != 0}
+                  <span class="price-discount-percent">{IF $STRIKE_PRICE != 'percent'}-{/IF}{$PRODUCT_ITEM.old_price_percent}%</span>
+                {/IF}
+              {/IF}
+            {/IF}
+          </div>
+
+          {IF $PRODUCT_ITEM.oldprice && strlen($PRODUCT_ITEM.oldprice) < 11 && $PRODUCT_ITEM.oldprice != $PRODUCT_ITEM.price}
+            <span class="price-normal discount">
+              <span class="core_priceFormat" data-price="{$PRODUCT_ITEM.oldprice}" data-tax="{$PRODUCT_ITEM.tax}" data-price-type="brutto">{$PRODUCT_ITEM.oldprice}</span>
+            </span>
+          {/IF}
+        {/IF}
+      </div>
+  </div>
+</figure>

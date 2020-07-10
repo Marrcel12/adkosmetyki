@@ -1,0 +1,120 @@
+.post-desc {
+    font-family: goudy-old-style !important;
+    font-style: italic;
+    font-size: 17px !important;
+}
+
+.read-more{
+    left: 0;
+    font-weight: bold;
+    padding: 0px;
+    left: -25px;
+}
+.blog-index.mod-blog-index-7 {
+    max-width: $pageWidth;
+    width: 100%;
+    padding: 25px 0;
+    margin: 0 auto;
+
+    @media all and (min-width: 481px) {
+        & .padding-left-0 {
+            padding-left: 0;
+        }
+
+        & .padding-right-0 {
+            padding-right: 0;
+        }
+
+        & .vertical-center {
+            position: absolute;
+            top: 50%;
+            @include transform(translateY(-50%));
+
+            &.to-right {
+                right: 0;
+            }
+
+            &.to-left {
+                left: 0;
+            }
+        }
+    }
+
+    @import "../../_common/scss/_post_tile.scss";
+
+    & .post-tile {
+        margin-bottom: 0;
+
+        & .post-content {
+            padding: 0 30px;
+
+            & .post-name {
+                font-size: 30px !important; 
+                line-height: 1.4;
+                margin: 0;
+                max-height: 35px * 1.4 * 1;
+            }
+
+            & .post-desc {
+                font-size: 16px;
+                max-height: 16px * 1.4 * 4;
+
+                & .read-more {
+                    bottom: 0;
+                }
+            }
+        }
+    }
+}
+
+@media all and (max-width: 767px) {
+    .blog-index.mod-blog-index-7 {
+        & .post-tile {
+            & .post-content {
+                & .post-name {
+                    font-size: 26px !important;
+                    max-height: 30px * 1.4 * 1;
+                }
+
+                & .post-desc {
+                    font-size: 14px;
+                    max-height: 14px * 1.4 * 4;
+
+                    & .read-more {
+                        bottom: 2px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media all and (max-width: 480px) {
+    .blog-index.mod-blog-index-7 {
+        & .post-tile {
+            & .post-content {
+                padding: 10px 0 25px;
+            }
+        }
+
+        & > .container-fluid {
+            & > .row {
+                & > div[class*="col-"] {
+                    &:nth-of-type(2) {
+                        & .post-tile {
+                            & > a {
+                                & > .row {
+                                    @include transform(rotate(180deg));
+
+                                    & > div[class*="col-"] {
+                                        @include transform(rotate(-180deg));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

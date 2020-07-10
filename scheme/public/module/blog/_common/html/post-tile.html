@@ -1,0 +1,28 @@
+<figure class="post-tile">
+  <a href="{$POST_ITEM.redirects[0].url}" title="{$POST_ITEM.props.name}">
+    <div class="post-img">
+      <img src="{$POST_ITEM.props.image_uri}" alt="{$POST_ITEM.props.name}" class="post-main-img vertical" />
+    </div>
+    <div class="post-content">
+      <div id= "post-desc" class="post-name">
+        <span>{$POST_ITEM.props.name}</span>
+      </div>
+      {IF $POST_ITEM.props.date || $POST_ITEM.props.author}
+        <div class="post-details">
+          {IF $POST_ITEM.props.date}
+            <span class="pull-left">{$POST_ITEM.props.date}</span>
+          {/IF}
+          {IF $POST_ITEM.props.author}
+            <span class="pull-right">{$POST_ITEM.props.author}</span>
+          {/IF}
+        </div>
+      {/IF}
+      <div id= "post-desc" class="post-desc">
+        <span>{$POST_ITEM.props.text_short}</span>
+        <span class="read-more">
+          {$L_MORE} <i class="fa fa-angle-double-right"></i>
+        </span>
+      </div>
+    </div>
+  </a>
+</figure>

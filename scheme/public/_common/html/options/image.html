@@ -1,0 +1,11 @@
+<ul class="choose-field core_parseOption" data-key="{$OPTION_KEY}" data-required="{IF $OPTION_VALUE.required == 'yes'}true{ELSE}false{/IF}" data-required-error="{$L_OPTION_REQUIRED_escaped}">
+  {LOOP FROM=$OPTION_VALUE.values VALUE=O KEY=K}
+    <li class="checkbox-field grid color {IF $OPTION.img_width}{IF $OPTION.img_width == 20}small{/IF}{IF $OPTION.img_width == 50}medium{/IF}{IF $OPTION.img_width == 80}big{/IF}{/IF}">
+      <input id="param-filter-{$K}" type="radio" name="option_{$OPTION_KEY}" value="{$K}" {IF $O.selected}checked{/IF} {IF $O.change_price != 0}data-additional-price="{$O.change_price}" data-additional-price-no-discount="{$O.change_price_no_dis}"{/IF} {IF $CONTROLER == 'product'}class="core_changeProductPhoto" data-image-label="{$O.name}"{/IF} />
+      <label for="param-filter-{$K}" title="{$O.name}">
+        <div class="pick-color" style="background:url('/images/{$O.image}_70.jpg');"></div>
+        <span class="title">{$O.name}</span>
+      </label>
+    </li>
+  {/LOOP}
+</ul>

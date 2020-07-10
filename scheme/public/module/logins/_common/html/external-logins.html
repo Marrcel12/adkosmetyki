@@ -1,0 +1,67 @@
+{IF $FACEBOOK_LOGIN_ACTIVE}
+<script>
+    window.fbAsyncInit = function(){
+        FB.init({
+            appId: '{$FACEBOOK_LOGIN_ID}',
+            xfbml: true,
+            cookie: true,
+            version: 'v2.10'
+        });
+        FB.AppEvents.logPageView();
+    };
+
+    (function(d,s,id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = '//connect.facebook.net/{$LANG}_{$TOUPPER_LANG}/sdk.js';
+        fjs.parentNode.insertBefore(js,fjs);
+    }(document,'script','facebook-jssdk'));
+</script>
+
+<div id="fb-button" class="btn btn-lg btn-register-facebook">
+    <span>
+      <i class="fa fa-facebook"></i>
+      {IF $CONTROLER == 'register'}
+        {$L_SUBMIT}
+      {ELSE}
+        {$L_LOGIN}
+      {/IF}
+    </span>
+  <div>
+    <fb:login-button id="fb-button" class="fb-login-button" scope="public_profile,email" onlogin="loginFacebook();" data-size="large" style="opacity:0.000001 !important;"></fb:login-button>
+  </div>
+</div>
+{/IF}
+
+<div id="fb-iphone" style="display: none">
+    <fb:login-button  class="fb-login-button" scope="public_profile,email" onlogin="loginFacebook();" data-size="large" ></fb:login-button>
+</div>
+
+{IF $GOOGLE_LOGIN_ACTIVE}
+<div class="btn btn-lg btn-register-google">
+    <span>
+      <i class="fa fa-google-plus"></i>
+      {IF $CONTROLER == 'register'}
+        {$L_SUBMIT}
+      {ELSE}
+        {$L_LOGIN}
+      {/IF}
+    </span>
+  <div class="g-signin2" data-onsuccess="loginGoogle" data-theme="dark"></div>
+</div>
+{/IF}
+
+<script>
+  var iOS, fbIphone, fbButton;
+
+  iOS = ['iPad', 'iPhone', 'iPod'].indexOf(navigator.platform) >= 0;
+  fbIphone = document.getElementById('fb-iphone');
+  fbButton = document.getElementById('fb-button');
+
+  if(iOS){
+    fbIphone.style.display = 'block';
+    fbButton.style.display = 'none';
+  }
+
+</script>

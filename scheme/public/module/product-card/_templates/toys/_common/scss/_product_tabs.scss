@@ -1,0 +1,28 @@
+& .product-tabs {
+  padding: 0 15px;
+  margin-top: 0;
+  & > .heading {
+    &.inside {
+      background-color: $backgroundColor;
+      margin-left: -15px;
+      width: calc(100% + 30px);
+      @include border-top-left-radius (10px);
+      @include border-top-right-radius (10px);
+      & ul {
+        &.nav {
+          top: 4px;
+          margin-top: -4px;
+          & li {
+            padding-top: 25px;
+            padding-bottom: 0;
+            @include transition((background-color 0.25s, color 0.25s));
+            &.active {
+              background-color: $headerFooterColor;
+            }
+
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+<div class="select-field core_parseOption" data-key="{$OPTION_KEY}" data-required="{IF $OPTION_VALUE.required == 'yes'}true{ELSE}false{/IF}" data-required-error="{$L_OPTION_REQUIRED_escaped}">
+  <div class="placeholder">
+    <span class="placeholder-text">{$L_SELECT}</span>
+    <span class="placeholder-selected {IF $OPTION_CART_OBSERVER == 'TRUE'}core_storeCartProductAmount{/IF}">
+      <span></span>
+    </span>
+    {IF $OPTION_CART_HASH}
+      <input class="placeholder-value" type="hidden" name="options_{$OPTION_CART_HASH}[]" />
+    {/IF}
+    {IF !$OPTION_CART_HASH}
+      <div class="clear">
+        <i class="fa fa-times"></i>
+      </div>
+    {/IF}
+    <div class="arrow">
+      <i class="fa fa-chevron-down"></i>
+    </div>
+  </div>
+  <div class="options">
+    <div class="scrollbar-inner">
+      <ul>
+        {LOOP FROM=$OPTION_VALUE.values VALUE=O KEY=K}
+          <li class="checkbox-field">
+            <input id="param-filter-{$K}{IF $OPTION_CART_HASH}-{$OPTION_CART_HASH}{/IF}" type="radio" name="option_{$OPTION_KEY}{IF $OPTION_CART_HASH}_{$OPTION_CART_HASH}{/IF}" value="{$K}" {IF $O.selected}checked{/IF} {IF $O.change_price != 0}data-additional-price="{$O.change_price}" data-additional-price-no-discount="{$O.change_price_no_dis}"{/IF} {IF $OPTION_CART_HASH && 1 == 1}{LOOP FROM=$OPTION_CART_STOCKS VALUE=STOCKS KEY=STOCKS_KEY}{IF $OPTION_KEY == $STOCKS_KEY}{LOOP FROM=$STOCKS VALUE=STOCK KEY=STOCK_KEY}{LOOP FROM=$STOCK.list VALUE=STOCK_LIST}{IF $STOCK_LIST.ov_id == $K}{IF $STOCK.sp_amount}data-max-stock="{$STOCK.sp_amount}"{/IF}{/IF}{/LOOP}{/LOOP}{/IF}{/LOOP}{/IF} {IF $CONTROLER == 'product'}class="core_changeProductPhoto" data-image-label="{$O.name}"{/IF} />
+            <label for="param-filter-{$K}{IF $OPTION_CART_HASH}-{$OPTION_CART_HASH}{/IF}">
+              <span class="title">{$O.name} {IF $O.change_price_f}{$O.change_price_f}{/IF}</span>
+            </label>
+          </li>
+        {/LOOP}
+      </ul>
+    </div>
+    <div class="set-params">
+      <span>{$L_SELECT}</span>
+    </div>
+  </div>
+</div>

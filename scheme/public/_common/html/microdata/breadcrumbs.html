@@ -1,0 +1,19 @@
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {LOOP FROM=$BREADCRUMB VALUE=CRUMB INDEX=INDEX}
+      {IF $CRUMB.URL != '' && $CRUMB.NAME != ""}{IF $INDEX > 1},{/IF}{
+        "@type": "ListItem",
+        "position": {$INDEX},
+        "item": {
+          "@id": "{$CRUMB.URL}",
+          "name": "{$CRUMB.NAME}"
+        }
+      }
+      {/IF}
+      {/LOOP}
+    ]
+  }
+</script>

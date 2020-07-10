@@ -1,0 +1,66 @@
+<section class="account mod-account-1">
+  <div class="container-fluid">
+    <div class="card-bg-color border-wrapper box-shadow">
+
+    {IF $LOGGED_IN}
+        {INCLUDE file="./".$TEMPLATE."/scheme/public/module/account/toysrwd/_common/html/account-header.html" PARENT="account"}
+    {/IF}
+
+
+    {IF $CONTROLER == 'youraccount'}
+      {IF $LOGGED_IN}
+        <div class="card-space-md card-space-top-md card-space-bottom-md">
+          {INCLUDE file="./".$TEMPLATE."/scheme/public/module/account/toysrwd/_common/html/account-data.html"}
+        </div>
+      {ELSE}
+        <div class="card-space-md card-space-top-md card-space-bottom-md">
+          {INCLUDE file="./".$TEMPLATE."/scheme/public/module/account/toysrwd/_common/html/user-data.html"}
+        </div>
+      {/IF}
+    {/IF}
+
+
+    {IF $CONTROLER == 'register'}
+      <div class="card-space-md card-space-top-md card-space-bottom-md ">
+        {INCLUDE file="./".$TEMPLATE."/scheme/public/module/account/toysrwd/_common/html/email-change.html"}
+      </div>
+    {/IF}
+
+
+    {IF $CONTROLER == 'passrecover'}
+      <div class="card-space-md card-space-top-md card-space-bottom-md">
+        {INCLUDE file="./".$TEMPLATE."/scheme/public/module/account/toysrwd/_common/html/password-recover.html"}
+      </div>
+    {/IF}
+
+
+    {IF $CONTROLER == 'orders'}
+      {IF $FAST_PAYMENT}
+        {INCLUDE file="./".$TEMPLATE."/scheme/public/module/account/toysrwd/_common/html/order-repayment.html"}
+      {ELSEIF !empty($ORDER) && $ORDER.ord_id}
+        <div class="card-space-md card-space-bottom-sm">
+          {INCLUDE file="./".$TEMPLATE."/scheme/public/module/account/toysrwd/_common/html/order-page.html"}
+        </div>
+      {ELSE}
+        <div class="card-space-md card-space-top-md card-space-bottom-md">
+          {INCLUDE file="./".$TEMPLATE."/scheme/public/module/account/toysrwd/_common/html/orders.html"}
+        </div>
+      {/IF}
+    {/IF}
+
+
+    {IF $CONTROLER == 'ticket'}
+      {IF $ADD}
+        <div class="card-space-md card-space-top-md card-space-bottom-md add-ticket">
+          {INCLUDE file="./".$TEMPLATE."/scheme/public/module/account/toysrwd/_common/html/ticket-add.html"}
+        </div>
+      {ELSE}
+        <div class="card-space-md card-space-top-md card-space-bottom-md position-relative">
+          {INCLUDE file="./".$TEMPLATE."/scheme/public/module/account/toysrwd/_common/html/tickets.html"}
+        </div>
+      {/IF}
+    {/IF}
+
+  </div>
+  </div>
+</section>

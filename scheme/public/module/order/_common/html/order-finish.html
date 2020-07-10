@@ -1,0 +1,339 @@
+<div class="cart-summary-body summary-finish">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="cart-summary-content">
+        <div class="success-icon">
+          <i class="fa fa-check"></i>
+        </div>
+        <section class="heading inside">
+          <ul>
+            <li class="active">
+              <span class="title">{$L_ORDER_FINAL_TITLE}</span>
+            </li>
+          </ul>
+        </section>
+      </div>
+      <div class="1 cart-summary-content">
+        <div class="row order-sections">
+          <div class="col-xs-3"></div>
+          <div class="col-xs-12 col-md-6">
+            <div class="cart-summary-content">
+              <div class="row order-sum no-padding"></div>
+              <div class="row order-sum">
+                <div>
+                  <div class="row">
+                    <div class="col-xs-12 text-center">
+                      <span><br />{$L_ORDER_CREATE_INFO_TITLE2}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {IF $EMAIL_BODY}
+              <div class="a cart-summary-content">
+                <div class="row order-sum"></div>
+                <div class="row order-sum">
+                  <div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <span class="pull-left">{$L_PAYMENT}:</span>
+                      </div>
+                      <div class="col-xs-6">
+                        <span class="pull-right text-right">
+                          <span>{$ORDER.payment.pay_name}</span>
+                        </span>
+                      </div>
+                    </div>
+                    {IF $SHOW_DATA_TO_PAYMENT}
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <span class="pull-left">{$L_COMPANY_NAME_TO_PAYMENT}:</span>
+                      </div>
+                      <div class="col-xs-6">
+                        <span class="pull-right text-right">
+                          <span>{$EMAIL_DATA.COMPANY_NAME}</span>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <span class="pull-left">{$L_COMPANY_ADDRESS_TO_PAYMENT}:</span>
+                      </div>
+                      <div class="col-xs-6">
+                        <span class="pull-right text-right">
+                          <span>{$EMAIL_DATA.ADRESSES}</span>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <span class="pull-left">{$L_TRANSFER_TITLE}:</span>
+                      </div>
+                      <div class="col-xs-6">
+                        <span class="pull-right text-right">
+                          <span>{$TRANSFER_TITLE_LANG}</span>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="E row">
+                      <div class="col-xs-6 col-xxs-12">
+                        <span class="pull-left">{$L_ACCOUNT_NUMBER_FOR_TRANSFER}:</span>
+                      </div>
+                      <div class="B col-xs-6 col-xxs-12">
+                        <span class="pull-right text-right">
+                          <span>{$EMAIL_DATA.BANK_ACCOUNT}</span>
+                        </span>
+                      </div>
+                    </div>
+                    {/IF}
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <span class="pull-left">{$L_PAY_AMOUNT}:</span>
+                      </div>
+                      <div class="col-xs-6">
+                        <span class="pull-right text-right">
+                          <span class="core_priceFormat" data-price="{$ORDER.ord_sum}">{$ORDER.ord_sum}</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {ELSE}
+              {IF $PAY_BY_DELIVERY_INFO}
+                <div class="cart-summary-content">
+                  <div class="row order-sum"></div>
+                  <div class="row order-sum">
+                    <div>
+                      <div class="row">
+                        <div class="col-xs-12 text-center">
+                          <span><br />{$PAY_BY_DELIVERY_INFO}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {/IF}
+            {/IF}
+          </div>
+          <div class="col-xs-3"></div>
+        </div>
+      </div>
+      <div class="cart-summary-content">
+        <section class="heading inside">
+          <ul>
+            <li class="active">
+              <span class="title">{$L_CART_PRODUCTS_LIST}</span>
+            </li>
+          </ul>
+        </section>
+      </div>
+      <div class="cart-summary-content">
+        <div class="row">
+          <div class="col-xs-3"></div>
+          <div class="col-xs-12 col-md-6">
+            <div>
+              <div class="row">
+                <table class="products-list">
+                  <tbody>
+                    {LOOP FROM=$PRODUCTS VALUE=ITEM KEY=KEY}
+                      <tr data-id="{$ITEM.id}" data-hash="{$KEY}" data-amount="{$ITEM.amount}" data-price="{$ITEM.price}" data-options="{LOOP FROM=$ITEM.options VALUE=O INDEX=I}{$O}:{$O}{IF $I < count($ITEM.options)},{/IF}{/LOOP}">
+                        <td class="product-img">
+                          <img src="{$ITEM.img}_125.jpg" alt="{$ITEM.name}" />
+                        </td>
+                        <td class="product-info">
+                          <span class="title">{$ITEM.name}</span>
+                          <span class="details">
+                            {LOOP FROM=$ITEM.options_data VALUE=OPTION INDEX=INDEX}
+                              {IF $OPTION.type != 'info' && $OPTION.type != 'hidden'}
+                                {LOOP FROM=$OPTION.values VALUE=O}
+                                  {IF count($OPTION.values) > 1}
+                                    {IF $O.selected != ''}
+                                      {$OPTION.name}: <span>{$O.name}</span>
+                                    {/IF}
+                                  {ELSE}
+                                    {$OPTION.name}: <span>{$O.name}</span>
+                                  {/IF}
+                                {/LOOP}
+                              {/IF}
+                            {/LOOP}
+                          </span>
+                        </td>
+                        <td class="product-qty">
+                          <span>{$ITEM.amount}</span>
+                        </td>
+                        <td class="product-price">
+                          <span class="core_priceFormat" data-price="{$ITEM.price}"></span>
+                        </td>
+                      </tr>
+                    {/LOOP}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="cart-summary-content">
+              <div class="row order-sum">
+                <div>
+                  <div class="row">
+                    <div class="col-xs-6">
+                      <span class="pull-left">{$L_ORDER_PRODUCTS_PRICE}:</span>
+                    </div>
+                    <div class="col-xs-6">
+                      <span class="pull-right text-right">
+                        <span class="core_priceFormat" data-price="{$ORDER.ord_prods_price}">{$ORDER.ord_prods_price}</span>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-6">
+                      <span class="pull-left">{$L_SHIPPING_PRICE}:</span>
+                    </div>
+                    <div class="col-xs-6">
+                      <span class="pull-right text-right">
+                        <span class="core_priceFormat" data-price="{$ORDER.ord_ship_price}">{$ORDER.ord_ship_price}</span>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-6">
+                      <span class="pull-left">{$L_SHIPMENT}:</span>
+                    </div>
+                    <div class="col-xs-6">
+                      <span class="pull-right text-right">
+                        <span>{$ORDER.shipment.sh_name}</span>
+                      </span>
+                    </div>
+                  </div>
+                  {IF $OVERHEAD && 1 == 2}
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <span class="pull-left">{$L_OVERHEAD}:</span>
+                      </div>
+                      <div class="col-xs-6">
+                        <span class="pull-right text-right">
+                          <span class="core_priceFormat" data-price="{$OVERHEAD}">{$OVERHEAD}</span>
+                        </span>
+                      </div>
+                    </div>
+                  {/IF}
+                </div>
+              </div>
+              <div class="row order-sum upper">
+                <div>
+                  <div class="row">
+                    <div class="col-xs-6">
+                      <span class="pull-left">{$L_TOTAL_VALUE}:</span>
+                    </div>
+                    <div class="col-xs-6">
+                      <span class="pull-right text-right">
+                        <span class="core_priceFormat" data-price="{$ORDER.ord_sum}">{$ORDER.ord_sum}</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-3"></div>
+        </div>
+      </div>
+      {IF $LOGGED_IN && $LOYALTY_PROGRAM && $LOGGED_IN}
+        <div class="cart-summary-content">
+          <section class="heading inside">
+            <ul>
+              <li class="active">
+                <span class="title">{$L_LOYALTY_PROGRAM}</span>
+              </li>
+            </ul>
+          </section>
+        </div>
+        <div class="cart-summary-content">
+          <div class="row">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-12 col-md-6">
+              <div class="cart-summary-content">
+                <div class="row order-sum no-padding"></div>
+                <div class="row order-sum">
+                  <div>
+                    {IF $COUNT_GET_POINTS_IN_ORDER != 0}
+                      <div class="row">
+                        <div class="col-xs-6">
+                          <span class="pull-left">{$L_YOU_WILL_RECEIVE_THE_ORDER}:</span>
+                        </div>
+                        <div class="col-xs-6">
+                          <span class="pull-right text-right">
+                            <span>{$COUNT_GET_POINTS_IN_ORDER}</span>
+                          </span>
+                        </div>
+                      </div>
+                    {/IF}
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <span class="pull-left">{$L_YOU_WILL_USE_THE_ORDER}:</span>
+                      </div>
+                      <div class="col-xs-6">
+                        <span class="pull-right text-right">
+                          <span>{$USED_POINTS}</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-3"></div>
+          </div>
+        </div>
+      {/IF}
+      {IF $PAY_ONLINE_HTML_DATA}
+        <div class="cart-summary-content">
+          <section class="heading inside">
+            <ul>
+              <li class="active">
+                <span class="title">{$L_PAYMENT}</span>
+              </li>
+            </ul>
+          </section>
+        </div>
+        <div class="cart-summary-content">
+          <div class="row order-sections">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-12 col-md-6 text-center">
+              {$PAY_ONLINE_HTML_DATA}
+              <script>
+                (function(){
+                  if(document.querySelector('button.paypal-button')){
+                    document.querySelector('button.paypal-button').click();
+                  }
+                })();
+              </script>
+            </div>
+            <div class="col-xs-3"></div>
+          </div>
+        </div>
+      {/IF}
+    </div>
+  </div>
+</div>
+
+{IF $GM_SHOW == 1}
+  <!-- POCZĄTEK kodu moduły zgody Opinii konsumenckich Google -->
+  <script src="https://apis.google.com/js/platform.js?onload=renderOptIn" async defer>
+  </script>
+
+  <script>
+    window.renderOptIn = function() {
+      window.gapi.load('surveyoptin', function() {
+        window.gapi.surveyoptin.render(
+                {
+                  "merchant_id": {$GOOGLE_MERCHANT},
+                  "order_id": "{$ORDER.ord_id}",
+                  "email": "{$ORDER.ord_email}",
+                  "delivery_country": "{$ORDER.ord_country_iso}",
+                  "estimated_delivery_date": "{$ORDER.estimated_delivery_date}",
+                });
+      });
+    }
+  </script>
+  <!-- KONIEC kodu modułu zgody Opinii konsumenckich Google -->
+{/IF}

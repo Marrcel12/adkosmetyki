@@ -1,0 +1,176 @@
+@import "../_common/scss/_cookies.scss";
+
+#header.mod-header-1 {
+	max-width: $pageWidth;
+	width: 100%;
+	margin: 0 auto;
+	z-index: 15;
+	position: relative;
+	@import "../_common/scss/_top_bar_1.scss";
+	@import "../_common/scss/_mobile_search.scss";
+	& .sub-header {
+		display: inline-block;
+		width: 100%;
+		padding: 50px 0;
+		position: relative;
+		& .logo {
+			position: relative;
+			left: 50%;
+			display: inline-block;
+      max-width: 100%;
+      text-align: center;
+			@include transform(translateX(-50%));
+			& h1 {
+				margin: 0;
+				font-size: inherit;
+			}
+      & img {
+        max-width: 300px;
+        max-height: 300px;
+      }
+		}
+		@import "../_common/scss/_mobile_actions.scss";
+	}
+	& .menu {
+		width: 100%;
+		display: inline-block;
+		position: relative;
+		left: 50%;
+		padding-top: 11px;
+		@include transform(translateX(-50%));
+		@include opacity(1);
+		@include transition(opacity 0.05s ease-in-out);
+		&.menu-calculate {
+			max-height: 42px;
+			overflow: hidden;
+			@include opacity(0);
+			@include transition(opacity 0.05s ease-in-out);
+		}
+		& ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			& li {
+				float: left;
+				position: relative;
+				padding-bottom: 10px;
+				& a {
+			    line-height: 22px;
+			    font-weight: 500;
+			    font-size: 16px;
+			    text-decoration: none;
+			    padding: 10px 15px;
+			    color: $fontColor;
+			    cursor: pointer;
+			    & .fa {
+			    	font-size: 10px;
+			    	position: relative;
+			    	top: -2px;
+			    	&.fa-search, &.fa-bars {
+			    		font-size: 16px;
+			    		top: 0;
+			    	}
+			    }
+				}
+				@import "../_common/scss/_menu_dropdown_1.scss";
+		    &:hover {
+		    	& a {
+			    	color: $topMenuTextColorHover;
+		    	}
+					&:not(.click) {
+						& .dropdown {
+							@include opacity(1);
+					    @include transition(all 0.2s ease-in-out 0.2s);
+					    @include transform(translateY(0));
+					    pointer-events: auto;
+							visibility: visible;
+					    z-index: 2;
+						}
+					}
+		    }
+				@import "../_common/scss/_menu_dropdown_click_1.scss";
+				@import "../_common/scss/_menu_dropdown_single_1.scss";
+				@import "../_common/scss/_menu_dropdown_full_1.scss";
+				@import "../_common/scss/_search_dropdown_1.scss";
+				@import "../_common/scss/_hamburger_dropdown_1.scss";
+			}
+		}
+		& > ul {
+			text-align: center;
+			font-size: 0;
+			& > li {
+				display: inline-block;
+				float: none;
+				& .dropdown {
+					text-align: left;
+				}
+			}
+		}
+	}
+}
+
+@media all and (max-width: 992px) {
+	#header.mod-header-1 {
+		& .top-bar {
+			& .pull-left {
+				& ul {
+			    & li {
+						&[data-type="email"] {
+							display: none;
+						}
+						&[data-type="phone"] {
+							&:after {
+								display: none;
+							}
+							& a {
+								width: 15px;
+						    height: 16px;
+						    overflow: hidden;
+						    display: inline-block;
+							}
+						}
+					}
+				}
+			}
+		}
+		& .sub-header {
+			& .logo {
+				& img {
+					max-width: 100%;
+				}
+			}
+		}
+	}
+}
+
+@media all and (max-width: 767px) {
+	#header.mod-header-1 {
+		& .mobile-search {
+			display: block;
+		}
+		@import "../_common/scss/_top_bar_rwd_1.scss";
+		@import "../_common/scss/_sub_header_rwd_1.scss";
+		& .sub-header {
+			& .logo {
+				padding: 0 15px;
+			}
+		}
+		& .menu {
+			display: none;
+		}
+	}
+
+	@import "../_common/scss/_mobile_menu_1.scss";
+
+	.swipe-panel {
+	  & .swipe-panel-content.quick-cart {
+			& .dropdown {
+				@import "../_common/scss/_dropdown_quick_cart_1.scss";
+				min-width: 0 !important;
+				&.dropdown-quick-cart {
+					width: 300px;
+				}
+			}
+		}
+	}
+}

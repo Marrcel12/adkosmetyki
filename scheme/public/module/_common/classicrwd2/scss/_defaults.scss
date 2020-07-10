@@ -1,0 +1,255 @@
+.heading {
+  &.inside {
+    margin: 0 auto;
+    position: relative;
+    // border-bottom: 2px solid #e1e1e1;
+    &:before {
+      content: '';
+      width: 100%;
+      height: 2px;
+      background-color: #e1e1e1;
+      position: absolute;
+      bottom: 18px;
+    }
+    .nav {
+      text-align: center;
+    }
+  }
+  & li {
+    padding: 0 15px 6px;
+    float: none;
+    margin-bottom: 20px;
+    & .title {
+      font-size: 24px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    &:after {
+      content: '';
+      width: 100%;
+      height: 2px;
+      background: $mainColor;
+      position: absolute;
+      bottom: -2px;
+
+    }
+  }
+}
+
+.text-field {
+  color: $fontColor;
+  font-weight: 400;
+}
+
+.input-field {
+  height: 43px;
+  border: 1px solid #eeeeee;
+  border-radius: 0;
+  &:hover, &:focus {
+    border: 1px solid $mainColor;
+  }
+}
+
+.btn {
+  text-transform: uppercase;
+}
+.checkbox-field {
+  padding: 0 0 16px 0;
+  & label {
+    &:before {
+      width: 23px;
+      height: 23px;
+      border: 1px solid $mainColor;
+      border-radius: 0;
+      top: 0;
+    }
+    &:after {
+      font-size: 12px;
+      top: 7px;
+      left: 5px;
+    }
+    &:hover {
+      &:before {
+        border: 1px solid $additionalColor;
+      }
+    }
+    & .title {
+      padding-left: 39px;
+      font-weight: 400;
+      line-height: 23px;
+      display: inline-block;
+    }
+  }
+  & input:checked + label {
+    &:before {
+      border: 1px solid $mainColor;
+      @include transition(border-color 0.2s ease-in-out);
+    }
+  }
+  &.grid { 
+    & label {
+      &:before {
+        border-radius: 0;
+        border: 1px solid #d3d3d3;
+      }
+      &:after {
+        content: '';
+        top: 1px;
+        right: 1px;
+        bottom: 1px;
+        left: 1px;
+        border: 4px solid rgba($mainColor,3/10);
+        border-radius: 0;
+      }
+      & .title {
+        font-weight: bold;
+        font-size: 13px;
+      }
+    }
+    &.color {
+      & label {
+        & .pick-color {
+          top: 5px;
+          right: 5px;
+          bottom: 5px;
+          left: 5px;
+          border-radius: 0;
+
+        }
+        & .title {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.textarea-field {
+  border-radius: 0;
+  border-color: #eee;
+}
+
+.counter-field {
+  & [class*='col-'] {
+    padding: 0;
+    &:first-of-type {
+      & button {
+        border-radius: 0;
+      }
+    }
+    &:last-of-type {
+      & button {
+        border-radius: 0;
+      }
+    }
+  }
+  & button {
+    background-color: $bc-color;
+    border-radius: 0;
+    color: $fontColor;
+    height: 43px;
+  }
+  & input {
+    border: 1px solid $bc-color;
+    height: 43px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
+
+
+.select2-container--bootstrap {
+  .select2-selection {
+    height: 43px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 0;
+    border-color: $bc-color;
+    .select2-selection__arrow {
+      background-color: $bc-color;
+      width: 44px;
+      b {
+        &:after {
+          color: #424242;
+          right: 10px;
+          width: 11px;
+        }
+      }
+    }
+    &.select2-selection--multiple {
+      padding: 10px 67px 10px 10px;
+      &:before {
+        background: $bc-color;
+        width: 43px;
+      }
+      &:after {
+        color: $fontColor;
+        right: 10px;
+        width: 11px;
+      }
+    }
+  }
+  .select2-dropdown {
+    border-radius: 0;
+    & .select2-search__field {
+      width: 100%;
+      height: 35px;
+      margin: 6px 0 12px;
+      padding: 0 10px;
+      outline: none;
+      font-weight: 500;
+      border: 1px solid rgba($fontColor,0/2);
+      @include border-radius(3px);
+      @include transition(border-color 0.2s ease-in-out);
+      font-size: 13px;
+      &:hover, &:focus {
+        border: 1px solid $mainColor;
+        @include transition(border-color 0.2s ease-in-out);
+      }
+    }
+  }
+}
+
+.select-field-select2-dropdown {
+  & .select2-results {
+    & ul {
+      & > li {
+        &[aria-selected] {
+          padding: 10px 5px 10px 40px;
+          &:before {
+            content: '';
+            position: absolute;
+            border: 1px solid $mainColor;
+            height: 23px;
+            width: 23px;
+            border-radius: 0;
+            top: 7px;
+            left: 6px;
+          }
+          &:after {
+            font-size: 12px;
+            top: 14px;
+            left: 11px;
+          }
+        }
+      }
+    }
+  }  
+  & .select2-set-params {
+    height: 42px;
+    background: $mainColor;
+    font-weight: 700;
+    color: $textColorOnButtons;
+    text-transform: uppercase;
+    line-height: 32px;
+    &:hover {
+      background: $additionalColor;
+    }
+  }
+}
+
+@media(max-width: 767px) {
+  .heading li .title {
+    font-size: 18px;
+  }
+}

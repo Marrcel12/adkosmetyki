@@ -1,0 +1,229 @@
+#credits, #credits-mobile{
+    width: 100%;
+    color: #5a6f7d;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+#credits img, #credits-mobile img{
+    height: 19px;
+}
+#credits a, #credits-mobile a{
+    text-decoration: none !important;
+    color: #5a6f7d !important;
+
+}
+.social a {
+    color: #5a6f7d;
+}
+
+.social ul,
+.location ul {
+    padding: 0;
+}
+
+.menu li {
+    color: #5a6f7d;
+}
+
+@media all and (min-width: 768px) {
+    #credits-mobile{
+        display: none !important;
+    }
+    footer i {
+        font-size: 22px !important;
+    }
+
+    #logo {
+        width: 197px;
+        height: 197px;
+        position: absolute;
+        background-image: url('https://adkosmetyki.store/upload/kosmetyk/logos/ADKosmetykiLogoFooter(1).png');
+        z-index: 10;
+        top: 50px;
+        left: calc(300px - 197px);
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .footer-container {
+        background-color: $backgroundColorFooter;
+        padding-left: 150px;
+        margin: 0 !important;
+        max-width: 100% !important;
+        height: 197px !important;
+
+
+    }
+
+    .section-title {
+        color: black;
+        font-size: 17px !important;
+        font-family: "Times New Roman"
+    }
+    #footer.mod-footer-3 .footer-container .menu li{
+        padding: 3px 0 !important;
+    }
+
+    .social ul,
+    .location ul {
+        font-size: 10px !important;
+    }
+
+    #footer.mod-footer-3 .footer-container .menu li a {
+        font-size: 10px !important;
+    }
+
+    #footer.mod-footer-3 {
+        max-width: 100% !important;
+        width: 100%;
+        margin: 25px auto 0;
+        padding: 50px 0px 50px 200px;
+        background: #e2e2e2;
+        color: $mainColor;
+        display: inline-block;
+
+        &.full-width {
+            max-width: 100%;
+        }
+
+        @import "../_common/scss/_footer_container_1.scss";
+    }
+
+    @import "../_common/scss/_footer_rights.scss";
+
+    #footer.mod-footer-3 {
+        & .footer-container {
+            & .menu {
+                display: block !important;
+            }
+        }
+    }
+}
+
+@media all and (max-width: 767px) {
+    #credits{
+        display: none !important;
+    }
+    .social {
+        display: none;
+    }
+
+    #logo {
+        display: none;
+    }
+
+    #footer.mod-footer-3 {
+        max-width: $pageWidth;
+        width: 100%;
+        margin: 25px auto 0;
+        padding: 25px 0;
+        background: $backgroundColorFooter;
+        color: $footerTextColor;
+        display: inline-block;
+
+        &.full-width {
+            max-width: 100%;
+        }
+
+        @import "../_common/scss/_footer_container_1.scss";
+    }
+
+    @import "../_common/scss/_footer_rights.scss";
+
+    #footer.mod-footer-3 {
+        & .footer-container {
+            & .mobile-logo {
+                display: block;
+                text-align: center;
+                padding: 0 0 25px;
+
+                & img {
+                    max-width: 180px;
+                }
+            }
+
+            & .logo {
+                display: none;
+            }
+
+            & [class*='col-'] {
+                margin-bottom: 5px;
+            }
+
+            & .section-title {
+                width: 100%;
+                padding: 5px 15px;
+                background: rgba($fontColor, 1/10);
+                position: relative;
+                @include transition(background 0.2s ease-in-out);
+
+                &:after {
+                    content: '\f107';
+                    font-family: 'FontAwesome';
+                    position: absolute;
+                    right: 15px;
+                    top: 50%;
+                    @include transform(translateY(-50%) rotate(0deg));
+                    @include transition(transform 0.2s ease-in-out);
+                }
+
+                &.open {
+                    background: $mainColor;
+                    @include transition(background 0.2s ease-in-out);
+
+                    &:after {
+                        @include transform(translateY(-50%) rotate(-180deg));
+                        @include transition(transform 0.2s ease-in-out);
+                    }
+                }
+
+                &.center {
+                    background: transparent;
+                    padding: 25px 15px 5px;
+
+                    &:after {
+                        content: '';
+                        display: none;
+                    }
+                }
+
+            }
+
+            & .menu {
+                display: none;
+                overflow: hidden;
+                padding: 5px 15px;
+
+                & li {
+                    & .row {
+                        & [class*='col-'] {
+                            &:first-of-type {
+                                padding-left: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media all and (max-width: 480px) {
+    .footer-rights {
+        & .pull-left {
+            display: none;
+        }
+
+        & .pull-right {
+            position: relative;
+            right: 50%;
+            @include transform(translateX(50%));
+
+            & img {
+                margin: 0;
+            }
+        }
+    }
+}

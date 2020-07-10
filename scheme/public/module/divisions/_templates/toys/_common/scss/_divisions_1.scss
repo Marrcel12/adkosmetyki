@@ -1,0 +1,5 @@
+.division-box {
+  background: $backgroundColor;
+  @include border-radius(7px);
+  border-bottom: 1px solid darken($primaryColor, 20%);
+}

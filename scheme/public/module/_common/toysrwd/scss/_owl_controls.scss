@@ -1,0 +1,42 @@
+.owl-controls {
+  & .owl-prev, .owl-next {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    background: white;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.33);
+    @include transform(translateY(-50%));
+    @include opacity(1);
+    @include transition(all 0.2s ease-in-out);
+    & .fa {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      color: $fontColor;
+      font-size: 40px;
+    }
+    &:hover {
+      width: 55px;
+      @include opacity(1);
+      @include transition(all 0.2s ease-in-out);
+    }
+    &.disabled {
+      cursor: default;
+      @include opacity(0);
+    }
+  }
+  & .owl-prev {
+    left: -22px;
+    & .fa {
+      @include transform(translate(-70%,-50%));
+    }
+  }
+  & .owl-next {
+    right: -22px;
+    & .fa {
+      @include transform(translate(-30%,-50%));
+    }
+  }
+}

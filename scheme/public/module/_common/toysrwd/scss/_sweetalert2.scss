@@ -1,0 +1,76 @@
+.swal2-container {
+    & .swal2-modal {
+        box-shadow: 0px 0px 0px 15px $lightYellow;
+        padding: 25px !important;
+        border-radius: $border-radius-small;
+        font-family: 'Roboto', sans-serif;
+        border: $border;
+
+        h2 {
+            font-size: 26px;
+            text-transform: uppercase;
+            color: $fontColor;
+            font-family: "Baloo Tammudu";
+            position: relative;
+            padding-bottom: 30px;
+            text-align: center;
+            &:after {
+                content: '';
+                background-image: url(/view/new/scheme/public/module/_common/toysrwd/images/waves_title.png);
+                height: 10px;
+                width: 152px;
+                display: inline-block;
+                position: absolute;
+                bottom: 15px;
+                background-color: transparent;
+                left: 50%;
+                transform: translateX(-50%);
+              }
+        }
+        .btn {
+            position: relative;
+            z-index: 2;
+        }
+        .swal2-content {
+            font-family: 'Roboto', sans-serif;
+            font-size: 15px;
+            line-height: 24px;
+            color: $fontColor;
+        }
+    }
+    .swal2-modal.swal-shop-action-popup {
+        .swal2-icon {
+            margin-top: 20px;
+        }
+        h2 {
+            position: relative;
+            float: none;
+            text-align: center;
+            top: auto;
+            left: auto;
+        }
+    }
+}
+
+.swal2-container .swal2-modal.swal-shop-ask-about-product-popup .close-shape {
+    top: -84px;
+    right: -17px;
+}
+
+
+@media(max-width: 640px) {
+  .swal2-container {
+    & .swal2-modal {
+      h2 {
+        font-size: 23px;
+        padding-bottom: 20px;
+      }
+        .btn {
+            margin-top: 10px !important;
+        }
+      &.swal-shop-action-popup .swal2-icon {
+        margin-top: 0;
+      }
+    }
+  }
+}

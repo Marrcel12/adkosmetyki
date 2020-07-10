@@ -1,0 +1,29 @@
+.list-options {
+  margin-bottom: 10px;
+  & .list-option-name {
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 10px 0 20px;
+    color: #131313;
+    display: inline-block;
+    float: left;
+    position: relative;
+    top: -3px;
+    margin-right: 10px;
+  }
+  & .select-field, & .select-field-select2, & .select-field-select2-container {
+    width: 207px;
+    max-width: 207px;
+    float: left;
+    top: -6px;
+    margin: 6px 0 12px 15px;
+  }
+  & [class*='col-']:last-of-type {
+    text-align: right;
+  }
+  @import "../../../_common/scss/_pagination.scss";
+  .pagination {
+    padding: 0 15px;
+  }
+}

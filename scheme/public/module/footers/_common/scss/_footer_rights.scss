@@ -1,0 +1,19 @@
+.footer-rights {
+  max-width: $pageWidth;
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+  padding: 15px 0 35px;
+  position: relative;
+  & img {
+    margin-left: 15px;
+    position: relative;
+    bottom: 1px;
+  }
+  & .center-block-position {
+    text-align: center;
+    & img {
+      margin-right: 15px;
+    }
+  }
+}

@@ -1,0 +1,49 @@
+.searchbar-stages{
+  &.mod-searchbar-stages-1{
+    width:100%;
+    box-sizing: border-box;
+    .searchbar_stages_inner_wrapper{
+      margin:25px auto;
+      max-width: $pageWidth;
+      padding: 0 15px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      &.hidden{
+        display: none;
+      }
+      .searchbar_stages_selects_wrapper{
+        width:100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 37px;
+        .searchbar_stages_select_wrapper{
+          flex-basis: 30%;
+          .select-field-select2-container{
+            margin:0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media(max-width:767px){
+  .searchbar-stages{
+    &.mod-searchbar-stages-1{
+      .searchbar_stages_inner_wrapper{
+        .searchbar_stages_selects_wrapper{
+          .searchbar_stages_select_wrapper{
+            flex-basis:100%;
+            margin-bottom: 15px;
+            &:last-of-type{
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

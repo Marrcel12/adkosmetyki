@@ -1,0 +1,287 @@
+.product-card .heading.inside {
+  margin-bottom: 0;
+}
+
+.product-card.mod-product-card-1 {
+  max-width: $pageWidth;
+  width: 100%;
+  margin: 0 auto 30px;
+  @import "../../_common/scss/_product_view_1.scss";
+  .text-field-button {
+    font-weight: 400;
+    font-size: 14px;
+  }
+  @import "../../../sliders/_common/scss/_controls_1.scss";
+
+  .product-wrapper {
+    background-color: white;
+  }
+  .product-gallery {
+    padding: 0 15px;
+  }
+  .product-informations {
+    padding-right: 30px;
+
+    .product-symbol {
+      font-size: 14px;
+      font-weight: 400;
+    }
+    .product-symbol, .brand-logo {
+      margin-bottom: 0px;
+    }
+    .product-short-description {
+      margin-top: 14px;
+    }
+    .product-parameters {
+      .parameter-name,
+      .text-field {
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
+    .product-parameters {
+      .checkbox-field.grid.small {
+        width: 29px;
+        height: 29px;
+      }
+    }
+    & .counter-field {
+      & input {
+        font-size: 14px;
+        font-weight: bold;
+      }
+    }
+    & .units {
+      font-size: 14px;
+      font-weight: bold;
+      margin: 30px 10px 5px 0;
+    }
+    .send-phone, .add-to-cart {
+      height: 43px;
+      border-radius: 0;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    .add-to-cart {
+      position: relative;
+      padding-left: 50px;
+      margin-right: 10px;
+      .fa {
+        top: 2px;
+        font-size: 19px;
+        position: absolute;
+        left: 15px;
+        top: 11px;
+        padding: 0;
+        &:before {
+          content: "\f291";
+        }
+      }
+    }
+    & .add-to-store {
+      height: 43px;
+      width: 43px;
+      overflow: hidden;
+      margin-top: 15px;
+      color: #424242;
+      border: 1px solid #eee;
+      line-height: 43px;
+      padding: 0 11px;
+      @include transition(color 0.2s ease-in-out);
+      float: unset;
+      display: inline-block;
+      & .fa {
+        font-size: 18px;
+        padding: 0;
+        position: relative;
+        top: 1px;
+      }
+      &:hover {
+        color: $mainColor;
+        @include transition(color 0.2s ease-in-out);
+      }
+    }
+
+    .z-index-2 .product-parameters > tbody {
+      tr {
+        td {
+          padding-left: 15px;
+        }
+        &:nth-child(odd) {
+          background-color: $bc-color;
+        }
+      }
+      .deliveries-methods {
+        tr {
+          background-color: $mainColor;
+        }
+      }
+    }
+  }
+
+  .product-price {
+    font-size: 26px;
+    .price-special {
+      font-weight: bold;
+    }
+  }
+
+  .product-tabs {
+    margin: 0;
+    background-color: white;
+    padding-top: 30px;
+    .col-xs-12{
+      float:none;
+    }
+    .nav {
+      left: unset;
+      transform: unset;
+      padding: 0 25px;
+      display: block;
+      text-align: left;
+      li {
+        padding: 0 15px 12px;
+        .title {
+          font-size: 18px;
+          font-weight: bold;
+          text-transform: unset;
+        }
+      }
+    }
+    .tab {
+      .tab-content {
+        padding: 0 25px 25px 25px;
+        .product-informations {
+          padding: 0;
+          .product-parameters{
+            tbody {
+              tr {
+                td {
+                  padding-left: 15px;
+                }
+                &:nth-child(odd) {
+                  background-color: $bc-color;
+                }
+              }
+            }
+          } 
+        }
+        .heading {
+          border-bottom: 1px solid #e1e1e1;
+          &:before {
+            display: none;
+          }
+          li {
+            margin-bottom: 0;
+            .title {
+              font-size: 18px;
+              font-weight: bold;
+            } 
+            &:after {
+              display: none;
+            }
+          }         
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 767px) {
+  #product-full-gallery,
+  .zoomContainer {
+    display: none !important;
+  }
+
+  .product-card.mod-product-card-1 {
+    & .product-gallery {
+      & .product-img {
+        & .owl-item {
+          & .item {
+            & img {
+              &.mousetrap {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+    .product-informations {
+      padding: 0 15px;
+    }
+    .product-tabs .heading ul.nav li {
+      &:after {
+        bottom: -2px;
+      }
+    }
+    & .product-tabs {
+      & .heading {
+        & ul {
+          & li {
+            width: 100%;
+          }
+        }
+      }
+      & .tab {
+          .tab-content {
+            padding: 0 15px;
+          }
+        & .product-opinions {
+          & .opinions {
+            & .opinion-user {
+              width: 100%;
+              text-align: center;
+            }
+            & .opinion-date {
+              text-align: center;
+            }
+            & .opinion-rates {
+              & [class^="col-"] {
+                & .opinion-rate-name {
+                  text-align: center;
+                  padding-right: 0;
+                }
+                & .rate-field {
+                  position: relative;
+                  right: 50%;
+                  @include transform(translateX(50%));
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 420px) {
+  .product-card.mod-product-card-1 {
+    & .product-tabs {
+      & .tab {
+        & .product-opinions {
+          & .opinions {
+            & .opinion-rates {
+              & [class^="col-"] {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+    & .product-informations {
+      & .product-parameters {
+        & .parameter-name {
+          display: inline-block;
+          white-space: initial;
+          width: 100px;
+        }
+      }
+    }
+  }
+}
+@import "../../_common/scss/_product_full_gallery_1.scss";
+@import "../../../sliders/_common/scss/_controls_1.scss";

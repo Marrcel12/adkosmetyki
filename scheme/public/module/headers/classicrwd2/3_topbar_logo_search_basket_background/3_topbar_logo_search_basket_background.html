@@ -1,0 +1,135 @@
+<div class="mod-header-3-wrapper">
+	<header id="header" class="mod-header-3 {IF ($SHOP_TEST && $CONTROLER == 'cart') || ($SHOP_TEST && $WRONG_EMAIL)}shop-test-margin{/IF}">
+		{IF $SHOW_COOKIE_INFO}
+			{INCLUDE file="./".$TEMPLATE."/scheme/public/module/headers/_common/html/cookies.html"}
+		{/IF}
+		<div class="container-fluid">
+			{INCLUDE file="./".$TEMPLATE."/scheme/public/module/headers/_common/html/mobile-search.html"}
+			<section class="top-bar">
+				<div class="pull-left">
+					{INCLUDE file="./".$TEMPLATE."/scheme/public/module/headers/_common/html/top-bar-social.html"}
+				</div>
+				<div class="pull-right">
+					<ul>
+						{IF count($LANGS) > 1}
+							<li>
+								<span class="link">
+									<span class="helper-icon">
+										<i class="fa fa-globe"></i>
+									</span>
+									<span class="hidden-on-mobile">{$L_LANGUAGE_SELECT}</span> <img src="/{$TEMPLATE}/img/ico_lang/{$LANG}.png" class="icon-language-flag" /> <i class="fa fa-chevron-down"></i>
+								</span>
+								<div class="dropdown">
+									<ul>
+										{LOOP FROM=$LANGS VALUE=LANG}
+											<li class="{IF $LANG.KEY == $LANG}active{/IF}">
+												<a href="{$LANG.URL}">{$LANG.NAME} <img src="/{$TEMPLATE}/img/ico_lang/{$LANG.KEY}.png" class="icon-language-flag small" alt="" /></a>
+											</li>
+										{/LOOP}
+									</ul>
+								</div>
+							</li>
+						{/IF}
+						{IF count($CURRENCIES_ACTIVE) > 1}
+							<li>
+								<span class="link">
+									<span class="helper-icon">
+										<i class="fa fa-usd"></i>
+									</span>
+									<span class="hidden-on-mobile">{$L_CURRENCY}: <span data-select-currency-name>{$CURRENCY_EQU}</span></span> <i class="fa fa-chevron-down"></i>
+								</span>
+								<div class="dropdown">
+									<ul>
+										{LOOP FROM=$CURRENCIES_ACTIVE VALUE=CURRENCY KEY=NAME}
+											<li class="{IF $CURRENCY.selected}active{/IF}" data-select-currency-active>
+												<a href="#" data-select-currency="{$NAME}|{$CURRENCY.sym}">{$NAME}</a>
+											</li>
+										{/LOOP}
+									</ul>
+								</div>
+							</li>
+						{/IF}
+						{INCLUDE file="./".$TEMPLATE."/scheme/public/module/headers/_common/html/user-menu.html"}
+						{IF !$TURN_OFF_SALES}
+							<li class="quick-cart hidden-on-desktop">
+								<span class="link">
+									<span class="helper-icon">
+										<i class="fa fa-shopping-basket"></i>
+									</span>
+									<span class="hidden-on-mobile">{$L_CART}</span> (<span class="core_quickCartAmount">{$CART_AMOUNT}</span>) <i class="fa fa-chevron-down hidden-on-mobile"></i>
+								</span>
+								{IF $CONTROLER != 'cart'}
+									<div class="dropdown dropdown-quick-cart">
+										{INCLUDE file="./".$TEMPLATE."/scheme/public/_common/html/quick-cart.html"}
+									</div>
+								{/IF}
+							</li>
+						{/IF}
+					</ul>
+				</div>
+			</section>
+			<section class="sub-header">
+				<a href="/" class="logo">
+					<img src="{$MODULE.children.common_shop_logo[0].props.preview}" alt="{IF $MODULE.children.logo_alt[0].props.value} {$MODULE.children.logo_alt[0].props.value} {ELSE} {$LOGO_ALT} {/IF}" />
+				</a>
+				<ul class="mobile-actions">
+					<li id="mobile-open-search">
+						<i class="fa fa-search"></i>
+					</li>
+					<li id="mobile-open-menu">
+						<i class="fa fa-bars"></i>
+					</li>
+				</ul>
+				<div class="search-box">
+					<form method="GET" action="/category/#top">
+						<input class="input-field {IF $SEARCH_QUICK_ACTIVE}core_quickSearchAjax{/IF}" type="text" name="q" value="{$SEARCH_STRING}" placeholder="{$L_SEARCH_IN_SHOP}" autocomplete="off" {IF $DEBUG}data-ajax-blur="true"{/IF} />
+						{IF $SEARCH_DESC_ACTIVE}
+							<input type="hidden" name="desc" value="1" />
+						{/IF}
+						<input type="submit" value="" class="btn btn-primary btn-block" />
+						{IF $SEARCH_QUICK_ACTIVE}
+							{INCLUDE file="./".$TEMPLATE."/scheme/public/module/headers/_common/html/quick-search.html"}
+						{/IF}
+					</form>
+				</div>
+				{IF !$TURN_OFF_SALES}
+					<div class="quick-cart">
+						<a href="/cart/">
+							<div class="basket-wrapper">
+								<i class="fa fa-shopping-basket"></i>
+								<div class="counter"><span class="core_quickCartAmount">{$CART_AMOUNT}</span></div>
+							</div>
+							<div class="price">
+								<span class="your-cart">{$L_YOUR_CART}</span>
+								<span class="core_quickCartTotalPrice core_priceFormat" data-price="{$CART_SUM}">{$CART_SUM}</span>
+							</div>
+							<div class="chevron-down-wrapper"><i class="fa fa-chevron-down"></i></div>
+						</a>
+						{IF $CONTROLER != 'cart'}
+							<div class="dropdown dropdown-quick-cart">
+								{INCLUDE file="./".$TEMPLATE."/scheme/public/_common/html/quick-cart.html"}
+							</div>
+						{/IF}
+					</div>
+				{/IF}
+			</section>
+			<section class="menu menu-calculate" data-action="inline">
+				<ul>
+					{INCLUDE file="./".$TEMPLATE."/scheme/public/module/headers/_common/html/main-menu.html"}
+					<li class="hamburger {IF $MENU_SHOW_TYPE == 'click'}click{/IF}">
+						<a href="#">
+							<i class="fa fa-bars"></i>
+						</a>
+						<div class="dropdown">
+							<div class="row">
+								<div class="col-xs-12">
+									<ul class="hambureger-elements"></ul>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</section>
+		</div>
+	</header>
+</div>

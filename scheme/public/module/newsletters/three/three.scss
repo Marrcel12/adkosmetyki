@@ -1,0 +1,150 @@
+.newsletter-content p {
+    font-family: goudy-old-style !important;
+    font-style: italic;
+    font-size: 20px !important;
+
+}
+
+.newsletter.mod-newsletter-3 {
+    max-width: $pageWidth;
+    width: 100%;
+    margin: 25px auto;
+    display: inline-block;
+
+    &.full-width {
+        max-width: 100%;
+    }
+
+    & + #footer {
+        margin-top: -25px;
+    }
+
+    & .newsletter-container {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+
+        & .newsletter-background {
+            position: absolute;
+            top: -25px;
+            right: -25px;
+            bottom: -25px;
+            left: -25px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+
+            &:after {
+                content: '';
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                background: rgba(0, 0, 0, 1/10);
+            }
+        }
+
+        & .newsletter-content {
+            height: auto;
+            position: relative;
+            z-index: 1;
+            max-width: $pageWidth;
+            width: 100%;
+            margin: 0 auto;
+            padding: 75px 0;
+            text-align: center;
+            color: #ffffff;
+
+            & .title {
+                font-size: 38px;
+                font-weight: 600;
+            }
+
+            & p {
+                font-size: 18px;
+                margin: 20px 0 50px;
+            }
+
+            & .newsletter-form {
+                width: 50%;
+                display: inline-block;
+
+                & [class*='col-']:first-of-type {
+                    padding-right: 0;
+                }
+
+                & [class*='col-']:last-of-type {
+                    padding-left: 0;
+                }
+
+                & .newsletter-input {
+                    height: 50px;
+                    @include border-radius(0);
+                    @include border-top-left-radius(25px);
+                    @include border-bottom-left-radius(25px);
+                    outline: none;
+                    border: 3px solid rgba($fontColor, 3/10);
+                    border-right: 0;
+                    background-clip: padding-box;
+                    color: $fontColor;
+                    padding: 0 15px;
+                    width: 100%;
+                }
+
+                & .newsletter-button {
+                    height: 50px;
+                    @include border-radius(0);
+                    @include border-top-right-radius(25px);
+                    @include border-bottom-right-radius(25px);
+                    border: 3px solid rgba($fontColor, 3/10) !important;
+                    border-left: 0;
+                    outline: none;
+                    background: rgba($fontColor, 8/10) !important;
+                    color: #ffffff !important;
+                    font-weight: 600;
+                    width: 100%;
+                    background-clip: padding-box;
+                    padding-right: 10px;
+
+                    &:hover {
+                        color: $mainColor !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media all and (max-width: 480px) {
+    .newsletter.mod-newsletter-3 {
+        & .newsletter-container {
+            & .newsletter-content {
+                & .newsletter-form {
+                    width: 80%;
+
+                    & [class*='col-'] {
+                        &:first-of-type {
+                            padding-right: 15px;
+
+                            & .newsletter-input {
+                                @include border-top-right-radius(25px);
+                                @include border-bottom-right-radius(25px);
+                            }
+                        }
+
+                        &:last-of-type {
+                            padding-left: 15px;
+
+                            & .newsletter-button {
+                                margin-top: 10px;
+                                @include border-top-left-radius(25px);
+                                @include border-bottom-left-radius(25px);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,13 @@
+.products-list.mod-products-list-1 {
+  max-width: $pageWidth;
+  width: 100%;
+  margin: 0 auto;
+  @import "../../../_common/toysrwd/scss/_product_tile.scss";
+  .product-tile .product-desc {
+    min-height: 120px;
+  }
+  > .container-fluid > .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

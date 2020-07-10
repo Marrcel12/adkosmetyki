@@ -1,0 +1,177 @@
+<section class="login-hurt mod-login-hurt-1 {IF count($LANGS) > 1 || count($CURRENCIES_ACTIVE) > 1}options-space{/IF} {IF $ERRORS}core_loginErrors{/IF}" {IF $ERRORS}data-errors="{LOOP FROM=$ERRORS VALUE=ERROR INDEX=INDEX}{IF $INDEX > 1}|{/IF}{$ERROR}{/LOOP}"{/IF}>
+        {IF count($LANGS) > 1 || count($CURRENCIES_ACTIVE) > 1}
+          <div class="options-space-wrapper">
+            <div class="container-fluid">
+              <div class="pull-right">
+                        <ul>
+                            {IF count($LANGS) > 1}
+                                <li>
+                                    <span class="link">
+                                        <span class="helper-icon">
+                                            <i class="fa fa-globe"></i>
+                                        </span>
+                                        <span class="hidden-on-mobile">{$L_LANGUAGE_SELECT}</span> <img src="/{$TEMPLATE}/img/ico_lang/{$LANG}.png" class="icon-language-flag" /> <i class="fa fa-chevron-down"></i>
+                                    </span>
+                                    <div class="dropdown">
+                                        <ul>
+                                            {LOOP FROM=$LANGS VALUE=LANG}
+                                                <li class="{IF $LANG.KEY == $LANG}active{/IF}">
+                                                    <a href="{$LANG.URL}">{$LANG.NAME} <img src="/{$TEMPLATE}/img/ico_lang/{$LANG.KEY}.png" class="icon-language-flag small" alt="" /></a>
+                                                </li>
+                                            {/LOOP}
+                                        </ul>
+                                    </div>
+                                </li>
+                            {/IF}
+                            {IF count($CURRENCIES_ACTIVE) > 1}
+                                <li>
+                                    <span class="link">
+                                        <span class="helper-icon">
+                                            <i class="fa fa-usd"></i>
+                                        </span>
+                                        <span class="hidden-on-mobile">{$L_CURRENCY}: <span data-select-currency-name>{$CURRENCY_EQU}</span></span> <i class="fa fa-chevron-down"></i>
+                                    </span>
+                                    <div class="dropdown">
+                                        <ul>
+                                            {LOOP FROM=$CURRENCIES_ACTIVE VALUE=CURRENCY KEY=NAME}
+                                                <li class="{IF $CURRENCY.selected}active{/IF}" data-select-currency-active>
+                                                    <a href="#" data-select-currency="{$NAME}|{$CURRENCY.sym}">{$NAME}</a>
+                                                </li>
+                                            {/LOOP}
+                                        </ul>
+                                    </div>
+                                </li>
+                            {/IF}
+                        </ul>
+                    </div>
+            </div>
+          </div>
+        {/IF}
+        <div class="container-fluid {IF count($LANGS) > 1 || count($CURRENCIES_ACTIVE) > 1}options-space{/IF}">
+          <div class="logins-hurt-outer">
+            <div class="logins-hurt-wrapper">
+              <div class="logins-hurt-header">
+                <div class="row">
+                  <div class="col-xs-4"></div>
+                  <div class="col-xs-4 logo">
+                    <a href="/" class="logo" itemscope itemtype="http://schema.org/LocalBusiness">
+                              <img src="{$MODULE.children.common_shop_logo[0].props.preview}" alt="" />
+                          </a>
+                  </div>
+                  <div class="col-xs-4"></div>
+                </div>
+              </div>
+              <div class="logins-hurt-body">
+                <div class="row">
+                  <div class="col-xs-12 col-md-6">
+                    <form method="POST" class="core_parseForm">
+                      <div class="logins-hurt-content">
+                        <section class="third-heading">
+                          <ul>
+                            <li>
+                              <span class="title">{$L_LOGIN2}</span>
+                            </li>
+                          </ul>
+                        </section>
+                        <div class="row section-form">
+                          <div class="col-xs-12 col-sm-6">
+                            <span class="title-section">E-mail</span>
+                            <input class="input-field" type="text" name="email" value="{$LOG.email}" data-valid="required" />
+                          </div>
+                          <div class="col-xs-12 col-sm-6">
+                            <span class="title-section">{$L_PASSWORD}</span>
+                            <input class="input-field" type="password" name="password" value="{$LOG.password}" data-valid="required|minlength:4|maxlength:32" />
+                          </div>
+                        </div>
+                        <div class="row section-form">
+                          {IF $AUTOLOGIN}
+                            <div class="col-xs-6">
+                              <div class="checkbox-field">
+                                <input id="param-rules-1" type="checkbox" name="autologin" value="1" {$CHECKED} />
+                                <label for="param-rules-1">
+                                  <span class="title">{$L_REMEMBER}</span>
+                                </label>
+                              </div>
+                            </div>
+                          {/IF}
+                          <div class="col-xs-6 pull-right">
+                            <div class="checkbox-field">
+                              <span class="title pull-right">
+                                <a href="/passrecover/">{$L_RECOVER_PASSWORD}</a>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row section-form-buttons">
+                          <div class="col-xs-12">
+                            <button type="submit" name="submit" value="submit" class="btn btn-action-confirm">{$L_LOGIN}</button>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="col-xs-12 col-md-6">
+                    <div class="logins-hurt-content">
+                      <section class="third-heading">
+                        <ul>
+                          <li>
+                            <span class="title">{$L_REGISTER}</span>
+                          </li>
+                        </ul>
+                      </section>
+                      <div class="row content-sections">
+                        {$L_HURT_WELCOME_TEXT}
+                      </div>
+                      <div class="row section-form-buttons">
+                        <div class="col-xs-12">
+                          <a href="/register" class="btn btn-action-confirm">{$L_REGISTER2}</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-md-6 static">
+                    <div class="background-flex left"></div>
+                    <div class="row">
+                      <div class="col-xs-12">
+                        <button class="btn btn-action-confirm core_loginHurtTriggerLogin">{$L_LOGIN}</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-md-6 static">
+                    <div class="background-flex right"></div>
+                    <div class="row">
+                      <div class="col-xs-12">
+                        <a href="/register" class="btn btn-action-confirm">{$L_REGISTER2}</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="logins-hurt-footer">
+                <div class="row">
+                  <div class="col-xs-6">
+                    <div class="row">
+                      <div class="col-xs-2 icon-support">
+                        <i class="fa fa-phone"></i>
+                      </div>
+                      <div class="col-xs-12 col-sm-4">
+                        {$DATA_ADDRESSES}
+                      </div>
+                      <div class="col-xs-12 col-sm-6">
+                        E-mail: <a href="mailto:{$DATA_EMAIL}">{$DATA_EMAIL}</a><br />
+                        {$L_USER_PHONE}: {$DATA_PHONE}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-6">
+                    <a href="http://{$L_SKYSHOP_ADDR}" target="_blank">
+                              <img src="/{$TEMPLATE}/scheme/public/_common/img/sky-shop-hurt-logo.png" alt="{$L_SKY_FOOT_TEXT_SHOP}" class="pull-right" />
+                          </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      

@@ -1,0 +1,169 @@
+.blog.mod-blog-2 {
+  max-width: $pageWidth;
+  width: 100%;
+  margin: 0 auto;
+
+   //tiles
+  @import "../../../_common/toysrwd/scss/_post_tile.scss";
+
+  // blog list + entry page
+  @import "../private/scss/_utils_1.scss";
+
+  // pagination wrapper
+  @import "../../../_common/toysrwd/scss/_list_options_1.scss";
+
+   // pagination
+  @import "../../../_common/toysrwd/scss/_pagination.scss";
+
+  // left category
+  @import "../private/scss/_column_categories_1.scss";
+
+  & .post-tile {
+    padding: 0;
+    margin-bottom: 0;
+    .row {
+      display: flex;
+    }
+    & .post-content {
+        position: absolute;
+        top: 50%;
+        @include transform(translateY(-50%));
+        left: 15px;
+        right: 30px;
+        .post-details {
+          .pull-right {
+            right: 0;
+            bottom: 0;
+          }
+        }
+      & .post-desc {
+        & .read-more {
+          bottom: 0;
+        }
+      }
+    }
+  }
+  & .post-tile {
+    margin-bottom: 25px;
+  }
+  // @import "../../_common/scss/_utils_1.scss";
+  .post-details-single {
+    position: relative;
+    padding: 25px 45px 25px 45px;
+    margin: 0;
+    &:before {
+      content: '';
+      background-color: white;
+      position: absolute;
+      left: 15px;
+      top: 0;
+      width: calc(100% - 30px);
+      height: 100%;
+      z-index: -1;
+    }
+  }
+
+  .post-content-single {
+    position: relative;
+    &:before {
+      content: '';
+      background-color: white;
+      position: absolute;
+      left: 15px;
+      top: 0;
+      width: calc(100% - 30px);
+      height: 100%;
+      z-index: -1;
+    }
+    .post-content {
+      padding: 0 25px 25px 25px;
+
+    }
+  }
+
+  & > .container-fluid {
+    & > .row {
+      & .col-sm-9 {
+        .heading {
+          margin-bottom: 30px;
+        }
+        .category-description {
+          padding: 25px;
+          background-color: white;
+          margin-top: -30px;
+          margin-bottom: 30px;
+        }
+      }
+    }
+  }
+}
+img.responsive-image {
+  width: 100%;
+  height: auto;
+}
+
+@media all and (max-width: 1000px) {
+  .blog.mod-blog-2 {
+    & .list-options {
+  @import "../../../_common/toysrwd/scss/_pagination_mobile.scss";
+    }
+  }
+}
+
+
+@media(max-width: 768px) {
+  .blog.mod-blog-2 {
+    .post-tile {
+      .row {
+        display: block;
+      }
+      .post-content {
+        position: static;
+        transform: none;
+
+        .post-details {
+          .pull-right {
+            right: 30px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media(max-width: 767px) {
+  .blog.mod-blog-2 {
+    @import "../private/scss/blog_rwd_xs.scss";  
+  }
+}
+
+@media all and (min-width: 481px) {
+  .blog.mod-blog-2 {
+    & .padding-left-0 {
+      padding-left: 0;
+    }
+    & .padding-right-0 {
+      padding-right: 0;
+    }
+    & .vertical-center {
+      position: relative;
+    }
+  }
+}
+
+@media all and (max-width: 480px) {
+  .blog.mod-blog-2 {
+    & .post-tile {
+      & .post-content {
+        padding: 15px 15px 40px;
+        .post-details .pull-right {
+          bottom: 15px;
+        }
+      }
+    }
+  }
+}
+
+
+
+

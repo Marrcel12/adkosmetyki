@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="{$LANG}" {IF $XMLNS} {$XMLNS}{/IF} class="{IF $DISABLE_ACCESS || $CONDIT_ACCESS}prevent-scroll prevent-scroll-desktop{/IF} ">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="description" content="{$META_DESCRIPTION}" />
+		<meta name="keywords" content="{$META_KEYWORDS}" />
+		{IF $NOINDEX}
+			<meta name="robots" content="noindex,follow" />
+		{/IF}
+		<meta name="author" content="{$LOGO_ALT} - działa na oprogramowaniu sklepów internetowych Sky-Shop.pl" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta property="og:title" content="{$META_TITLE}" />
+		<meta property="og:description" content="{$META_DESCRIPTION}" />
+		{IF $META_IMAGE}
+			<meta property="og:image" content="{$META_IMAGE}" />
+			<meta property="og:image:type" content="image/jpeg" />
+			<meta property="og:image:width" content="{$META_IMAGE_WIDTH}" />
+			<meta property="og:image:height" content="{$META_IMAGE_HEIGHT}" />
+			<link rel="image_src" href="{$META_IMAGE}" />
+		{/IF}
+		{IF $FAVICON}
+			<link rel="shortcut icon" href="/{$UPLOAD_DIR}/{$FAVICON}" />
+		{/IF}
+		{IF $URL_PREV}
+			<link rel="prev" href="{$URL_PREV}" />
+		{/IF}
+		{IF $URL_NEXT}
+			<link rel="next" href="{$URL_NEXT}" />
+		{/IF}
+		{IF $CANONICAL}
+			<link rel="canonical" href="{$CANONICAL}" />
+		{/IF}
+		{LOOP FROM=$HREFLANGS VALUE=HREFLANG}
+			<link rel="alternate" href="{$HREFLANG.domain}" hreflang="{$HREFLANG.lang}" />
+		{/LOOP}
+		<title>{$META_TITLE}</title>
+		{$GOOGLE_WEBMASTER_TOOLS}
+		{INCLUDE file="scheme/public/_common/html/plugins/external-scripts-header.html"}
+		<script type="text/javascript">
+			function imageLoaded(e,i){var n;void 0===i&&(i="prev"),"prev"==i&&(n=e.previousElementSibling),"link"==i&&(n=e.parentElement.previousElementSibling),n.classList.contains("fa")&&(n.style.display="none")}
+		</script>
+		<style>{INCLUDE file="./".$COLOR_PATH."".$FILENAME_CSS}</style>
+		{$SCRIPTS_HEAD}
+		{IF 1 == 2}<link rel="stylesheet" href="{$COLOR_PATH}user.css?v={$SCRIPTS_CACHE_NUM}" />{/IF}
+	</head>
+	<body {IF $DEBUG==1}data-debug="true"{/IF} data-base="{$CURRENCY_PRIMARY.key}" data-used="{LOOP FROM=$CURRENCIES VALUE=CURRENCY KEY=NAME}{IF $CURRENCY.selected}{$NAME}|{$CURRENCY.sym}{/IF}{/LOOP}" data-rates="{LOOP FROM=$CURRENCIES VALUE=CURRENCY KEY=NAME INDEX=INDEX}{IF $INDEX > 1},{/IF}'{$NAME}':{$CURRENCY.rate}{/LOOP}" data-decimal-hide="{$DEC_HIDE}" data-decimal="{$DEC_SEPARATOR_escaped}"{IF $JS_HASH} data-js-hash="{$JS_HASH}"{/IF} data-thousand="{$TH_SEPARATOR_escaped}" {IF $JS_REDIRECT}onload="window.location='{$JS_REDIRECT}'" {/IF}class="{IF $WIN_POPUP_SHOW}core_popUpWindow {/IF}{IF $NEWSLETTER_POPUP_SHOW}core_newsletterPopUpWindow {/IF}{IF $IS_REMOVE_NEWSLETTER}core_newsletterUnsubscribe {/IF}{IF !empty($MESSAGE_ALERT) || !empty($ERRORS)}core_messageListShow {/IF}{IF $DISABLE_ACCESS || $CONDIT_ACCESS}prevent-scroll prevent-scroll-desktop {/IF}" {IF $WIN_POPUP_SHOW}data-popup-message="{$L_WINPOPUP_HTML_escaped}" data-popup-delay="{$WIN_POPUP_DELAY}" {/IF}{IF $NEWSLETTER_POPUP_SHOW}data-newsletter-popup-message="{$L_NEWSLETTER_POPUP_CONTENT_escaped}" data-newsletter-popup-delay="{$NEWSLETTER_POPUP_DELAY}" {/IF}{IF !empty($MESSAGE_ALERT)}data-messages-list="{LOOP FROM=$MESSAGE_ALERT VALUE=MSG INDEX=I}{IF $I > 1}>:<{/IF}'{$MSG.title}'|'{$MSG.content}'|'{$MSG.type}'{/LOOP}" {/IF}{IF !empty($ERRORS)}data-errors-list="{LOOP FROM=$ERRORS VALUE=ERROR INDEX=I}{IF $I > 1}>:<{/IF}'{$L_ERROR_UNEXPECTED_ERROR_escaped}'|'{$ERROR_escaped}'|'error'{/LOOP}"  {/IF}data-hurt-price-type="{$PRICE_TYPE}" data-hurt-price-text="{$HIDDE_PRICE_TEXT_escaped}" data-tax="23">
+		{$SCRIPTS_BODY}
+		{IF !empty($HEADER_INFO_BAR)}
+			{INCLUDE file="scheme/public/_common/html/header_info_bar.html"}
+		{/IF}
+		<main class="skyshop-container">

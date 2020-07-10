@@ -1,0 +1,36 @@
+/* telugu */
+@font-face {
+  font-family: 'Baloo Tammudu';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Baloo Tammudu Regular'), local('BalooTammudu-Regular'), url(https://fonts.gstatic.com/s/balootammudu/v3/_VlYJH4sGzgC_fTDQEKfTwJAbKaEh6QeKZIg9t9vBx0.woff2) format('woff2');
+  unicode-range: U+0951-0952, U+0964-0965, U+0C00-0C7F, U+1CDA, U+200C-200D, U+25CC;
+  font-display: swap;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Baloo Tammudu';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Baloo Tammudu Regular'), local('BalooTammudu-Regular'), url(https://fonts.gstatic.com/s/balootammudu/v3/_VlYJH4sGzgC_fTDQEKfTywns1i-4vIfB-3M6UEE1-s.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;
+  font-display: swap;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Baloo Tammudu';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Baloo Tammudu Regular'), local('BalooTammudu-Regular'), url(https://fonts.gstatic.com/s/balootammudu/v3/_VlYJH4sGzgC_fTDQEKfT8saaYUUIF5gbSGmVic2yi0.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+  font-display: swap;
+}
+/* latin */
+@font-face {
+  font-family: 'Baloo Tammudu';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Baloo Tammudu Regular'), local('BalooTammudu-Regular'), url(https://fonts.gstatic.com/s/balootammudu/v3/_VlYJH4sGzgC_fTDQEKfT0L0QWH-sxoOqIWNGQmMQmc.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+  font-display: swap;
+}

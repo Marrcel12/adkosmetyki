@@ -1,0 +1,73 @@
+{IF !empty($MODULE.prodoftheday)}
+  <section class="product-of-the-day mod-product-of-the-day-1">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xxs-12 col-xs-12 col-sm-5 col-md-5 col-lg-4">
+          <div class="special-offer-box">
+            <div class="special-offer-box-content">
+              <section class="heading inside to-left">
+                <ul>
+                  <li>
+                    <span class="title">{$L_PRODUCT_OF_THE_DAY}</span>
+                  </li>
+                </ul>
+              </section>
+              <div class="carousel product-of-the-day-carousel-1" data-carousel-name="productOfTheDayCarousel1">
+                {LOOP FROM=$MODULE.prodoftheday VALUE=PRODUCT}
+                  <div class="item">
+                    {INCLUDE file="./".$TEMPLATE."/scheme/public/_common/html/product-tile.html" PRODUCT_ITEM=$PRODUCT PRODUCT_BRUTTO='TRUE' PRODUCT_RATIO=1.0}
+                    {IF $PRODUCT_AVAILABILITY}
+                    <div class="availability">
+                      <span>{$L_AVAILABILITY}</span>
+                      {IF $PRODUCT.text_amount.name}
+                      <strong><span>{$PRODUCT.text_amount.name} {IF $PRODUCT.text_amount.img}<img src="{$PRODUCT.text_amount.img}" />{/IF}</span></strong>
+                      {ELSE}
+                      {IF $PRODUCT.AMOUNT < 0}0{ELSE}{$PRODUCT.AMOUNT}{/IF} {IF $PRODUCT.UNIT}{$PRODUCT.UNIT}{/IF}
+                      <strong><span>{$PRODUCT.prod_amount}</span>{IF $PRODUCT.unit} {$PRODUCT.unit}{/IF}</strong>
+                      {/IF}
+                    </div>
+                    {/IF}
+                    <div class="counter {IF !$PRODUCT_AVAILABILITY}space{/IF}">
+                      <span>{$L_PROD_PROMO_TO_END}</span>
+                      <strong class="counter-time core_countDownPromotion" data-countdown="{$PRODUCT.status_end}"></strong>
+                    </div>
+                  </div>
+                {/LOOP}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xxs-12 col-xs-12 col-sm-7 col-md-7 col-lg-8">
+          <section class="heading inside">
+            <ul class="{IF count($MODULE.subcats) > 1}nav{/IF}">
+              {LOOP FROM=$MODULE.subcats VALUE=SUBCAT KEY=TYPE INDEX=INDEX}
+                <li class="{IF count($MODULE.subcats) > 1}{IF $INDEX == 1}active{/IF}{/IF}">
+                  <span class="title">
+                    {IF $TYPE == 'recommended'}{$L_RECOMMENDED}{/IF}
+                    {IF $TYPE == 'new'}{$L_NEW_MENU}{/IF}
+                    {IF $TYPE == 'promotion'}{$L_PROMOTION_MENU}{/IF}
+                    {IF $TYPE == 'bestseller'}{$L_BESTSELLER_MENU}{/IF}
+                    {IF $TYPE == 'saleout'}{$L_SALEOUT_MENU}{/IF}
+                  </span>
+                </li>
+              {/LOOP}
+            </ul>
+          </section>
+          {LOOP FROM=$MODULE.subcats VALUE=SUBCAT KEY=TYPE INDEX=INDEX}
+            <div class="tab {IF $INDEX > 1}tab-hidden{/IF}" data-tab="{$INDEX}">
+              <div class="row">
+                {LOOP FROM=$SUBCAT VALUE=PRODUCT_ITEM INDEX=I}
+                  {IF $I < 9}
+                    <div class="col-xxxs-12 col-xxs-6 col-xs-6 col-sm-6 col-md-4 col-lg-3">
+                      {INCLUDE file="./".$TEMPLATE."/scheme/public/_common/html/product-tile.html" PRODUCT_ITEM=$PRODUCT_ITEM PRODUCT_BRUTTO='TRUE'}
+                    </div>
+                  {/IF}
+                {/LOOP}
+              </div>
+            </div>
+          {/LOOP}
+        </div>
+      </div>
+    </div>
+  </section>
+{/IF}

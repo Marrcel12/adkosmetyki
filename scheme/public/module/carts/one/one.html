@@ -1,0 +1,401 @@
+<section class="cart mod-cart-1">
+  <div class="container-fluid">
+    <div class="row">
+      <form method="POST" action="/order/" class="core_loadCart core_submitCart">
+        <div class="col-xs-12 cart-header">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-xs-12 col-sm-6">
+                <section class="heading inside">
+                  <ul>
+                    <li>
+                      <span class="title">1. {$L_CART}</span>
+                    </li>
+                  </ul>
+                </section>
+              </div>
+              <div class="col-xs-12 col-sm-6">
+                <section class="heading inside">
+                  <ul>
+                    <li class="disable">
+                      <span class="title">2. {$L_ORDER}</span>
+                    </li>
+                  </ul>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <div class="cart-empty {IF count($PRODUCTS) > 0}hidden{/IF}">
+            {$L_CART_EMPTY}
+          </div>
+          <table class="cart-table core_storeCartProducts" data-minimal-order-price="{$MINIMAL_ORDER_PRICE}" data-products='{{LOOP FROM=$PRODUCTS VALUE=ITEM KEY=KEY INDEX=INDEX}{IF $INDEX > 1},{/IF}"{$KEY}":{"amount":{$ITEM.amount},"id":{$ITEM.id},"options":{{LOOP FROM=$ITEM.options VALUE=OPTION KEY=KEY_OPTION INDEX=I}{LOOP FROM=$OPTION.values VALUE=VALUE KEY=KEY_VALUE}{IF $VALUE.selected}{IF $VALUE.selected_num > 1},{/IF}"{$KEY_OPTION}":"{$KEY_VALUE}"{/IF}{/LOOP}{/LOOP}}}{/LOOP}}'>
+            <thead>
+              <tr>
+                <th class="product-img"></th>
+                <th class="product-name">
+                  {$L_PRODUCT}
+                </th>
+                <th class="product-details">
+                  {$L_DETAILS}
+                </th>
+                <th class="product-price">
+                  {$L_PRICE} {IF $PRICE_TYPE == 'netto' || $PRICE_TYPE == 'netto_brutto'}
+                    {$L_NET}
+                  {ELSEIF $PRICE_TYPE == 'brutto'}
+                    {$L_GROSS}
+                  {/IF}
+                </th>
+                <th class="product-discount hidden">
+                  {$L_PRICE_AFTER_DISCOUNT} {IF $PRICE_TYPE == 'netto' || $PRICE_TYPE == 'netto_brutto'}
+                    {$L_NET}
+                  {ELSEIF $PRICE_TYPE == 'brutto'}
+                    {$L_GROSS}
+                  {/IF}
+                </th>
+                <th class="product-count">
+                  {$L_AMOUNT}
+                </th>
+                <th class="product-total">
+                  {$L_TOTAL_VALUE} {IF $PRICE_TYPE == 'netto' || $PRICE_TYPE == 'netto_brutto'}
+                    {$L_NET}
+                  {ELSEIF $PRICE_TYPE == 'brutto'}
+                    {$L_GROSS}
+                  {/IF}
+                </th>
+                <th class="product-actions">
+                  {$L_REMOVE}
+                </th>
+              </tr>
+            </thead>
+            <tbody class="{IF count($PRODUCTS) == 0}empty-space{/IF}">
+              <tr class="product-item-pattern hidden" data-translate="{$L_PRODUCT} #{{:index:}}" data-id="{{:id:}}" data-hash="{{:hash:}}">
+                <td class="product-img" data-translate="{{:name:}}">
+                  <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+                  <a href="#{{:url:}}">
+                    <img src="/view/new/img/transparent.png" data-src="{{:image:}}_125.jpg" alt="{{:name:}}" onLoad="imageLoaded(this,'link')" />
+                  </a>
+                  <a href="#{{:url:}}" class="product-mobile-link"></a>
+                </td>
+                <td class="product-name">
+                  <span>
+                    <a href="#{{:url:}}" rel="nofollow">
+                      {{:name:}}
+                    </a>
+                  </span>
+                  <input type="hidden" name="id_{{:hash:}}" value="{{:id:}}" data-disabled disabled />
+                </td>
+                <td class="product-details core_cartParamsChange core_cardStocksManage" data-translate="{$L_DETAILS}" data-stocks-pattern>
+                  {INCLUDE file="./".$TEMPLATE."/scheme/public/module/carts/_common/html/product-options.html"}
+                </td>
+                <td class="product-price" data-translate="{$L_PRICE}">
+                  <span class="core_priceFormat core_cartItemPrice" data-price="{{:price:}}"></span>
+                </td>
+                <td class="product-discount hidden" data-translate="{$L_PRICE_AFTER_DISCOUNT}">
+                  <span class="core_priceFormat core_cartItemPriceDiscount" data-price="{{:price_discount:}}"></span>
+                </td>
+                <td class="product-count" data-translate="{$L_AMOUNT}">
+                  <input type="hidden" name="restrict_{{:hash:}}" value="{{:boxrestrict:}}" data-disabled disabled />
+                  <div class="product-count-container">
+                    <div class="counter-field">
+                      <div class="row">
+                        <div class="col-xs-3">
+                          <button type="button" class="counter-decrease core_counterValueChange" data-type="decrease">
+                            <i class="fa fa-minus"></i>
+                          </button>
+                        </div>
+                        <div class="col-xs-6">
+                          <input class="core_counterValue core_storeCartProductAmount" value="{{:amount:}}" name="amount_{{:hash:}}" data-tick="{{:datatick:}}" data-boxamount="{{:boxamount:}}" data-boxrestrict="{{:boxrestrict:}}" data-boxrestrict-whole="{{:boxrestrict_bool:}}" data-min="{{:datamin:}}" data-max="{{:datamax:}}" placeholder="{$L_AMOUNT}" data-disabled disabled />
+                        </div>
+                        <div class="col-xs-3">
+                          <button type="button" class="counter-increase core_counterValueChange" data-type="increase">
+                            <i class="fa fa-plus"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <span class="units">{{:unit:}}</span>
+                  </div>
+                </td>
+                <td class="product-total" data-translate="{$L_TOTAL_VALUE}">
+                  <span class="core_priceFormat core_cartItemPriceTotal" data-price="{{:price_total:}}"></span>
+                </td>
+                <td class="product-actions" data-translate="{$L_REMOVE}">
+                  <i class="close-shape core_removeFromCart"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="cart-loader">
+            <div class="loader"></div>
+          </div>
+          <div class="cart-table cart-table-gratis" style="display:none;">
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <section class="heading inside">
+                        <ul>
+                          <li>
+                            <span class="title">{$L_CHOOSE_GRATIS}</span>
+                          </li>
+                        </ul>
+                      </section>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12">
+                <table class="cart-gratis">
+                  <tbody>
+                    <tr class="gratis-product gratis-product-pattern hidden" data-gratis="{{:id:}}">
+                      <td class="gratis-select">
+                        <div class="checkbox-field grid color">
+                          <input id="checkbox-gratis-{{:id:}}" type="radio" name="gratis" value="{{:id:}}" data-disabled disabled />
+                          <label for="checkbox-gratis-{{:id:}}">
+                            <div class="pick-color" style="background:transparent;"></div>
+                          </label>
+                        </div>
+                      </td>
+                      <td class="gratis-name">
+                        <span>
+                          <a href="#{{:url:}}" rel="nofollow" target="_blank">{{:name:}}</a>
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="cart-table cart-table-footer">
+            <div class="row">
+              <div class="col-sm-4">
+                {IF $CODES}
+                  <div class="cart-table-header">
+                    {$L_DISCOUNT_COUPON}
+                  </div>
+                  <div class="cart-table-content">
+                    <div class="row">
+                      <div class="col-xs-8">
+                        <div class="hidden">
+                          <input type="checkbox" name="have_code" />
+                        </div>
+                        <input class="input-field" type="text" name="code_discount" placeholder="{$L_INSERT_CODE}" />
+                      </div>
+                      <div class="col-xs-4">
+                        <button type="button" class="btn btn-primary btn-block core_addDiscountCoupon">{$L_ADD}</button>
+                        <button type="button" class="btn btn-primary btn-block core_removeDiscountCoupon hidden">{$L_REMOVE}</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="coupon-active hidden">
+                    <div class="cart-table-header">
+                      {$L_COUPON_VALUE}
+                    </div>
+                    <div class="cart-table-content">
+                      <div class="row">
+                        <div class="col-sm-12 text-center">
+                          <span class="cart-upper strong special">
+                            <span class="core_priceFormat core_cartCouponValue"></span> {IF $PRICE_TYPE == 'netto' || $PRICE_TYPE == 'netto_brutto' || $PRICE_TYPE == 'brutto'}{$L_GROSS}{/IF}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {/IF}
+                {IF $LOGGED_IN && $LOYALTY_PROGRAM}
+                  <div class="cart-table-header">
+                    {$L_LOYALTY_PROGRAM}
+                  </div>
+                  <div class="cart-table-content text-center core_grantedLoyaltyPoints" data-granted="{IF $POINT_IN_USED_POINTS == 0}false{ELSE}true{/IF}">
+                    {$L_AFTER_YOU_PAY_THE_ORDER_WILL_RECEIVE_POINTS}
+                  </div>
+                {/IF}
+              </div>
+              <div class="col-sm-4">
+                <div class="cart-table-header {IF !$FREE_SHIPMENT_FROM}hidden{/IF} core_cartIsFreeShipment">
+                  {$L_FOR_FREE_DELIVERY_IS_MISSING}
+                </div>
+                <div class="cart-table-content {IF !$FREE_SHIPMENT_FROM}hidden{/IF} core_cartIsFreeShipment">
+                  <div class="row">
+                    <div class="col-sm-12 text-center">
+                      <span class="cart-upper strong special">
+                        <span class="core_priceFormat core_cartFreeShipment"></span> {IF $PRICE_TYPE == 'netto' || $PRICE_TYPE == 'netto_brutto' || $PRICE_TYPE == 'brutto'}{$L_GROSS}{/IF}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="cart-table-header hidden core_cartIsFreeShipmentActive">
+                  &nbsp;
+                </div>
+                <div class="cart-table-content hidden core_cartIsFreeShipmentActive">
+                  <div class="row">
+                    <div class="col-sm-12 text-center">
+                      <span class="cart-upper strong special">
+                        <span>{$L_FREE_DELIVERY}</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="cart-table-header">
+                  {$L_SUM_TITLE}
+                </div>
+                <div class="cart-table-content container-fluid">
+                  <div class="row">
+                    <div class="col-xs-6 text-right">
+                      <span class="cart-upper">{$L_ORDER_PRODUCTS_PRICE}:</span>
+                    </div>
+                    <div class="col-xs-6 text-left">
+                      <span class="cart-upper strong">
+                        <span class="core_priceFormat core_cartPriceTotal"></span> {IF $PRICE_TYPE == 'netto' || $PRICE_TYPE == 'netto_brutto'}
+                          {$L_NET}
+                        {ELSEIF $PRICE_TYPE == 'brutto'}
+                          {$L_GROSS}
+                        {/IF}
+                      </span>
+                    </div>
+                  </div>
+                  {IF $PRICE_TYPE == 'netto' || $PRICE_TYPE == 'netto_brutto'}
+                    <div class="row">
+                      <div class="col-xs-6 text-right">
+                        <span class="cart-upper">{$L_ORDER_PRODUCTS_PRICE}:</span>
+                      </div>
+                      <div class="col-xs-6 text-left">
+                        <span class="cart-upper strong">
+                          <span class="core_priceFormat core_cartPriceTotalGross"></span> {$L_GROSS}
+                        </span>
+                      </div>
+                    </div>
+                  {/IF}
+                  <div class="row core_cartIsPriceDiscount hidden">
+                    <div class="col-xs-6 text-right">
+                      <span class="cart-upper">{$L_DISCOUNT}:</span>
+                    </div>
+                    <div class="col-xs-6 text-left">
+                      <span class="cart-upper strong">
+                        <span class="core_cartIsPriceDiscount hidden">-</span>
+                        <span class="core_priceFormat core_cartPriceDiscount"></span> {IF $PRICE_TYPE == 'netto' || $PRICE_TYPE == 'netto_brutto' || $PRICE_TYPE == 'brutto'}{$L_GROSS}{/IF}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="row core_cartIsPriceCoupon hidden">
+                    <div class="col-xs-6 text-right">
+                      <span class="cart-upper">{$L_COUPON}:</span>
+                    </div>
+                    <div class="col-xs-6 text-left">
+                      <span class="cart-upper strong">
+                        <span class="core_cartIsPriceCoupon hidden">-</span>
+                        <span class="core_priceFormat core_cartPriceCoupon"></span> {IF $PRICE_TYPE == 'netto' || $PRICE_TYPE == 'netto_brutto' || $PRICE_TYPE == 'brutto'}{$L_GROSS}{/IF}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="row core_cartIsPriceLoyalty hidden">
+                    <div class="col-xs-6 text-right">
+                      <span class="cart-upper">{$L_POINTS}:</span>
+                    </div>
+                    <div class="col-xs-6 text-left">
+                      <span class="cart-upper strong">
+                        <span class="core_cartIsPriceLoyalty hidden">-</span>
+                        <span class="core_priceFormat core_cartPriceLoyalty"></span> {IF $PRICE_TYPE == 'netto' || $PRICE_TYPE == 'netto_brutto' || $PRICE_TYPE == 'brutto'}{$L_GROSS}{/IF}
+                      </span>
+                    </div>
+                  </div>
+                  {IF $PRICE_TYPE == 'netto' || $PRICE_TYPE == 'netto_brutto'}
+                    <div class="row">
+                      <div class="col-xs-6 text-right">
+                        <span class="cart-upper">{$L_TOTAL_VALUE}:</span>
+                      </div>
+                      <div class="col-xs-6 text-left">
+                        <span class="cart-upper strong special">
+                          <span class="core_priceFormat core_cartPriceTotalWithDiscountNet"></span> {$L_NET}
+                        </span>
+                      </div>
+                    </div>
+                  {/IF}
+                  <div class="row">
+                    <div class="col-xs-6 text-right">
+                      <span class="cart-upper">{$L_TOTAL_VALUE}:</span>
+                    </div>
+                    <div class="col-xs-6 text-left">
+                      <span class="cart-upper strong special">
+                        <span class="core_priceFormat core_cartPriceTotalWithDiscount" data-free-shipment="{$FREE_SHIPMENT_FROM}"></span> {IF $PRICE_TYPE == 'netto' || $PRICE_TYPE == 'netto_brutto' || $PRICE_TYPE == 'brutto'}{$L_GROSS}{/IF}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                {IF $LOGGED_IN && $LOYALTY_PROGRAM && $LOYALTY_POINTS > 0}
+                  <div class="cart-table-header">
+                    {$L_USE_LOYALTY_POINTS}
+                  </div>
+                  <div class="cart-table-content">
+                    {IF $LOYALTY_POINTS}
+                      <div class="row">
+                        <div class="col-xs-6">
+                          <div class="counter-field">
+                            <div class="row">
+                              <div class="col-xs-3">
+                                <button type="button" class="counter-decrease">
+                                  <i class="fa fa-minus"></i>
+                                </button>
+                              </div>
+                              <div class="col-xs-6">
+                                <input value="" name="used_points" data-tick="1" data-min="0" data-max="{$MAX_USED_POINTS}" placeholder="{$L_AMOUNT}" class="core_setLoyaltyPoints" />
+                              </div>
+                              <div class="col-xs-3">
+                                <button type="button" class="counter-increase">
+                                  <i class="fa fa-plus"></i>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-xs-6">
+                          <button class="btn btn-primary btn-block core_useLoyaltyPoints" data-points="{$YOUR_POINTS}">
+                            {$L_RECALCULATE_POINTS}
+                          </button>
+                        </div>
+                      </div>
+                    {/IF}
+                    <div class="row text-center">
+                        <br />{$L_YOU_HAVE_POINTS_TO_USE}
+                    </div>
+                  </div>
+                {/IF}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-8">
+                {IF $GENERATE_PDF}
+                  <a href="/cart/pdf/create/" target="_blank" class="cart-print-pdf">
+                    <i class="fa fa-file-pdf-o"></i> {$L_DOWNLOAD_CART_TO_PDF}
+                  </a>
+                {/IF}
+              </div>
+              <div class="col-sm-4">
+                <div class="cart-table-header">
+                  <span class="core_cartNettoOrderInfo {IF $MINIMAL_ORDER_PRICE <= $CART_SUM_NET}hidden{/IF}">{$MINIMAL_NETTO_ORDER}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <a href="/" class="btn btn-primary btn-lg pull-left">
+            <i class="fa fa-angle-left"></i> &nbsp; {$L_BACK_SHOPPING}
+          </a>
+        </div>
+        <div class="col-xs-6">
+          <button type="submit" class="btn btn-primary btn-lg pull-right {IF $MINIMAL_ORDER_PRICE > $CART_SUM_NET}disabled{/IF}" data-min-net-order-price="{$MINIMAL_ORDER_PRICE}" {IF $MINIMAL_ORDER_PRICE > $CART_SUM_NET}disabled="disabled"{/IF}>
+            {$L_ORDER} &nbsp; <i class="fa fa-angle-right"></i>
+            <i class="fa fa-refresh fa-spin fa-3x fa-fw fa-sm hidden"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

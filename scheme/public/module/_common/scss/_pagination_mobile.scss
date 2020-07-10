@@ -1,0 +1,28 @@
+.pagination {
+  & ul {
+    & li {
+      display: none;
+      &:first-of-type, &:last-of-type, &.active {
+        display: block;
+        & a {
+          background: $additionalColor;
+        }
+      }
+      &.active {
+        & a {
+          background: #ffffff;
+          &:before {
+            content: attr(data-translate-page);
+            font-weight: 100;
+            position: static;
+          }
+          &:after {
+            content: attr(data-translate-max);
+            font-weight: 100;
+            position: static;
+          }
+        }
+      }
+    }
+  }
+}

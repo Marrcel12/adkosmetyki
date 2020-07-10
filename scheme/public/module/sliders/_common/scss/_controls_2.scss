@@ -1,0 +1,72 @@
+.owl-controls {
+  & .owl-prev, .owl-next {
+    width: 33px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    background: $primaryColor;
+    @include transform(translateY(-50%));
+    @include opacity(0.7);
+    @include transition(all 0.2s ease-in-out);
+    & .fa {
+      color: $fontColor;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 38px;
+      float: left;
+    }
+    &:hover {
+      width: 50px;
+      @include opacity(1);
+      @include transition(all 0.2s ease-in-out);
+    }
+    &.disabled {
+      cursor: default;
+      @include opacity(0);
+      @include transition(opacity 0.2s ease-in-out);
+    }
+  }
+  & .owl-prev {
+    left: -33px;
+    & .fa {
+      @include transform(translate(-70%,-50%));
+    }
+  }
+  & .owl-next {
+    right: -33px;
+    & .fa {
+      @include transform(translate(-30%,-50%));
+    }
+  }
+  & .owl-dots {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    @include transform(translateX(-50%));
+    margin: 5px 0;
+    & .owl-dot {
+      width: 18px;
+      height: 18px;
+      background: $fontColor;
+      @include border-radius(50%);
+      display: inline-block;
+      padding: 3px;
+      margin: 0 1px;
+      background-clip: content-box;
+      @include opacity(0.7);
+      @include transition(all 0.2s ease-in-out);
+      &.active {
+        padding: 1px;
+        background: $mainColor;
+        background-clip: content-box;
+        @include transition(all 0.2s ease-in-out);
+      }
+      &:hover {
+        padding: 1px;
+        @include opacity(1);
+        @include transition(all 0.2s ease-in-out);
+      }
+    }
+  }
+}

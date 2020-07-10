@@ -1,0 +1,84 @@
+<footer id="footer" class="mod-footer-3 full-width">
+    <div class="footer-container">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xxs col-xs-12 col-sm-6 col-md-3 location">
+                    <div class="section-title">
+                        <span>Kontakt</span>
+                    </div>
+                    <ul class="menu">
+                        <li>
+                            <i class="fa  fa-map-marker"></i>
+                            ul. Bukietowa 34
+                            05-502
+                            Wólka Kozodawska
+
+                        </li>
+                        <li>
+                            <i class="fa fa-envelope"></i> {$MODULE.children.footer_email[0].props.value}
+                        </li>
+                        <li>
+                            <i class="fa fa-phone"></i> {$SHOP_BASIC_DATA.ownerPhoneNumber}
+                        </li>
+                    </ul>
+                </div>
+                {LOOP FROM=$MODULE.children.footer_group[0].children VALUE=MENU_ELEMENT INDEX=INDEX}
+                {IF $INDEX <= 4} <div class="col-xxs col-xs-12 col-sm-6 col-md-3">
+                    <div class="section-title">
+                        <span>{$MENU_ELEMENT.props.name}</span>
+                    </div>
+                    <ul class="menu">
+                        {LOOP FROM=$MENU_ELEMENT.children VALUE=LINK}
+                        <li>
+                            {IF $LINK.props.type == 'link'}
+                            <a href="{$LINK.url}">{$LINK.props.name}</a>
+                            {ELSE}
+                            <a href="{$LINK.props.content}" {IF $LINK.props.target=='true' }target="_blank" {/IF}>{$LINK.props.name} </a> {/IF} </li> {/LOOP} </ul> </div> {/IF} {/LOOP} <div class="col-xxs col-xs-12 col-sm-6 col-md-3 social">
+                                <div class="section-title">
+                                    <span>Nasze Social Media</span>
+                                </div>
+                                <ul>
+                                    {LOOP FROM=$MODULE.children.common_sm[0].children VALUE=SOCIAL}
+                                    {IF $SOCIAL.props.value}
+                                    <li><a href="{$SOCIAL.props.value}" rel="nofollow" target="_blank">
+                                            {IF $SOCIAL.key == 'sm_facebook'}
+                                            <i class="fa fa-facebook"></i> Facebook
+                                            {/IF}
+                                            {IF $SOCIAL.key == 'sm_instagram'}
+                                            <i class="fa fa-instagram"></i> Instagram
+                                            {/IF}
+                                            {IF $SOCIAL.key == 'sm_youtube'}
+                                            <i class="fa fa-youtube"></i>
+                                            {/IF}
+                                            {IF $SOCIAL.key == 'sm_googleplus'}
+                                            <i class="fa fa-google-plus"></i>
+                                            {/IF}
+                                            {IF $SOCIAL.key == 'sm_snapchat'}
+                                            <i class="fa fa-snapchat-ghost"></i>
+                                            {/IF}
+                                            {IF $SOCIAL.key == 'sm_twitter'}
+                                            <i class="fa fa-twitter"></i>
+                                            {/IF}
+                                            {IF $SOCIAL.key == 'sm_pinterest'}
+                                            <i class="fa fa-pinterest"></i>
+                                            {/IF}
+                                        </a></li>
+                                    {/IF}
+                                    {/LOOP}
+                                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div id="logo"></div>
+    
+</footer>
+    <div id="credits">
+        Strona została zaprojektowana przez Aleksandrę Chrzanowską | <a href="http://marcelkaminski.pl/">Wykonana przez Marcela Kamińskiego <img src="https://adkosmetyki.store/upload/kosmetyk/common/malogoFooterGray.png" alt=""></a>
+    </div>
+    <div id="credits-mobile">
+        Strona została zaprojektowana przez Aleksandrę Chrzanowską 
+        <br>
+        <a href="http://marcelkaminski.pl/">Wykonana przez Marcela Kamińskiego <img src="https://adkosmetyki.store/upload/kosmetyk/common/malogoFooterGray.png" alt=""></a>
+    </div>
+{INCLUDE file="./".$TEMPLATE."/scheme/public/module/footers/_common/html/footer-rights.html"}

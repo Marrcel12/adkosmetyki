@@ -1,0 +1,32 @@
+{IF $CENEO_WIDGET}
+	<script type="text/javascript" src="https://ssl.ceneo.pl/shops/sw.js?accountGuid={$CENEO_CPA_GUID}"></script>
+{/IF}
+
+{IF $OPINEO_WIDGET}
+	<script type='text/javascript' src='https://www.opineo.pl/shop/slider.js.php?s={$OPINEO_SHOPID}&offsetTop={$OPINEO_WIDGET_TOP}&align={$OPINEO_WIDGET_ALIGN}&type=v'></script>
+{/IF}
+
+{IF $RTBHOUSE_HASH}
+	{IF $CONTROLER == "index"}
+		<iframe src="//creativecdn.com/tags?id=pr_{$RTBHOUSE_HASH}_home" width="1" height="1" scrolling="no" frameBorder="0"></iframe>
+	{ELSEIF $CONTROLER == "product" && $PROD_ID}
+		<iframe src="//creativecdn.com/tags?id=pr_{$RTBHOUSE_HASH}_offer_{$PROD_ID}" width="1" height="1" scrolling="no" frameBorder="0"></iframe>
+	{ELSEIF $CONTROLER == "category" && $PRODUCTS_IDS}
+		<iframe src="//creativecdn.com/tags?id=pr_{$RTBHOUSE_HASH}_listing_{$PRODUCTS_IDS}" width="1" height="1" scrolling="no" frameBorder="0"></iframe>
+	{ELSEIF $CONTROLER == "cart" && $CART}
+		<iframe src="//creativecdn.com/tags?id=pr_{$RTBHOUSE_HASH}_basketstatus_{LOOP FROM=$CART VALUE=V KEY=K}{$V.id},{/LOOP}" width="1" height="1" scrolling="no" frameBorder="0"></iframe>
+	{/IF}
+	{IF $ORDER_CONVERSION_ID}
+		<iframe src="//creativecdn.com/tags?id=pr_{$RTBHOUSE_HASH}_orderstatus2_{$ORDER_CONVERSION_PRICE}_{$ORDER_CONVERSION_ID}_{LOOP FROM=$ORDER_CONVERSION_PRODUCTS VALUE=V KEY=K}{$V.op_prod_id},{/LOOP}&amp;cd=FALSE" width="1" height="1" scrolling="no" frameBorder="0"></iframe>
+	{/IF}
+{/IF}
+
+{IF $FIRST_VISIT}
+	<img src="/stat_add_visit/?r={$VISIT_REFERER}&amp;rand={$VISIT_RAND}" rel="nofollow" style="position:fixed;" />
+{ELSEIF !$REMOTE_CRONTAB}
+	<img src="/stat_add_visit/?rand={$VISIT_RAND}&amp;cron=1" rel="nofollow" style="position:fixed;" />
+{/IF}
+
+{IF $PUSHPUSHGO_ACTIVE}
+	<!--<script charset="UTF-8" src="https://cdn.pushpushgo.com/js/{$PUSHPUSHGO_ID}.js" async="async"></script>-->
+{/IF}

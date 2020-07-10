@@ -1,0 +1,31 @@
+<section class="products-slider mod-products-slider-1">
+  <div class="container-fluid">
+    <section class="heading inside headings">
+      <ul class="{IF count($MODULE.subcats) > 1}nav{/IF}">
+        {LOOP FROM=$MODULE.subcats VALUE=SUBCAT KEY=TYPE INDEX=INDEX}
+          <li class="{IF count($MODULE.subcats) > 1}{IF $INDEX == 1}active{/IF}{/IF}">
+            <span class="title">
+              {IF $TYPE == 'recommended'}{$L_RECOMMENDED}{/IF}
+              {IF $TYPE == 'new'}{$L_NEW_MENU}{/IF}
+              {IF $TYPE == 'promotion'}{$L_PROMOTION_MENU}{/IF}
+              {IF $TYPE == 'bestseller'}{$L_BESTSELLER_MENU}{/IF}
+              {IF $TYPE == 'saleout'}{$L_SALEOUT_MENU}{/IF}
+              {IF $TYPE == 'similar'}{$L_PRODUCTS_SIMILAR}{/IF}
+              {IF $TYPE == 'lastseen'}{$L_LASTSEEN}{/IF}
+              {IF $TYPE == 'otherbuy'}{$L_OTHERS_BUY_PRODUCTS}{/IF}
+            </span>
+          </li>
+        {/LOOP}
+      </ul>
+    </section>
+    {LOOP FROM=$MODULE.subcats VALUE=SUBCAT KEY=TYPE INDEX=INDEX}
+      <div class="tab carousel products-slider-carousel-1 {IF $INDEX > 1}tab-hidden{/IF}" data-tab="{$INDEX}" data-carousel-name="productsSliderCarousel1" data-timeout="{IF !$MODULE.viewOptions.slideShowInMs}false{ELSE}{$MODULE.viewOptions.slideShowInMs}{/IF}">
+        {LOOP FROM=$SUBCAT VALUE=PRODUCT_ITEM}
+          <div class="item">
+              {INCLUDE file="./".$TEMPLATE."/scheme/public/module/_common/toysrwd/html/product-tile.html" PRODUCT_ITEM=$PRODUCT_ITEM PRODUCT_STATUS="FALSE" PRODUCT_BRUTTO="TRUE" PRODUCT_RWD="0:260,305:480,481:260,600:480,768:260,885:480,1200:260"}
+          </div>
+        {/LOOP}
+      </div>
+    {/LOOP}
+  </div>
+</section>

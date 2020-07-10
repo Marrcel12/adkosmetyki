@@ -1,0 +1,18 @@
+<section class="custom-area mod-custom-area-1">
+  <div class="container-fluid">
+    {IF $MODULE.viewOptions.have_heading == 'yes' && $MODULE.children.custom_area[0].props.name != ''}
+      <section class="heading inside">
+        <ul>
+          <li class="active">
+            <span class="title">{$MODULE.children.custom_area[0].props.name}</span>
+          </li>
+        </ul>
+      </section>
+    {/IF}
+    <div class="row">
+      <div class="col-xxs">
+        {$MODULE.children.custom_area[0].props.area}
+      </div>
+    </div>
+  </div>
+</section>

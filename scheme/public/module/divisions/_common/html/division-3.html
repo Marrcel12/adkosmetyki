@@ -1,0 +1,24 @@
+{IF $LINK}
+  <a href="{$LINK}" class="fluid"></a>
+  <a href="{$LINK}">
+{/IF}
+<table>
+  <tr>
+    <td>
+      <span class="title">{$TITLE}</span>
+    </td>
+    {IF $CONTENT}
+      <td>
+        <p>{$CONTENT}</p>
+      </td>
+    {/IF}
+    {IF $ICON}
+      <td>
+        <i class="{$ICON}"></i>
+      </td>
+    {/IF}
+  </tr>
+</table>
+{IF $LINK}
+  </a>
+{/IF}

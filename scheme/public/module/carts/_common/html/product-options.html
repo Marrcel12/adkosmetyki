@@ -1,0 +1,37 @@
+<table class="product-parameters-pattern hidden">
+  <tr class="product-parameters-all">
+    <td></td>
+    <td class="core_showAllParameters">
+      <i class="fa fa-circle"></i>
+      <i class="fa fa-circle"></i>
+      <i class="fa fa-circle"></i>
+      <span>{$L_MORE_PARAMETERS}</span>
+    </td>
+  </tr>
+  <tr class="product-parameters-select {{:option_hidden:}}">
+    <td>
+      <span class="parameter-name">{{:option_name:}}</span>
+    </td>
+    <td class="product-option-select {{:option_select_show:}}">
+      <select class="{{:option_init_select2:}}" name="options_{{:option_cart_hash:}}[]" data-placeholder="{$L_SELECT}" data-allow-clear="{{:option_allow_clear:}}" data-key="{{:option_key:}}" data-required="{{:option_required:}}" data-required-error="{$L_OPTION_REQUIRED_escaped}" data-disabled disabled>
+        <option></option>
+        {{:option_options:}}
+      </select>
+    </td>
+    <td class="product-option-text {{:option_text_show:}}">
+      <span class="text-field">
+        {{:option_values:}}
+      </span>
+    </td>
+  </tr>
+  <tr class="product-parameters-text {{:option_hidden:}}">
+    <td>
+      <span class="parameter-name">{{:option_name:}}</span>
+    </td>
+    <td class="product-option-text">
+      <span class="text-field">
+        {{:option_values:}}
+      </span>
+    </td>
+  </tr>
+</table>

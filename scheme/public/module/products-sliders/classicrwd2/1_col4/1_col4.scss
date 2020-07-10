@@ -1,0 +1,42 @@
+.products-slider.mod-products-slider-1 {
+  max-width: $pageWidth;
+	width: 100%;
+	margin: 0 auto 30px;
+  & .carousel {
+    opacity: 0;
+    &.tab-hidden {
+      @include opacity(0);
+      display: none;
+    }
+    .owl-stage-outer {
+      display: flex;
+      .owl-stage {
+        display: flex;
+        .item {
+          height: 100%;
+        }
+      }
+    }
+    @import "../../../_common/scss/_owl_controls.scss";
+    .owl-controls {
+      & .owl-prev, .owl-next {
+        background: transparent;
+      }
+    }
+  }
+  @import "../../../_common/classicrwd2/scss/_product_tile.scss";
+  .product-tile {
+    height: 100%;
+  }
+}
+@media all and (max-width: 767px) {
+  .products-slider.mod-products-slider-1 {
+    & .heading {
+      & ul {
+        & li {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

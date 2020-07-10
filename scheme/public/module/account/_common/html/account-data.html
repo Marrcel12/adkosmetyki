@@ -1,0 +1,84 @@
+<div class="row section-form">
+  <div class="col-md-3 hidden-on-mobile"></div>
+  <div class="col-xs-12 col-md-6">
+    <section class="heading inside">
+      <ul>
+        <li>
+          <span class="title">{$L_YOURACCOUNT}</span>
+        </li>
+      </ul>
+    </section>
+  </div>
+  <div class="col-md-3 hidden-on-mobile"></div>
+</div>
+<div class="row">
+	<div class="col-xs-12">
+		<section class="account-informations">
+      <table class="account-parameters">
+        <tbody>
+          <tr>
+            <td>
+              <span class="parameter-name">{$L_USER_REGDATE}</span>
+            </td>
+            <td>
+              <span class="text-field">{$YOURACCOUNT.user_regdate} &nbsp;</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="parameter-name">E-mail</span>
+            </td>
+            <td>
+              <span class="text-field">{$YOURACCOUNT.user_email} &nbsp;</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="parameter-name">{$L_USER_PHONE}</span>
+            </td>
+            <td>
+              <span class="text-field">{$YOURACCOUNT.user_phone} &nbsp;</span>
+            </td>
+          </tr>
+          {IF $YOURACCOUNT.user_discount > 0}
+            <tr>
+              <td>
+                <span class="parameter-name">{$L_DISCOUNT}</span>
+              </td>
+              <td>
+                <span class="text-field">{$YOURACCOUNT.user_discount}% &nbsp;</span>
+              </td>
+            </tr>
+          {/IF}
+          <tr>
+            <td>
+              <span class="parameter-name">{$L_USER_FIRSTNAME} {$L_USER_LASTNAME}</span>
+            </td>
+            <td>
+              <span class="text-field">{$YOURACCOUNT.user_firstname} {$YOURACCOUNT.user_lastname} &nbsp;</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="parameter-name">{$L_ADDRESS}</span>
+            </td>
+            <td>
+              <span class="text-field">{$YOURACCOUNT.user_code} {$YOURACCOUNT.user_city} {$YOURACCOUNT.user_street} &nbsp;</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+	</div>
+</div>
+{IF $LOGGED_IN}
+  <div class="row">
+  	<div class="col-xs-12">
+      <form method="POST" action="/youraccount">
+        <button type="submit" name="rodo" value="rodo" class="btn btn-primary btn-lg pull-left">
+          <i class="fa fa-file-text-o"></i> &nbsp; {$L_USER_DATA_RODO}
+        </button>
+      </form>
+  	</div>
+  </div>
+{/IF}

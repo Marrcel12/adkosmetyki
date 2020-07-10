@@ -1,0 +1,478 @@
+<section class="product-informations" data-id="{$PROD_ID}">
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="pull-left">
+        <div data-parameter-display="{$PRODUCT_SYMBOL} "class="{IF !$SYMBOL || $SYMBOL && !$PRODUCT_SYMBOL}hidden{/IF}" data-parameter-default-value="{$SYMBOL}" data-parameter-value="symbol">
+            <span class="product-symbol">{$L_SYMBOL}:
+              <strong data-display-selector>{$SYMBOL}</strong>
+            </span>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="pull-right">
+        {IF $PRODUCT_PRODUCER && ($PRODUCER || $PRODUCER_LOGO)}
+        <div class="brand-logo">
+          <a href="{$PRODUCER_URL}">
+            {IF $PRODUCER_LOGO}
+            <img src="/{$UPLOAD_DIR}/producers/{$PRODUCER_LOGO}" alt="" />
+            {ELSE}
+            <span>{$PRODUCER}</span>
+            {/IF}
+          </a>
+        </div>
+        {/IF}
+      </div>
+    </div>
+    {IF $DESC}
+    <div class="col-xs-12">
+      <p class="product-short-description">
+        {$DESC}
+      </p>
+    </div>
+    {/IF}
+  </div>
+  {IF $OPTIONS && ($OPT_INFO_COUNT <= $OPTS_COUNT_MOVE || $OPT_CHOOSE_COUNT)}
+  <div class="row">
+    <div class="col-xs-12">
+      <form method="GET" action="#" class="core_cardParamsChange core_cardStocksManage" {IF $PROD_AMOUNT_NONE == 'deny' || $PROD_AMOUNT_NONE == 'hide'}data-stocks='{"groups":[{LOOP FROM=$STOCK.stocks VALUE=STOCKS}{LOOP FROM=$STOCKS VALUE=STOCK_GROUPS INDEX=STOCK_INDEX_GROUPS}{IF $STOCK_INDEX_GROUPS == 1}{LOOP FROM=$STOCK_GROUPS.list VALUE=LIST_GROUPS INDEX=LIST_INDEX_GROUPS}{IF $LIST_INDEX_GROUPS > 1},{/IF}{$LIST_GROUPS.op_id}{/LOOP}{/IF}{/LOOP}{/LOOP}],"stocks":[{LOOP FROM=$STOCK.stocks VALUE=STOCKS}{LOOP FROM=$STOCKS VALUE=STOCK INDEX=STOCK_INDEX}{IF $STOCK_INDEX > 1},{/IF}{"items":[{LOOP FROM=$STOCK.list VALUE=LIST INDEX=LIST_INDEX}{IF $LIST_INDEX > 1},{/IF}{"option_id":{$LIST.ov_id},"option_name":"{$LIST.ov_name}","group_id":{$LIST.op_id},"group_name":"{$LIST.op_name}"}{/LOOP}],"amount":{$STOCK.sp_amount}}{/LOOP}{/LOOP}]}'{/IF}>
+      <table class="product-parameters">
+        {LOOP FROM=$OPTIONS VALUE=OPTION KEY=KEY}
+        {IF $OPTION.type != 'info' && $OPTION.type != 'hidden'}
+        <tr>
+          <td>
+            <span class="parameter-name">{$OPTION.name}</span>
+          </td>
+          <td>
+            {IF $OPTION.type == 'choose'}
+            {IF $OPTION.present == 'default'}
+            {IF count($OPTION.values) > 1}
+            {INCLUDE file="./".$TEMPLATE."/scheme/public/_common/html/options/default-select2.html" OPTION_VALUE=$OPTION OPTION_KEY=$KEY}
+            {ELSE}
+            <div class="hidden core_parseOption" data-key="{$KEY}" data-required="true">
+              {LOOP FROM=$OPTION.values VALUE=O KEY=K}
+              <input type="radio" name="option_{$KEY}" value="{$K}" {IF $O.change_price != 0}data-additional-price="{$O.change_price}" data-additional-price-no-discount="{$O.change_price_no_dis}"{/IF} checked />
+              {/LOOP}
+            </div>
+            {INCLUDE file="./".$TEMPLATE."/scheme/public/_common/html/options/info.html" OPTION_VALUE=$OPTION OPTION_KEY=$KEY}
+            {/IF}
+            {/IF}
+            {IF $OPTION.present == 'button'}
+            {INCLUDE file="./".$TEMPLATE."/scheme/public/_common/html/options/button.html" OPTION_VALUE=$OPTION OPTION_KEY=$KEY}
+            {/IF}
+            {IF $OPTION.present == 'color'}
+            {INCLUDE file="./".$TEMPLATE."/scheme/public/_common/html/options/color.html" OPTION_VALUE=$OPTION OPTION_KEY=$KEY}
+            {/IF}
+            {IF $OPTION.present == 'img'}
+            {INCLUDE file="./".$TEMPLATE."/scheme/public/_common/html/options/image.html" OPTION_VALUE=$OPTION OPTION_KEY=$KEY}
+            {/IF}
+            {/IF}
+          </td>
+        </tr>
+        {/IF}
+        {/LOOP}
+        {IF $OPT_INFO_COUNT <= $OPTS_COUNT_MOVE}
+        {LOOP FROM=$OPTIONS VALUE=OPTION KEY=KEY}
+        {IF $OPTION.type == 'info' && $OPTION.type != 'hidden'}
+        <tr>
+          <td>
+            <span class="parameter-name">{$OPTION.name}</span>
+          </td>
+          <td>
+            {INCLUDE file="./".$TEMPLATE."/scheme/public/_common/html/options/info.html" OPTION_VALUE=$OPTION OPTION_KEY=$KEY}
+          </td>
+        </tr>
+        {/IF}
+        {/LOOP}
+        {/IF}
+      </table>
+      </form>
+    </div>
+  </div>
+  {/IF}
+  <div class="row">
+    <div class="col-xs-12">
+      {IF !$AMOUNT && !$CAN_BUY}
+      <div class="product-price">
+        {$L_PRODUCT_NONE}
+      </div>
+      {/IF}
+      <div class="product-price">
+        {IF $OLD_PRICE && strlen($OLD_PRICE) < 11 && $PRICE != $OLD_PRICE}
+        {IF $STRIKE_PRICE != 'percent'}
+        <span class="price-normal discount">
+                {IF $OLD_PRICE_PERCENT != 0}
+                  <span class="core_priceFormat" data-price="{$OLD_PRICE}" data-tax="{$TAX}" data-price-type="{$PRICE_TYPE}">{$OLD_PRICE}</span>
+                {ELSE}
+                  <span class="core_priceFormat" data-price="{$VALUE.OLDPRICE}" data-tax="{$TAX}" data-price-type="{$PRICE_TYPE}">{$VALUE.OLDPRICE}</span>
+                {/IF}
+              </span>
+        {/IF}
+        {/IF}
+        {IF $OLD_PRICE && strlen($OLD_PRICE) < 11 && $PRICE != $OLD_PRICE}
+        {IF $STRIKE_PRICE == 'percent_and_strike' || $STRIKE_PRICE == 'percent'}
+        {IF $OLD_PRICE_PERCENT != 0}
+        <span class="price-discount-percent">
+                  {IF $STRIKE_PRICE != 'percent'}-{/IF}{$OLD_PRICE_PERCENT}%
+                </span>
+        {/IF}
+        {/IF}
+        {/IF}
+        <span class="price-special">
+            <span class="core_priceFormat core_cardPriceSpecial" data-price="{$PRICE}" data-price-default="{$PRICE}" data-tax="{$TAX}" data-price-type="{$PRICE_TYPE}|show_type">{$PRICE}</span>
+          </span>
+        {IF $PRICE_TYPE == 'netto_brutto'}
+        <br />
+        {IF $OLD_PRICE && strlen($OLD_PRICE) < 11 && $PRICE != $OLD_PRICE}
+        {IF $STRIKE_PRICE != 'percent'}
+        <span class="price-normal discount">
+                  {IF $OLD_PRICE_PERCENT != 0}
+                    <span class="core_priceFormat" data-price="{$OLD_PRICE}" data-tax="{$TAX}" data-price-type="brutto">{$OLD_PRICE}</span>
+                  {ELSE}
+                    <span class="core_priceFormat" data-price="{$VALUE.OLDPRICE}" data-tax="{$TAX}" data-price-type="brutto">{$VALUE.OLDPRICE}</span>
+                  {/IF}
+                </span>
+        {/IF}
+        {/IF}
+        {IF $OLD_PRICE && strlen($OLD_PRICE) < 11 && $PRICE != $OLD_PRICE}
+        {IF $STRIKE_PRICE == 'percent_and_strike' || $STRIKE_PRICE == 'percent'}
+        {IF $OLD_PRICE_PERCENT != 0}
+        <span class="price-discount-percent">
+                    {IF $STRIKE_PRICE != 'percent'}-{/IF}{$OLD_PRICE_PERCENT}%
+                  </span>
+        {/IF}
+        {/IF}
+        {/IF}
+        <span class="price-special">
+              <span class="core_priceFormat core_cardPriceSpecial" data-price="{$PRICE}" data-price-default="{$PRICE}" data-tax="{$TAX}" data-price-type="brutto|show_type">{$PRICE}</span>
+            </span>
+        {/IF}
+        {IF $PREV_PRICE && $PREV_PRICE != $PRICE}
+        <div class="product-promotion-counter">
+          {$L_BEFORE_DISCOUNT}: <span class="core_priceFormat core_cardPriceBeforeDiscount" data-price="{$PREV_PRICE}" data-price-default="{$PREV_PRICE}" data-tax="{$TAX}" data-price-type="{$PRICE_TYPE}|show_type">{$PREV_PRICE}</span>
+        </div>
+        {ELSE}
+        <span class="hidden core_priceFormat core_cardPriceBeforeDiscount" data-price="0" data-price-default="0" data-tax="0" data-price-type="{$PRICE_TYPE}|show_type"></span>
+        {/IF}
+        {IF $PROD_PROMO_END > 0}
+        <div class="product-promotion-counter">
+          {$L_PROD_PROMO_TO_END}: <span class="core_countDownPromotion" data-countdown="{$PROD_PROMO_END}"></span>
+        </div>
+        {/IF}
+      </div>
+      {IF $DEBUG && 1 == 2}
+      <div>
+        Dane deweloperskie - tylko dla DEBUG dla łatwiejszego testowania - przy wgraniu na PROD usunąć
+        <blockquote>
+          Min: <b style="color:red">{$DATAMIN}</b> (Minimalna ilość zamówienia)<br />
+          Max: <b style="color:red">{IF ($AMOUNT == 0 && $PROD_AMOUNT_NONE != 'denny') || ($AMOUNT > 0 && $PROD_AMOUNT_NONE == 'allow')}524288{ELSE}{$AMOUNT}{/IF}</b> (Tyle na magazynie)<br />
+          Tick: <b style="color:red">{$DATATICK}</b> (Przeskok - uwzględnić przy wpisywaniu)<br />
+          Boxamount: <b style="color:red">{$BOXAMOUNT}</b> (Ilość w opakowaniu)<br />
+          Boxrestrict: <b style="color:red">{$BOXRESTRICT}</b> (Kupno tylko całych opakowań)<br />
+          Boxrestrict bool: <b style="color:red">{$BOXRESTRICT_BOOL}</b> (Kupno tylko całych opakowań)
+        </blockquote>
+      </div>
+      {/IF}
+      {IF !$TURN_OFF_SALES}
+      <div class="product-add-to-cart">
+        {IF $CAN_BUY}
+        <div class="counter-field">
+          <div class="row">
+            <div class="col-xs-3">
+              <button type="button" class="counter-decrease core_counterValueChange" data-type="decrease">
+                <i class="fa fa-minus"></i>
+              </button>
+            </div>
+            <div class="col-xs-6">
+              <input class="core_counterValue" data-real-min="{$REAL_MIN_ORDER_AMOUNT}" value="{$REAL_MIN_ORDER_AMOUNT}" data-tick="{$DATATICK}" data-boxamount="{$BOXAMOUNT}" data-boxrestrict="{$BOXRESTRICT}" data-boxrestrict-whole="{$BOXRESTRICT_BOOL}" data-min="{$REAL_MIN_ORDER_AMOUNT}" data-max="{IF ($AMOUNT == 0 && $PROD_AMOUNT_NONE != 'denny') || ($AMOUNT > 0 && $PROD_AMOUNT_NONE == 'allow')}524288{ELSE}{$AMOUNT}{/IF}" placeholder="{$L_AMOUNT}" />
+            </div>
+            <div class="col-xs-3">
+              <button type="button" class="counter-increase core_counterValueChange" data-type="increase">
+                <i class="fa fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        {IF $UNIT}
+        <span class="units">{$UNIT}</span>
+        {/IF}
+        <button class="add-to-cart core_addToCart" data-product-id="{$PROD_ID}">
+          {$L_ADD_TO_CART} <i class="fa fa-cart-plus"></i>
+        </button>
+        {/IF}
+        {IF $STORE_PRODUCT_IN_SHOP != 0}
+        <a href="#" class="add-to-store core_addToStore" data-product-id="{$PROD_ID}">
+          <i class="fa fa-heart"></i> {$L_ADD_TO_STORE}
+        </a>
+        {/IF}
+      </div>
+      {/IF}
+    </div>
+  </div>
+  {IF $SCB_RATY}
+  <div class="row">
+    <div class="col-xs-12">
+      <img src="/inc/payments/SCBRaty/eraty.jpg" class="core_scbRaty" data-price="{$PRICE}" data-scb="{$SCB_RATY}" title="Oblicz ratę" alt="Oblicz ratę" width="250" border="0" style="cursor:pointer;" />
+    </div>
+  </div>
+  {/IF}
+  {IF $LOYALTY_PROGRAM != 0}
+  <div class="row">
+    <div class="col-xs-12">
+      {IF $LOGGED_IN}
+      <span>{$L_YOU_CAN_BUY_THIS_PRODUCT_FOR}</span><br />
+      <span>{$L_PURCHASING_THIS_PRODUCT_YOU_WILL_RECEIVE}</span>
+      {ELSE}
+      <span>{$L_LOYALTY_PROGRAM_IS_FOR_REGISTERED_USERS_ONLY}</span>
+      {/IF}
+    </div>
+  </div>
+  {/IF}
+  {IF $PROD_AVAILABLE_NOTIFY == '1' && !$AMOUNT && $PROD_AMOUNT_NONE == 'deny'}
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="product-notify-available-product">
+        <div class="checkbox-field">
+          <input id="notify-available-product" type="checkbox" name="notify-available-product" value="{IF !$LOGGED_IN}1{ELSE}{$USER_EMAIL}{/IF}" class="core_notifyAvailableProduct" data-product-id="{$PROD_ID}" data-success="{$L_NOTIFY_AVAILABLE_PRODUCT_OK}">
+          <label for="notify-available-product">
+            <span class="title">{$L_NOTIFY_AVAILABLE_PRODUCT}</span>
+          </label>
+        </div>
+        <div class="product-notify-available-product-type-email">
+          <table class="product-parameters">
+            <tr>
+              <td>
+                <span class="parameter-name">{$L_INPUT_EMAIL}</span>
+              </td>
+              <td>
+                <input class="input-field" type="email" value="" name="notify-available-product" placeholder="{$L_INPUT_EMAIL}" />
+                <button class="send-phone core_notifyAvailableProduct" data-product-id="{$PROD_ID}" data-success="{$L_NOTIFY_AVAILABLE_PRODUCT_OK}">{$L_SEND}</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  {/IF}
+  {IF
+  ($BOXAMOUNT) ||
+  ($PRODUCT_SHIP_PRICE || ($PRODUCT_WEIGHT && $WEIGHT) || $PRODUCT_ADDED || $PRODUCT_SHIP_DAYS) ||
+  ($LONG_SHIP_TIME) ||
+  ($PRODUCT_AVAILABILITY) ||
+  ($PRODUCT_WEIGHT && $WEIGHT)
+  }
+  <div class="row z-index-2">
+    <div class="col-xxs">
+      <table class="product-parameters">
+        {IF $BOXAMOUNT}
+        <tr>
+          <td>
+            <span class="parameter-name">{$L_BOXAMOUNT}</span>
+          </td>
+          <td>
+            <span class="text-field">{$BOXAMOUNT} {IF $UNIT}{$UNIT}{/IF}</span>
+          </td>
+        </tr>
+        {/IF}
+        {IF $PRODUCT_SHIP_PRICE || ($PRODUCT_WEIGHT && $WEIGHT) || $PRODUCT_ADDED || $PRODUCT_SHIP_DAYS}
+        {IF $PRODUCT_SHIP_DAYS && !$LONG_SHIP_TIME}
+        <tr>
+          <td>
+            <span class="parameter-name">{$L_PRODUCT_SHIP_DAYS}</span>
+          </td>
+          <td>
+            <span class="text-field">{$PRODUCT_SHIP_DAYS}</span>
+          </td>
+        </tr>
+        {/IF}
+        {IF $LONG_SHIP_TIME}
+        <tr>
+          <td>
+            <span class="parameter-name">{$L_AMOUNT_NONE_LONGER}</span>
+          </td>
+          <td>
+            <span class="text-field">{$LONG_SHIP_TIME} {$L_DAYS}</span>
+          </td>
+        </tr>
+        {/IF}
+        {IF $PRODUCT_SHIP_PRICE}
+        <tr>
+          <td>
+            <span class="parameter-name">{$L_SHIPPING_PRICE}</span>
+          </td>
+          <td>
+                    <span class="text-field z-index-2">
+                      {IF !empty($PROD_SHIPMENTS)}
+                        <span class="core_priceFormat" data-price="{$PROD_SHIPMENT_PRICE.brutto}" data-tax="{$PROD_SHIPMENT_PRICE.tax}" data-price-type="{$PRICE_TYPE}|show_type">{$PROD_SHIPMENT_PRICE.brutto}</span>
+                        <div class="help-icon">
+                          <i class="fa fa-question"></i>
+                          <div class="help-icon-wrapper" data-parent="tr">
+                            <table class="deliveries-methods">
+                              <tbody>
+                                {LOOP FROM=$PROD_SHIPMENTS VALUE=SHIPMENT KEY=KEY}
+                                  <tr>
+                                    <td>{$SHIPMENT.sh_name}</td>
+                                    <td>
+                                      <strong>
+                                        <span class="core_priceFormat" data-price="{$SHIPMENT.sh_price}" data-tax="{IF !$SHIPMENT.tax}0{ELSE}{$SHIPMENT.tax}{/IF}" data-price-type="{$PRICE_TYPE}|show_type">{$SHIPMENT.sh_price}</span>
+                                      </strong>
+                                      {IF $SHIPMENT.from}
+                                        ({$L_ORD_PRICE_FROM} <strong><span class="core_priceFormat" data-price="{$SHIPMENT.from}" data-tax="{IF !$SHIPMENT.tax}0{ELSE}{$SHIPMENT.tax}{/IF}" data-price-type="{$PRICE_TYPE}|show_type">{$SHIPMENT.from}</span></strong>)
+                                      {/IF}
+                                    </td>
+                                  </tr>
+                                {/LOOP}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      {ELSE}
+                        {$L_NONE}
+                      {/IF}
+                    </span>
+          </td>
+        </tr>
+        {/IF}
+        {/IF}
+        {IF $PRODUCT_AVAILABILITY}
+        <tr>
+          <td>
+            <span class="parameter-name">{$L_AVAILABILITY}</span>
+          </td>
+          <td>
+            <span class="text-field">
+                <span class="{IF !$TEXT_AMOUNT.name}hidden{/IF}" data-parameter-default-value="{$TEXT_AMOUNT.name}" data-parameter-value="availability_amount_text">
+                  {$TEXT_AMOUNT.name}
+                </span>
+                <img data-parameter-default-value="{$TEXT_AMOUNT.img}" data-parameter-value="availability_img" src="{$TEXT_AMOUNT.img}" />
+                <span class="{IF $TEXT_AMOUNT.name}hidden{/IF}" data-parameter-default-value="{$AMOUNT}" data-parameter-value="availability_amount_number">{$AMOUNT}</span>
+                <span class="{IF $TEXT_AMOUNT.name}hidden{/IF}" data-parameter-value="availability_unit">
+                  {IF $UNIT}
+                    {$UNIT}
+                  {/IF}
+                </span>
+            </span>
+          </td>
+        </tr>
+        {/IF}
+        {IF $PRODUCT_WEIGHT && $WEIGHT}
+        <tr>
+          <td>
+            <span class="parameter-name">{$L_WEIGHT}</span>
+          </td>
+          <td>
+            <span class="text-field">{$WEIGHT}</span>
+          </td>
+        </tr>
+        {/IF}
+      </table>
+    </div>
+  </div>
+  {/IF}
+  {IF $MODULE.viewOptions.ask_about_product == 1 || $MODULE.viewOptions.ask_about_product == 3}
+  <div class="row">
+    <div class="col-xxs">
+      <button class="btn btn-primary core_askQuestionOpenPopup" data-product-id="{$PROD_ID}">{$L_ASQ_QUESTION}</button>
+    </div>
+  </div>
+  {/IF}
+  {IF $GENERATE_PDF}
+  <div class="row">
+    <div class="col-xxs">
+      <form method="GET" target="_blank">
+        <button class="text-field-button" name="pdf"><i class="fa fa-file-pdf-o"></i> {$L_DOWNLOAD_PRODUCT_TO_PDF}</button>
+      </form>
+    </div>
+  </div>
+  {/IF}
+  <div class="row product-parameters-row {IF (!$PRODUCT_EAN || !$EAN && $PRODUCT_EAN) && (!$BARCODE || $BARCODE && !$PRODUCT_BARCODE == '') && (!$PRODUCT_ADDED) && (!$PKWIU && !$PRODUCT_PKWIU) && (!$ISBN && !$PRODUCT_ISBN) && (!$PRODUCER_LINK && !$PRODUCER_LINK_TEXT)}hidden{/IF}">
+    <div class="col-xxs">
+      <table class="product-parameters">
+        {IF $PRODUCER_LINK && $PRODUCER_LINK_TEXT}
+        <tr>
+          <td colspan="2">
+                <span class="text-field">
+                  <a href="{$PRODUCER_LINK}" target="_blank">{$PRODUCER_LINK_TEXT}</a>
+                </span>
+          </td>
+        </tr>
+        {/IF}
+        <tr data-parameter-display="{$PRODUCT_BARCODE}" class="{IF !$BARCODE || $BARCODE && !$PRODUCT_BARCODE}hidden{/IF}" data-parameter-default-value="{$BARCODE}" data-parameter-value="barcode">
+          <td>
+            <span class="parameter-name">{$L_BARCODE}</span>
+          </td>
+          <td>
+            <span data-display-selector class="text-field">{$BARCODE}</span>
+          </td>
+        </tr>
+        {IF $ISBN && $PRODUCT_ISBN}
+        <tr>
+          <td>
+            <span class="parameter-name">ISBN</span>
+          </td>
+          <td>
+            <span class="text-field">{$ISBN}</span>
+          </td>
+        </tr>
+        {/IF}
+        <tr data-parameter-display="{$PRODUCT_EAN}" class="{IF !$PRODUCT_EAN || !$EAN && $PRODUCT_EAN}hidden{/IF}" data-parameter-default-value="{$EAN}" data-parameter-value="ean">
+          <td>
+            <span class="parameter-name">EAN</span>
+          </td>
+          <td>
+            <span data-display-selector class="text-field">{$EAN}</span>
+          </td>
+        </tr>
+        {IF $PKWIU && $PRODUCT_PKWIU}
+        <tr>
+          <td>
+            <span class="parameter-name">{$L_PKWIU}</span>
+          </td>
+          <td>
+            <span data-parameter-default-value="{$PKWIU}" data-parameter-value="pkwiu" class="text-field">{$PKWIU}</span>
+          </td>
+        </tr>
+        {/IF}
+        {IF $PRODUCT_ADDED}
+        <tr>
+          <td>
+            <span class="parameter-name">{$L_ADD_DATE}</span>
+          </td>
+          <td>
+            <span class="text-field">{$ADDED}</span>
+          </td>
+        </tr>
+        {/IF}
+      </table>
+    </div>
+  </div>
+  {IF $CAN_BUY}
+  {IF $L_NT_ADDITIONAL_INFO_BOX}
+  <div class="row">
+    <div class="col-xxs">
+      <p class="product-additional-text">
+        {$L_NT_ADDITIONAL_INFO_BOX}
+      </p>
+    </div>
+  </div>
+  {/IF}
+  {/IF}
+  {IF $PHONE_NUMBER_BOX && $MODULE.viewOptions.leave_phone == 1}
+  <div class="row">
+    <div class="col-xxs">
+      <table class="product-parameters">
+        <tr>
+          <td>
+            <span class="parameter-name">{$L_LEAVE_PHONE_NUMBER}</span>
+          </td>
+          <td>
+            <input class="input-field" data-product-id="{$PROD_ID}" type="text" value="" name="phone_number_box" placeholder="{$L_PHONE_NUMBER_BOX_INFO}" />
+            <button class="send-phone core_sendPhone">{$L_SEND}</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  {/IF}
+</section>

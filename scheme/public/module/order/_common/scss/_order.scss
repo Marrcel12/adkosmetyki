@@ -1,0 +1,58 @@
+.order-shipment-item {
+  position: relative;
+  & .order-shipment-item-logo {
+    width: 35px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    @include transform(translateY(-50%));
+  }
+  & .order-shipment-item-name {
+    width: 100%;
+    padding-left: 45px;
+    min-height: 38px;
+    & .order-shipment-item-name-wrapper {
+      display: inline-block;
+      width: 100%;
+      padding-right: 45px;
+      position: absolute;
+      top: 50%;
+      @include transform(translateY(-50%));
+      & small {
+        line-height: 12px;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.order-country-item {
+  position: relative;
+  & .order-country-item-logo {
+    width: 25px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    @include transform(translateY(-50%));
+    margin-top: -1px;
+  }
+  & .order-country-item-name {
+    width: 100%;
+    padding-left: 30px;
+    min-height: 21px;
+    & .order-country-item-name-wrapper {
+      display: inline-block;
+      width: 100%;
+      padding-right: 45px;
+      position: absolute;
+      top: 50%;
+      @include transform(translateY(-50%));
+    }
+  }
+}
+
+label[for="bill-vat-exists"] {
+  margin-top: 5px;
+}

@@ -1,0 +1,75 @@
+.select2-container--bootstrap {
+  & .select2-selection {
+    border: 1px dashed darken($primaryColor, 20%);
+    @include border-radius(20px);
+    & .select2-selection__arrow {
+      background: transparent;
+      & b {
+        &:after {
+          color: initial;
+        }
+      }
+    }
+    &:hover {
+      border: 1px dashed $mainColor;
+      @include transition(border 0.2s ease-in-out);
+      & .select2-selection__arrow {
+        background: $mainColor;
+        @include transition(background 0.2s ease-in-out);
+      }
+    }
+    &.select2-selection--multiple {
+      &:before {
+        background: transparent;
+      }
+      &:after {
+        color: initial;
+      }
+      & .select2-selection__rendered {
+        & .select2-search {
+          & .select2-search__field {
+            @include placeholder-color($fontColor);
+          }
+        }
+      }
+    }
+  }
+  &.select2-container--open {
+    & .select2-selection {
+      border-bottom-color: $mainColor !important;
+      & .select2-selection__arrow {
+        background: $mainColor;
+      }
+    }
+  }
+  & .select2-dropdown {
+    margin-top: 0;
+    border: 1px dashed darken($primaryColor, 20%);
+    @include border-bottom-left-radius(20px);
+    @include border-bottom-right-radius(20px);
+    & .select2-search__field {
+      border: 1px solid rgba($fontColor,0/2);
+      @include border-radius(3px);
+    }
+  }
+}
+
+
+
+.select2-container--bootstrap {
+  & .select2-selection {
+    &:hover {
+      border: 1px solid $mainColor;
+      @include transition(border 0.2s ease-in-out);
+      & .select2-selection__arrow {
+        background: $mainColor;
+        @include transition(background 0.2s ease-in-out);
+      }
+    }
+    &.select2-selection--multiple {
+      &:before {
+        background: pink;
+      }
+    }
+  }
+}

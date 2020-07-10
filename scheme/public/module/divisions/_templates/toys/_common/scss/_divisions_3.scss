@@ -1,0 +1,32 @@
+& .division-box {
+  position: relative;
+  border: 2px dashed darken($primaryColor, 20%);
+  @include border-radius(7px);
+  @include transition(border 0.2s ease-in-out);
+  & .row {
+    & > [class*='col-']:last-child {
+      margin-left: 33.333%;
+    }
+  }
+  & .fa {
+    top: 80%;
+    font-size: 40px;
+    color: $primaryColor;
+    @include border-radius(50%);
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    &:before {
+      display: inline-block;
+      margin-top: 10px;
+    }
+  }
+  & .vertical-center-box {
+    & .vertical-center {
+      text-align: left;
+    }
+  }
+  &:hover {
+    border: 2px dashed $mainColor;
+  }
+}

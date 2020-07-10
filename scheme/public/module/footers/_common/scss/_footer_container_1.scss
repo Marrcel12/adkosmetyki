@@ -1,0 +1,99 @@
+.footer-container {
+  max-width: $pageWidth;
+  width: 100%;
+  margin: 0 auto;
+  & .mobile-logo {
+    display: none;
+  }
+  & .section-title {
+    padding: 15px 0;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 16px;
+    &.center {
+      width: 100%;
+      text-align: center;
+    }
+  }
+  & .logo {
+    display: inline-block;
+    padding: 15px 0;
+    & img {
+      width: 50%;
+    }
+  }
+  & .menu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    & li {
+      display: block;
+      width: 100%;
+      padding: 5px 0;
+      font-weight: 500;
+      & a {
+        font-size: 14px;
+        color: $footerTextColor;
+        padding: 0;
+        font-weight: 500;
+        text-decoration: none;
+        cursor: pointer;
+        &:hover {
+          color: $footerTextColorHover;
+        }
+      }
+      & .row {
+        & [class*='col-']:first-of-type {
+          text-align: center;
+          padding-right: 5px;
+        }
+        & [class*='col-']:last-of-type {
+          padding-left: 0;
+        }
+        & .fa {
+          font-size: 19px;
+          color: rgba($fontColor,6/10);
+        }
+      }
+      & form {
+        & [class*='col-']:first-of-type {
+          padding: 0 !important;
+          & input {
+            @include border-top-right-radius(0);
+            @include border-bottom-right-radius(0);
+            border-right: 0;
+            margin: 0;
+          }
+        }
+        & [class*='col-']:last-of-type {
+          padding: 0  !important;
+          & input {
+            @include border-top-left-radius(0);
+            @include border-bottom-left-radius(0);
+          }
+        }
+      }
+    }
+  }
+  & .socials {
+    text-align: center;
+    & > a {
+      width: 35px;
+      height: 35px;
+      line-height: 35px;
+      border: 2px solid $mainColor;
+      @include border-radius(50%);
+      position: relative;
+      display: inline-block;
+      margin: 5px;
+      cursor: pointer;
+      & .fa {
+        font-size: 18px;
+        color: $footerTextColor;
+      }
+      &:hover {
+        border: 2px solid $footerTextColorHover;
+      }
+    }
+  }
+}

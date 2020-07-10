@@ -1,0 +1,88 @@
+.cookies {
+  width: 100%;
+  background: $secoundaryColor;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 99;
+  & .container {
+    width: 100%;
+    max-width: $pageWidth;
+    & .row {
+      position: relative;
+      margin: 0;
+      & > div {
+        &:first-of-type {
+          width: 100%;
+          padding-right: 261px;
+          padding-left: 0;
+          & span {
+            display: block;
+            font-size: 12px;
+            padding: 15px 0;
+          }
+        }
+        &:last-of-type {
+          position: absolute;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          width: 261px;
+          & .btn {
+            float: right;
+            margin-right: 140px;
+            position: absolute;
+            top: 50%;
+            @include transform(translateY(-50%));
+          }
+          & img {
+            float: right;
+            position: absolute;
+            right: 0;
+            bottom: -25px;
+          }
+        }
+      }
+    }
+  }
+  &.bottom {
+    top: inherit;
+    bottom: 0;
+    & .container {
+      & .row {
+        & > div {
+          &:last-of-type {
+            & img {
+              top: -25px;
+              bottom: inherit;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 767px) {
+  .cookies {
+    & .container {
+      & .row {
+        & > div {
+          &:first-of-type {
+            padding-right: 121px;
+          }
+          &:last-of-type {
+            width: 121px;
+            & .btn {
+              margin-right: 0;
+            }
+            & img {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

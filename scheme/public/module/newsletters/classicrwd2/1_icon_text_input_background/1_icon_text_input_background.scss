@@ -1,0 +1,28 @@
+.newsletter.mod-newsletter-1 {
+  max-width: $pageWidth;
+	width: 100%;
+	margin: 0 auto 30px;
+  padding: 25px 0;
+  background: $mainColor;
+  display: block;
+  & + .mod-producers-1-wrapper,
+  & + .mod-producers-2-wrapper {
+    margin-top: -30px;
+  }
+  @import "../private/scss/_newsletter_1.scss";
+}
+
+.mod-producers-1-wrapper,
+.mod-producers-2-wrapper,
+#footer {
+  & + .newsletter.mod-newsletter-1 {
+    margin-top: -30px;
+  }
+}
+
+
+@media all and (max-width: 768px) {
+  .newsletter.mod-newsletter-1 {
+    @import "../private/scss/_newsletter_1_rwd.scss";
+  }
+}

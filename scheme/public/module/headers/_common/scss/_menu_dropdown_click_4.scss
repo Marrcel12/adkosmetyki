@@ -1,0 +1,38 @@
+&.click {
+  &.full-width {
+    & .dropdown {
+      @include transform(translate(-50%,31px));
+    }
+    &.clicked {
+      & .dropdown {
+        @include transform(translate(-50%,21px));
+        @include transition(opacity 0.2s ease-in-out);
+      }
+    }
+  }
+  &.clicked {
+    & > a {
+      color: $topMenuTextColorHover;
+    }
+    & .dropdown {
+      @include opacity(1);
+      @include transition(all 0.2s ease-in-out);
+      @include transform(translateY(0));
+      pointer-events: auto;
+      visibility: visible;
+      z-index: 2;
+    }
+  }
+  &.single-category {
+    & .dropdown {
+      @include transform(translateY(10px));
+      @include transition(all 0.2s ease-in-out);
+    }
+    &.clicked {
+      & .dropdown {
+        @include transform(translateY(0));
+        @include transition(opacity 0.2s ease-in-out);
+      }
+    }
+  }
+}

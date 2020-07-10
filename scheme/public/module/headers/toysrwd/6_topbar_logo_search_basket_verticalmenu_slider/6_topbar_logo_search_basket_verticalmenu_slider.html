@@ -1,0 +1,289 @@
+<div class="buy-skin">{$L_BUY_THIS_SKINN}</div>
+<header id="header" class="mod-header-6 {IF ($SHOP_TEST && $CONTROLER == 'cart') || ($SHOP_TEST && $WRONG_EMAIL)}shop-test-margin{/IF}">
+	{IF $SHOW_COOKIE_INFO}
+		{INCLUDE file="./".$TEMPLATE."/scheme/public/module/headers/_common/html/cookies.html"}
+	{/IF}
+	{INCLUDE file="./".$TEMPLATE."/scheme/public/module/headers/toysrwd/private/html/mobile-search.html"}
+	<section class="top-bar">
+		<div class="ss-container">
+			<div class="top-bar-content">
+				<div class="pull-left">
+					{INCLUDE file="./".$TEMPLATE."/scheme/public/module/headers/_common/html/top-bar-social.html"}
+				</div>
+				<div class="pull-right">
+					<ul>
+						{IF count($LANGS) > 1}
+							<li>
+								<span class="link">
+									<span class="helper-icon">
+										<i class="fa fa-globe"></i>
+									</span>
+									<span class="hidden-on-mobile">{$L_LANGUAGE_SELECT}</span> <img src="/{$TEMPLATE}/img/ico_lang/{$LANG}.png" class="icon-language-flag" /> <i class="fa fa-chevron-down"></i>
+								</span>
+								<div class="dropdown">
+									<ul>
+										{LOOP FROM=$LANGS VALUE=LANG}
+											<li class="{IF $LANG.KEY == $LANG}active{/IF}">
+												<a href="{$LANG.URL}">{$LANG.NAME} <img src="/{$TEMPLATE}/img/ico_lang/{$LANG.KEY}.png" class="icon-language-flag small" alt="" /></a>
+											</li>
+										{/LOOP}
+									</ul>
+								</div>
+							</li>
+						{/IF}
+						{IF count($CURRENCIES_ACTIVE) > 1}
+							<li>
+								<span class="link">
+									<span class="helper-icon">
+										<i class="fa fa-usd"></i>
+									</span>
+									<span class="hidden-on-mobile">{$L_CURRENCY}: <span data-select-currency-name>{$CURRENCY_EQU}</span></span> <i class="fa fa-chevron-down"></i>
+								</span>
+								<div class="dropdown">
+									<ul>
+										{LOOP FROM=$CURRENCIES_ACTIVE VALUE=CURRENCY KEY=NAME}
+											<li class="{IF $CURRENCY.selected}active{/IF}" data-select-currency-active>
+												<a href="#" data-select-currency="{$NAME}|{$CURRENCY.sym}">{$NAME}</a>
+											</li>
+										{/LOOP}
+									</ul>
+								</div>
+							</li>
+						{/IF}
+						{INCLUDE file="./".$TEMPLATE."/scheme/public/module/headers/_common/html/user-menu.html"}
+						{IF !$TURN_OFF_SALES}
+							<li class="quick-cart hidden-on-desktop">
+								<span class="link">
+									<span class="helper-icon">
+										<i class="fa fa-shopping-basket"></i>
+									</span>
+									<span class="hidden-on-mobile">{$L_CART}</span> (<span class="core_quickCartAmount">{$CART_AMOUNT}</span>) <i class="fa fa-chevron-down hidden-on-mobile"></i>
+								</span>
+								{IF $CONTROLER != 'cart'}
+									<div class="dropdown dropdown-quick-cart">
+										{INCLUDE file="./".$TEMPLATE."/scheme/public/_common/html/quick-cart.html"}
+									</div>
+								{/IF}
+							</li>
+						{/IF}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="sub-header">
+		<div class="ss-container sub-header-content">
+			<a href="/" class="logo" itemscope itemtype="http://schema.org/LocalBusiness">
+				<img src="{$MODULE.children.common_shop_logo[0].props.preview}" alt="{IF $MODULE.children.logo_alt[0].props.value} {$MODULE.children.logo_alt[0].props.value} {ELSE} {$LOGO_ALT} {/IF}" />
+			</a>
+			<ul class="mobile-actions">
+				<li id="mobile-open-search">
+					<i class="fa fa-search"></i>
+				</li>
+				<li id="mobile-open-menu">
+					<i class="fa fa-bars"></i>
+				</li>
+			</ul>
+			<div class="search-box">
+				<form method="GET" action="/category/#top">
+					<input class="input-field {IF $SEARCH_QUICK_ACTIVE}core_quickSearchAjax{/IF}" type="text" name="q" value="{$SEARCH_STRING}" autocomplete="off" {IF $DEBUG}data-ajax-blur="true"{/IF} />
+					{IF $SEARCH_DESC_ACTIVE}
+						<input type="hidden" name="desc" value="1" />
+					{/IF}
+					<input type="submit" value="" class="btn btn-primary btn-block" />
+					{IF $SEARCH_QUICK_ACTIVE}
+						{INCLUDE file="./".$TEMPLATE."/scheme/public/module/headers/_common/html/quick-search.html"}
+					{/IF}
+				</form>
+			</div>
+			{IF !$TURN_OFF_SALES}
+				<div class="quick-cart">
+					<a href="/cart/">
+						<div class="price">
+							<span class="core_quickCartTotalPrice core_priceFormat" data-price="{$CART_SUM}">{$CART_SUM}</span>
+						</div>
+						<div class="basket-wrapper">
+							<i class="fa fa-shopping-basket"></i>
+							<div class="counter"><span class="core_quickCartAmount">{$CART_AMOUNT}</span></div>
+						</div>
+					</a>
+					{IF $CONTROLER != 'cart'}
+						<div class="dropdown dropdown-quick-cart">
+							{INCLUDE file="./".$TEMPLATE."/scheme/public/_common/html/quick-cart.html"}
+						</div>
+					{/IF}
+				</div>
+			{/IF}
+		</div>
+	</section>
+	<div class="ss-container">
+		<section class="menu menu-calculate" data-action="inline">
+			<ul>
+				<li class="vertical-menu" {IF $CONTROLER != 'index' && $CONTROLER != 'cart'}id="open-header-left-menu"{/IF}>
+					{IF $CONTROLER != 'index'}
+						<a href="/">
+							<i class="fa fa-bars"></i> {$L_ALL_CATEGORIES}
+						</a>
+					{ELSE}
+						<a href="#" class="disabled">
+							<i class="fa fa-bars"></i> {$L_ALL_CATEGORIES}
+						</a>
+					{/IF}
+				</li>
+				{INCLUDE file="./".$TEMPLATE."/scheme/public/module/headers/_common/html/main-menu.html"}
+				<li class="hamburger {IF $MENU_SHOW_TYPE == 'click'}click{/IF}">
+					<a href="#">
+						<i class="fa fa-bars"></i>
+					</a>
+					<div class="dropdown">
+						<div class="row">
+							<div class="col-xs-12">
+								<ul class="hambureger-elements"></ul>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</section>
+	</div>
+	{IF $CONTROLER != 'cart'}
+		<div class="ss-container">
+			<section class="header-bottom {IF $CONTROLER != 'index'}slide-down{/IF}">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-xs-3">
+							<div class="vertical-menu">
+								<div class="vertical-menu-content">
+									<ul>
+										{IF $MODULE.children.header_group_vertical[0].props.headerVerticalMenuAllCategories == 'true'}
+											{LOOP FROM=$CATS VALUE=MENU_ELEMENT INDEX=INDEX}
+												{IF $INDEX == 8 && $CONTROLER == 'index'}
+													<div class="show-more">
+														<span>{$L_SHOW_MORE_CATEGORIES} <i class="fa fa-caret-down"></i></span>
+													</div>
+												{/IF}
+												<li>
+													<a href="{$MENU_ELEMENT.cat_url}">
+														<span>{$MENU_ELEMENT.cat_name}</span>
+													</a>
+													{IF count($MENU_ELEMENT.subcats) > 0}
+														<div class="sub-categories items-col-{IF count($MENU_ELEMENT.subcats) == 1}1{ELSEIF count($MENU_ELEMENT.subcats) == 2}2{ELSE}3{/IF}">
+															<div class="sub-categories-content">
+																<div class="row">
+																	{LOOP FROM=$MENU_ELEMENT.subcats VALUE=SUB_CATS}
+																		<div class="{IF count($MENU_ELEMENT.subcats) == 1}col-xs-12{ELSEIF count($MENU_ELEMENT.subcats) == 2}col-xs-6{ELSE}col-xs-4{/IF}">
+																			<div class="cat-title">
+																				<a href="{$SUB_CATS.cms_url}">{$SUB_CATS.cat_name}</a>
+																			</div>
+																			{IF $SUB_CATS.subcats}
+																				<ul>
+																					{LOOP FROM=$SUB_CATS.subcats VALUE=SUB_SUB_CATS}
+																						<li>
+																							<a href="{$SUB_SUB_CATS.cms_url}">{$SUB_SUB_CATS.cat_name}</a>
+																						</li>
+																					{/LOOP}
+																				</ul>
+																			{/IF}
+																		</div>
+																	{/LOOP}
+																</div>
+															</div>
+														</div>
+													{/IF}
+												</li>
+											{/LOOP}
+										{ELSE}
+											{LOOP FROM=$MODULE.children.header_group_vertical[0].children VALUE=MENU_ELEMENT INDEX=INDEX}
+												{IF $INDEX == 8 && $CONTROLER == 'index'}
+													<div class="show-more">
+														<span>{$L_SHOW_MORE_CATEGORIES} <i class="fa fa-caret-down"></i></span>
+													</div>
+												{/IF}
+												<li>
+													<a {IF !$MENU_ELEMENT.props.parent_href || $MENU_ELEMENT.props.parent_href == 'http://'}{ELSE}href="{$MENU_ELEMENT.props.parent_href}"{/IF}>
+														<span>{$MENU_ELEMENT.props.name}</span>
+													</a>
+													{IF $MENU_ELEMENT.props.categories_auto == 'true'}
+														{IF count($CATS) > 0}
+															<div class="sub-categories items-col-{IF count($CATS) == 1}1{ELSEIF count($CATS) == 2}2{ELSE}3{/IF}">
+																<div class="sub-categories-content">
+																	<div class="row">
+																		{LOOP FROM=$CATS VALUE=SUB_CATS}
+																			<div class="{IF count($CATS) == 1}col-xs-12{ELSEIF count($CATS) == 2}col-xs-6{ELSE}col-xs-4{/IF}">
+																				<div class="cat-title">
+																					<a href="{$SUB_CATS.cms_url}">{$SUB_CATS.cat_name}</a>
+																				</div>
+																				{IF $SUB_CATS.subcats}
+																				<ul>
+																					{LOOP FROM=$SUB_CATS.subcats VALUE=SUB_SUB_CATS}
+																					<li>
+																						<a href="{$SUB_SUB_CATS.cms_url}">{$SUB_SUB_CATS.cat_name}</a>
+																					</li>
+																					{/LOOP}
+																				</ul>
+																				{/IF}
+																			</div>
+																		{/LOOP}
+																	</div>
+																</div>
+															</div>
+														{/IF}
+													{ELSE}
+														{IF count($MENU_ELEMENT.subcats) > 0}
+															<div class="sub-categories items-col-{IF count($MENU_ELEMENT.subcats) == 1}1{ELSEIF count($MENU_ELEMENT.subcats) == 2}2{ELSE}3{/IF}">
+																<div class="sub-categories-content">
+																	<div class="row">
+																		{LOOP FROM=$MENU_ELEMENT.subcats VALUE=SUB_CATS}
+																		<div class="{IF count($MENU_ELEMENT.subcats) == 1}col-xs-12{ELSEIF count($MENU_ELEMENT.subcats) == 2}col-xs-6{ELSE}col-xs-4{/IF}">
+																			<div class="cat-title">
+																				<a href="{$SUB_CATS.cms_url}">{$SUB_CATS.cat_name}</a>
+																			</div>
+																			{IF $SUB_CATS.subcats}
+																			<ul>
+																				{LOOP FROM=$SUB_CATS.subcats VALUE=SUB_SUB_CATS}
+																				<li>
+																					<a href="{$SUB_SUB_CATS.cms_url}">{$SUB_SUB_CATS.cat_name}</a>
+																				</li>
+																				{/LOOP}
+																			</ul>
+																			{/IF}
+																		</div>
+																		{/LOOP}
+																	</div>
+																</div>
+															</div>
+														{/IF}
+													{/IF}
+												</li>
+											{/LOOP}
+										{/IF}
+									</ul>
+								</div>
+							</div>
+						</div>
+						{IF $CONTROLER == 'index'}
+							<div class="col-xs-9">
+								<div class="slider">
+									<div class="carousel slider-carousel" data-timeout="{$MODULE.viewOptions.slideShowInMs}">
+										{LOOP FROM=$MODULE.children.slider_group_header[0].children VALUE=SLIDE INDEX=INDEX}
+											<div class="item">
+												<i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+												{IF $SLIDE.props.link && $SLIDE.props.link != ""}
+													<a href="{$SLIDE.props.link}">
+												{/IF}
+												<img {IF $INDEX == 1} src="{$SLIDE.props.preview}" {ELSE} data-src="{$SLIDE.props.preview}" class="owl-lazy" {/IF} alt="{$SLIDE.props.name}" onLoad="imageLoaded(this {IF $SLIDE.props.link && $SLIDE.props.link != ''},'link' {/IF})" />
+												{IF $SLIDE.props.link && $SLIDE.props.link != ""}
+													</a>
+												{/IF}
+											</div>
+										{/LOOP}
+									</div>
+								</div>
+							</div>
+						{/IF}
+					</div>
+				</div>
+			</section>
+		</div>
+	{/IF}
+</header>

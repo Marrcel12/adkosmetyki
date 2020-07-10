@@ -1,0 +1,43 @@
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Product",
+    {IF $COMMENTS_ENABLE && $COUNT_COM > 0}
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "{$RATES.all_mean}",
+        "reviewCount": "{$COUNT_COM}"
+      },
+    {/IF}
+    "description": "{$SEO_DESC}",
+    "name": "{$NAME}",
+    "image": "{LOOP FROM=$IMAGES VALUE=IMAGE INDEX=INDEX}{IF $INDEX == 1}{$IMAGE.src}_1200.jpg{/IF}{/LOOP}",
+    {IF $EAN}"gtin13": "{$EAN}",{/IF}
+    "offers": {
+      "@type": "Offer",
+      "availability": "http://schema.org/{IF $CAN_BUY}InStock{ELSE}OutOfStock{/IF}",
+      "price": "{$PRICE}",
+      "priceCurrency": "{$CURRENCY_EQU}"
+    }
+    {IF $COMMENTS_ENABLE && $COUNT_COM > 0}
+      ,"review": [
+        {LOOP FROM=$COMMENTS VALUE=COMMENT KEY=KEY INDEX=INDEX}
+          {IF $INDEX > 1},{/IF}{
+            "@type": "Review",
+            "author": "{$COMMENT.username}",
+            "datePublished": "{$COMMENT.date}",
+            "description": "{$COMMENT.json_text}"
+            {IF $COMMENT.mean}
+              ,"reviewRating": {
+                "@type": "Rating",
+                "bestRating": "{$COMMENT.max}",
+                "ratingValue": "{$COMMENT.mean}",
+                "worstRating": "{$COMMENT.min}"
+              }
+            {/IF}
+          }
+        {/LOOP}
+      ]
+    {/IF}
+  }
+</script>

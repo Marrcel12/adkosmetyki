@@ -1,0 +1,23 @@
+<div class="subcategories">
+  <div class="row">
+    {LOOP FROM=$SUBCATS VALUE=SUBCAT INDEX=INDEX}
+      <div class="col-xxxs-4 col-xxs-3 col-xs-3 col-sm-3 col-md-2">
+        <a href="{$SUBCAT.URL}" title="{$SUBCAT.NAME}">
+          {IF $SUBCAT.IMG}
+            <div class="subcategory-img">
+              <img src="/{$UPLOAD_DIR}/{$SUBCAT.IMG}" alt="{$SUBCAT.NAME}" />
+            </div>
+          {/IF}
+          <span class="subcategory-name">
+            <span>{$SUBCAT.NAME}</span>
+          </span>
+        </a>
+      </div>
+      {IF $INDEX % 2 == 0}<div class="clearfix visible-xxxs"></div>{/IF}
+      {IF $INDEX % 3 == 0}<div class="clearfix visible-xxs"></div>{/IF}
+      {IF $INDEX % 4 == 0}<div class="clearfix visible-xs"></div>{/IF}
+      {IF $INDEX % 3 == 0}<div class="clearfix visible-sm"></div>{/IF}
+      {IF $INDEX % 6 == 0}<div class="clearfix visible-md visible-lg"></div>{/IF}
+    {/LOOP}
+  </div>
+</div>

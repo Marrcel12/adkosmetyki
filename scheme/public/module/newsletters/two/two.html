@@ -1,0 +1,49 @@
+<section class="newsletter mod-newsletter-2">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12">
+        <table class="newsletter-container">
+          <tr>
+            {IF $MODULE.children.newsletter_box[0].children[1].props.value || $MODULE.children.newsletter_box[0].children[0].props.icon}
+              <td class="newsletter-box-title">
+                <table>
+                  <tr>
+                    {IF $MODULE.children.newsletter_box[0].children[0].props.icon}
+                      <td>
+                        <i class="{$MODULE.children.newsletter_box[0].children[0].props.icon}"></i>
+                      </td>
+                    {/IF}
+                    {IF $MODULE.children.newsletter_box[0].children[1].props.value}
+                      <td>
+                        <span class="title">{$MODULE.children.newsletter_box[0].children[1].props.value}</span>
+                      </td>
+                    {/IF}
+                  </tr>
+                </table>
+              </td>
+            {/IF}
+            {IF $MODULE.children.newsletter_box[0].children[2].props.value}
+              <td class="newsletter-box-sub">
+                <p>{$MODULE.children.newsletter_box[0].children[2].props.value}</p>
+              </td>
+            {/IF}
+            <td class="newsletter-box-input">
+              <div class="container-fluid">
+                <form class="newsletter-form">
+                  <div class="row">
+                    <div class="col-xs-7 col-md-8">
+                      <input type="text" name="email" value="" placeholder="{$L_INPUT_EMAIL}" class="newsletter-input" />
+                    </div>
+                    <div class="col-xs-5 col-md-4">
+                      <input type="submit" value="{$L_ADD_ADDRESS}" class="btn newsletter-button core_addEmailToNewsletter" />
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

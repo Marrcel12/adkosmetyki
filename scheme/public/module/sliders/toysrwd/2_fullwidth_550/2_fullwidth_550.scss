@@ -1,0 +1,25 @@
+.slider.mod-slider-2 {
+  max-width: $pageWidth;
+	width: 100%;
+	margin: 0 auto;
+  padding-bottom: 30px;
+  &.full-width {
+    max-width: 100%;
+  }
+  & .carousel {
+    opacity: 0;
+    height: 550px;
+    & .item {
+      height: 550px;
+      overflow: hidden;
+      @import "../../_common/scss/_slide_img_1.scss";
+    }
+    @import "../private/_controls_1.scss";
+  }
+}
+
+@media all and (max-width: 480px) {
+  .slider.mod-slider-2 {
+    padding-bottom: 15px;
+  }
+}

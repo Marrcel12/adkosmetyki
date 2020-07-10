@@ -1,0 +1,59 @@
+.division.mod-division-2 {
+  max-width: $pageWidth;
+	width: 100%;
+	margin: 0 auto;
+  padding-top: 30px;
+  @import "../_common/scss/_divisions_1.scss";
+  & + .slider, & + .producers {
+    padding-top: 30px;
+  }
+}
+
+@media all and (max-width: 480px) {
+  .division.mod-division-2 {
+    padding-top: 15px;
+    @import "../_common/scss/_divisions_1_rwd.scss";
+  }
+}
+
+/* Media queries - visibility and control rules */
+
+@media all and (min-width: 768px) {
+  .division.mod-division-2 {
+    & .divisions {
+      &.divisions-xs, &.divisions-xxs {
+        display: none;
+      }
+    }
+  }
+}
+
+@media all and (min-width: 481px) and (max-width: 767px) {
+  .division.mod-division-2 {
+    & .divisions {
+      &.divisions-lg {
+        & .division-box-1, & .division-box-2 {
+          width: 50%;
+        }
+        & .division-box-3 {
+          display: none;
+        }
+      }
+      &.divisions-xxs {
+        display: none;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 480px) {
+  .division.mod-division-2 {
+    & .divisions {
+      &.divisions-lg {
+        & .division-box-2, & .division-box-3 {
+          display: none;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<div class="mod-producers-2-wrapper">
+  <section class="producers mod-producers-2">
+    <div class="container-fluid">
+      <div class="carousel producers-carousel-2 {$MODULE.viewOptions.effect}">
+        {LOOP FROM=$PRODUCERS VALUE=PRODUCER KEY=KEY}
+          <div class="item">
+            <a href="{$PRODUCER.url}{$HASH}" title="{$PRODUCER.name}">
+              {IF $PRODUCER.logo}
+                <img src="/{$UPLOAD_DIR}/producers/{$PRODUCER.logo}" alt="{$PRODUCER.name}" />
+              {ELSE}
+                <span>{$PRODUCER.name}</span>
+              {/IF}
+            </a>
+          </div>
+        {/LOOP}
+      </div>
+    </div>
+  </section>
+</div>

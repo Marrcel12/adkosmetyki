@@ -1,0 +1,11 @@
+& > .container-fluid {
+  & > .row {
+    margin: 0px -25px;
+  }
+}
+& .divisions {
+  border-spacing: 10px 0;
+  &:not(.divisions-lg) {
+    margin-top: 15px;
+  }
+}

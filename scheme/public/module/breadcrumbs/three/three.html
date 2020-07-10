@@ -1,0 +1,26 @@
+{IF $BREADCRUMB}
+  <section class="breadcrumbs mod-breadcrumbs-3">
+    <div class="breadcrumbs-outer">
+      <div class="container-fluid">
+        <div class="breadcrumbs-wrapper">
+          <ul>
+            {LOOP FROM=$BREADCRUMB VALUE=CRUMB}
+              <li>
+                {IF $CRUMB.URL}
+                  <a href="{$CRUMB.URL}">
+                {/IF}
+                <span>
+                  {$CRUMB.NAME}
+                </span>
+                {IF $CRUMB.URL}
+                  </a>
+                {/IF}
+              </li>
+            {/LOOP}
+          </ul>
+        </div>
+      </div>
+    </div>
+    {INCLUDE file="./".$TEMPLATE."/scheme/public/_common/html/microdata/breadcrumbs.html"}
+  </section>
+{/IF}

@@ -1,0 +1,93 @@
+.registrations.mod-registrations-1 {
+    max-width: $pageWidth;
+      width: 100%;
+      margin: 0 auto;
+    padding: 25px 0;
+    position: relative;
+  
+     & .section-desc {
+      margin-bottom: 15px;
+      & strong {
+        font-size: 16px;
+      }
+    }
+    & .section-form {
+      // margin-bottom: 30px;
+      // margin-left: 0;
+      // margin-right: 0;
+      position: relative;
+      & .title-section { 
+        padding: 5px 0;
+        font-weight: 500;
+        display: inline-block;
+        // width: 110px;
+        margin-right: 15px;
+        flex-grow: 1;
+        min-width: 110px;
+      }
+      & .input-field {
+        margin: 0;
+        flex-grow: 3;
+      }
+      & .checkbox-field {
+        padding: 3px 0 3px;
+        margin-bottom: 3px;
+        background: #fff;
+        z-index: 1;
+      }
+      & .btn-register-confirm {
+        // margin: 21px 7px 30px;
+      }
+      & .col-sm-6 {
+        &:nth-of-type(2n-1) {
+          & > .container-fluid {
+            padding-right: 0;
+            padding-left: 11px;
+          }
+        }
+        &:nth-of-type(2n) {
+          & > .container-fluid {
+            padding-left: 0;
+            padding-right: 11px;
+          }
+        }
+      }
+    }
+    .section-form-content {
+      padding-top: 30px;
+    }
+    .label-input-wrapper {
+      display: flex;
+      align-items: center;
+      margin-bottom: 9px;
+    }
+  
+    .input-wrapper {
+      flex: 3 100%;
+    }
+  }
+  
+  @media all and (max-width: 767px) {
+    .registrations.mod-registrations-1 {
+      .label-input-wrapper {
+        flex-wrap: wrap;
+      }
+      // & .section-form {
+      //   margin-right: 0;
+      //   margin-left: 0;
+      //   & .col-sm-6 {
+      //     &:nth-of-type(2n-1), &:nth-of-type(2n) {
+      //       & > .container-fluid {
+      //         padding: 0 15px;
+      //       }
+      //     }
+      //     &:nth-of-type(2n) {
+      //       & .heading {
+      //         margin-top: 25px;
+      //       }
+      //     }
+      //   }
+      // }
+    }
+  }
+  

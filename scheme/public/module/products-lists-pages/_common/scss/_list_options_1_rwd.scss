@@ -1,0 +1,43 @@
+.list-options {
+  & > .row {
+    margin: 0;
+  }
+  & .select-field {
+    width: 100%;
+    padding: 6px 0 12px;
+    margin-left: 0;
+  }
+  & .select-field-select2, & .select-field-select2-container {
+    margin-left: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+  & .pagination {
+    width: 100%;
+    padding: 0;
+    position: relative;
+    & ul {
+      width: 100%;
+      & li {
+        &:first-of-type {
+          position: absolute;
+          top: 1px;
+          left: 1px;
+          z-index: 1;
+        }
+        &:last-of-type {
+          position: absolute;
+          top: 1px;
+          right: 2px;
+        }
+        &.active {
+          width: 100%;
+          & a {
+            width: 100%;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+<section class="logins mod-logins-1">
+  <div class="container-fluid">
+    <form method="POST" action="/login" class="core_parseForm card-bg-color card-space-md border-wrapper card-space-top-md card-space-bottom-md box-shadow">
+      
+      <section class="third-heading mb-md">
+        <ul>
+          <li>
+            <h1 class="title">{$L_LOGIN2}</h1>
+          </li>
+        </ul>
+      </section>
+
+      <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+          <div class="row section-form">
+            <div class="col-xs-12 col-sm-6 label-input-wrapper">
+                <span class="title-section">E-mail</span>
+                <div class="input-wrapper">
+                  <input class="input-field" type="text" name="email" value="{$LOG.email}" data-valid="required" />
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 label-input-wrapper">
+              <span class="title-section">{$L_PASSWORD}</span>
+                <div class="input-wrapper">
+                  <input class="input-field" type="password" name="password" value="{$LOG.password}" data-valid="required|minlength:4|maxlength:32" />
+                </div>
+            </div>
+          </div>
+          <div class="row section-form">
+            {IF $AUTOLOGIN}
+              <div class="col-xs-6">
+                <div class="checkbox-field">
+                  <input id="param-rules-1" type="checkbox" name="autologin" value="1" {$CHECKED} />
+                  <label for="param-rules-1">
+                    <span class="title">{$L_REMEMBER}</span>
+                  </label>
+                </div>
+              </div>
+            {/IF}
+            <div class="col-xs-6 pull-right">
+              <div class="checkbox-field">
+                <span class="title pull-right">
+                  <a href="/passrecover/">{$L_RECOVER_PASSWORD}</a>
+                </span>
+              </div>
+            </div>
+            <div class="col-xs-12 text-center">
+              <input type="hidden" name="redirect" value="{$REDIRECT}" />
+              <button type="submit" name="submit" value="submit" class="btn btn-primary btn-lg btn-register-confirm">{$L_LOGIN}</button>
+              {INCLUDE file="./".$TEMPLATE."/scheme/public/module/logins/_common/html/external-logins.html"}
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

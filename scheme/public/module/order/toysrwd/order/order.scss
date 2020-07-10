@@ -1,0 +1,684 @@
+@import "../../../_common/scss/_banks_list.scss";
+@import "../../_common/scss/_order.scss";
+
+.order.mod-order-1 {
+  background: $bc-color;
+  & > .container-fluid {
+    width: 100%;
+    max-width: $pageWidth;
+    min-height: 100vh;
+    background-clip: content-box;
+    margin: 0 auto;
+    padding: 0 0 25px;
+    & .cart-summary-header {
+      width: 100%;
+      display: table;
+      padding: 35px 15px;
+      & > .row {
+        display: table-row;
+        & > [class*='col-'] {
+          display: table-cell;
+          padding: 0;
+          float: none;
+          vertical-align: middle;
+        }
+      }
+      & .logo {
+        text-align: center;
+        & img {
+          max-width: 220px;
+        }
+      }
+    }
+    & .cart-summary-body {
+      padding: 0 15px;
+      & > .row {
+        & > [class*='col-'] {
+          // background: $primaryColor;
+          background-clip: content-box;
+          &:last-of-type {
+            position: relative;
+            top: 0;
+            @include transition(top 0.2s ease-in-out);
+            &.force-disable-fixed {
+              top: 0 !important;
+            }
+          }
+          & .heading {
+            margin-bottom: 0;
+            &.inside ul {
+              li {
+                margin-bottom: 0;
+              }
+              &:before,
+              &:after {
+                display: none;
+              }
+            }
+            &:not(:first-of-type) {
+              margin-top: 30px;
+            }
+            & .order-copy-data {
+              display: inline-block;
+              float: right;
+              font-weight: 500;
+              padding-top: 8px;
+            }
+          }
+        }
+      }
+    }
+    & .cart-summary-body.summary-finish {
+      & .success-icon {
+        padding: 15px 0;
+        text-align: center;
+        & > i {
+          width: 100px;
+          height: 100px;
+          background-color: $mainColor;
+          border-radius: 50px;
+          margin: auto;
+          color: white;
+          position: relative;
+          font-size: 80px;
+          &:before{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            @include transform(translate(-50%,-50%));
+          }
+        }
+      }
+    }
+    & .cart-summary-content {
+      padding: 0 25px;
+      &:first-of-type {
+        padding-top: 15px;
+      }
+      &:last-of-type {
+        padding-bottom: 15px;
+      }
+      & .btn-order-confirm {
+        position: relative;
+        left: 50%;
+        @include transform(translateX(-50%));
+      }
+    }
+    & .products-list {
+      width: 100%;
+      & tr {
+        border-bottom: 1px solid $secoundaryColor;
+        & td {
+          padding: 10px 0;
+          &:first-of-type {
+            padding-left: 25px;
+          }
+          &:last-of-type {
+            padding-right: 25px;
+          }
+        }
+        & .product {
+          &-img {
+            width: 1px;
+            & img {
+              width: 50px;
+            }
+          }
+          &-info {
+            & .title {
+              font-weight: 500;
+              display: -webkit-box;
+              -webkit-line-clamp: 2;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              max-height: 39.2px;
+              padding: 0 15px;
+            }
+            & .details {
+              font-weight: 100;
+              display: block;
+              padding: 0 15px;
+              font-size: 12px;
+              padding-top: 7px;
+              & > span {
+                font-weight: 500;
+                &:not(:last-of-type) {
+                  &:after {
+                    content: ',';
+                  }
+                }
+              }
+            }
+          }
+          &-qty {
+            text-align: center;
+            width: 13%;
+          }
+          &-price {
+            text-align: right;
+            width: 23%;
+            color: $priceColor;
+            & span {
+              font-weight: 500;
+            }
+          }
+        }
+        &:first-of-type {
+          border-top: 1px solid $secoundaryColor;
+        }
+      }
+    }
+    & .order-sum {
+      padding: 10px 0;
+      font-weight: 500;
+      position: relative;
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: -10px;
+        right: -10px;
+        height: 1px;
+        background: $secoundaryColor;
+      }
+      &:last-of-type {
+        &:before {
+          display: none;
+        }
+      }
+      &.no-padding {
+        padding: 0;
+        margin-top: -14px;
+      }
+      &.upper {
+        font-size: 18px;
+      }
+      &.discount {
+        padding-bottom: 0;
+        & > [class*='col-'] {
+          & > .row {
+            & > [class*='col-'] {
+              padding-top: 0;
+              padding-bottom: 0;
+              &:first-of-type {
+                padding-right: 0;
+                & .input-field {
+                  margin: 0;
+                  border-right: 0;
+                  @include border-top-right-radius(0);
+                  @include border-bottom-right-radius(0);
+                  &.input-disabled {
+                    border: 1px solid rgba($fontColor,1/10) !important;
+                    background: rgba($fontColor,5/100);
+                  }
+                }
+              }
+              &:last-of-type {
+                padding-left: 0;
+                & .btn {
+                  margin-top: 0;
+                  @include border-top-left-radius(0);
+                  @include border-bottom-left-radius(0);
+                  &.btn-disabled {
+                    border: 3px solid $additionalColor !important;
+                    background: $additionalColor padding-box !important;
+                    color: rgba($fontColor,5/10) !important;
+                    cursor: default;
+                  }
+                }
+              }
+            }
+          }
+        }
+        &:before {
+          display: none;
+        }
+      }
+      &.comment {
+        &:before {
+          display: none;
+        }
+      }
+      & [class*='col-'] {
+        padding: 5px 15px;
+        & .pull-right {
+          color: $priceColor;
+        }
+        & textarea {
+          resize: none;
+        }
+      }
+      & .textarea-field {
+        margin: 0;
+      }
+    }
+    & .param-vat-container {
+      margin: 30px 0;
+    }
+    & .order-sections {
+      margin-top: 0;
+      margin-bottom: 15px;
+      & .input-field, .textarea-field, .datetime-field {
+        margin: 0;
+        display: inherit;
+      }
+      & .datetime-field {
+        max-width: 200px;
+      }
+      & .checkbox-field {
+        padding: 3px 0 3px;
+        margin-bottom: 3px;
+        background: $primaryColor;
+        z-index: 1;
+      }
+      & .text-field {
+        padding: 3px 0 3px;
+        margin-bottom: 1px;
+      }
+      &.order-sections-country {
+        & .order-country {
+          & + .select2 {
+            max-width: 50%;
+            display: inline-block;
+          }
+        }
+        & .order-country-select {
+          color: $mainColor;
+          font-size: 16px;
+          display: inline-block;
+          position: relative;
+          top: 2px;
+          & .fa {
+            padding: 0 10px;
+            color: $fontColor;
+          }
+        }
+      }
+    }
+    & .order-title-section {
+      padding: 5px 0;
+      font-weight: 500;
+      display: inline-block;
+    }
+    & .order-country {
+      height: 34px;
+      line-height: 1.42857143;
+      padding: 6px 24px 6px 8px;
+      -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      color: #555;
+      width: 100%;
+      font-size: 14px;
+      outline: 0;
+      @include opacity(0);
+    }
+    & .order-select-table {
+      display: table;
+      border-collapse: collapse;
+      width: 100%;
+      border: 1px solid $secoundaryColor;
+      background: $primaryColor;
+      z-index: 1;
+      position: relative;
+      & tr {
+        display: table-row;
+        cursor: pointer;
+        background: $lightYellow;
+        & td {
+          display: table-cell;
+          vertical-align: middle;
+          padding: 5px 10px;
+          &:first-of-type {
+            width: 50px;
+          }
+          &.cost {
+            text-align: center;
+            font-weight: 500;
+          }
+          & .checkbox-field {
+            display: inline;
+            height: 0;
+            padding: 25px 0;
+            background: transparent;
+            &:after {
+              content: '';
+              position: absolute;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+            }
+            & label {
+              position: static;
+              &:before {
+                width: 20px;
+                height: 20px;
+                top: 50%;
+                left: 50%;
+                @include transform(translate(-50%,-50%));
+                @include border-radius(50%);
+              }
+              &:after {
+                width: 16px;
+                height: 16px;
+                top: 50%;
+                left: 50%;
+                @include transform(translate(-50%,-50%));
+                font-size: 11px;
+                line-height: 17px;
+                text-indent: 3px;
+              }
+            }
+          }
+          & .method-title {
+            display: block;
+            font-weight: 500;
+            font-size: 16px;
+          }
+          & .method-desc {
+            display: block;
+            color: rgba($fontColor,6/10);
+          }
+        }
+        &.active {
+          background: $primaryColor;
+          cursor: default;
+        }
+        &.more {
+          display: none;
+          cursor: default;
+          & td {
+            background: $primaryColor;
+            position: relative;
+            text-align: left;
+            font-weight: 100;
+            padding-bottom: 15px;
+            &:after {
+              content: '';
+              position: absolute;
+              top: -1px;
+              right: 0;
+              left: 0;
+              height: 1px;
+              background: $primaryColor;
+            }
+            & .order-title-section:not(:first-of-type) {
+              padding-top: 15px;
+            }
+            & .banks-list {
+              min-height: 50px;
+              & .bank-wrapper {
+                display: inline-block;
+                width: 345px;
+                position: relative;
+                z-index: 1;
+                background: $primaryColor;
+                & .bank {
+                  padding: 5px;
+                  width: 195px;
+                  & .bank-container {
+                    border: 1px solid $secoundaryColor;
+                    background: rgba($secoundaryColor,5/10);
+                    @include border-radius(5px);
+                    cursor: pointer;
+                    & .bank-logo {
+                      width: 100%;
+                      padding-bottom: 55%;
+                      position: relative;
+                      & .bank-logo-container {
+                        position: absolute;
+                        top: 5px;
+                        right: 5px;
+                        bottom: 5px;
+                        left: 5px;
+                        border: 1px solid $secoundaryColor;
+                        @include border-radius(3px);
+                        background: $primaryColor;
+                        & img {
+                          max-width: 100%;
+                          position: absolute;
+                          top: 50%;
+                          left: 50%;
+                          @include transform(translate(-50%,-50%));
+                        }
+                        & .fa {
+                          font-size: 56px;
+                          color: $additionalColor;
+                          position: absolute;
+                          top: 50%;
+                          left: 50%;
+                          @include transform(translate(-50%,-50%));
+                        }
+                        & span {
+                          display: block;
+                          text-align: center;
+                          font-size: 22px;
+                          width: 100%;
+                          position: absolute;
+                          top: 50%;
+                          @include transform(translateY(-50%));
+                        }
+                      }
+                    }
+                    & .bank-name {
+                      display: block;
+                      text-align: center;
+                      padding: 5px;
+                      color: rgba($fontColor,5/10);
+                      font-size: 12px;
+                    }
+                    & .bank-select {
+                      width: 75%;
+                      height: 100%;
+                      position: absolute;
+                      top: 0;
+                      left: 100%;
+                      & .bank-select-container {
+                        position: absolute;
+                        top: 5px;
+                        right: 0;
+                        bottom: 5px;
+                        left: 0;
+                        border: 1px solid $secoundaryColor;
+                        background: rgba($secoundaryColor,5/10);
+                        @include border-radius(5px);
+                        cursor: pointer;
+                        & > span {
+                          display: block;
+                          position: absolute;
+                          top: 5px;
+                          right: 5px;
+                          bottom: 5px;
+                          left: 5px;
+                          border: 1px solid $secoundaryColor;
+                          @include border-radius(3px);
+                          background: $primaryColor;
+                          & > span {
+                            font-size: 22px;
+                            text-align: center;
+                            display: block;
+                            position: absolute;
+                            top: 50%;
+                            width: 100%;
+                            padding: 0 15px;
+                            @include transform(translateY(-50%));
+                            &[data-trans="select-bank"] {
+                              display: block;
+                            }
+                            &[data-trans="change-bank"] {
+                              display: none;
+                            }
+                          }
+                        }
+                      }
+                      &:hover {
+                        & .bank-select-container {
+                          & > span {
+                            & > span {
+                              color: $mainColor;
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  &.selected {
+                    & .bank-container {
+                      &:after {
+                        content: '';
+                        position: absolute;
+                        top: 4px;
+                        right: 4px;
+                        bottom: 4px;
+                        left: 4px;
+                        border: 2px solid $mainColor;
+                        @include border-radius(5px);
+                      }
+                    }
+                    & .bank-name {
+                      display: block;
+                      text-align: center;
+                      padding: 5px;
+                      color: $fontColor;
+                    }
+                    & .bank-select {
+                      & .bank-select-container {
+                        & > span {
+                          & > span {
+                            &[data-trans="select-bank"] {
+                              display: none;
+                            }
+                            &[data-trans="change-bank"] {
+                              display: block;
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                &.banks-skypay {
+                  & .bank {
+                    & .bank-container {
+                      & .bank-logo {
+                        padding-bottom: 100%;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      &.empty {
+        background: $primaryColor;
+        & .info {
+          background: rgba($secoundaryColor,5/10);
+          text-align: center;
+          padding: 20px 0;
+          display: block;
+          font-weight: 500;
+          font-size: 16px;
+          color: rgba($fontColor,6/10);
+        }
+      }
+    }
+  }
+  label[for="bill-vat-exists"] {
+    margin-top: 9px;
+  }
+}
+
+@media all and (max-width: 767px) {
+  .order.mod-order-1 {
+    & > .container-fluid {
+      & .order-sections {
+        &.order-sections-country {
+          & .order-country {
+            & + .select2 {
+              max-width: 100%;
+            }
+          }
+          & .order-country-select {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 451px) {
+  .order.mod-order-1 {
+    & > .container-fluid {
+      & .order-select-table {
+        & tr {
+          &.more {
+            & td {
+              & .banks-list {
+                & .bank-wrapper {
+                  width: 195px;
+                  display: table;
+                  margin: 0 auto;
+                  & .bank {
+                    width: 195px;
+                    padding-bottom: 35%;
+                    & .bank-container {
+                      & .bank-select {
+                        width: 185px;
+                        top: 66%;
+                        left: 5px;
+                        height: 33%;
+                      }
+                    }
+                  }
+                  &.banks-skypay {
+                    & .bank {
+                      & .bank-container {
+                        & .bank-select {
+                          top: 76%;
+                          height: 25%;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 360px) {
+  .order.mod-order-1 {
+    & > .container-fluid {
+      & .cart-summary-content {
+        &:last-of-type {
+          & .row {
+            &:first-of-type {
+              & .pull-left {
+                position: relative;
+                left: 50%;
+                @include transform(translateX(-50%));
+              }
+              & .pull-right {
+                position: relative;
+                right: 50%;
+                @include transform(translateX(50%));
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

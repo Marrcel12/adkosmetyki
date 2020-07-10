@@ -1,0 +1,215 @@
+@import "../../_common/scss/_cookies.scss";
+@import "../../../_common/toysrwd/scss/main.scss";
+
+
+.mod-header-3-wrapper + .slider.mod-slider-1,
+.mod-header-3-wrapper + .slider.mod-slider-2,
+.mod-header-3-wrapper + .slider.mod-slider-3,
+.mod-header-3-wrapper + .slider.mod-slider-4,
+.mod-header-3-wrapper + .slider.mod-slider-5 {
+	margin-top: -30px;
+}
+
+.mod-header-3-wrapper {
+	background-color: white;
+	margin-bottom: 30px;
+	position: relative;
+	&:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 50%;
+		-webkit-transform: translateX(-50%);
+		-moz-transform: translateX(-50%);
+		-ms-transform: translateX(-50%);
+		-o-transform: translateX(-50%);
+		transform: translateX(-50%);
+		width: 100vw;
+		height: 42px;
+		background-color: $additionalColor;
+	}
+}
+
+#header.mod-header-3 {
+	width: 100%;
+	margin: 0 auto;
+	z-index: 15;
+	@import "../private/scss/_top_bar_1.scss";
+	@import "../private/scss/_mobile_search.scss";
+	.mobile-search {
+		height: 113px;
+		top: 0px;
+	}
+	& .sub-header {
+		padding: 35px 0;
+		.sub-header-content {
+			position: relative;
+			z-index: 2;
+		}
+		& .logo {
+			display: inline-block;
+			padding: 0 15px;
+			max-width: 33%;
+			& h1 {
+				margin: 0;
+				font-size: inherit;
+			}
+			& img {
+				max-width: 300px;
+				max-height: 300px;
+			}
+		}
+		@import "../private/scss/_search_inline.scss";
+		@import "../private/scss/_sub_header_quick_cart_1.scss";
+		@import "../../_common/scss/_mobile_actions.scss";
+		.mobile-actions {
+			right: 15px;
+		}
+	}
+	& .menu {
+		width: 100%;
+		background: $backgroundColorTopMenu;
+		@include opacity(1);
+		@include transition(opacity 0.05s ease-in-out);
+		@include before-background($backgroundColorTopMenu);
+
+		&.menu-calculate {
+			max-height: 42px;
+			overflow: hidden;
+			@include opacity(0);
+			@include transition(opacity 0.05s ease-in-out);
+		}
+		& ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			position: relative;
+			z-index: 1;
+			& li {
+				flex-grow: 1;
+				position: relative;
+				& a {
+			    line-height: 22px;
+			    font-weight: 500;
+			    font-size: 16px;
+			    text-decoration: none;
+			    padding: 10px 15px;
+					color: $fontColor;
+			    cursor: pointer;
+			    & .fa {
+			    	font-size: 10px;
+			    	position: relative;
+			    	top: -2px;
+						&.fa-bars {
+			    		font-size: 16px;
+			    		top: 0;
+			    	}
+			    }
+				}
+				@import "../private/scss/_menu_dropdown_1.scss";
+
+				&:hover {
+		    	& a {
+			    	color: $topMenuTextColorHover;
+		    	}
+					&:not(.click) {
+						& .dropdown {
+							@include opacity(1);
+					    @include transition(all 0.2s ease-in-out 0.2s);
+					    @include transform(translateY(0));
+					    pointer-events: auto;
+							visibility: visible;
+					    z-index: 2;
+						}
+					}
+		    }
+				@import "../../_common/scss/_menu_dropdown_click_2.scss";
+		    @import "../../_common/scss/_menu_dropdown_single_1.scss";
+				@import "../../_common/scss/_menu_dropdown_full_2.scss";
+				@import "../../_common/scss/_hamburger_dropdown_1.scss";
+				&.hamburger {
+					float: right;
+				}
+			}
+		}
+		& > ul {
+			& > li {
+				& > a {
+					color: $topMenuTextColor;
+					text-transform: uppercase;
+					text-align: center;    
+					padding: 23px 5px 11px;
+					display: block;
+					font-family: "Baloo Tammudu";
+					font-weight: 400;
+					font-size: 18px;
+					&:hover {
+						color: $topMenuTextColorHover;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media all and (max-width: 992px) {
+	#header.mod-header-3 {
+		& .top-bar {
+			& .pull-left {
+				& ul {
+			    	& li {
+						&[data-type="email"] {
+							display: none;
+						}
+						&[data-type="phone"] {
+							&:after {
+								display: none;
+							}
+							& a {
+								width: 15px;
+						    height: 16px;
+						    overflow: hidden;
+						    display: inline-block;
+							}
+						}
+					}
+				}
+			}
+		}
+		& .sub-header {
+			& .logo {
+				& img {
+					max-width: 100%;
+				}
+			}
+		}
+	}
+}
+
+@media all and (max-width: 767px) {
+	#header.mod-header-3 {
+		& .mobile-search {
+			display: block;
+		}
+		@import "../../_common/scss/_top_bar_rwd_1.scss";
+		@import "../../_common/scss/_sub_header_rwd_2.scss";
+		& .menu {
+			display: none;
+		}
+	}
+
+	@import "../../_common/scss/_mobile_menu_1.scss";
+
+	.swipe-panel {
+	  & .swipe-panel-content.quick-cart {
+			& .dropdown {
+				@import "../private/scss/_dropdown_quick_cart_1.scss";
+				min-width: 0 !important;
+				&.dropdown-quick-cart {
+					width: 300px;
+				}
+			}
+		}
+	}
+}

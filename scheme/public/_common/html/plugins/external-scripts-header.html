@@ -1,0 +1,217 @@
+{IF ($CENEO_CPA || $CENEO_OPINIE) && $CENEO_CPA_GUID && $ORDER_CONVERSION_ID}
+	<script type="text/javascript">
+		ceneo_client_email = {IF $CENEO_OPINIE_FULL}'{$ORDER_CONVERSION_EMAIL}'{ELSE}'test@ceneo.pl'{/IF};
+		ceneo_order_id = '{$ORDER_CONVERSION_ID}';
+		ceneo_shop_product_ids = '{$ORDER_CONVERSION_PRODUCTS_IDS_BY_HASH}';
+		{IF $CENEO_CPA}
+		ceneo_amount = {$ORDER_CONVERSION_PRICE};
+		{/IF}
+		{IF $CENEO_OPINIE}
+		ceneo_work_days_to_send_questionnaire = {$CENEO_OPINIE_DAYS};
+		{/IF}
+	</script>
+	<script type= "text/javascript" src="https://ssl.ceneo.pl/transactions/track/v2/script.js?accountGuid={$CENEO_CPA_GUID}"></script>
+{/IF}
+
+{IF $ORDER_CONVERSION_ID}
+	<script type="text/javascript">
+		var ORDER_CONVERSION_PRICE = parseFloat('{$ORDER_CONVERSION_PRICE}');
+		var ORDER_CONVERSION_CURRENCY = '{$ORDER_CONVERSION_CURRENCY}';
+		var ORDER_CONVERSION_ID = '{$ORDER_CONVERSION_ID}';
+	</script>
+
+	{IF $WEBEPARTNERS_MID}
+		<script type="text/javascript" src="https://webep1.com/order/confirmation.js?mid={$WEBEPARTNERS_MID}&refer={$ORDER_CONVERSION_ID}&pid={LOOP FROM=$ORDER_CONVERSION_PRODUCTS KEY=K VALUE=V}{$V.op_prod_id}:{/LOOP}&q={LOOP FROM=$ORDER_CONVERSION_PRODUCTS KEY=K VALUE=V}{$V.op_amount}:{/LOOP}&price={LOOP FROM=$ORDER_CONVERSION_PRODUCTS KEY=K VALUE=V}{$V.op_price}:{/LOOP}&dc={LOOP FROM=$ORDER_CONVERSION_PRODUCTS KEY=K VALUE=V}{$ORDER_CONVERSION_CODE}:{/LOOP}"></script>
+	{/IF}
+	{IF $OKAZJE_OPINIE && $ORDER_CONVERSION_EMAIL}
+		<script type="text/javascript">
+		function oBay()
+		{
+			window._oiT = window._oiT || [];
+			_oiT.push(['oiKey',  '{$OKAZJE_OPINIE}' ] );
+			_oiT.push(['eOrder',
+			{
+				'mail'        : '{$ORDER_CONVERSION_EMAIL}',
+				'orderId'     : {$ORDER_CONVERSION_ID},
+				'orderAmount' : {$ORDER_CONVERSION_PRICE},
+				'products'    : [ {LOOP FROM=$ORDER_CONVERSION_PRODUCTS VALUE=V KEY=K}
+					[{$V.op_prod_id} , {$V.op_amount} ], {/LOOP}
+				]
+			}
+			]);
+		}
+		</script>
+		<script type="text/javascript">
+			(function() {
+			var oi = document.createElement('script'); oi.type = 'text/javascript'; oi.async = true;
+			oi.src = ('https:' == document.location.protocol ? 'https://' : 'http://')
+			 + 'tracker.okazje.info.pl/tracker.js?'+(Math.random());
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(oi, s);
+			})();
+			$(window).load(function(){
+				oBay();
+			})
+		</script>
+	{/IF}
+	{IF $OPINEO_OPINIE}
+		<script type='text/javascript'>
+			opi_email = '{$ORDER_CONVERSION_EMAIL}';
+			opi_order_no = '{$ORDER_CONVERSION_ID}';
+			opi_queue = {$OPINEO_OPINIE_DAYS};
+			opi_products = [ {LOOP FROM=$ORDER_CONVERSION_PRODUCTS VALUE=V KEY=K} [ '{$V.op_prod_producer_name}' , '{$V.op_prod_name}' , '{$V.op_prod_id}' , '0' ], {/LOOP} ]
+			while ( opi_products.length > 4 )
+			{
+				opi_products.pop();
+			}
+		</script>
+		<script type='text/javascript' src='https://www.wiarygodneopinie.pl/shop/wo.js?uid={$OPINEO_OPINIE}'></script>
+	{/IF}
+{/IF}
+
+{IF $FB_PIXEL_ACTIVE}
+    <script>
+        !function(f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function() {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window,
+            document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '{$FB_PIXEL_ID}');
+        fbq('track', '{$FB_PIXEL_EVENT}', {$FB_PIXEL_CONFIG});
+    </script>
+    <noscript>
+        <img height="1" width="1" src="https://www.facebook.com/tr?id={$FB_PIXEL_ID}&ev={$FB_PIXEL_EVENT}&noscript=1"/>
+    </noscript>
+{/IF}
+
+{IF $GOOGLE_ANALYTICS}
+	<script type="text/javascript">
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', '{$GOOGLE_ANALYTICS}', 'auto');
+
+		{IF $GA_REMARKETING}
+			ga('require', 'displayfeatures');
+		{/IF}
+
+		{IF $CONTROLER == "product" && $PRICE && $PROD_ID}
+			ga('set','dimension1','{$PROD_ID}');
+			ga('set','dimension2','product');
+			ga('set','dimension3','{$PRICE}');
+		{ELSEIF $CART_PRODUCTS_IDS && (!$SEARCH && $CONTROLER != "category" || $CONTROLER == "index")}
+			ga('set','dimension1','{$CART_PRODUCTS_IDS}');
+			ga('set','dimension2','cart');
+			ga('set','dimension3','{$CART_PRODUCTS_PRICES}');
+		{ELSEIF $PRODUCTS_IDS}
+			ga('set','dimension1','{$PRODUCTS_IDS}');
+			ga('set','dimension2','{IF $SEARCH}searchresult{ELSEIF $CONTROLER == "index"}homepage{ELSE}category{/IF}');
+			ga('set','dimension3','{$PRODUCTS_PRICES}');
+		{/IF}
+
+		{IF $GA_ECOMMERCE_TRACKING && $ORDER_CONVERSION_ID}
+			ga('require', 'ecommerce');
+			ga('ecommerce:addTransaction', {
+				'id': '{$ORDER_CONVERSION_ID}',
+				'affiliation': '{$LOGO_ALT}',
+				'revenue': '{$ORDER_CONVERSION_PRICE}',
+				'shipping': '{$ORDER_CONVERSION_SHIP_PRICE}',
+				'tax': '{$ORDER_CONVERSION_PRICE_TAX}',
+				'currency': '{$ORDER_CONVERSION_CURRENCY}'
+			});
+
+			{LOOP FROM=$ORDER_CONVERSION_PRODUCTS KEY=KEY VALUE=VALUE}
+				ga('ecommerce:addItem', {
+					'id': '{$ORDER_CONVERSION_ID}',
+					'name': '{$VALUE.op_prod_name}',
+					'sku': '{$VALUE.op_prod_id}',
+					'price': '{$VALUE.op_price}',
+					'quantity': '{$VALUE.op_amount}'
+				});
+			{/LOOP}
+
+			ga('ecommerce:send');
+		{ELSE}
+			ga('send', 'pageview');
+		{/IF}
+	</script>
+{/IF}
+
+
+
+{IF $CRITEO_ID}
+	<script type="text/javascript" src="//static.criteo.net/js/ld/ld.js" async="true"></script>
+	<script type="text/javascript">
+		var criteo_events = [];
+	{IF $CONTROLER == "index"}
+		criteo_events.push(
+			{ event: 'viewHome' }
+		);
+	{ELSEIF $CONTROLER == "product" && $PROD_ID}
+		criteo_events.push(
+			{ event: "viewItem", item: '{$PROD_ID}' }
+		);
+	{ELSEIF $CONTROLER == "category"}
+		criteo_events.push(
+			{ event: "viewList", item: {IF $PRODUCTS_IDS}'{$PRODUCTS_IDS}'.split(',',3){ELSE}[]{/IF} }
+		);
+	{ELSEIF $CONTROLER == "cart"}
+		criteo_events.push(
+			{ event: 'manualDising' },
+			{ event: "viewBasket", item: [ {LOOP FROM=$CART VALUE=V KEY=K} { id:'{$V.id}' , price:'{$V.price}' , quantity: parseFloat('{$V.amount}') > 0 && parseFloat('{$V.amount}') < 1 ? 1 : parseInt('{$V.amount}') }, {/LOOP} ]}
+		);
+	{/IF}
+	{IF $ORDER_CONVERSION_ID}
+		criteo_events.push(
+			{ event: 'manualDising' },
+			{ event: 'trackTransaction', id: '{$ORDER_CONVERSION_ID}', item: [ {LOOP FROM=$ORDER_CONVERSION_PRODUCTS VALUE=V KEY=K} { id:'{$V.op_prod_id}' , price:'{$V.op_price}' , quantity: parseFloat('{$V.op_amount}') > 0 && parseFloat('{$V.op_amount}') < 1 ? 1 : parseInt('{$V.op_amount}') }, {/LOOP} ] }
+		);
+	{/IF}
+		window.criteo_q = window.criteo_q || [];
+		if ( criteo_events.length > 0 )
+		{
+			var criteo_core_events = [
+				{ event: "setAccount", account: '{$CRITEO_ID}' },
+				{ event: 'setSiteType', type: 'd' }{IF $USER_EMAIL_MD5},
+				{ event: "setHashedEmail", email: "{$USER_EMAIL_MD5}" }{/IF}
+			];
+			window.criteo_q = window.criteo_q.concat(criteo_core_events, criteo_events);
+		}
+	</script>
+{/IF}
+{IF $ZOPIM_ID}
+	<script type="text/javascript">
+		window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set._.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');$.src='//v2.zopim.com/?{$ZOPIM_ID}';z.t=+new Date;$.type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
+	</script>
+{/IF}
+{IF $LIVECHAT_ID}
+	<script type="text/javascript">
+		window.__lc = window.__lc || {};
+		window.__lc.license = {$LIVECHAT_ID};
+		(function() {
+			var lc = document.createElement('script'); lc.type = 'text/javascript'; lc.async = true;
+			lc.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.livechatinc.com/tracking.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(lc, s);
+		})();
+	</script>
+{/IF}
+
+{IF $GOOGLE_LOGIN_ACTIVE}
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<meta name="google-signin-client_id" content="{$GOOGLE_LOGIN_KEY}">
+	<meta name="google-signin-scope" content="profile email">
+{/IF}

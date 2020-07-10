@@ -1,0 +1,366 @@
+.login-hurt.mod-login-hurt-1 {
+  width: 100%;
+  background: $secoundaryColor;
+  min-height: 100vh;
+  &.options-space {
+    min-height: 100vh;
+    min-height: -webkit-calc( 100vh - 50px );
+    min-height: -moz-calc( 100vh - 50px );
+    min-height: -ms-calc( 100vh - 50px );
+    min-height: -o-calc( 100vh - 50px );
+    min-height: calc( 100vh - 50px );
+  }
+  & .options-space-wrapper {
+    background: $primaryColor;
+    position: absolute;
+    top: -50px;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    & > .container-fluid {
+      max-width: $pageWidth;
+    	width: 100%;
+    	margin: 0 auto;
+      & ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        & li {
+          float: left;
+          position: relative;
+          &:not(:first-of-type):after {
+            content: '';
+            position: absolute;
+            width: 1px;
+            top: 12px;
+            bottom: 12px;
+            left: 0;
+            background: $secoundaryColor;
+          }
+          & .icon-language-flag {
+            border: 1px solid $secoundaryColor;
+            margin: 0 2px;
+            position: relative;
+            top: -2px;
+            &.small {
+              height: 14px;
+            }
+          }
+          & .link {
+            display: inline-block;
+            padding: 15px;
+            cursor: pointer;
+            text-decoration: none;
+            &.static {
+              cursor: default;
+            }
+            & .fa {
+              font-size: 9px;
+              position: relative;
+              top: -2px;
+            }
+            & .helper-icon {
+              padding-right: 4px;
+              & .fa {
+                position: relative;
+                top: 0;
+                font-size: 16px;
+                color: $fontColor;
+              }
+            }
+          }
+          & .dropdown {
+            @include opacity(0);
+            @include transition(all 0.2s ease-in-out);
+            @include box-shadow(0 1px 3px rgba(0,0,0,2/10));
+            @include transform(translateY(10px));
+            backface-visibility: hidden;
+            pointer-events: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 1;
+            background: $primaryColor;
+            &:after {
+              content: '';
+              position: absolute;
+              top: -10px;
+              right: 0;
+              left: 0;
+              height: 10px;
+            }
+            & ul {
+              padding: 5px 0 0;
+              display: inline-block;
+              width: 100%;
+              & li {
+                display: block;
+                width: 100%;
+                padding: 5px 15px;
+                &:after {
+                  display: none;
+                }
+                &:hover {
+                  color: $mainColor;
+                }
+              }
+            }
+          }
+          & > *[class='dropdown'] {
+            & ul {
+              & li {
+                white-space: nowrap;
+                & a {
+                  color: $fontColor;
+                  text-decoration: none;
+                  cursor: pointer;
+                  display: inline-block;
+                  width: 100%;
+                  &:hover {
+                    color: $mainColor;
+                  }
+                }
+                &.active {
+                  & a {
+                    color: $mainColor;
+                    cursor: default;
+                  }
+                }
+              }
+            }
+          }
+          &:hover {
+            & .link:not(.static) {
+              color: $mainColor;
+            }
+            & .dropdown {
+              @include opacity(1);
+              @include transition(all 0.2s ease-in-out);
+              @include transform(translateY(0));
+              pointer-events: auto;
+              z-index: 2;
+            }
+          }
+        }
+      }
+      & .pull-right {
+        & ul {
+          & li {
+            & .dropdown {
+              left: inherit;
+              right: 0;
+              text-align: right;
+            }
+          }
+        }
+      }
+    }
+  }
+  & > .container-fluid {
+    width: 100%;
+    max-width: $pageWidth;
+    height: 100vh;
+    background-clip: content-box;
+    margin: 0 auto;
+    padding: 0;
+    display: table;
+    &.options-space {
+      height: auto;
+      min-height: 100vh;
+      min-height: -webkit-calc( 100vh - 50px );
+      min-height: -moz-calc( 100vh - 50px );
+      min-height: -ms-calc( 100vh - 50px );
+      min-height: -o-calc( 100vh - 50px );
+      min-height: calc( 100vh - 50px );
+      margin-top: 50px;
+    }
+    & .logins-hurt-outer {
+      display: table-row;
+      & .logins-hurt-wrapper {
+        display: table-cell;
+        vertical-align: middle;
+      }
+    }
+    & .logins-hurt-header {
+      width: 100%;
+      display: table;
+      padding: 35px 15px;
+      & > .row {
+        display: table-row;
+        & > [class*='col-'] {
+          display: table-cell;
+          padding: 0;
+          float: none;
+          vertical-align: middle;
+        }
+      }
+      & .logo {
+        text-align: center;
+        & img {
+          max-width: 100%;
+        }
+      }
+    }
+    & .logins-hurt-body {
+      padding: 0 15px;
+      & > .row {
+        position: relative;
+        & > [class*='col-'] {
+          background: $primaryColor;
+          background-clip: content-box;
+          &:not(.static) {
+            padding-bottom: 75px;
+          }
+          &.static {
+            position: static;
+            clear: both;
+            &:first-of-type {
+              float: left;
+            }
+            &:last-of-type {
+              float: right;
+              & .btn {
+                bottom: 1px !important;
+              }
+            }
+          }
+          & .heading {
+            margin-bottom: 0;
+            &:not(:first-of-type) {
+              margin-top: 30px;
+            }
+          }
+        }
+      }
+    }
+    & .logins-hurt-content {
+      padding: 0 25px;
+      position: relative;
+      z-index: 1;
+      &:first-of-type {
+        padding-top: 15px;
+      }
+      &:last-of-type {
+        padding-bottom: 15px;
+      }
+    }
+    & .logins-hurt-footer {
+      width: 100%;
+      display: table;
+      padding: 35px 15px 25px;
+      & > .row {
+        display: table-row;
+        & > [class*='col-'] {
+          display: table-cell;
+          padding: 0;
+          float: none;
+          vertical-align: middle;
+        }
+      }
+      & .icon-support {
+        text-align: center;
+        & .fa {
+          font-size: 56px;
+          position: relative;
+          bottom: 6px;
+          left: 15px;
+        }
+      }
+      & img {
+        position: relative;
+        bottom: 10px;
+        right: 15px;
+      }
+    }
+    & .content-sections {
+      margin: 0;
+    }
+    & .section-form {
+      margin-top: 0;
+      margin-bottom: 15px;
+      & .title-section {
+        padding: 5px 0;
+        font-weight: 500;
+        display: inline-block;
+      }
+      & .input-field {
+        margin: 0;
+      }
+      & .checkbox-field {
+        padding: 3px 0 3px;
+        margin-bottom: 3px;
+        background: #fff;
+        z-index: 1;
+      }
+    }
+    & .section-form-buttons {
+      display: none;
+    }
+    & .background-flex {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      background: $primaryColor;
+      width: 50%;
+      padding: 0 15px;
+      background-clip: content-box;
+      &.left {
+        left: 0;
+      }
+      &.right {
+        right: 0;
+      }
+      & + .row {
+        margin: 0 25px;
+      }
+    }
+    & .btn-action-confirm {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      @include transform(translateX(-50%));
+      width: 100%;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+@media all and (max-width: 991px) {
+  .login-hurt.mod-login-hurt-1 {
+    & > .container-fluid {
+      & .section-form-buttons {
+        display: block;
+      }
+      & .btn-action-confirm {
+        position: relative;
+        bottom: 0;
+        margin-top: 15px;
+        margin-bottom: 0;
+      }
+      & .logins-hurt-body {
+        & > .row {
+          & > [class*='col-'] {
+            &:not(.static) {
+              padding-bottom: 0;
+            }
+            &.static {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 767px) {
+  .login-hurt.mod-login-hurt-1 {
+    & > .container-fluid {
+      & .logins-hurt-footer {
+        & img {
+          height: 50px;
+        }
+      }
+    }
+  }
+}

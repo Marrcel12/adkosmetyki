@@ -1,0 +1,76 @@
+.producers.mod-producers-1 {
+  max-width: $pageWidth;
+	width: 100%;
+	margin: 0 auto 25px;
+  & .carousel {
+    opacity: 0;
+    height: 150px;
+    & .item {
+      height: 150px;
+      overflow: hidden;
+      position: relative;
+      & a {
+        display: block;
+        height: 100%;
+      }
+      & img {
+        width: 70%;
+        height: auto;
+        margin: 0 auto;
+        position: relative;
+        top: 50%;
+        @include transform(translateY(-50%));
+      }
+      & span {
+        font-size: 22px;
+        width: 100%;
+        display: inline-block;
+        text-align: center;
+        padding: 0 15px;
+        position: relative;
+        top: 50%;
+        @include transform(translateY(-50%));
+        color: $fontColor;
+        &:hover {
+          color: $mainColor;
+        }
+      }
+      & .spinner {
+        zoom: 0.5;
+      }
+    }
+    &.effect-gray {
+      & .item {
+        & img {
+          -webkit-filter: grayscale(1);
+          -moz-filter: grayscale(1);
+          -ms-filter: grayscale(1);
+          -o-filter: grayscale(1);
+          filter: grayscale(1);
+          @include transition(all 0.2s ease-in-out);
+        }
+        &:hover {
+          & img {
+            -webkit-filter: grayscale(0);
+            -moz-filter: grayscale(0);
+            -ms-filter: grayscale(0);
+            -o-filter: grayscale(0);
+            filter: grayscale(0);
+            @include transition(all 0.2s ease-in-out);
+          }
+        }
+      }
+    }
+    &.effect-opacity {
+      & .item {
+        @include opacity(7/10);
+        @include transition(opacity 0.2s ease-in-out);
+        &:hover {
+          @include opacity(1);
+          @include transition(opacity 0.2s ease-in-out);
+        }
+      }
+    }
+    @import "../../_common/scss/_owl_controls.scss";
+  }
+}

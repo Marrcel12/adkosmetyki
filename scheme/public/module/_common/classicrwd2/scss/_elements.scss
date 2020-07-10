@@ -1,0 +1,9 @@
+.close-shape {
+  width: 19px;
+  height: 19px;
+  &:before, &:after {
+    width: 100%;
+    height: 3px;
+    background: #e02a20;
+  }
+}

@@ -1,0 +1,28 @@
+.mobile-actions {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  @include transform(translateY(-50%));
+  & li {
+    display: inline-block;
+    float: left;
+    width: 50px;
+    height: 39px;
+    line-height: 37px;
+    text-align: center;
+    font-size: 20px;
+    border: 1px solid $secoundaryColor;
+    @include border-radius(3px);
+    @include transition(border 0.2s ease-in-out);
+    &:not(:last-of-type) {
+      margin-right: 10px;
+    }
+    &.active {
+      border: 1px solid $mainColor;
+      @include transition(border 0.2s ease-in-out);
+    }
+  }
+}

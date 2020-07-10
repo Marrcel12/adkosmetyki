@@ -1,0 +1,22 @@
+.slider.mod-slider-5 {
+  max-width: $pageWidth;
+	width: 100%;
+	margin: 0 auto;
+  padding-bottom: 30px;
+  & .carousel {
+    opacity: 0;
+    height: 550px;
+    & .item {
+      height: 550px;
+      overflow: hidden;
+      @import "../../_common/scss/_slide_img_1.scss";
+    }
+    @import "../private/_controls_2.scss";
+  }
+}
+
+@media all and (max-width: 480px) {
+  .slider.mod-slider-5 {
+    padding-bottom: 15px;
+  }
+}

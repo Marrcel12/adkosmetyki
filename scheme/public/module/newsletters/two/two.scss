@@ -1,0 +1,15 @@
+.newsletter.mod-newsletter-2 {
+  max-width: $pageWidth;
+	width: 100%;
+	margin: 25px auto;
+  padding: 25px 0;
+  background: $mainColor;
+  display: block;
+  @import "../_common/scss/_newsletter_1.scss";
+}
+
+@media all and (max-width: 767px) {
+  .newsletter.mod-newsletter-2 {
+    @import "../_common/scss/_newsletter_1_rwd.scss";
+  }
+}

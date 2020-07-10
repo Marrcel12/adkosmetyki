@@ -1,0 +1,43 @@
+&.search {
+  & .dropdown {
+    max-width: 500px;
+    width: 100vw;
+    right: 0;
+    left: inherit;
+    padding-bottom: 7px;
+    @include transform(translateY(10px));
+    &:after {
+      height: 20px;
+      top: -20px;
+    }
+    & .row {
+      margin: 7px 0 0;
+      display: block;
+      & [class*='col-'] {
+        &:first-of-type {
+          padding-right: 0;
+          & input[type="text"] {
+            margin: 0;
+            border-right: 0;
+            @include border-top-right-radius(0);
+            @include border-bottom-right-radius(0);
+          }
+        }
+        &:last-of-type {
+          padding-left: 0;
+          & input[type="submit"] {
+            @include border-top-left-radius(0);
+            @include border-bottom-left-radius(0);
+          }
+        }
+      }
+      @import "_quick_search_1.scss";
+    }
+  }
+  &:hover {
+    & .dropdown {
+      @include transform(translateY(0));
+      @include transform(translateY( calc(0px - 0.5px) ));
+    }
+  }
+}

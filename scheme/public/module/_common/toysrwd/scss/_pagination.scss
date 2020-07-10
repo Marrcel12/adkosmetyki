@@ -1,0 +1,93 @@
+.pagination {
+  float: right;
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    line-height: 36px;
+
+    & li {
+      display: inline-block;
+      float: left;
+      height: 43px;
+      & a, span {
+        color: $fontColor;
+        text-decoration: none;
+        text-align: center;
+        min-width: 25px;
+        padding: 5px 7px;
+        display: inline-block;
+        height: 43px;
+        float: left;
+        & .fa {
+          font-size: 10px;
+          position: relative;
+          top: -1px;
+        }
+      }
+      & a {
+        position: relative;
+        font-weight: 400;
+        @include transition(background 0.2s ease-in-out);
+        background-color: transparent;
+        &:after {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: -1px;
+          bottom: -1px;
+          left: -1px;
+          border: 1px solid transparent;
+          @include transition(border 0.2s ease-in-out);
+        }
+        &.active {
+          background: transparent;
+          @include transition(background 0.2s ease-in-out);
+          cursor: default;
+          color: $fontColor;
+          font-weight: bold
+        }
+        // &:not(.active):hover {
+        //   background: $mainColor;
+        //   @include transition(background 0.2s ease-in-out);
+        //   cursor: pointer;
+        //   color: $textColorOnButtons;
+        //   &:after {
+        //     border: 1px solid $mainColor;
+        //     @include transition(border 0.2s ease-in-out);
+        //   }
+        // }
+      }
+      & span {
+        color: rgba($fontColor,4/10);
+      }
+      // &:not(:last-of-type) {
+      //   border-right: 1px solid #f2f2f2;
+      // }
+      &:first-of-type {
+        & a {
+          &:after {
+            @include border-top-left-radius(3px);
+            @include border-bottom-left-radius(3px);
+          }
+        }
+      }
+      &:last-of-type {
+        & a {
+          &:after {
+            @include border-top-right-radius(3px);
+            @include border-bottom-right-radius(3px);
+          }
+        }
+      }
+    }
+    li {
+      &:first-child, &:last-child {
+        span, a {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+}

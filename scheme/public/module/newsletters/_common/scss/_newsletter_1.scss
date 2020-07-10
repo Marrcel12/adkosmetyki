@@ -1,0 +1,97 @@
+&.full-width {
+  max-width: 100%;
+}
+& + #footer {
+  margin-top: -30px;
+}
+& .newsletter-container {
+  max-width: $pageWidth;
+  color: $primaryColor;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  border-collapse: separate;
+  border-spacing: 15px 0;
+  text-align: center;
+  & > tbody {
+    & > tr {
+      & > td {
+        width: 33.33333%;
+        &.newsletter-box-title {
+          & > table {
+            width: 100%;
+            & > tbody {
+              & > tr {
+                & > td {
+                  &:first-of-type {
+                    width: 20%;
+                    & .fa {
+                      font-size: 36px;
+                    }
+                  }
+                  &:last-of-type {
+                    width: 80%;
+                    & .title {
+                      font-size: 24px;
+                      font-weight: 600;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        &.newsletter-box-sub {
+          & p {
+            font-weight: 500;
+            font-size: 15px;
+          }
+        }
+        &.newsletter-box-input {
+          & .newsletter-form {
+            margin-left: -15px;
+            margin-right: -15px;
+            & [class*='col-']:first-of-type {
+              padding-right: 0;
+            }
+            & [class*='col-']:last-of-type {
+              padding-left: 0;
+            }
+            & .newsletter-input {
+              width: 100%;
+              height: 50px;
+              @include border-radius(0);
+              @include border-top-left-radius(25px);
+              @include border-bottom-left-radius(25px);
+              outline: none;
+              border: 3px solid rgba($fontColor,3/10);
+              border-right: 0;
+              background-clip: padding-box;
+              color: $fontColor;
+              padding: 0 15px;
+            }
+            & .newsletter-button {
+              width: 100%;
+              height: 50px;
+              @include border-radius(0);
+              @include border-top-right-radius(25px);
+              @include border-bottom-right-radius(25px);
+              border: 3px solid rgba($fontColor,3/10) !important;
+              border-left: 0;
+              outline: none;
+              background: rgba($fontColor,8/10) !important;
+              color: #ffffff !important;
+              font-weight: 600;
+              background-clip: padding-box;
+              padding-right: 10px;
+              &:hover {
+                color: $mainColor !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

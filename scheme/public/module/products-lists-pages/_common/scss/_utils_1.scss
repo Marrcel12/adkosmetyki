@@ -1,0 +1,117 @@
+.heading {
+  margin-bottom: 0;
+}
+.category-description {
+  &.top {
+    margin-top: 0;
+    margin-bottom: 14px;
+    & > p {
+      margin-top: 0;
+      margin-bottom: 14px;
+    }
+  }
+  &.bottom {
+    margin-top: 14px;
+    margin-bottom: 0;
+    & > p {
+      margin-top: 14px;
+      margin-bottom: 0;
+    }
+  }
+  & img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+.subcategories {
+  margin: 15px 0;
+  padding: 0 25px;
+  display: inline-block;
+  width: 100%;
+  // & .row {
+  //   height: 100%;
+  //   display: -webkit-box;
+  //   display: -webkit-flex;
+  //   display: -ms-flexbox;
+  //   -js-display: flex;
+  //   display: flex;
+  //   & > [class*='col-'] {
+  //     position: relative;
+  //     display: flex;
+  //     flex-direction: column;
+  //   }
+  // }
+  & a {
+    text-decoration: none;
+    & .subcategory-name {
+      text-align: center;
+      color: $fontColor;
+      padding: 25px 10px;
+      display: block;
+      position: absolute;
+      top: 50%;
+      @include transform(translateY(-50%));
+    }
+    & .subcategory-name:first-child:first-of-type {
+        color: white !important;
+        font-size: 16px !important;
+        font-weight: bold !important;
+        background-color: #5A6F7D !important;
+      width: 80%;
+      height: 0;
+      padding: 0;
+      padding-bottom: 60px;
+      position: relative;
+      top: 0;
+      margin: 0 auto 15px;
+      border: 3px solid #5A6F7D !important;
+      @include border-radius(3px);
+      @include transform(translateY(0));
+      @include transition(all 0.2s ease-in-out);
+      &:hover {
+        border: 3px solid !important;
+        @include transition(all 0.2s ease-in-out);
+      }
+      & > span {
+        display: inline-block;
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        @include transform(translateY(-50%));
+      }
+    }
+    & .subcategory-img {
+      width: 85%;
+      padding-bottom: 85%;
+      position: relative;
+      margin: 0 auto;
+      overflow: hidden;
+      border: 1px solid $secoundaryColor;
+      @include border-radius(3px);
+      @include transition(border 0.2s ease-in-out);
+      & img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 80%;
+        @include transform(translate(-50%,-50%));
+      }
+      & + .subcategory-name {
+        position: static;
+        padding: 5px 0 15px;
+        @include transform(translateY(0));
+      }
+    }
+    &:hover {
+      & .subcategory-img {
+        border: 1px solid $mainColor;
+        @include transition(border 0.2s ease-in-out);
+      }
+      & .subcategory-name {
+        color: $mainColor;
+        @include transition(all 0.2s ease-in-out);
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<section class="newsletter mod-newsletter-3 full-width">
+  <div class="newsletter-container">
+    <div class="newsletter-background" style="background-image:url('{$MODULE.children.newsletter_background[0].props.preview}')"></div>
+    <div class="newsletter-content">
+      <span class="title">{$MODULE.children.newsletter_box_background[0].children[0].props.value}</span>
+      <p>{$MODULE.children.newsletter_box_background[0].children[1].props.value}</p>
+      <form class="newsletter-form">
+        <div class="row">
+          <div class="col-xxs col-xs-7 col-md-8">
+            <input type="text" name="email" value="" placeholder="{$L_INPUT_EMAIL}" class="newsletter-input" />
+          </div>
+          <div class="col-xxs col-xs-5 col-md-4">
+            <input type="submit" value="{$L_ADD_ADDRESS}" class="btn newsletter-button core_addEmailToNewsletter" />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

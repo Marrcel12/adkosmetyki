@@ -1,0 +1,39 @@
+<section class="division mod-division-8">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12">
+        <table class="divisions divisions-lg">
+          <tr>
+            {LOOP FROM=$MODULE.children.division3Fields VALUE=DIVISION INDEX=INDEX}
+              <td class="division-box division-box-{$INDEX} division-size-33">
+                {INCLUDE file="./".$TEMPLATE."/scheme/public/module/divisions/_common/html/division-3.html" LINK=$DIVISION.children[3].props.value ICON=$DIVISION.children[0].props.icon TITLE=$DIVISION.children[1].props.value CONTENT=$DIVISION.children[2].props.value}
+              </td>
+            {/LOOP}
+          </tr>
+        </table>
+        <table class="divisions divisions-xxs">
+          <tr>
+            {LOOP FROM=$MODULE.children.division3Fields VALUE=DIVISION INDEX=INDEX}
+              {IF $INDEX == 2}
+                <td class="division-box division-box-{$INDEX} division-size-100">
+                  {INCLUDE file="./".$TEMPLATE."/scheme/public/module/divisions/_common/html/division-3.html" LINK=$DIVISION.children[3].props.value ICON=$DIVISION.children[0].props.icon TITLE=$DIVISION.children[1].props.value CONTENT=$DIVISION.children[2].props.value}
+                </td>
+              {/IF}
+            {/LOOP}
+          </tr>
+        </table>
+        <table class="divisions divisions-xs">
+          <tr>
+            {LOOP FROM=$MODULE.children.division3Fields VALUE=DIVISION INDEX=INDEX}
+              {IF $INDEX == 3}
+                <td class="division-box division-box-{$INDEX} division-size-100">
+                  {INCLUDE file="./".$TEMPLATE."/scheme/public/module/divisions/_common/html/division-3.html" LINK=$DIVISION.children[3].props.value ICON=$DIVISION.children[0].props.icon TITLE=$DIVISION.children[1].props.value CONTENT=$DIVISION.children[2].props.value}
+                </td>
+              {/IF}
+            {/LOOP}
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

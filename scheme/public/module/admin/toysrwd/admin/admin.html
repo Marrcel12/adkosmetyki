@@ -1,0 +1,93 @@
+<section class="admin mod-admin-1">
+    <div class="container-fluid">
+        <div class="admin-outer">
+            <div class="admin-wrapper">
+                <div class="admin-header">
+                    <div class="row">
+                        <div class="col-xs-4"></div>
+                        <div class="col-xs-4 logo">
+                            <a href="//sky-shop.pl" target="_blank" class="logo">
+                                <span class="logo-image"></span>
+                            </a>
+                        </div>
+                        <div class="col-xs-4"></div>
+                    </div>
+                </div>
+                <div class="admin-body">
+                    <div class="row">
+                        <section class="heading inside">
+                            <ul>
+                                <li>
+                                    <span class="title">Logowanie do panelu administracyjnego sklepu</span>
+                                </li>
+                            </ul>
+                        </section>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <div class="card-bg-color border-wrapper">
+                                <form method="POST" class="core_parseForm">
+                                    <div class="admin-content">
+                                        <section class="third-heading inside to-left">
+                                            <ul>
+                                                <li>
+                                                    <span class="title">{$L_LOGIN2}</span>
+                                                </li>
+                                            </ul>
+                                        </section>
+                                        <div class="row section-form">
+                                            <div class="col-xs-12 col-sm-6">
+                                                <span class="title-section">E-mail</span>
+                                                <input class="input-field" type="text" name="email" value="{$LOG.email}" data-valid="required" />
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6">
+                                                <span class="title-section">{$L_PASSWORD}</span>
+                                                <input class="input-field" type="password" name="password" value="{$LOG.password}" data-valid="required|minlength:4|maxlength:32" />
+                                            </div>
+                                        </div>
+                                        <div class="row section-form">
+                                            {IF $AUTOLOGIN}
+                                            <div class="col-xs-6">
+                                                <div class="checkbox-field">
+                                                    <input id="param-rules-1" type="checkbox" name="autologin" value="1" {$CHECKED} />
+                                                    <label for="param-rules-1">
+                                                        <span class="title">{$L_REMEMBER}</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            {/IF}
+                                            <div class="col-xs-6 pull-right">
+                                                <div class="checkbox-field">
+                            <span class="title pull-right">
+                            <a href="/passrecover/">{$L_RECOVER_PASSWORD}</a>
+                            </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row order-sections">
+                                            <div class="col-xs-12">
+                                                <input type="hidden" name="redirect" value="{$REDIRECT}" />
+                                                <button type="submit" name="submit" value="submit" class="btn btn-primary btn-lg btn-action-confirm">{$L_LOGIN}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            <div class="admin-content admin-content-banner">
+                                {$ADMIN_LOGIN_BANNER_HTML}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 static">
+                            <div class="background-flex left"></div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 static">
+                            <div class="background-flex right"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

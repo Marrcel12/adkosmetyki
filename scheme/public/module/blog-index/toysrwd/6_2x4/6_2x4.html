@@ -1,0 +1,25 @@
+{IF $MODULE.subcats}
+  <section class="blog-index mod-blog-index-6">
+    <div class="container-fluid">
+      {IF $MODULE.children.blog_articlesField[0].children[0].props.value}
+        <section class="heading inside">
+          <ul>
+            <li class="active">
+              <span class="title">{$MODULE.children.blog_articlesField[0].children[0].props.value}</span>
+            </li>
+          </ul>
+        </section>
+      {/IF}
+      <div class="row">
+        {LOOP FROM=$MODULE.subcats VALUE=BLOG_POST INDEX=INDEX}
+          <div class="col-xxs-12 col-xs-6 col-sm-3">
+            {INCLUDE file="./".$TEMPLATE."/scheme/public/module/blog/_common/html/post-tile.html" POST_ITEM=$BLOG_POST POST_INDEX=$INDEX}
+          </div>
+          {IF $INDEX % 4 == 0}
+            <div class="clearfix"></div>
+          {/IF}
+        {/LOOP}
+      </div>
+    </div>
+  </section>
+{/IF}

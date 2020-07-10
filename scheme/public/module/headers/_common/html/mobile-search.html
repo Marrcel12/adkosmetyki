@@ -1,0 +1,19 @@
+<section class="mobile-search">
+  <span class="title">{$L_SEARCH}</span>
+  <i class="close-shape"></i>
+  <div class="container-fluid">
+    <form method="GET" action="/category/#top">
+      <div class="row">
+        <div class="col-xs-9">
+          <input class="input-field" type="text" name="q" value="{$SEARCH_STRING}" placeholder="{$L_SEARCH_IN_SHOP}" autocomplete="off" {IF $DEBUG}data-ajax-blur="true"{/IF} />
+          {IF $SEARCH_DESC_ACTIVE}
+						<input type="hidden" name="desc" value="1" />
+					{/IF}
+        </div>
+        <div class="col-xs-3">
+          <input type="submit" value="{$L_SEARCH}" class="btn btn-primary btn-block" />
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

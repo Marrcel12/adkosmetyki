@@ -1,0 +1,59 @@
+<form method="POST" action="/ticket/" class="core_addTicket" data-error="{$L_ERROR_FORM_escaped}" data-error-required="{$L_ERROR_REQUIRED_FIELD}">
+  <div class="section-form">
+
+    <section class="third-heading mb-md">
+        <ul>
+        <li>
+          <span class="title">{$L_ADD_TICKET}</span>
+        </li>
+      </ul>
+    </section>
+  </div>
+  <div class="row section-form mb-sm">
+    <div class="col-xs-3"></div>
+    <div class="col-xxs-12 col-xs-6">
+    	<div class="row">
+    		<div class="col-xs-12 label-input-wrapper">
+          <span class="title-section">{$L_TICKET_TITLE}</span>
+          <div class="input-wrapper">
+            <input class="input-field" type="text" name="title" value="{$TITLE}" />
+          </div>
+    		</div>
+    		<div class="col-xs-12 {IF $EMAIL}hidden{/IF} label-input-wrapper">
+          <span class="title-section">E-mail</span>
+          <div class="input-wrapper">
+            <input class="input-field" type="email" name="email" value="{$EMAIL}" />
+          </div>
+    		</div>
+    		{IF $ORDER_ID}
+	    		<div class="col-xs-12 label-input-wrapper">
+            <span class="title-section">{$L_ORDER}</span>
+            <div class="input-wrapper">
+              <input class="input-field input-disabled" type="text" name="order_id" value="{$ORDER_ID}" readonly="readonly" />
+            </div>
+	    		</div>
+    		{/IF}
+    		<div class="col-xs-12 label-input-wrapper">
+          <span class="title-section">{$L_TEXT}</span>
+          <div class="input-wrapper">
+            <textarea class="textarea-field" name="text" rows="6">{$TEXT}</textarea>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <div class="checkbox-field" id="ticked_add_privacy_policy">
+            <input type="checkbox" id="privacy_policy" name="privacy_policy" required/>
+            <label for="privacy_policy">
+              <span class="title">{$L_REGISTER_LINK_TO_PRIVACY_POLICY}&nbsp;<span class="required">*</span></span>
+            </label>
+          </div>
+        </div>
+    	</div>
+    </div>
+    <div class="col-xs-3"></div>
+  </div>
+  <div class="row section-form">
+    <div class="col-xs-12">
+      <button type="submit" name="submit" value="submit" class="btn btn-primary btn-lg btn-register-confirm">{$L_SEND}</button>
+    </div>
+  </div>
+</form>

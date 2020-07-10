@@ -1,0 +1,141 @@
+.products-list-page.mod-products-list-page-3 {
+  max-width: $pageWidth;
+  width: 100%;
+  margin: 0 auto 30px;
+  @import "../../../_common/scss/_product_list.scss";
+  @import "../../../_common/toysrwd/scss/_product_list.scss";
+  @import "../private/scss/_utils_1.scss";
+  @import "../../../_common/toysrwd/scss/_list_options_1.scss";
+  @import "../private/scss/_column_left_1.scss";
+  .product-tile {
+    border-radius: $border-radius-small;
+    overflow: hidden;
+    box-shadow: $box-shadow;
+  }
+  .product-tile .product-desc .product-bottom .product-add-to-cart .add-to-store {
+    text-align: center;
+    .fa {
+      font-size: 21px;
+      padding-right: 0px;
+      line-height: 41px;
+    }
+  }
+}
+
+@media all and (min-width: 768px) and (max-width: $pageWidth + $scrollBarWidth) {
+  .products-list-page.mod-products-list-page-3 {
+    @import "../../../_common/toysrwd/scss/_column_left_width.scss";
+  }
+}
+
+@media all and (max-width: 1000px) {
+  .products-list-page.mod-products-list-page-3 {
+    & .list-options {
+      @import "../../../_common/toysrwd/scss/_pagination_mobile.scss";
+    }
+  }
+}
+
+@media all and (max-width: 940px) {
+  .products-list-page.mod-products-list-page-3 {
+    & .product-tile {
+      & .product-desc {
+        & .product-separate {
+          & .product-name {
+            padding-right: 110px;
+          }
+        }
+        & .product-producer-logo {
+          top: 3px;
+          bottom: inherit;
+          & img {
+            max-height: 15px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (min-width: 768px) {
+  .products-list-page.mod-products-list-page-3 {
+    & > .container-fluid {
+      & > .row {
+        & .left-parameters {
+          top: 0 !important;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 767px) {
+  .products-list-page.mod-products-list-page-3 {
+    padding-top: 0;
+    @import "../private/scss/_column_left_rwd.scss";
+  }
+}
+
+@media all and (max-width: 480px) {
+  .products-list-page.mod-products-list-page-3 {
+    @import "../../_common/scss/list_options_1_rwd.scss";
+  }
+}
+
+@media all and (max-width: 450px) {
+  .products-list-page.mod-products-list-page-3 {
+    & .product-tile {
+      & .product-img {
+        width: 100%;
+        padding-bottom: 125%;
+      }
+      & .product-desc {
+        width: 100%;
+        padding: 0 15px 15px;
+        & .product-separate {
+          & .product-name {
+            padding-right: 0;
+            margin: 5px 0;
+            line-height: 1.4;
+            -webkit-line-clamp: 2;
+            max-height: 44.8px;
+          }
+          & .product-description {
+            display: none;
+          }
+        }
+        & .product-producer-logo, & .product-parameters {
+          display: none;
+        }
+        & .product-bottom {
+          width: 100%;
+          padding: 0;
+          position: static;
+          display: inline-block;
+          min-height: 75px;
+          & .product-price {
+            text-align: center;
+            margin: 3px 0 0;
+          }
+          & .product-add-to-cart {
+            display: flex;
+            justify-content: space-between;
+            float: none;
+            padding: 0;
+            &.full {
+              padding-right: 0;
+            }
+            & .add-to-cart {
+              height: auto;
+              min-height: 45px;
+              margin: 7px 0 0 0;
+            }
+            & .add-to-store {
+              margin-left: 15px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

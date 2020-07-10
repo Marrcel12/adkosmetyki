@@ -1,0 +1,111 @@
+.newsletter.mod-newsletter-3 {
+  max-width: $pageWidth;
+	width: 100%;
+	margin: 0 auto 30px;
+  &.full-width {
+    max-width: 100%;
+  }
+  & .newsletter-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 0 15px;
+    & .newsletter-background {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0,0,0,1/10);
+      }
+    }
+    & .newsletter-content {
+      // height: auto;
+      position: relative;
+      z-index: 1;
+      max-width: $pageWidth;
+    	width: 100%;
+      margin: 0 auto;
+      padding: 105px 0;
+      text-align: center;
+      & .title {
+        font-size: 24px;
+        font-weight: 700;
+      }
+      & p {
+        font-size: 15px;
+        font-weight: 400;
+        margin: 0 0 40px;
+      }
+      & .newsletter-form {
+        // width: 50%;
+        max-width: 562px;
+        width: 100%;
+        display: flex;
+        margin: auto;
+        & .newsletter-input {
+          height: 51px;
+          outline: none;
+          border: 1px solid #ebeff3;
+          color: $fontColor;
+          width: 100%;
+          margin-right: 15px;
+        }
+        & .newsletter-button {
+          height: 51px;
+          @include border-radius(0);
+          // border: 3px solid rgba($fontColor,3/10) !important;
+          // border-left: 0;
+          outline: none;
+          background: rgba($mainColor,8/10) !important;
+          color: #ffffff !important;
+          max-width: 142px;
+          width: 100%;
+
+          font-size: 14px;
+          font-weight: 700;
+          text-transform: uppercase;
+          &:hover {
+            color: color !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+.mod-producers-1-wrapper,
+.mod-producers-2-wrapper,
+#footer {
+  & + .newsletter.mod-newsletter-3 {
+    margin-top: -30px;
+  }
+}
+
+@media all and (max-width: 480px) {
+  .newsletter.mod-newsletter-3 {
+    & .newsletter-container {
+      & .newsletter-content {
+        & .newsletter-form {
+          display: block;
+          .newsletter-input {
+            margin-bottom: 10px;
+          }
+          .newsletter-button {
+            max-width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+.slider.mod-slider-6 {
+  max-width: $pageWidth;
+	width: 100%;
+	margin: 0 auto;
+  padding: 0 0 25px;
+  & + .banner, & + .division {
+    padding-top: 5px;
+  }
+  & .carousel {
+    opacity: 0;
+    height: 650px;
+    & .item {
+      height: 650px;
+      overflow: hidden;
+      @import "../_common/scss/_slide_img_1.scss";
+    }
+    @import "../_common/scss/_controls_2.scss";
+  }
+}
+
+@media all and (max-width: 480px) {
+  .slider.mod-slider-6 {
+    padding: 0 0 15px;
+    & + .banner, & + .division {
+      padding-top: 0;
+    }
+  }
+}

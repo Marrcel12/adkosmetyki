@@ -1,0 +1,30 @@
+{IF $BREADCRUMB}
+  <section class="breadcrumbs mod-breadcrumbs-4">
+    <div class="breadcrumbs-outer">
+      <div class="container-fluid">
+        <div class="breadcrumbs-wrapper">
+          <ul>
+            {LOOP FROM=$BREADCRUMB VALUE=CRUMB}
+              <li>
+                {IF $CRUMB.URL}
+                  <a href="{$CRUMB.URL}">
+                {/IF}
+                <span>
+                  {$CRUMB.NAME}
+                </span>
+                {IF $CRUMB.URL}
+                  </a>
+                {/IF}
+              </li>
+            {/LOOP}
+          </ul>
+          {IF $CONTROLER == 'category' && $CAT_BANNER}
+            <div class="category-image" style="background-image:url('/{$UPLOAD_DIR}/{$CAT_BANNER}');"></div>
+          {/IF}
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    {INCLUDE file="./".$TEMPLATE."/scheme/public/_common/html/microdata/breadcrumbs.html"}
+  </section>
+{/IF}

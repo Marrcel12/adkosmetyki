@@ -1,0 +1,6 @@
+<select class="select-field-select2 core_parseOption" {IF $OPTION_CART_HASH}name="options_{$OPTION_CART_HASH}[]"{/IF} data-placeholder="{$L_SELECT}" data-allow-clear="{IF $OPTION_CART_HASH}false{ELSE}true{/IF}" data-key="{$OPTION_KEY}" data-required="{IF $OPTION_VALUE.required == 'yes'}true{ELSE}false{/IF}" data-required-error="{$L_OPTION_REQUIRED_escaped}">
+  <option></option>
+  {LOOP FROM=$OPTION_VALUE.values VALUE=O KEY=K}
+    <option value="{$K}" name="option_{$OPTION_KEY}{IF $OPTION_CART_HASH}_{$OPTION_CART_HASH}{/IF}" {IF $CONTROLER == 'product'}class="core_changeProductPhoto" data-image-label="{$O.name}"{/IF} {IF $O.change_price != 0}data-additional-price="{$O.change_price}" data-additional-price-no-discount="{$O.change_price_no_dis}"{/IF} {IF $OPTION_CART_HASH && 1 == 1}{LOOP FROM=$OPTION_CART_STOCKS VALUE=STOCKS KEY=STOCKS_KEY}{IF $OPTION_KEY == $STOCKS_KEY}{LOOP FROM=$STOCKS VALUE=STOCK KEY=STOCK_KEY}{LOOP FROM=$STOCK.list VALUE=STOCK_LIST}{IF $STOCK_LIST.ov_id == $K}{IF $STOCK.sp_amount}data-max-stock="{$STOCK.sp_amount}"{/IF}{/IF}{/LOOP}{/LOOP}{/IF}{/LOOP}{/IF} {IF $O.selected}selected{/IF}>{$O.name}{IF $O.change_price_f} {$O.change_price_f}{/IF}</option>
+  {/LOOP}
+</select>

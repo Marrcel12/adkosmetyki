@@ -1,0 +1,219 @@
+.product-of-the-day.mod-product-of-the-day-1 {
+  max-width: $pageWidth;
+	width: 100%;
+  margin: 0 auto;
+  .heading.inside.to-left {
+    text-align: center;
+    
+    ul {
+      &:before, 
+      &:after {
+        display: none;
+      }
+      li {
+        margin-bottom: 0;
+      }
+      .title {
+        color: $mainColor;
+      }
+    }
+  }
+  & .special-offer-box {
+    width: 100%;
+    margin: 0 0 30px 0;
+    background: $lightYellow;
+    border-radius: $border-radius-small;
+    box-shadow: $box-shadow;
+    & .special-offer-box-content {
+      padding-bottom: 15px;
+      & .carousel {
+        opacity: 0;
+        @import "../../../_common/toysrwd/scss/_owl_controls.scss";
+        .owl-controls {
+          & .owl-prev, .owl-next {
+            top: calc(50% - 43px);
+          }
+          & .owl-prev {
+            left: -15px !important;
+          }
+          & .owl-next {
+            right: -15px !important;
+          }
+        }
+        & .product-tile {
+          margin-bottom: 30px;
+          box-shadow: none;
+          & .product-img {
+            padding-bottom: 100%;
+          }
+          & .product-desc {
+            padding: 0;
+            height: auto;
+            display: block;
+            padding: 0 15px;
+            
+            & .product-name {
+              font-size: 20px;
+              line-height: 1.2;
+              display: block;
+              flex-direction: unset;
+              justify-content: unset;
+              padding: 44px 0 15px;
+              & a {
+                color: $fontColor;
+                text-decoration: none;
+                span {
+                  display: block;
+                  display: -webkit-box;
+                  height: 20px * 1.2 * 2;
+                  font-size: 20px;
+                  font-weight: bold;
+                  line-height: 1.2;
+                  -webkit-line-clamp: 2;
+                  -webkit-box-orient: vertical;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                }
+              }
+            }
+            & .product-price {
+              margin: 0 0 15px;
+              .price-special {
+                font-size: 24px;
+              }
+            }
+            & .product-name, & .product-price {
+              text-align: center;
+            }
+          }
+        }
+        & .availability {
+          text-align: center;
+          margin: 0 0 31px;
+          display: inline-block;
+          width: 100%;
+          font-size: 16px;
+          padding: 0 15px;
+          > span {
+            display: block;
+            margin-bottom: 15px;
+          }
+          & strong {
+            display: block;
+            font-size: 24px;
+            font-weight: 700;
+            span {
+              padding: 7px 22px;
+              display: inline-block;
+              background-color: $bc-color;
+              border-radius: $border-radius-small;
+            }
+          }
+          & img {
+            display: inline-block;
+            width: 15px;
+          }
+        }
+        & .counter {
+          text-align: center;
+          display: inline-block;
+          position: relative;
+          left: 50%;
+          padding: 0 15px;
+          @include transform(translateX(-50%));
+          > span {
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: block;
+          }
+          &.space {
+            margin: 80px 0 0;
+          }
+          & .counter-time {
+            display: block;
+            margin: 10px 0 0;
+            font-size: 24px;
+            font-weight: 700;
+            & > span {
+              background: $bc-color;
+              border-radius: $border-radius-small;
+              padding: 10px;
+              margin: 0 5px;
+              line-height: 55px;
+            }
+          }
+        }
+      }
+    }
+  }
+  & .tab {
+    > .row {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    &.tab-hidden {
+      @include opacity(0);
+      display: none;
+    }
+    @import "../../../_common/toysrwd/scss/_owl_controls.scss";
+
+  }
+  
+  @import "../../../_common/toysrwd/scss/_product_tile.scss";
+
+}
+
+@media all and (max-width: 767px) {
+  .product-of-the-day.mod-product-of-the-day-1 {
+    & .heading {
+      & ul {
+        & li {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+
+@media all and (min-width: 361px) {
+  .product-of-the-day.mod-product-of-the-day-1 {
+    .tab {
+      .product-tile {
+        .product-desc {
+          .product-price {
+            .price-special {
+              font-size: 13px;
+            }
+            .price-normal.discount {
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media(min-width: 357px) {
+  .product-of-the-day.mod-product-of-the-day-1 {
+    & .tab {
+      & .product-tile {
+        & .product-img {
+          & .product-actions {
+            & .product-tile-icon-wrapper {
+              .product-tile-icon {
+                & .fa.fa-shopping-basket {
+                  & span {
+                    display: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } 
+  }
+}

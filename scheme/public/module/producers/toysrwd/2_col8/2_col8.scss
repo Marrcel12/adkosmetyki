@@ -1,0 +1,95 @@
+.mod-producers-2-wrapper {
+  margin-bottom: 30px;
+}
+.producers.mod-producers-2 {
+  max-width: $pageWidth;
+	width: 100%;
+	margin: 0 auto;
+  & .carousel {
+    opacity: 0;
+    height: 120px;
+    & .item {
+      height: 120px;
+      overflow: hidden;
+      position: relative;
+
+      background-color: $lightYellow;
+      margin: 10px;
+      @include border-radius(7px);
+      border-bottom: 1px solid darken($primaryColor, 20%);
+      & a {
+        display: block;
+        height: calc(100% - 20px);
+        border: 2px dashed darken($primaryColor, 20%);
+        @include border-radius(7px);
+        background-color: $primaryColor;
+        margin: 10px;
+      }
+      & img {
+        width: 70%;
+        height: auto;
+        margin: 0 auto;
+        position: relative;
+        top: 50%;
+        @include transform(translateY(-50%));
+      }
+      & span {
+        font-size: 14px;
+        width: 100%;
+        display: inline-block;
+        text-align: center;
+        padding: 0 15px;
+        position: relative;
+        top: 50%;
+        @include transform(translateY(-50%));
+        color: $fontColor;
+        &:hover {
+          color: $mainColor;
+        }
+      }
+      & .spinner {
+        zoom: 0.5;
+      }
+    }
+    &.effect-gray {
+      & .item {
+        & img {
+          -webkit-filter: grayscale(1);
+          -moz-filter: grayscale(1);
+          -ms-filter: grayscale(1);
+          -o-filter: grayscale(1);
+          filter: grayscale(1);
+          @include transition(all 0.2s ease-in-out);
+        }
+        &:hover {
+          & img {
+            -webkit-filter: grayscale(0);
+            -moz-filter: grayscale(0);
+            -ms-filter: grayscale(0);
+            -o-filter: grayscale(0);
+            filter: grayscale(0);
+            @include transition(all 0.2s ease-in-out);
+          }
+        }
+      }
+    }
+    &.effect-opacity {
+      & .item {
+        @include opacity(6/10);
+        @include transition(opacity 0.2s ease-in-out);
+        &:hover {
+          @include opacity(1);
+          @include transition(opacity 0.2s ease-in-out);
+        }
+      }
+    }
+    @import "../../../_common/toysrwd/scss/_owl_controls.scss";
+    .owl-controls {
+      & .owl-prev, .owl-next {
+        &:hover {
+          @include opacity(7/10);
+        }
+      }
+    }
+  }
+}

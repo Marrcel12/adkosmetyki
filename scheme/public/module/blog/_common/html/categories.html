@@ -1,0 +1,33 @@
+<section class="heading inside to-left heading-blog-list-filters" data-panel="categories">
+  <ul>
+    <li>
+      <span class="title">{$L_CATEGORIES}</span>
+    </li>
+  </ul>
+</section>
+<aside class="column-categories">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="categories dropdowns">
+        <ul>
+          {LOOP FROM=$BLOG_CATEGORIES VALUE=CATEGORY}
+            <li>
+              <a href="{IF empty($CATEGORY.redirects)}/blog{ELSE}{$CATEGORY.redirects[0].url}{/IF}" title="{IF $CATEGORY.key == 'blog_categories'}
+              {$L_ALL_CATEGORIES}
+            {ELSE}
+              {$CATEGORY.props.name}
+            {/IF} ({$CATEGORY.count})">
+                {IF $CATEGORY.key == 'blog_categories'}
+                  {$L_ALL_CATEGORIES}
+                {ELSE}
+                  {$CATEGORY.props.name}
+                {/IF}
+              </a>
+              <span>({$CATEGORY.count})</span>
+            </li>
+          {/LOOP}
+        </ul>
+      </div>
+    </div>
+  </div>
+</aside>

@@ -1,0 +1,37 @@
+.division.mod-division-7 {
+  max-width: $pageWidth;
+	width: 100%;
+	margin: 0 auto 30px;
+  @import "../private/scss/_divisions_3.scss";
+}
+
+@media all and (max-width: 480px) {
+  .division.mod-division-7 {
+    margin-bottom: 15px;
+    @import "../../_common/scss/_divisions_3_rwd.scss";
+  }
+}
+
+/* Media queries - visibility and control rules */
+
+@media all and (min-width: 768px) {
+  .division.mod-division-7 {
+    & .divisions {
+      &.divisions-xxs {
+        display: none;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 767px) {
+  .division.mod-division-7 {
+    & .divisions {
+      &.divisions-lg {
+        & .division-box-2 {
+          display: none;
+        }
+      }
+    }
+  }
+}

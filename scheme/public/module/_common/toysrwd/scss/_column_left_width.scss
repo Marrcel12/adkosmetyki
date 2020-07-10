@@ -1,0 +1,22 @@
+& > .container-fluid {
+    & > .row {
+      & > [class*='col-'] {
+        &.left-parameters {
+          width: 25%;
+          width: -webkit-calc( 292.5px );
+          width: -moz-calc( 292.5px );
+          width: -ms-calc( 292.5px );
+          width: -o-calc( 292.5px );
+          width: calc( 292.5px );
+        }
+        &:last-of-type {
+          width: 75%;
+          width: -webkit-calc( 100% - 292.5px );
+          width: -moz-calc( 100% - 292.5px );
+          width: -ms-calc( 100% - 292.5px );
+          width: -o-calc( 100% - 292.5px );
+          width: calc( 100% - 292.5px );
+        }
+      }
+    }
+  }

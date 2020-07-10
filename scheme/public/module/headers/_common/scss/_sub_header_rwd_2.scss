@@ -1,0 +1,14 @@
+.sub-header {
+  padding: 20px 0;
+  & .logo {
+    left: 0;
+    @include zoom(0.7);
+    @include transform(translateX(0));
+    & img {
+      max-width: 175px;
+    }
+  }
+  & .search-box, & .quick-cart {
+    display: none;
+  }
+}

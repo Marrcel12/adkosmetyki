@@ -1,0 +1,230 @@
+.admin.mod-admin-1 {
+  width: 100%;
+  background: $secoundaryColor;
+  min-height: 100vh;
+  & > .container-fluid {
+    width: 100%;
+    max-width: $pageWidth;
+    height: 100vh;
+    background-clip: content-box;
+    margin: 0 auto;
+    padding: 0;
+    display: table;
+    & .admin-outer {
+      display: table-row;
+      & .admin-wrapper {
+        display: table-cell;
+        vertical-align: middle;
+      }
+    }
+    & .admin-header {
+      width: 100%;
+      display: table;
+      padding: 35px 15px;
+      & > .row {
+        display: table-row;
+        & > [class*='col-'] {
+          display: table-cell;
+          padding: 0;
+          float: none;
+          vertical-align: middle;
+        }
+      }
+      & .logo {
+        text-align: center;
+        & .logo-image {
+          background-image: url('//sky-shop.pl/view/img/logos-s758fadaa96.png');
+          background-position: 0 -26px;
+          display: inline-block;
+          height: 29px;
+          width: 211px;
+        }
+      }
+    }
+    & .admin-body {
+      padding: 0 15px;
+      margin-bottom: 35px;
+      & > .row {
+        position: relative;
+        & > [class*='col-'] {
+          background: $primaryColor;
+          background-clip: content-box;
+          &.static {
+            position: static;
+          }
+          & .heading {
+            margin-bottom: 0;
+            &:not(:first-of-type) {
+              margin-top: 30px;
+            }
+          }
+        }
+      }
+    }
+    & .admin-content {
+      padding: 0 25px;
+      position: relative;
+      z-index: 1;
+      &:first-of-type {
+        padding-top: 15px;
+      }
+      &:last-of-type {
+        padding-bottom: 15px;
+      }
+      &.admin-content-banner {
+        padding: 0;
+        text-align: center;
+        & img {
+          max-width: 100%;
+        }
+      }
+      & .btn-action-confirm {
+        position: relative;
+        left: 50%;
+        @include transform(translateX(-50%));
+        width: 100%;
+      }
+    }
+    & .admin-footer {
+      width: 100%;
+      display: table;
+      padding: 35px 15px;
+      & > .row {
+        display: table-row;
+        & > [class*='col-'] {
+          display: table-cell;
+          padding: 0;
+          float: none;
+          vertical-align: middle;
+        }
+      }
+      & .icon-support {
+        text-align: center;
+        & .fa {
+          font-size: 56px;
+        }
+      }
+    }
+    & .content-sections {
+      margin-top: 0;
+      margin-bottom: 15px;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    & .section-form {
+      margin-top: 0;
+      margin-bottom: 15px;
+      & .title-section {
+        padding: 5px 0;
+        font-weight: 500;
+        display: inline-block;
+      }
+      & .input-field {
+        margin: 0;
+      }
+      & .checkbox-field {
+        padding: 3px 0 3px;
+        margin-bottom: 3px;
+        background: #fff;
+        z-index: 1;
+      }
+    }
+    & .background-flex {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      background: $primaryColor;
+      width: 50%;
+      padding: 0 15px;
+      background-clip: content-box;
+      &.left {
+        left: 0;
+      }
+      &.right {
+        right: 0;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 991px) {
+  .admin.mod-admin-1 {
+    & > .container-fluid {
+      & .cart-summary-body {
+        & > .row {
+          & > [class*='col-'] {
+            &:first-of-type {
+              & .cart-summary-content {
+                &:last-of-type {
+                  padding-bottom: 0;
+                }
+              }
+            }
+            &:last-of-type {
+              position: static;
+              & .heading {
+                margin-top: 30px;
+              }
+              & .cart-summary-content {
+                &:first-of-type {
+                  padding-top: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 767px) {
+  .admin.mod-admin-1 {
+    & > .container-fluid {
+      & .cart-summary-header {
+        & > .row {
+          & > [class*='col-'] {
+            &:nth-of-type(1) {
+              width: 50%;
+              text-align: left;
+              & .btn {
+                & span {
+                  display: none;
+                }
+              }
+            }
+            &:nth-of-type(2) {
+              width: 50%;
+              text-align: right;
+              & img {
+                width: 80%;
+              }
+            }
+            &:last-of-type {
+              display: none;
+            }
+          }
+        }
+      }
+      & .order-select-table {
+        z-index: 1;
+        position: relative;
+        background: #ffffff;
+        & tr {
+          & td {
+            & .method-desc {
+              display: none;
+            }
+          }
+          &.active {
+            & td {
+              & .method-desc {
+                display: block;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

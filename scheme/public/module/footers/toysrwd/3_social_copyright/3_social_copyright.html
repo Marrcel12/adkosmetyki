@@ -1,0 +1,32 @@
+<footer id="footer" class="mod-footer-3 full-width">
+    <div class="footer-container">
+      <div class="container-fluid">
+        <div class="row">
+          {LOOP FROM=$MODULE.children.footer_group[0].children VALUE=MENU_ELEMENT INDEX=INDEX}
+            {IF $INDEX <= 4}
+              <div class="col-xxs col-xs-12 col-sm-6 col-md-3">
+                <div class="section-title">
+                  <span>{$MENU_ELEMENT.props.name}</span>
+                </div>
+                <ul class="menu">
+                  {LOOP FROM=$MENU_ELEMENT.children VALUE=LINK}
+                    <li>
+                      {IF $LINK.props.type == 'link'}
+                        <a href="{$LINK.url}">{$LINK.props.name}</a>
+                      {ELSE}
+                        <a href="{$LINK.props.content}" {IF $LINK.props.target == 'true'}target="_blank"{/IF}>{$LINK.props.name}</a>
+                      {/IF}
+                    </li>
+                  {/LOOP}
+                </ul>
+              </div>
+            {/IF}
+          {/LOOP}
+          {INCLUDE file="./".$TEMPLATE."/scheme/public/module/footers/_common/html/social-media.html"}
+        </div>
+      </div>
+    </div>
+  </footer>
+<section class="footer-rights-wrapper">
+  {INCLUDE file="./".$TEMPLATE."/scheme/public/module/footers/_common/html/footer-rights.html"}
+</section>

@@ -1,0 +1,92 @@
+.products-list.mod-products-list-2 {
+  max-width: $pageWidth;
+  width: 100%;
+  margin: 0 auto;
+  @import "../../../_common/toysrwd/scss/_product_tile.scss";
+  > .container-fluid > .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+@media all and (max-width: 1039px) {
+  .products-list.mod-products-list-2 {
+    & > .container-fluid {
+      & > .row {
+        & > div[class*="col-"] {
+          width: 20%;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 869px) {
+  .products-list.mod-products-list-2 {
+    & > .container-fluid {
+      & > .row {
+        & > div[class*="col-"] {
+          width: 25%;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 699px) {
+  .products-list.mod-products-list-2 {
+    & > .container-fluid {
+      & > .row {
+        & > div[class*="col-"] {
+          width: 33.33333%;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 529px) {
+  .products-list.mod-products-list-2 {
+    & > .container-fluid {
+      & > .row {
+        & > div[class*="col-"] {
+          width: 50%;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 356px) {
+  .products-list.mod-products-list-2 {
+    & > .container-fluid {
+      & > .row {
+        & > div[class*="col-"] {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+
+
+@media(min-width: 357px) {
+  .products-list.mod-products-list-2 {
+    & .product-tile {
+      & .product-img { 
+        & .product-actions {
+          & .product-tile-icon-wrapper {
+            .product-tile-icon {
+              & .fa.fa-shopping-basket {
+                & span {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

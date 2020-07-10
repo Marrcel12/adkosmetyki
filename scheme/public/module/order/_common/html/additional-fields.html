@@ -1,0 +1,61 @@
+{LOOP FROM=$ADDITIONAL VALUE=ADDITIONAL_FIELD KEY=KEY INDEX=INDEX}
+  {IF $ADDITIONAL_FIELD.place == $SECTION}
+    {IF $ADDITIONAL_FIELD.type == 'yesno'}
+      <div class="col-xs-12">
+        <div class="checkbox-field" {IF $ADDITIONAL_FIELD.required}data-valid-box{/IF}>
+          <input id="param-additional-rules-{$INDEX}" type="checkbox" name="{$KEY}" value="1" {IF $ADDITIONAL_FIELD.required}data-valid="required"{/IF} data-storage="attr(name)|ac_" />
+          <label for="param-additional-rules-{$INDEX}">
+            <span class="title">{$ADDITIONAL_FIELD.name} {IF $ADDITIONAL_FIELD.required}<span class="required">*</span>{/IF}</span>
+          </label>
+        </div>
+      </div>
+    {/IF}
+    {IF $ADDITIONAL_FIELD.type == 'text'}
+      <div class="col-xs-12">
+        <span class="order-title-section">{$ADDITIONAL_FIELD.name}</span>
+        <input class="input-field" type="text" name="{$KEY}" value="{$ADDITIONAL_FIELD.value}" {IF $ADDITIONAL_FIELD.required}data-valid="required"{/IF} data-storage="attr(name)|ac_" />
+      </div>
+    {/IF}
+    {IF $ADDITIONAL_FIELD.type == 'midtext'}
+      <div class="col-xs-12">
+        <span class="order-title-section">{$ADDITIONAL_FIELD.name}</span>
+        <textarea class="textarea-field" name="{$KEY}" {IF $ADDITIONAL_FIELD.required}data-valid="required"{/IF} data-storage="attr(name)|ac_">{$ADDITIONAL_FIELD.value}</textarea>
+      </div>
+    {/IF}
+    {IF $ADDITIONAL_FIELD.type == 'bigtext'}
+      <div class="col-xs-12">
+        <span class="order-title-section">{$ADDITIONAL_FIELD.name}</span>
+        <textarea class="textarea-field" name="{$KEY}" rows="4" {IF $ADDITIONAL_FIELD.required}data-valid="required"{/IF} data-storage="attr(name)|ac_">{$ADDITIONAL_FIELD.value}</textarea>
+      </div>
+    {/IF}
+    {IF $ADDITIONAL_FIELD.type == 'info'}
+      <div class="col-xs-12">
+        <div class="text-field">{$ADDITIONAL_FIELD.name}</div>
+      </div>
+    {/IF}
+    {IF $ADDITIONAL_FIELD.type == 'date'}
+      <div class="col-xs-12">
+        <span class="order-title-section">{$ADDITIONAL_FIELD.name}</span>
+        <div class="datetime-field" data-type="date">
+          <input type="text" placeholder="{$L_ORD_F4}" data-format="dd-MM-yyyy" name="{$KEY}" value="{$ADDITIONAL_FIELD.value}" {IF $ADDITIONAL_FIELD.required}data-valid="required"{/IF} data-storage="attr(name)|ac_" />
+          <div class="add-on-input"></div>
+          <button class="add-on" type="button" data-time-icon="icon-time" data-date-icon="icon-calendar">
+            <i class="fa fa-calendar"></i>
+          </button>
+        </div>
+      </div>
+    {/IF}
+    {IF $ADDITIONAL_FIELD.type == 'datetime'}
+      <div class="col-xs-12">
+        <span class="order-title-section">{$ADDITIONAL_FIELD.name}</span>
+        <div class="datetime-field" data-type="datetime">
+          <input type="text" placeholder="{$L_ORD_F5}" data-format="dd-MM-yyyy hh:mm" name="{$KEY}" value="{$ADDITIONAL_FIELD.value}" {IF $ADDITIONAL_FIELD.required}data-valid="required"{/IF} data-storage="attr(name)|ac_" />
+          <div class="add-on-input"></div>
+          <button class="add-on" type="button" data-time-icon="icon-time" data-date-icon="icon-calendar">
+            <i class="fa fa-calendar"></i>
+          </button>
+        </div>
+      </div>
+    {/IF}
+  {/IF}
+{/LOOP}

@@ -1,0 +1,38 @@
+<section class="account mod-account-1">
+  <div class="container-fluid">
+    {IF $LOGGED_IN}
+      <div class="row">
+        {INCLUDE file="./".$TEMPLATE."/scheme/public/module/account/_common/html/account-header.html" PARENT="account"}
+      </div>
+    {/IF}
+    {IF $CONTROLER == 'youraccount'}
+      {IF $LOGGED_IN}
+        {INCLUDE file="./".$TEMPLATE."/scheme/public/module/account/_common/html/account-data.html"}
+      {ELSE}
+        {INCLUDE file="./".$TEMPLATE."/scheme/public/module/account/_common/html/user-data.html"}
+      {/IF}
+    {/IF}
+    {IF $CONTROLER == 'register'}
+      {INCLUDE file="./".$TEMPLATE."/scheme/public/module/account/_common/html/email-change.html"}
+    {/IF}
+    {IF $CONTROLER == 'passrecover'}
+      {INCLUDE file="./".$TEMPLATE."/scheme/public/module/account/_common/html/password-recover.html"}
+    {/IF}
+    {IF $CONTROLER == 'orders'}
+      {IF $FAST_PAYMENT}
+        {INCLUDE file="./".$TEMPLATE."/scheme/public/module/account/_common/html/order-repayment.html"}
+      {ELSEIF !empty($ORDER) && $ORDER.ord_id}
+        {INCLUDE file="./".$TEMPLATE."/scheme/public/module/account/_common/html/order-page.html"}
+      {ELSE}
+        {INCLUDE file="./".$TEMPLATE."/scheme/public/module/account/_common/html/orders.html"}
+      {/IF}
+    {/IF}
+    {IF $CONTROLER == 'ticket'}
+      {IF $ADD}
+        {INCLUDE file="./".$TEMPLATE."/scheme/public/module/account/_common/html/ticket-add.html"}
+      {ELSE}
+        {INCLUDE file="./".$TEMPLATE."/scheme/public/module/account/_common/html/tickets.html"}
+      {/IF}
+    {/IF}
+  </div>
+</section>

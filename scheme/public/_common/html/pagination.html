@@ -1,0 +1,45 @@
+{IF $PAGINATION_DATA.P_PAGES}
+  <div class="pagination">
+    <ul>
+      <li>
+        {IF $PAGINATION_DATA.P_LEFT_URL}
+          <a href="{$PAGINATION_DATA.P_LEFT_URL}{$PAGINATION_DATA.HASH_P}">
+            <i class="fa fa-chevron-left"></i>
+          </a>
+        {ELSE}
+          <span>
+            <i class="fa fa-chevron-left"></i>
+          </span>
+        {/IF}
+      </li>
+      {LOOP FROM=$PAGINATION_DATA.P_PAGES VALUE=P_PAGE}
+        <li class="{IF $PAGINATION_DATA.P_CURRENT == $P_PAGE.PAGE}active{/IF}">
+          {IF $P_PAGE.PAGE != "..." && $PAGINATION_DATA.P_CURRENT == $P_PAGE.PAGE}
+            <a href="{$P_PAGE.URL}{$PAGINATION_DATA.HASH_P}" class="active" data-translate-page="Strona " data-translate-max=" z {$PAGINATION_DATA.P_ALL_PAGES}">
+              {$P_PAGE.PAGE}
+            </a>
+          {ELSEIF $P_PAGE.PAGE != "..."}
+            <a href="{$P_PAGE.URL}{$PAGINATION_DATA.HASH_P}">
+              {$P_PAGE.PAGE}
+            </a>
+          {ELSE}
+            <span>
+              ...
+            </span>
+          {/IF}
+        </li>
+      {/LOOP}
+      <li>
+        {IF $PAGINATION_DATA.P_RIGHT_URL}
+          <a href="{$PAGINATION_DATA.P_RIGHT_URL}{$PAGINATION_DATA.HASH_P}">
+            <i class="fa fa-chevron-right"></i>
+          </a>
+        {ELSE}
+          <span>
+            <i class="fa fa-chevron-right"></i>
+          </span>
+        {/IF}
+      </li>
+    </ul>
+  </div>
+{/IF}

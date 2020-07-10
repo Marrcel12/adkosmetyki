@@ -1,0 +1,89 @@
+<ul class="products {IF count($CART) == 0}hidden{/IF}">
+  <li class="product-template hidden" data-hash="{{:hash:}}" data-amount="{{:amount:}}">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-3">
+          <a href="#{{:url:}}" rel="nofollow">
+            <img src="/view/new/img/transparent.png" class="product-image" data-src="{{:image:}}_125.jpg" alt="" />
+          </a>
+        </div>
+        <div class="col-xs-8">
+          <a href="#{{:url:}}" rel="nofollow">
+            <span class="product-name">{{:name:}}</span>
+          </a>
+          <span class="product-total">{{:amount:}} x <strong class="core_priceFormat" data-price="{{:price:}}" data-tax="{{:tax:}}" data-price-type-placeholder="{$PRICE_TYPE}">{{:price:}}</strong>
+            {IF $PRICE_TYPE == 'netto' || $PRICE_TYPE == 'netto_brutto'}
+              {$L_NET}
+            {ELSEIF $PRICE_TYPE == 'brutto'}
+              {$L_GROSS}
+            {/IF}
+          </span>
+        </div>
+        <div class="col-xs-1">
+          <i class="close-shape core_removeFromCart"></i>
+        </div>
+      </div>
+    </div>
+  </li>
+  {LOOP FROM=$CART VALUE=ITEM}
+    <li data-hash="{$ITEM.hash}" data-amount="{$ITEM.amount}">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-3">
+            <a href="{$ITEM.url}">
+              <img class="product-image" src="{$ITEM.img}_125.jpg" alt="" />
+            </a>
+          </div>
+          <div class="col-xs-8">
+            <a href="{$ITEM.url}">
+              <span class="product-name">{$ITEM.name}</span>
+            </a>
+            <span class="product-total">{$ITEM.amount} x <strong class="core_priceFormat" data-price="{$ITEM.price}" data-tax="{$ITEM.tax}" data-price-type="{$PRICE_TYPE}">{$ITEM.price}</strong>
+              {IF $PRICE_TYPE == 'netto' || $PRICE_TYPE == 'netto_brutto'}
+                {$L_NET}
+              {ELSEIF $PRICE_TYPE == 'brutto'}
+                {$L_GROSS}
+              {/IF}
+            </span>
+          </div>
+          <div class="col-xs-1">
+            <i class="close-shape core_removeFromCart"></i>
+          </div>
+        </div>
+      </div>
+    </li>
+  {/LOOP}
+</ul>
+<span class="cart-empty {IF $CART}hidden{/IF}">
+  {$L_CART_EMPTY}
+</span>
+<div class="actions">
+  <div class="quick-cart-summary">
+    <div class="summary-element {IF !$FREE_SHIPMENT_FROM}hidden{/IF} core_cartIsFreeShipment">
+      <span>{$L_FOR_FREE_DELIVERY_IS_MISSING}</span>
+      <span class="value core_priceFormat core_cartFreeShipment"></span>
+    </div>
+    <div class="summary-element hidden core_cartIsFreeShipmentActive">
+      <span class="value-upper">{$L_FREE_DELIVERY}</span>
+    </div>
+    <div class="summary-element">
+      <span>{$L_TOTAL_VALUE} {IF $PRICE_TYPE == 'netto' || $PRICE_TYPE == 'netto_brutto'}{$L_NET}{/IF}</span>
+      <span class="value core_quickCartTotalPrice core_cartFreeShipmentListener core_priceFormat" data-free-shipment="{$FREE_SHIPMENT_FROM}" {IF $PRICE_TYPE == 'netto' || $PRICE_TYPE == 'netto_brutto'}data-free-shipment-type="netto"{ELSE}data-free-shipment-type="brutto"{/IF} {IF $PRICE_TYPE == 'netto' || $PRICE_TYPE == 'netto_brutto'}data-price="{$CART_SUM_NET}"{ELSE}data-price="{$CART_SUM}"{/IF}>
+        {IF $PRICE_TYPE == 'netto' || $PRICE_TYPE == 'netto_brutto'}
+          {$CART_SUM_NET}
+        {ELSE}
+          {$CART_SUM}
+        {/IF}
+      </span>
+    </div>
+    {IF $PRICE_TYPE == 'netto' || $PRICE_TYPE == 'netto_brutto'}
+      <div class="summary-element">
+        <span>{$L_TOTAL_VALUE} {$L_GROSS}</span>
+        <span class="value core_quickCartTotalPriceBrutto core_priceFormat" data-price="{$CART_SUM}">{$CART_SUM}</span>
+      </div>
+    {/IF}
+  </div>
+  <a href="/cart/" class="btn btn-primary btn-block">
+    {$L_MAKE_ORDER}
+  </a>
+</div>

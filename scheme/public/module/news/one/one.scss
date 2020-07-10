@@ -1,0 +1,12 @@
+.news.mod-news-1 {
+  max-width: $pageWidth;
+  width: 100%;
+  margin: 0 auto;
+  padding: 25px 0;
+  & .row {
+    & img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}

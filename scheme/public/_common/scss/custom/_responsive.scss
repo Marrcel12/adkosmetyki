@@ -1,0 +1,10 @@
+@media all and (max-width: $pageWidth + $scrollBarWidth + 33px * 2){
+  .owl-controls {
+    & .owl-prev {
+      left: 0 !important;
+    }
+    & .owl-next {
+      right: 0 !important;
+    }
+  }
+}

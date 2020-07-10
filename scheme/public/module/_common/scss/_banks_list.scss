@@ -1,0 +1,90 @@
+.common-banks-list {
+  & .fa-spin {
+    padding: 150px 0;
+    position: relative !important;
+  }
+  & .bank {
+    padding: 5px;
+    & .bank-container {
+      border: 1px solid $primaryColor;
+      @include border-radius(5px);
+      cursor: pointer;
+      & .bank-logo {
+        width: 100%;
+        padding-bottom: 55%;
+        position: relative;
+        & .bank-logo-container {
+          position: absolute;
+          top: 5px;
+          right: 5px;
+          bottom: 5px;
+          left: 5px;
+          border: 1px solid $secoundaryColor;
+          @include border-radius(3px);
+          background: $primaryColor;
+          overflow: hidden;
+          text-align: center;
+          & img {
+            max-width: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            @include transform(translate(-50%,-50%));
+          }
+        }
+      }
+      & .bank-name {
+        display: block;
+        text-align: center;
+        padding: 5px;
+        color: rgba($fontColor,5/10);
+        height: 38px;
+        font-size: 12px;
+      }
+    }
+    &:hover {
+      & .bank-container {
+        border: 1px solid $secoundaryColor;
+        background: rgba($secoundaryColor,5/10);
+      }
+    }
+  }
+  &.banks-skypay {
+    & .bank {
+      & .bank-container {
+        & .bank-logo {
+          padding-bottom: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 480px) {
+  .common-banks-list {
+    & .bank {
+      & .bank-container {
+        display: table;
+        width: 100%;
+        border: 1px solid $secoundaryColor;
+        background: rgba($secoundaryColor,5/10);
+        & .bank-logo {
+          height: 60px;
+          width: 90px;
+          padding-bottom: 0;
+          margin-right: 10px;
+          float: left;
+        }
+        & .bank-name {
+          display: table-cell;
+          height: 0;
+          padding: 0;
+          width: 100%;
+          vertical-align: middle;
+          text-align: left;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

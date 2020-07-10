@@ -1,0 +1,110 @@
+& .search {
+  min-height: 80px;
+  line-height: initial;
+  font-size: 14px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: $primaryColor;
+  margin: 0;
+  padding: 0 0 7px;
+  @include box-shadow(0 1px 3px rgba(0,0,0,2/10));
+  & .search-loading {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba($secoundaryColor,5/10);
+    z-index: 2;
+  }
+  & .search-information {
+    & .information {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      font-weight: 500;
+      font-size: 16px;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      @include transform(translateY(-50%));
+    }
+  }
+  & .search-results {
+    width: 100%;
+    & tr {
+      border-bottom: 1px solid $secoundaryColor;
+      cursor: pointer;
+      &:nth-of-type(2) {
+        border-top: 1px solid $secoundaryColor;
+      }
+      &:hover {
+        background: $secoundaryColor;
+      }
+      & > [class*='search-'] {
+        padding: 10px 7px;
+        position: relative;
+        &:first-of-type {
+          padding-left: 15px;
+        }
+        &:last-of-type {
+          padding-right: 15px;
+        }
+        & .link {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+        }
+      }
+    }
+    & .search {
+      &-img {
+        width: 35px;
+        position: relative;
+        & img {
+          width: 35px;
+          position: relative;
+          z-index: 1;
+        }
+      }
+      &-info {
+        text-align: left;
+        & .title {
+          font-size: 14px;
+          font-weight: 500;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-height: 39.2px;
+        }
+      }
+      &-price {
+        width: 100px;
+        text-align: right;
+        font-weight: 500;
+        & .price-normal {
+          font-size: 14px;
+          text-decoration: line-through;
+          color: rgba($priceNormal,6/10);
+        }
+        & .price-special {
+          font-size: 14px;
+          color: $priceColor;
+        }
+      }
+    }
+  }
+  & .search-count {
+    text-align: center;
+    padding-top: 9px;
+    & .count {
+      font-weight: 500;
+    }
+  }
+}

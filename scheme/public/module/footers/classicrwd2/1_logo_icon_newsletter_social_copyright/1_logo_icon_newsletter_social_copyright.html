@@ -1,0 +1,125 @@
+<footer id="footer" class="mod-footer-1 full-width">
+  <div class="footer-container">
+    <a href="/" class="mobile-logo">
+      {IF $MODULE.children.footer_shop_logo[0].props.preview}
+        <img src="{$MODULE.children.footer_shop_logo[0].props.preview}" alt="{IF $MODULE.children.logo_alt[0].props.value} {$MODULE.children.logo_alt[0].props.value} {ELSE} {$LOGO_ALT} {/IF}" />
+      {ELSE}
+        <img src="{$MODULE.children.common_shop_logo[0].props.preview}" alt="{IF $MODULE.children.logo_alt[0].props.value} {$MODULE.children.logo_alt[0].props.value} {ELSE} {$LOGO_ALT} {/IF}" />
+      {/IF}
+    </a>
+    <div class="container-fluid">
+      <div class="row">
+        
+        {LOOP FROM=$MODULE.children.footer_group[0].children VALUE=MENU_ELEMENT INDEX=INDEX}
+          {IF $INDEX <= 2}
+            <div class="col-xxs col-xs-12 col-sm-6 col-md-3">
+              {IF $INDEX == 1}
+                <a href="/" class="logo">
+                  {IF $MODULE.children.footer_shop_logo[0].props.preview}
+                    <img src="{$MODULE.children.footer_shop_logo[0].props.preview}" alt="{IF $MODULE.children.logo_alt[0].props.value} {$MODULE.children.logo_alt[0].props.value} {ELSE} {$LOGO_ALT} {/IF}" />
+                  {ELSE}
+                    <img src="{$MODULE.children.common_shop_logo[0].props.preview}" alt="{IF $MODULE.children.logo_alt[0].props.value} {$MODULE.children.logo_alt[0].props.value} {ELSE} {$LOGO_ALT} {/IF}" />
+                  {/IF}
+                </a>
+              {/IF}
+              <div class="section-title {IF $INDEX == 1} hidden-on-desktop {/IF} ">
+                <span>{$MENU_ELEMENT.props.name}</span>
+              </div>
+              <ul class="menu">
+                {LOOP FROM=$MENU_ELEMENT.children VALUE=LINK}
+                  <li>
+                    {IF $LINK.props.type == 'link'}
+                      <a href="{$LINK.url}">{$LINK.props.name}</a>
+                    {ELSE}
+                      <a href="{$LINK.props.content}" {IF $LINK.props.target == 'true'}target="_blank"{/IF}>{$LINK.props.name}</a>
+                    {/IF}
+                  </li>
+                {/LOOP}
+              </ul>
+            </div>
+          {/IF}
+        {/LOOP}
+
+        <div class="col-xxs col-xs-12 col-sm-6 col-md-3">
+            <div class="section-title">
+              <span>{$MODULE.children.footer_newsletter_heading[0].props.value}</span>
+            </div>
+            <ul class="menu">
+              <li>{$MODULE.children.footer_newsletter_tease[0].props.value}</li>
+              <li>
+                <form>
+                  <input class="input-field" name="email" type="email" value="" placeholder="{$L_INPUT_EMAIL}" />
+                  <input type="submit" value="OK" class="btn btn-primary btn-block core_addEmailToNewsletter">
+                </form>
+              </li>
+            </ul>
+          </div>
+
+        <div class="col-xxs col-xs-12 col-sm-6 col-md-3">
+          <div class="contact-wrapper">
+            <div class="section-title">
+                <span>{$L_ADDRESS_DATA}</span>
+              </div>
+              <ul class="menu">
+                {IF $MODULE.children.footer_phone[0].props.value || $SHOP_BASIC_DATA.ownerPhoneNumber}
+                  <li>
+                    <div class="row">
+                      {IF $MODULE.children.footer_phone[0].props.value}
+                        <div class="col-xs-12 pre-line phone">{$MODULE.children.footer_phone[0].props.value}</div>
+                      {ELSEIF $SHOP_BASIC_DATA.ownerPhoneNumber}
+                        <div class="col-xs-12 pre-line phone">{$SHOP_BASIC_DATA.ownerPhoneNumber}</div>
+                      {/IF}
+                    </div>
+                  </li>
+                {/IF}
+
+                {IF $MODULE.children.footer_address[0].props.value}
+                  <li>
+                    <div class="row">
+                      <div class="col-xs-12 pre-line adress">{$MODULE.children.footer_address[0].props.value}</div>
+                    </div>
+                  </li>
+                {ELSEIF $SHOP_BASIC_DATA.shopName || $SHOP_BASIC_DATA.personOrCompanyName || $SHOP_BASIC_DATA.ownerAddress || $SHOP_BASIC_DATA.ownerCity || $SHOP_BASIC_DATA.ownerPostalCode}
+                  <li>
+                    <div class="row">
+                      <div class="col-xs-12 adress">
+                        {IF $SHOP_BASIC_DATA.shopName}
+                          {$SHOP_BASIC_DATA.shopName} <br />
+                        {/IF}
+                        {IF $SHOP_BASIC_DATA.personOrCompanyName}
+                          {$SHOP_BASIC_DATA.personOrCompanyName} <br />
+                        {/IF}
+                        {IF $SHOP_BASIC_DATA.ownerAddress}
+                          {$SHOP_BASIC_DATA.ownerAddress} <br />
+                        {/IF}
+                        {IF $SHOP_BASIC_DATA.ownerPostalCode}
+                          {$SHOP_BASIC_DATA.ownerPostalCode},
+                        {/IF}
+                        {IF $SHOP_BASIC_DATA.ownerCity}
+                          {$SHOP_BASIC_DATA.ownerCity}
+                        {/IF}
+                      </div>
+                    </div>
+                  </li>
+                {/IF}
+                {IF $MODULE.children.footer_email[0].props.value || $SHOP_BASIC_DATA.mainShopEmail}
+                  <li>
+                    <div class="row">
+                      {IF $MODULE.children.footer_email[0].props.value}
+                        <div class="col-xs-12 pre-line mail">{$MODULE.children.footer_email[0].props.value}</div>
+                      {ELSEIF $SHOP_BASIC_DATA.mainShopEmail}
+                        <div class="col-xs-12 pre-line mail">{$SHOP_BASIC_DATA.mainShopEmail}</div>
+                      {/IF}
+                    </div>
+                  </li>
+                {/IF}
+                {INCLUDE file="./".$TEMPLATE."/scheme/public/module/footers/classicrwd2/private/html/social-media.html"}
+              </ul>
+            </div>
+          </div>
+
+      </div>
+    </div>
+  </div>
+</footer>
+{INCLUDE file="./".$TEMPLATE."/scheme/public/module/footers/classicrwd2/private/html/footer-rights.html"}

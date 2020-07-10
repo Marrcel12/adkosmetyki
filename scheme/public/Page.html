@@ -1,0 +1,7 @@
+{INCLUDE file="scheme/public/header.html"}
+
+{LOOP FROM=$MODULES KEY=MODULE_ID VALUE=VALUE}
+	{INCLUDE file=$VALUE.path.".html" MODULE=$VALUE}
+{/LOOP}
+
+{INCLUDE file="scheme/public/footer.html"}

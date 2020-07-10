@@ -1,0 +1,27 @@
+.products-slider.mod-products-slider-1 {
+  max-width: $pageWidth;
+	width: 100%;
+	margin: 0 auto;
+  padding: 25px 0;
+  & .carousel {
+    opacity: 0;
+    &.tab-hidden {
+      @include opacity(0);
+      display: none;
+    }
+    @import "../../_common/scss/_owl_controls.scss";
+  }
+  @import "../../_common/scss/_product_tile.scss";
+}
+
+@media all and (max-width: 767px) {
+  .products-slider.mod-products-slider-1 {
+    & .heading {
+      & ul {
+        & li {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

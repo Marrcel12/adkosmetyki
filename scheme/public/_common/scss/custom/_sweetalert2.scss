@@ -1,0 +1,279 @@
+.swal2-container {
+  & .swal2-modal {
+    & h2 {
+      line-height: inherit;
+      text-align: left;
+      font-family: $fontFamily;
+      color: $fontColor;
+      font-size: 24px;
+      font-weight: 100;
+      margin: 0;
+      display: inline-block;
+      padding: 0 0 20px;
+      position: relative;
+      float: left;
+      width: 100%;
+      &:after {
+        content: '';
+        width: 80px;
+        height: 1px;
+        background: $mainColor;
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+      }
+    }
+    & .swal2-content {
+      clear: both;
+      text-align: left;
+      font-family: $fontFamily;
+      color: $fontColor;
+      font-size: 16px;
+      font-weight: 100;
+    }
+    & .swal2-spacer {
+      display: none !important;
+    }
+    & .btn {
+      @include border-radius(4px);
+      font-weight: 500;
+      font-size: 14px;
+      padding: 6px 12px;
+      margin: 0;
+      margin-top: 50px;
+    }
+    &.swal-shop-paczkomaty-popup {
+      position: relative;
+      & .swal2-confirm {
+        position: absolute;
+        top: 15px;
+        right: -5px;
+        margin: 0;
+        border: 0 !important;
+        background: transparent !important;
+        display: none !important;
+      }
+    }
+    &.swal-shop-parameters-popup {
+      & .product-parameters {
+        width: 100%;
+        font-size: 14px;
+        & tr {
+          & td {
+            &:first-of-type {
+              width: 40%;
+              text-align: right;
+              padding-right: 10px;
+            }
+            &:not(:first-of-type) {
+              padding: 6px 0;
+            }
+          }
+        }
+        & .select-field-select2, & .select-field-select2-container {
+          min-width: 125px;
+          max-width: 200px;
+          margin: 0;
+          padding: 0;
+        }
+        & .text-field {
+          font-size: 14px;
+          padding: 8px 0;
+          font-weight: 500;
+        }
+      }
+    }
+    &.swal-shop-action-popup {
+      position: relative;
+      & h2 {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        width: auto;
+      }
+      & .swal2-icon {
+        margin-top: 64px;
+      }
+      & .swal2-content {
+        text-align: center;
+      }
+      & .btn {
+        &.swal2-cancel {
+          margin-left: 15px;
+        }
+      }
+    }
+    &.swal-shop-newsletter-popup {
+      position: relative;
+      max-height: 450px;
+      height: 100%;
+      & > h2, & .swal2-icon {
+        display: none !important;
+      }
+      & .swal2-content {
+        height: 100%;
+        text-align: center;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        & .container-fluid {
+          height: 100%;
+          & > .row {
+            height: 100%;
+            & > [class*='col-'] {
+              height: 100%;
+              padding: 25px 50px;
+              & > div {
+                position: relative;
+                display: inline-block;
+                width: 60%;
+                text-align: left;
+                float: right;
+                top: 50%;
+                @include transform(translateY(-50%));
+                & h2 {
+                  margin-bottom: 15px;
+                }
+                & .ss-error-container {
+                  right: 0;
+                  &:before {
+                    @include border-top-left-radius(26px);
+                    @include border-bottom-left-radius(26px);
+                  }
+                }
+                & .newsletter-form {
+                  width: 100%;
+                  display: inline-block;
+                  float: right;
+                  margin-top: 25px;
+                  position: relative;
+                  z-index: 1;
+                  & [class*='col-']:first-of-type {
+                    padding-right: 0;
+                  }
+                  & [class*='col-']:last-of-type {
+                    padding-left: 0;
+                  }
+                  & .newsletter-input {
+                    height: 50px;
+                    border: 0;
+                    @include border-radius(0);
+                    @include border-top-left-radius(25px);
+                    @include border-bottom-left-radius(25px);
+                    outline: none;
+                    border: 3px solid rgba($fontColor,3/10);
+                    border-right: 0;
+                    background-clip: padding-box;
+                    color: $fontColor;
+                    padding: 0 15px;
+                    width: 100%;
+                  }
+                  & .newsletter-button {
+                    height: 50px;
+                    border: 0;
+                    @include border-radius(0);
+                    @include border-top-right-radius(25px);
+                    @include border-bottom-right-radius(25px);
+                    border: 3px solid rgba($fontColor,3/10) !important;
+                    border-left: 0;
+                    outline: none;
+                    background: rgba($fontColor,8/10) !important;
+                    color: #ffffff !important;
+                    font-weight: 600;
+                    width: 100%;
+                    background-clip: padding-box;
+                    padding-right: 10px;
+                    margin-top: 0;
+                    &:hover {
+                      color: $mainColor !important;
+                    }
+                  }
+                }
+              }
+              & .close-shape {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+              }
+            }
+          }
+        }
+      }
+      & .btn {
+        &.swal2-cancel, &.swal2-confirm {
+          display: none !important;
+        }
+      }
+    }
+    &.swal-shop-ask-about-product-popup {
+      & .product-opinions {
+        & .product-add-opinion {
+          width: 100%;
+          & .parameter-name {
+            color: $fontColor;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+          }
+          & tr {
+            & td {
+              padding: 0;
+            }
+            & td:first-of-type {
+              width: 1px;
+              white-space: nowrap;
+              padding-right: 15px;
+            }
+          }
+          & .input-field, & .textarea-field {
+            margin: 5px 0;
+            width: 100%;
+            max-width: 100%;
+            resize: none;
+          }
+          & .rate-field {
+            margin: 9px 0;
+          }
+        }
+        & .btn-opinion-add {
+          margin: 25px 0 0;
+          position: relative;
+          left: 50%;
+          @include transform(translateX(-50%));
+        }
+      }
+      & .close-shape {
+        position: absolute;
+        top: -49px;
+        right: 5px;
+      }
+      & .btn {
+        &.swal2-cancel, &.swal2-confirm {
+          display: none !important;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 480px) {
+  .swal2-container {
+    & .swal2-modal {
+      & .btn {
+        margin-top: 10px;
+        margin-left: 0 !important;
+        clear: both;
+        float: left;
+        position: relative;
+        left: 50%;
+        @include transform(translateX(-50%));
+        &:first-of-type {
+          margin-top: 50px;
+        }
+      }
+    }
+  }
+}

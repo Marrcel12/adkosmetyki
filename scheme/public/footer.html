@@ -1,0 +1,90 @@
+    </main>
+    <div class="fixed-elements">
+      {IF $DISABLE_ACCESS}
+      	{INCLUDE file="./".$TEMPLATE."/scheme/public/_common/html/widgets/shop-close.html"}
+      {/IF}
+      {IF $CONDIT_ACCESS}
+      	{INCLUDE file="./".$TEMPLATE."/scheme/public/_common/html/widgets/conditional-access.html"}
+      {/IF}
+      {IF $SHOP_INACTIVE}
+        {INCLUDE file="./".$TEMPLATE."/scheme/public/_common/html/widgets/shop-inactive.html"}
+      {/IF}
+      {IF $ADMIN}
+        <div id="admin-actions">
+          <div class="admin-action action-admin">
+            <a href="/admin" target="_blank">
+              <img src="/{$TEMPLATE}/scheme/public/_common/img/action-admin.png" alt="" />
+              <span>Panel<br />admina</span>
+            </a>
+          </div>
+            {IF !$ADMIN_REFLINK_PARTNER}
+              <div class="admin-action action-creator">
+                <a href="/creator" target="_blank">
+                  <img src="/{$TEMPLATE}/scheme/public/_common/img/action-creator.png" alt="" />
+                  <span>Kreator<br />wyglądu</span>
+                </a>
+              </div>
+            {/IF}
+        </div>
+      {/IF}
+      <div id="to-top">
+        <i class="fa fa-angle-up"></i>
+      </div>
+		{IF $SHOP_TEST}
+			{IF $WRONG_EMAIL}
+				<div class="skyshop-test-shop long-info">
+					Podczas zakładania sklepu testowego został podany nieistniejący adres e-mail na który nie dochodzą istotne informacje dotyczące sklepu.<br />Aby sklep mógł funkcjonować konieczne jest przesłanie na e-mail: info@sky-shop.pl prośby o zmianę adresu e-mail lub założenie nowego sklepu testowego z innym loginem oraz istniejącym adresem e-mail.
+				</div>
+			{/IF}
+      {IF $CONTROLER == 'cart'}
+				<div class="skyshop-test-shop">{$L_SHOP_TEST}</div>
+			{/IF}
+		{/IF}
+      <div class="swipe-panel">
+        <div class="swipe-panel-content"></div>
+        <div class="swipe-panel-close-area"></div>
+      </div>
+    </div>
+    <script src="/{$TEMPLATE}/scheme/public/_common/js/images.js?v={$SCRIPTS_CACHE_NUM}"></script>
+
+    {INCLUDE file="./".$TEMPLATE."/scheme/public/_common/html/microdata/store.html"}
+    {INCLUDE file="scheme/public/_common/html/plugins/external-scripts-footer.html"}
+    {IF $TRUSTED_SHOPS_ID}
+    <script type="text/javascript">
+        (function () {
+            var _tsid = '{$TRUSTED_SHOPS_ID}';
+            _tsConfig = {
+                'yOffset': '100', /* offset from page bottom */
+                'variant': 'reviews', /* default, reviews, custom, custom_reviews */
+                'customElementId': '', /* required for variants custom and custom_reviews */
+                'trustcardDirection': '', /* for custom variants: topRight, topLeft, bottomRight, bottomLeft */
+                'customBadgeWidth': '', /* for custom variants: 40 - 90 (in pixels) */
+                'customBadgeHeight': '', /* for custom variants: 40 - 90 (in pixels) */
+                'disableResponsive': 'false', /* deactivate responsive behaviour */
+                'disableTrustbadge': 'false' /* deactivate trustbadge */
+            };
+            var _ts = document.createElement('script');
+            _ts.type = 'text/javascript';
+            _ts.charset = 'utf-8';
+            _ts.async = true;
+            _ts.src = '//widgets.trustedshops.com/js/' + _tsid + '.js';
+            var __ts = document.getElementsByTagName('script')[0];
+            __ts.parentNode.insertBefore(_ts, __ts);
+        })();
+    </script>
+    {/IF}
+    {IF $TRUSTED_SHOPS_ACTIVE && $IS_ORDER_FINISH}
+    <div id="trustedShopsCheckout" style="display: none;">
+        <span id="tsCheckoutOrderNr">{$ORDER.ord_id}</span>
+        <span id="tsCheckoutBuyerEmail">{$ORDER.ord_email}</span>
+        <span id="tsCheckoutOrderAmount">{$TRUSTED_SHOPS_PRICE}</span>
+        <span id="tsCheckoutOrderCurrency">{$CURRENCY_EQU}</span>
+        <span id="tsCheckoutOrderPaymentType">{$ORDER.payment.pay_name}</span>
+    </div>
+    {/IF}
+
+    <script>{INCLUDE file="./".$TEMPLATE."/scheme/public/_common/js/langs.js"}</script>
+    <script src="{$COLOR_PATH}{$FILENAME_JS}?v={$SCRIPTS_CACHE_NUM}"></script>
+    <script>try{{INCLUDE file="./".$COLOR_PATH."user.js"}}catch(error){console.error(error)}</script>
+  </body>
+</html>

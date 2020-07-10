@@ -1,0 +1,106 @@
+.products-list-page.mod-products-list-page-2 {
+  max-width: $pageWidth;
+  width: 100%;
+  margin: 0 auto 30px;
+  .container-fluid .row .col-xs-12 > .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  @import "../../../_common/classicrwd2/scss/_product_tile.scss";
+  @import "../private/scss/_utils_1.scss";
+  @import "../private/scss/_list_options_1.scss";
+  @import "../private/scss/_column_left_1.scss";
+  & .parameters {
+    margin-bottom: 25px;
+    padding: 0 25px;
+    position: relative;
+    z-index: 12;
+    & .input-search-box {
+      position: relative;
+      & > div[class*="col-"] {
+        &:first-of-type {
+          width: 100% !important;
+          padding-right: 60px;
+          & .input-field {
+            border-right: 0;
+            @include border-top-right-radius(0);
+            @include border-bottom-right-radius(0);
+            &:focus {
+              border-top: 1px solid #eee !important;
+              border-left: 1px solid #eee !important;
+              border-bottom: 1px solid #eee !important; 
+            }
+          }
+        }
+        &:last-of-type {
+          width: 43px !important;
+          padding: 0;
+          position: absolute;
+          right: 15px;
+          & .btn {
+            @include border-top-left-radius(0);
+            @include border-bottom-left-radius(0);
+            margin: 6px 0 12px;
+            padding-left: 0;
+            padding-right: 0;
+            background: transparent !important;
+            color: $fontColor;
+            border-top: 1px solid #eee !important;
+            border-right: 1px solid #eee !important;
+            border-bottom: 1px solid #eee !important;
+            &:hover, &:focus, &:active {
+              border-top: 1px solid #eee !important;
+              border-right: 1px solid #eee !important;
+              border-bottom: 1px solid #eee !important;
+              background: transparent border-box !important;
+            }
+            i {
+              color: $fontColor; 
+            }
+          }
+        }
+      }
+      &:hover {
+        & > div[class*="col-"] {
+          &:first-of-type {
+            & .input-field {
+              border-top: 1px solid $mainColor !important;
+              border-left: 1px solid $mainColor !important;
+              border-bottom: 1px solid $mainColor !important;            }
+          }
+          &:last-of-type {
+            .btn {
+              border-top: 1px solid $mainColor !important;
+              border-right: 1px solid $mainColor !important;
+              border-bottom: 1px solid $mainColor !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 1000px) {
+  .products-list-page.mod-products-list-page-2 {
+    & .list-options {
+      @import "../../../_common/classicrwd2/scss/_pagination_mobile.scss";
+    }
+  }
+}
+
+@media all and (max-width: 767px) {
+  .products-list-page.mod-products-list-page-2 {
+    & .category-description {
+      &.descriptionHidden{
+        display: none; 
+    }
+    }
+  }
+}
+
+@media all and (max-width: 480px) {
+  .products-list-page.mod-products-list-page-2 {
+    @import "../../_common/scss/list_options_1_rwd.scss";
+  }
+}

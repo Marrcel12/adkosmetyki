@@ -1,0 +1,212 @@
+*, a, a:focus, a:active, a:visited {
+	outline: none;
+}
+
+html.touch {
+	width: auto;
+	height: auto;
+	overflow-y: auto;
+	& body {
+		width: auto;
+		height: auto;
+	}
+	&.prevent-scroll {
+		overflow-y: hidden;
+	}
+}
+
+body {
+	font-family: $fontFamily;
+	font-size: $fontSize;
+	color: $fontColor;
+}
+
+body > .skyshop-container {
+	overflow: hidden;
+	& > section, & > header, & > footer {
+		@include transform(translate3d(0,0,0));
+	}
+}
+
+sup {
+	// top: 6px; na razie wylaczamy bo m2 spadaja na dol w opisach a Szymon nie wie czemu to dal ale jakis powod musial byc...
+}
+
+@media all and (min-width: 768px) {
+	html.prevent-scroll-desktop {
+		overflow: hidden !important;
+	}
+}
+
+@media all and (max-width: 767px) {
+	html.prevent-scroll {
+		overflow: hidden !important;
+	}
+	body > main {
+		@include transition(padding 0.2s ease-in-out);
+		&.mobile-search-show {
+			padding-top: 100px;
+			@include transition(padding 0.2s ease-in-out);
+		}
+	}
+}
+
+a {
+	color: $mainColor;
+	&:hover, &:focus {
+		color: $mainColor;
+	}
+}
+
+.required {
+	color: $closeColor;
+	font-weight: 500;
+}
+
+.mobile-search {
+	display: none;
+}
+
+.skyshop-test-shop {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 40px;
+	background: $closeColor;
+	color: #ffffff;
+	text-align: center;
+	font-size: 18px;
+  line-height: 42px;
+	z-index: 10000;
+	overflow: hidden;
+	&.long-info {
+		font-size: 12px;
+    line-height: 17px;
+    padding-top: 4px;
+	}
+}
+
+.shop-test-margin {
+	margin-top: 40px !important;
+}
+
+#admin-actions {
+	position: fixed;
+	bottom: 50px;
+	left: 0;
+	z-index: 100000000;
+	pointer-events: none;
+	& .admin-action {
+		width: 120px;
+		height: 65px;
+		display: inline-block;
+		float: left;
+		clear: both;
+		margin-bottom: 5px;
+		text-align: right;
+		position: relative;
+		pointer-events: all;
+		@include transform(translateX(-70px));
+		@include transition(transform 0.2s ease-in-out);
+		&.action-admin {
+			background: #e04953;
+		}
+		&.action-creator {
+			background: #4cb2e8;
+		}
+		&:last-of-type {
+			margin-bottom: 0;
+		}
+		& > a {
+			position: relative;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			cursor: pointer;
+			color: #ffffff;
+			text-decoration: none;
+			font-weight: 600;
+			display: block;
+			width: 100%;
+			height: 100%;
+			& > span {
+				padding-right: 10px;
+				display: inline-block;
+		    line-height: 18px;
+		    top: 50%;
+		    position: relative;
+		    @include transform(translateY(-50%));
+		    float: right;
+			}
+			& > img {
+				padding-right: 10px;
+				float: right;
+		    top: 50%;
+		    position: relative;
+		    @include transform(translateY(-50%));
+			}
+		}
+		&:hover {
+			@include transform(translateX(0));
+			@include transition(transform 0.2s ease-in-out);
+		}
+	}
+}
+
+#to-top {
+	position: fixed;
+	right: 30px;
+	bottom: 30px;
+	width: 60px;
+	height: 60px;
+	background: rgba($mainColor,6/10);
+	color: #ffffff;
+	font-size: 32px;
+	cursor: pointer;
+	@include opacity(0);
+	@include border-radius(4px);
+	@include box-shadow(0 1px 3px rgba(0,0,0,2/10));
+	-webkit-transition: background 0.1s ease-in-out, opacity 0.1s ease-in-out;
+	-moz-transition: background 0.1s ease-in-out, opacity 0.1s ease-in-out;
+	-ms-transition: background 0.1s ease-in-out, opacity 0.1s ease-in-out;
+	-o-transition: background 0.1s ease-in-out, opacity 0.1s ease-in-out;
+	transition: background 0.1s ease-in-out, opacity 0.1s ease-in-out;
+	visibility: hidden;
+	&:hover {
+		background: $mainColor;
+		-webkit-transition: background 0.1s ease-in-out, opacity 0.1s ease-in-out;
+		-moz-transition: background 0.1s ease-in-out, opacity 0.1s ease-in-out;
+		-ms-transition: background 0.1s ease-in-out, opacity 0.1s ease-in-out;
+		-o-transition: background 0.1s ease-in-out, opacity 0.1s ease-in-out;
+		transition: background 0.1s ease-in-out, opacity 0.1s ease-in-out;
+	}
+	&.show {
+		@include opacity(1);
+		-webkit-transition: background 0.1s ease-in-out, opacity 0.1s ease-in-out;
+		-moz-transition: background 0.1s ease-in-out, opacity 0.1s ease-in-out;
+		-ms-transition: background 0.1s ease-in-out, opacity 0.1s ease-in-out;
+		-o-transition: background 0.1s ease-in-out, opacity 0.1s ease-in-out;
+		transition: background 0.1s ease-in-out, opacity 0.1s ease-in-out;
+		visibility: visible;
+	}
+	& .fa {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		@include transform(translate(-50%,-50%));
+	}
+}
+
+@media all and (max-width: 767px) {
+	#admin-actions {
+		display: none;
+	}
+
+	#to-top {
+		right: 20px;
+    bottom: 20px;
+    width: 40px;
+    height: 40px;
+	}
+}

@@ -1,0 +1,58 @@
+<section class="product-card mod-product-card-2">
+  <div class="container-fluid core_loadCard">
+    <div class="row">
+      <div class="col-sm-3 left-parameters">
+        <div class="column-left-wrapper box-shadow">
+
+          <section class="second-heading inside to-left heading-products-list-filters">
+            <ul>
+              <li>
+                <span class="title">{$L_CATEGORIES}</span>
+              </li>
+            </ul>
+          </section>
+          <aside class="column-left dropdowns">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="categories dropdowns">
+                  {INCLUDE file="./".$TEMPLATE."/scheme/public/module/products-lists-pages/_common/html/categories-tree.html" CATS_TREE=$CATS}
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+      <div class="col-sm-9">
+        <div class="product-wrapper card-bg-color border-wrapper box-shadow">
+          <section class="second-heading inside to-left">
+            <ul>
+              <li>
+                <h1 class="title">{$NAME}</h1>
+              </li>
+            </ul>
+          </section>
+          <div class="row">
+            <div class="product-content">
+              <div class="col-xxs col-sm-5 col-md-5">
+                {INCLUDE file="./".$TEMPLATE."/scheme/public/module/product-card/_common/html/product-gallery.html" GALLERY_RATIO=0.8}
+              </div>
+              <div class="col-xxs col-sm-7 col-md-7">
+                {INCLUDE file="./".$TEMPLATE."/scheme/public/module/product-card/_common/html/product-informations.html"}
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row product-tabs-wrapper">
+          <div class="col-md-12">
+            {INCLUDE file="./".$TEMPLATE."/scheme/public/module/product-card/_common/html/product-tabs.html"}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {IF $ADD_PROD_COUNT_VIEWS}
+    <img src="/stat_add_visit/?ajax=1&amp;prod_id={$PROD_ID}&amp;rand={$VISIT_RAND}_2" rel="nofollow" alt="" style="position:fixed;" />
+  {/IF}
+  {INCLUDE file="./".$TEMPLATE."/scheme/public/_common/html/microdata/product.html"}
+</section>

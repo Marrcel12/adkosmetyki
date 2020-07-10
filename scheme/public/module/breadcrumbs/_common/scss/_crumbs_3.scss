@@ -1,0 +1,10 @@
+.breadcrumbs-wrapper {
+  margin: 0 auto;
+  max-width: $pageWidth - 30px;
+  & > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    @import "crumbs.scss";
+  }
+}

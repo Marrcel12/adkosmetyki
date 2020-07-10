@@ -1,0 +1,61 @@
+<div class="section-form">
+   <section class="third-heading mb-md">
+      <ul>
+         <li>
+            <span class="title">{$L_TICKETS_LIST}</span>
+         </li>
+      </ul>
+   </section>
+</div>
+
+<div data-msg-success="{$L_TICKET_ADDED}"></div>
+<div class="account-empty {IF count($TICKETS) > 0}hidden{/IF}">
+   {$L_NO_TICKETS}
+</div>
+<table class="account-table">
+   <thead>
+      <tr>
+         <th class="product-name">
+            {$L_TICKET_TITLE}
+         </th>
+         <th class="product-date">
+            {$L_DATE}
+         </th>
+         <th class="product-total">
+            {$L_TICKET_REPLIES}
+         </th>
+         <th class="product-status">
+            {$L_STATUS}
+         </th>
+         <th class="product-order">
+            {$L_ORDER}
+         </th>
+      </tr>
+   </thead>
+   <tbody class="{IF count($TICKETS) == 0}empty-space{/IF}">
+      {LOOP FROM=$TICKETS VALUE=ITEM KEY=KEY INDEX=INDEX}
+      <tr data-translate="Zgłoszenie">
+         <td class="product-name" data-translate="{$L_TICKET_TITLE}">
+            <span>{$ITEM.ticket_title}</span>
+         </td>
+         <td class="product-date" data-translate="{$L_DATE}">
+            {$ITEM.reply_date}
+         </td>
+         <td class="product-replies" data-translate="{$L_TICKET_REPLIES}">
+            {$ITEM.ticket_replies}
+         </td>
+         <td class="product-status" data-translate="{$L_STATUS}">
+            {$ITEM.ticket_status}
+         </td>
+         <td class="product-order" data-translate="{$L_ORDER}">
+            {IF $ITEM.ticket_order_id}
+            {$ITEM.ticket_order_id}
+            {/IF}
+         </td>
+      </tr>
+      {/LOOP}
+   </tbody>
+   <tfoot>
+      <td colspan="5"></td>
+   </tfoot>
+</table>

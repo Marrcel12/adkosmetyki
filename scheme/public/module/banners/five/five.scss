@@ -1,0 +1,33 @@
+.banner.mod-banner-5 {
+  max-width: $pageWidth;
+	width: 100%;
+	margin: 0 auto;
+  &.full-width {
+    max-width: 100%;
+    & > .container-fluid {
+      & > .row {
+        & [class*='col-'] {
+          padding-left: 0;
+          padding-right: 0;
+        }
+      }
+    }
+  }
+  & [class*='slider-img-'] {
+    overflow: hidden;
+    position: relative;
+    & img {
+      width: auto;
+      height: 100%;
+      position: absolute;
+      left: 50%;
+      @include transform(translateX(-50%));
+    }
+  }
+  & .slider-img {
+    &-1 {
+      width: 100%;
+      padding-bottom: 48.246%;
+    }
+  }
+}

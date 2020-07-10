@@ -1,0 +1,31 @@
+.list-options {
+  margin-bottom: 30px;
+  padding: 10px 30px 0;
+  background-color: $additionalColor;
+  border-radius: $border-radius-small;
+  & .list-option-name {
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 10px 0 20px;
+    color: #131313;
+    display: inline-block;
+    float: left;
+    position: relative;
+    top: -3px;
+    margin-right: 10px;
+  }
+  & .select-field, & .select-field-select2, & .select-field-select2-container {
+    width: 207px;
+    max-width: 207px;
+    float: left;
+    margin: 0px 0 10px;
+  }
+  & [class*='col-']:last-of-type {
+    text-align: right;
+  }
+  @import "_pagination.scss";
+  .pagination {
+    margin-bottom: 10px;
+  }
+}

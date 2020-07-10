@@ -1,0 +1,76 @@
+.top-bar {
+  & .pull-right {
+    & ul {
+      & li {
+        & .dropdown-quick-cart {
+          pointer-events: initial;
+          position: fixed;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          width: 100%;
+          min-width: inherit;
+          background: transparent;
+          @include box-shadow(none);
+          @include transform(translateX(0));
+          @include opacity(0);
+          visibility: hidden;
+          -webkit-transition: visibility 0s linear 0.2s, opacity 0.2s ease-in-out;
+          -moz-transition: visibility 0s linear 0.2s, opacity 0.2s ease-in-out;
+          -ms-transition: visibility 0s linear 0.2s, opacity 0.2s ease-in-out;
+          -o-transition: visibility 0s linear 0.2s, opacity 0.2s ease-in-out;
+          transition: visibility 0s linear 0.2s, opacity 0.2s ease-in-out;
+          &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgba($fontColor,3/10);
+          }
+          & .products, & .actions {
+            @include transform(translateX(100%));
+            @include transition(transform 0.2s ease-in-out);
+          }
+          & .products, .cart-empty {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            padding: 15px 15px 170px;
+            width: 100%;
+            max-width: $mobileMenuWidth;
+            background: #ffffff;
+            @include box-shadow(0 1px 3px rgba(0,0,0,2/10));
+            & ul {
+              & li {
+                padding: 0;
+              }
+            }
+          }
+          & .actions {
+            position: absolute;
+            width: 100%;
+            max-width: $mobileMenuWidth;
+            bottom: 0;
+            right: 0;
+          }
+          &.open {
+            @include opacity(1);
+            visibility: visible;
+            -webkit-transition: visibility 0s linear 0s, opacity 0.2s ease-in-out;
+            -moz-transition: visibility 0s linear 0s, opacity 0.2s ease-in-out;
+            -ms-transition: visibility 0s linear 0s, opacity 0.2s ease-in-out;
+            -o-transition: visibility 0s linear 0s, opacity 0.2s ease-in-out;
+            transition: visibility 0s linear 0s, opacity 0.2s ease-in-out;
+            & .products, & .actions {
+              @include transform(translateX(0%));
+              @include transition(transform 0.2s ease-in-out);
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+<div class="hidden" itemscope itemtype="http://schema.org/Product">
+  <meta itemprop="name" content="{$NAME}" />
+  <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+    <meta itemprop="availability" content="http://schema.org/{IF $CAN_BUY}InStock{ELSE}OutOfStock{/IF}"/>
+    <meta itemprop="price" content="{$PRICE}" />
+    <meta itemprop="priceCurrency" content="{$CURRENCY_EQU}" />
+  </div>
+</div>

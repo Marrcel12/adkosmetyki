@@ -1,0 +1,31 @@
+<form method="POST" action="/youraccount">
+  <div class="row section-form">
+    <div class="col-md-3 hidden-on-mobile"></div>
+    <div class="col-xs-12 col-md-6">
+      <section class="heading inside">
+        <ul>
+          <li>
+            <span class="title">{$L_USER_DATA_RODO}</span>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <div class="col-md-3 hidden-on-mobile"></div>
+  </div>
+  <div class="row section-desc"></div>
+  <div class="row section-form">
+    <div class="col-xs-12 col-sm-6">
+      <span class="title-section">E-mail</span>
+      <input class="input-field" type="text" name="email" value="" data-valid="required" />
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <span class="title-section">Token</span>
+      <input class="input-field" type="text" name="token" value="" data-valid="required" />
+    </div>
+  </div>
+  <div class="row section-form">
+    <div class="col-xs-12">
+      <button type="submit" name="rodo" value="rodo" class="btn btn-primary btn-lg btn-register-confirm">{$L_SEND}</button>
+    </div>
+  </div>
+</form>

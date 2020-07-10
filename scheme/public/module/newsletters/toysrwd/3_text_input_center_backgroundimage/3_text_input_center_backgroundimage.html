@@ -1,0 +1,16 @@
+<section class="newsletter mod-newsletter-3 full-width">
+  <div class="newsletter-container">
+    <div class="newsletter-background" style="background-image:url('{$MODULE.children.newsletter_background[0].props.preview}')"></div>
+
+      <div class="newsletter-content">
+        <span class="title">{$MODULE.children.newsletter_box_background[0].children[0].props.value}</span>
+        <p>{$MODULE.children.newsletter_box_background[0].children[1].props.value}</p>
+        <form class="newsletter-form">
+            <input type="text" name="email" value="" placeholder="" class="newsletter-input" />
+            <input type="submit" value="{$L_SING_UP}" class="btn newsletter-button core_addEmailToNewsletter" />
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>

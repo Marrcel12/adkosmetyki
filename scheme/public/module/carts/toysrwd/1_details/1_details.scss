@@ -1,0 +1,35 @@
+.cart.mod-cart-1 {
+  max-width: $pageWidth;
+  width: 100%;
+  margin: 0 auto 30px;
+  padding-bottom: 30px;
+
+  @import '../private/scss/_carts.scss';
+
+}
+
+@media all and (max-width: 1000px) {
+  .cart.mod-cart-1 {
+    @import '../private/scss/carts_rwd_lg';
+    .cart-table .product-details .product-parameters tr td:first-of-type {
+      display: none;
+    }
+  }
+}
+
+@media all and (max-width: 767px) {
+  .cart.mod-cart-1 {
+    @import '../private/scss/carts_rwd_sm.scss';
+    & .cart-table {
+    	& > tbody > tr {
+        & > td {
+          &:nth-of-type(2) {
+            display: none !important;
+          }
+      	}
+      }
+    }
+  }
+}
+
+@import '../private/scss/animation.scss';

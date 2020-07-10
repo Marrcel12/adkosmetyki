@@ -1,0 +1,205 @@
+@import "../_common/scss/_cookies.scss";
+
+#header.mod-header-4 {
+	max-width: $pageWidth;
+	width: 100%;
+	margin: 0 auto;
+	z-index: 15;
+	position: relative;
+	@import "../_common/scss/_top_bar_1.scss";
+	@import "../_common/scss/_mobile_search.scss";
+	& .sub-header {
+		display: inline-block;
+		width: 100%;
+		padding: 15px 0;
+		position: relative;
+		& > .container-fluid {
+			display: table;
+			width: 100%;
+			padding: 10px 0;
+			& > .row {
+				display: table-row;
+				& > div[class*="col-"] {
+					display: table-cell;
+					float: none;
+					vertical-align: middle;
+					&:nth-of-type(2) {
+						position: static;
+					}
+				}
+			}
+		}
+		& .logo {
+      display: inline-block;
+			& h1 {
+				margin: 0;
+				font-size: inherit;
+			}
+			& img {
+				max-width: 285px;
+				max-height: 200px;
+			}
+		}
+		@import "../_common/scss/_mobile_actions.scss";
+		& .search-bar {
+			& .fa {
+				font-size: 18px;
+				position: relative;
+				left: 50%;
+				cursor: pointer;
+				@include transform(translate(-50%,2px));
+			}
+			&:hover {
+				& .fa {
+					color: $mainColor;
+				}
+			}
+		}
+	}
+	& .menu {
+		text-align: center;
+		line-height: 0;
+		@include opacity(1);
+		@include transition(opacity 0.05s ease-in-out);
+		&.menu-calculate {
+			max-height: 42px;
+			overflow: hidden;
+			@include opacity(0);
+			@include transition(opacity 0.05s ease-in-out);
+		}
+		& ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			display: inline-block;
+			text-align: left;
+			& li {
+				float: left;
+				position: relative;
+				padding-bottom: 10px;
+				& a {
+			    line-height: 22px;
+			    font-weight: 500;
+			    font-size: 16px;
+			    text-decoration: none;
+			    padding: 10px 15px;
+			    color: $fontColor;
+			    cursor: pointer;
+					display: inline-block;
+			    & .fa {
+			    	font-size: 10px;
+			    	position: relative;
+			    	top: -2px;
+			    	&.fa-search, &.fa-bars {
+			    		font-size: 16px;
+			    		top: 0;
+			    	}
+			    }
+				}
+				@import "../_common/scss/_menu_dropdown_1.scss";
+				&:hover {
+		    	& a {
+			    	color: $topMenuTextColorHover;
+		    	}
+					&:not(.click) {
+						& .dropdown {
+							@include opacity(1);
+					    @include transition(all 0.2s ease-in-out 0.2s);
+					    @include transform(translateY(0));
+					    pointer-events: auto;
+							visibility: visible;
+					    z-index: 2;
+						}
+					}
+		    }
+				@import "../_common/scss/_menu_dropdown_click_3.scss";
+				@import "../_common/scss/_menu_dropdown_single_1.scss";
+				@import "../_common/scss/_menu_dropdown_full_3.scss";
+				@import "../_common/scss/_search_dropdown_1.scss";
+				@import "../_common/scss/_hamburger_dropdown_1.scss";
+			}
+		}
+		& > ul {
+			& > li {
+				padding-bottom: 0;
+			}
+		}
+	}
+}
+
+@media all and (max-width: 992px) {
+	#header.mod-header-4 {
+		& .top-bar {
+			& .pull-left {
+				& ul {
+			    & li {
+						&[data-type="email"] {
+							display: none;
+						}
+						&[data-type="phone"] {
+							&:after {
+								display: none;
+							}
+							& a {
+								width: 15px;
+						    height: 16px;
+						    overflow: hidden;
+						    display: inline-block;
+							}
+						}
+					}
+				}
+			}
+		}
+		& .sub-header {
+			& .logo {
+				& img {
+					max-width: 100%;
+				}
+			}
+		}
+	}
+}
+
+@media all and (max-width: 767px) {
+	#header.mod-header-4 {
+		& .mobile-search {
+			display: block;
+		}
+		@import "../_common/scss/_top_bar_rwd_1.scss";
+		@import "../_common/scss/_sub_header_rwd_2.scss";
+		& .sub-header {
+	    padding: 20px 0;
+			& > .container-fluid {
+				padding: 0;
+				& > .row {
+					& > div[class*="col-"] {
+						display: block;
+					}
+				}
+			}
+			& .logo {
+				padding: 0;
+		    top: 0;
+	    	left: -6px;
+			}
+		}
+		& .menu {
+			display: none;
+		}
+	}
+
+	@import "../_common/scss/_mobile_menu_1.scss";
+
+	.swipe-panel {
+	  & .swipe-panel-content.quick-cart {
+			& .dropdown {
+				@import "../_common/scss/_dropdown_quick_cart_1.scss";
+				min-width: 0 !important;
+				&.dropdown-quick-cart {
+					width: 300px;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,69 @@
+{IF $LOGGED_IN}
+  <li>
+    <span class="link">
+      <span class="helper-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      {IF $ONLY_ICONS != "TRUE"}<span class="hidden-on-mobile">{$L_MYACCOUNT}</span> <i class="fa fa-chevron-down"></i>{/IF}
+    </span>
+    <div class="dropdown">
+      <ul>
+        <li>
+          <a href="/youraccount/">{$L_YOURACCOUNT}</a>
+        </li>
+        {IF $USER_DISCOUNT}
+          <li>
+            <a href="#" class="core_showDiscountInfo" data-info="{$L_DISCOUNT_INFO}">
+              {$L_DISCOUNT} <strong>{$USER_DISCOUNT}</strong>% <i class="fa fa-info"></i>
+            </a>
+          </li>
+        {/IF}
+		{IF $LOYALTY_PROGRAM != 0}
+          <li>
+            <a href="#">
+              {$L_LOYALTY_POINT}: <strong>{$LOYALTY_POINTS}</strong>
+            </a>
+          </li>
+        {/IF}
+        <li>
+          <a href="/ticket/add/">{$L_ADD_TICKET}</a>
+        </li>
+        {IF $STORE_AMOUNT && $STORE_PRODUCT_IN_SHOP != 0}
+          <li>
+            <a href="/category/c/store/">{$L_STORE}</a>
+          </li>
+        {/IF}
+        <li>
+          <a href="/login/logout">{$L_LOGOUT}</a>
+        </li>
+      </ul>
+    </div>
+  </li>
+{ELSE}
+  <li>
+    <span class="link">
+      <span class="helper-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      {IF $ONLY_ICONS != "TRUE"}<span class="hidden-on-mobile">{$L_CUSTOMER_ZONE}</span> <i class="fa fa-chevron-down"></i>{/IF}
+    </span>
+    <div class="dropdown">
+      <ul>
+        <li>
+          <a href="/login/">{$L_LOGIN2}</a>
+        </li>
+        <li>
+          <a href="/register/">{$L_REGISTER2}</a>
+        </li>
+        {IF $STORE_AMOUNT && $STORE_PRODUCT_IN_SHOP != 0}
+          <li>
+            <a href="/category/c/store/">{$L_STORE}</a>
+          </li>
+        {/IF}
+        <li>
+          <a href="/ticket/add/">{$L_ADD_TICKET}</a>
+        </li>
+      </ul>
+    </div>
+  </li>
+{/IF}

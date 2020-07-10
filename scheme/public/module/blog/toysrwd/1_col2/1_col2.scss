@@ -1,0 +1,41 @@
+.blog.mod-blog-1 {
+  max-width: $pageWidth;
+  width: 100%;
+  margin: 0 auto 30px;
+
+  //tiles
+  @import "../../../_common/toysrwd/scss/_post_tile.scss";
+
+  // blog list + entry page
+  @import "../private/scss/_utils_1.scss";
+  
+ // pagination wrapper
+  @import "../../../_common/toysrwd/scss/_list_options_1.scss";
+
+  // pagination
+  @import "../../../_common/toysrwd/scss/_pagination.scss";
+
+  // left category
+  @import "../private/scss/_column_categories_1.scss";
+
+}
+
+@media all and (max-width: 1000px) {
+  .blog.mod-blog-1 {
+    & .list-options {
+      @import "../../../_common/toysrwd/scss/_pagination_mobile.scss";
+    }
+  }
+}
+
+@media all and (max-width: 767px) {
+  .blog.mod-blog-1 {
+    @import "../private/scss/_blog_rwd_xs.scss";
+  }
+}
+
+@media all and (max-width: 480px) {
+  .blog.mod-blog-1 {
+    @import "../../_common/scss/list_options_1_rwd.scss";
+  }
+}

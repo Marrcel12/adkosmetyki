@@ -1,0 +1,65 @@
+<div class="row section-form">
+
+  <section class="third-heading inside mb-md">
+    <ul>
+      <li>
+        <span class="title">{$L_LIST_OF_YOUR_ORDERS}</span>
+      </li>
+    </ul>
+  </section>
+
+</div>
+<div class="row">
+	<div class="col-xs-12">
+    <div class="account-empty {IF !empty($ORDERS)}hidden{/IF}">
+      {$L_NO_ORDERS}
+    </div>
+    <table class="account-table">
+      <thead>
+        <tr>
+          <th class="product-number">
+          	{$L_NUMBER}
+          </th>
+          <th class="product-date">
+            {$L_DATE}
+          </th>
+          <th class="product-total">
+            {$L_TOTAL_VALUE}
+          </th>
+          <th class="product-status">
+            {$L_STATUS}
+          </th>
+          <th class="product-address">
+            {$L_ADDRESS}
+          </th>
+        </tr>
+      </thead>
+      <tbody class="{IF empty($ORDERS)}empty-space{/IF}">
+		{IF !empty($ORDERS)}
+			{LOOP FROM=$ORDERS VALUE=ITEM KEY=KEY INDEX=INDEX}
+				<tr data-translate="{$L_ORDER_NO} #{$ITEM.id}" data-href="/orders/id/{$ITEM.id}/">
+					<td class="product-number" data-translate="{$L_NUMBER}">
+						{$ITEM.id}
+					</td>
+					<td class="product-date" data-translate="{$L_DATE}">
+						{$ITEM.date}
+					</td>
+					<td class="product-total" data-translate="{$L_TOTAL_VALUE}">
+						<span class="core_priceFormat" data-price="{$ITEM.sum}">{$ITEM.sum}</span>
+					</td>
+					<td class="product-status" data-translate="{$L_STATUS}">
+						{$ITEM.status}
+					</td>
+					<td class="product-address" data-translate="{$L_ADDRESS}">
+						{$ITEM.address}
+					</td>
+			  </tr>
+			{/LOOP}
+		{/IF}
+      </tbody>
+      <tfoot>
+      	<td colspan="5"></td>
+      </tfoot>
+    </table>
+	</div>
+</div>

@@ -1,0 +1,150 @@
+<figure class="product-tile">
+  <div class="product-img showcase-next-photo-fade">
+    <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+    <a href="{$PRODUCT_ITEM.url}" title="{$PRODUCT_ITEM.name}">
+      <img src="{$PRODUCT_ITEM.img}_260.jpg" {IF $PRODUCT_RWD}data-rwd="{$PRODUCT_RWD}"{/IF} alt="{$PRODUCT_ITEM.name}" class="product-main-img {IF $PRODUCT_TILE_HOVER == 'second_image' && count($PRODUCT_ITEM.THUMBS) >= 2}is-next{/IF} {IF $PRODUCT_ITEM.img_ratio > 0.8 || $PRODUCT_ITEM.img_ratio == 0.0}horizontal{ELSE}vertical{/IF}" onLoad="imageLoaded(this,'link')" />
+      {IF $PRODUCT_TILE_HOVER == 'second_image' && count($PRODUCT_ITEM.THUMBS) >= 2}
+        <div class="product-img-next">
+          {IF $PRODUCT_ITEM.THUMBS[0].src == $PRODUCT_ITEM.img}
+            <img src="{$PRODUCT_ITEM.THUMBS[1].src}_260.jpg" {IF $PRODUCT_RWD}data-rwd="{$PRODUCT_RWD}"{/IF} alt="{$PRODUCT_ITEM.name}" class="{IF $PRODUCT_ITEM.THUMBS[1].ratio > 0.8 || $PRODUCT_ITEM.THUMBS[1].ratio == 0.0}horizontal{ELSE}vertical{/IF}" />
+          {ELSE}
+            <img src="{$PRODUCT_ITEM.THUMBS[0].src}_260.jpg" {IF $PRODUCT_RWD}data-rwd="{$PRODUCT_RWD}"{/IF} alt="{$PRODUCT_ITEM.name}" class="{IF $PRODUCT_ITEM.THUMBS[0].ratio > 0.8 || $PRODUCT_ITEM.THUMBS[0].ratio == 0.0}horizontal{ELSE}vertical{/IF}" />
+          {/IF}
+        </div>
+      {/IF}
+      {IF $PRODUCT_STATUS && $PRODUCT_STATUS == "TRUE" && !empty($PRODUCT_ITEM.STATUS)}
+        <div class="product-labels">
+          {LOOP FROM=$PRODUCT_ITEM.STATUS VALUE=P_STATUS}
+            <div class="label-{$P_STATUS.status}">{$P_STATUS.txt}</div>
+          {/LOOP}
+        </div>
+      {/IF}
+    </a>
+  </div>
+  <div class="product-desc">
+    <div class="product-separate">
+      <div class="product-name">
+        <a href="{$PRODUCT_ITEM.url}" title="{$PRODUCT_ITEM.name}">
+          <span>{$PRODUCT_ITEM.name}</span>
+        </a>
+      </div>
+      <div class="product-description">
+        <span>{$PRODUCT_ITEM.desc}</span>
+      </div>
+    </div>
+    {IF $CATEGORY_PARAMETERS_PANEL == 'yes' && (
+      ($PRODUCT_ITEM.PRODUCT_SHIP_DAYS) ||
+      ($PRODUCT_ITEM.AMOUNT && $PRODUCT_AVAILABILITY) ||
+      ($PRODUCT_ITEM.WEIGHT && $PRODUCT_WEIGHT)
+    )}
+      <table class="product-parameters">
+        {IF $PRODUCT_ITEM.can_buy}
+          {IF $PRODUCT_ITEM.PRODUCT_SHIP_DAYS}
+            <tr>
+              <td>
+                <span class="parameter-name">{$L_PRODUCT_SHIP_DAYS}</span>
+              </td>
+              <td>
+                <span class="text-field">{$PRODUCT_ITEM.PRODUCT_SHIP_DAYS}</span>
+              </td>
+            </tr>
+          {/IF}
+          {IF $PRODUCT_ITEM.AMOUNT && $PRODUCT_AVAILABILITY}
+            <tr>
+              <td>
+                <span class="parameter-name">{$L_AVAILABILITY}</span>
+              </td>
+              <td>
+                <span class="text-field">
+                  {IF $PRODUCT_ITEM.TEXT_AMOUNT.name}
+                    {$PRODUCT_ITEM.TEXT_AMOUNT.name} {IF $PRODUCT_ITEM.TEXT_AMOUNT.img}<img src="{$PRODUCT_ITEM.TEXT_AMOUNT.img}" />{/IF}
+                  {ELSE}
+                    {IF $PRODUCT_ITEM.AMOUNT < 0}0{ELSE}{$PRODUCT_ITEM.AMOUNT}{/IF} {IF $PRODUCT_ITEM.UNIT}{$PRODUCT_ITEM.UNIT}{/IF}
+                  {/IF}
+                </span>
+              </td>
+            </tr>
+          {/IF}
+          {IF $PRODUCT_ITEM.WEIGHT && $PRODUCT_WEIGHT}
+            <tr>
+              <td>
+                <span class="parameter-name">{$L_WEIGHT}</span>
+              </td>
+              <td>
+                <span class="text-field">{$PRODUCT_ITEM.WEIGHT}</span>
+              </td>
+            </tr>
+          {/IF}
+        {ELSE}
+          <tr>
+            <td>
+              <span class="parameter-name">{$L_THIS_PRODUCT_IS_NOT_AVAILABLE}</span>
+            </td>
+          </tr>
+        {/IF}
+      </table>
+    {/IF}
+    <div class="product-bottom">
+      <div class="product-price">
+        {IF $PRODUCT_ITEM.oldprice && strlen($PRODUCT_ITEM.oldprice) < 11}
+          <span class="price-normal discount">
+            <span class="core_priceFormat" data-price="{$PRODUCT_ITEM.oldprice}" data-tax="{$PRODUCT_ITEM.tax}" data-price-type="{$PRICE_TYPE}">{$PRODUCT_ITEM.oldprice}</span>
+          </span>
+        {/IF}
+        {IF $PRODUCT_ITEM.oldprice && strlen($PRODUCT_ITEM.oldprice) < 11}
+          {IF $STRIKE_PRICE == 'percent_and_strike' || $STRIKE_PRICE == 'percent'}
+            {IF $PRODUCT_ITEM.old_price_percent != 0}
+              <span class="price-discount-percent">{IF $STRIKE_PRICE != 'percent'}-{/IF}{$PRODUCT_ITEM.old_price_percent}%</span>
+            {/IF}
+          {/IF}
+        {/IF}
+        <span class="price-special">
+          <span class="core_priceFormat" data-price="{$PRODUCT_ITEM.price}" data-tax="{$PRODUCT_ITEM.tax}" data-price-type="{$PRICE_TYPE}|show_type">{$PRODUCT_ITEM.price}</span>
+        </span>
+        {IF $PRICE_TYPE == 'netto_brutto' && $PRODUCT_BRUTTO == "TRUE"}
+          <br />
+          {IF $PRODUCT_ITEM.oldprice && strlen($PRODUCT_ITEM.oldprice) < 11}
+            <span class="price-normal discount">
+              <span class="core_priceFormat" data-price="{$PRODUCT_ITEM.oldprice}" data-tax="{$PRODUCT_ITEM.tax}" data-price-type="brutto">{$PRODUCT_ITEM.oldprice}</span>
+            </span>
+          {/IF}
+          {IF $PRODUCT_ITEM.oldprice && strlen($PRODUCT_ITEM.oldprice) < 11}
+            {IF $STRIKE_PRICE == 'percent_and_strike' || $STRIKE_PRICE == 'percent'}
+              {IF $PRODUCT_ITEM.old_price_percent != 0}
+                <span class="price-discount-percent">{IF $STRIKE_PRICE != 'percent'}-{/IF}{$PRODUCT_ITEM.old_price_percent}%</span>
+              {/IF}
+            {/IF}
+          {/IF}
+          <span class="price-special">
+            <span class="core_priceFormat" data-price="{$PRODUCT_ITEM.price}" data-tax="{$PRODUCT_ITEM.tax}" data-price-type="brutto|show_type">{$PRODUCT_ITEM.price}</span>
+          </span>
+        {/IF}
+      </div>
+      {IF !$TURN_OFF_SALES}
+        <div class="product-add-to-cart {IF !$STORE_PRODUCT_IN_SHOP}full{/IF}">
+          {IF $PRODUCT_ITEM.can_buy}
+            <button class="add-to-cart core_addToCart" data-product-id="{$PRODUCT_ITEM.id}">
+              {$L_ADD_TO_CART} <i class="fa fa-cart-plus"></i>
+            </button>
+          {/IF}
+          {IF $STORE_PRODUCT_IN_SHOP}
+            {IF $STORE}
+              <a href="#" class="add-to-store core_removeFromStore" data-product-id="{$PRODUCT_ITEM.id}">
+                <i class="fa fa-trash-o"></i> {$L_REMOVE_FROM_STORE}
+              </a>
+            {ELSE}
+              <a href="#" class="add-to-store core_addToStore" data-product-id="{$PRODUCT_ITEM.id}">
+                <i class="fa fa-heart"></i> {$L_ADD_TO_STORE}
+              </a>
+            {/IF}
+          {/IF}
+        </div>
+        {/IF}
+    </div>
+    {IF $PRODUCT_ITEM.PRODUCER_LOGO}
+      <div class="product-producer-logo">
+        <img src="/{$UPLOAD_DIR}/producers/{$PRODUCT_ITEM.PRODUCER_LOGO}" alt="" />
+      </div>
+    {/IF}
+  </div>
+</figure>

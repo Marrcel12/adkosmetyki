@@ -1,0 +1,49 @@
+& > li {
+  display: inline-block;
+  float: left;
+  position: relative;
+  & > a {
+    color: $fontColor;
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 0;
+    line-height: 21px;
+    &:hover {
+      color: $mainColor;
+    }
+  }
+  &:not(:last-of-type) {
+    padding-right: 25px;
+    &:after {
+      content: '\f105';
+      font-family: 'FontAwesome';
+      position: absolute;
+      right: 10px;
+      top: 10px;
+    }
+  }
+  &:last-of-type {
+    & a {
+      font-weight: 500;
+    }
+  }
+  @import "../headers/../_common/scss/_menu_dropdown_1.scss";
+  & .dropdown {
+    min-width: 270px;
+    width: 270px;
+    padding-bottom: 7px;
+    left: -15px;
+    & a {
+      text-decoration: none;
+    }
+  }
+  &:hover {
+    & .dropdown {
+      @include opacity(1);
+      @include transition(all 0.2s ease-in-out);
+      @include transform(translateY(0));
+      pointer-events: auto;
+      z-index: 2;
+    }
+  }
+}

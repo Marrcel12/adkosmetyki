@@ -1,0 +1,126 @@
+<section class="products-list-page mod-products-list-page-2">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="card-bg-color mb-sm border-wrapper box-shadow">
+          {IF $SEARCH}
+            <section class="second-heading inside to-left">
+              <ul>
+                <li>
+                  {IF $QUERY}
+                    <h1 class="title">"{$QUERY}" {IF $ITEMS_COUNT}- {$L_SEARCH_RESULTS} ({$ITEMS_COUNT}){ELSE} - {$L_SEARCH_NO_RESULTS}{/IF}</h1>
+                  {ELSE}
+                    <h1 class="title">{$L_SEARCH}</h1>
+                  {/IF}
+                </li>
+              </ul>
+            </section>
+          {ELSE}
+            <section class="second-heading inside to-left">
+              <ul>
+                <li>
+                  <h1 class="title">{$CATEGORY_NAME}</h1>
+                </li>
+              </ul>
+            </section>
+          {/IF}
+          {IF $CATEGORY_DESC && $CAT_DESC_POSITION == 'top' && (empty($PAGINATION.category.P_CURRENT) || $PAGINATION.category.P_CURRENT == 1)}
+            <div class="category-description {IF !$CAT_DESC_SHOW} descriptionHidden {/IF}top">
+              {$CATEGORY_DESC}
+            </div>
+          {/IF}
+          {IF $PRODUCER_DESC && $PRODUCER_DESC_POS == 'top'}
+            <div class="category-description {IF !$CAT_DESC_SHOW} descriptionHidden {/IF}top">
+              {$PRODUCER_DESC}
+            </div>
+          {/IF}
+          {IF ($CAT_PRESENT == 'subcats_list' || $CAT_PRESENT == 'products_list') && $CAT_SHOW_SUBCATS == 'yes'}
+            {INCLUDE file="./".$TEMPLATE."/scheme/public/module/products-lists-pages/_common/html/subcategories-list.html"}
+          {/IF}
+          {IF ($CAT_PRESENT == 'subcats_tiles' || $CAT_PRESENT == 'products_tiles') && $CAT_SHOW_SUBCATS == 'yes'}
+            {INCLUDE file="./".$TEMPLATE."/scheme/public/module/products-lists-pages/_common/html/subcategories-tiles.html"}
+          {/IF}
+       </div>
+
+
+        {IF ($CATEGORY_PARAMETERS_SEARCHING == 'yes' && ($SEARCH || $CAT_SHOW_SEARCH)) || ($SHOW_OPTIONS && $CATEGORY_PARAMETERS_PANEL == 'yes')}
+          <div class="card-bg-color mb-sm border-wrapper box-shadow">
+            <section class="second-heading inside to-left">
+              <ul>
+                <li>
+                  <h4 class="title">{$L_PARAMETERS}</h4>
+                </li>
+              </ul>
+            </section>
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="parameters">
+                  <div class="row">
+                    {IF $CATEGORY_PARAMETERS_SEARCHING == 'yes' && ($SEARCH || $CAT_SHOW_SEARCH)}
+                      <form method="GET" action="/category/{$HASH_P}">
+                        {INCLUDE file="./".$TEMPLATE."/scheme/public/module/products-lists-pages/_common/html/search-inline.html"}
+                      </form>
+                    {/IF}
+                    {IF $SHOW_OPTIONS && $CATEGORY_PARAMETERS_PANEL == 'yes'}
+                      <form method="GET" action="{$OPTIONS_URL}{$HASH_P}">
+                        {INCLUDE file="./".$TEMPLATE."/scheme/public/module/products-lists-pages/_common/html/parameters-inline.html"}
+                      </form>
+                    {/IF}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {/IF}
+
+
+        {IF (!$NOSORT && !empty($SORT) || !empty($PAGINATION.category.P_PAGES)) && $PRODUCT}
+          <div class="list-options" id="t">
+            <div class="row">
+              {IF !$NOSORT && count($SORT)}
+                <form>
+                  {INCLUDE file="./".$TEMPLATE."/scheme/public/module/products-lists-pages/_common/html/sort.html"}
+                </form>
+              {/IF}
+              {INCLUDE file="./".$TEMPLATE."/scheme/public/_common/html/pagination.html" PAGINATION_DATA=$PAGINATION.category}
+            </div>
+          </div>
+        {/IF}
+        <div class="row">
+          {IF $PRODUCT}
+            {LOOP FROM=$PRODUCT VALUE=PRODUCT_ITEM}
+              <div class="col-xxs col-xs-6 col-sm-4 col-md-4 col-lg-3">
+                {INCLUDE file="./".$TEMPLATE."/scheme/public/module/_common/toysrwd/html/product-tile.html" PRODUCT_ITEM=$PRODUCT_ITEM PRODUCT_STATUS="TRUE" PRODUCT_BRUTTO="TRUE" PRODUCT_RWD="0:260,305:480,481:260,600:480,768:260,885:480,1200:260"}
+              </div>
+            {/LOOP}
+          {ELSE}
+            <div class="col-xs-12">
+              <span class="list-empty">{$L_NO_PRODUCTS_IN_CATEGORY}</span>
+            </div>
+          {/IF}
+        </div>
+        {IF !empty($PAGINATION.category.P_PAGES)}
+          <div class="list-options">
+            <div class="row">
+              {INCLUDE file="./".$TEMPLATE."/scheme/public/_common/html/pagination.html" PAGINATION_DATA=$PAGINATION.category}
+            </div>
+          </div>
+        {/IF}
+        {IF $CATEGORY_DESC && $CAT_DESC_POSITION == 'bottom' && (empty($PAGINATION.category.P_CURRENT) || $PAGINATION.category.P_CURRENT == 1)}
+          <div class="card-bg-color mb-sm border-wrapper box-shadow">
+            <div class="category-description {IF !$CAT_DESC_SHOW} descriptionHidden {/IF}bottom">
+              {$CATEGORY_DESC}
+            </div>
+          </div>
+        {/IF}
+        {IF $PRODUCER_DESC && $PRODUCER_DESC_POS == 'bottom'}
+          <div class="card-bg-color mb-sm border-wrapper box-shadow">
+            <div class="category-description {IF !$CAT_DESC_SHOW} descriptionHidden {/IF}bottom">
+              {$PRODUCER_DESC}
+            </div>
+          </div>
+        {/IF}
+      </div>
+    </div>
+  </div>
+</section>

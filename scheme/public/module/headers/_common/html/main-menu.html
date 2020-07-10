@@ -1,0 +1,98 @@
+{LOOP FROM=$MODULE.children.header_group[0].children VALUE=MENU_ELEMENT}
+  {IF $MENU_ELEMENT.props.type == 'tree-view' && (!empty($MENU_ELEMENT.subcats) && $MENU_ELEMENT.props.categories_auto != 'true' || !empty($CATS) && $MENU_ELEMENT.props.categories_auto == 'true')}
+    <li class="full-width {IF $MENU_SHOW_TYPE == 'click'}click{/IF}">
+      {IF $MENU_SHOW_TYPE == 'click' || $MENU_ELEMENT.props.parent_is_href == 'false' || $MENU_ELEMENT.props.categories_auto == 'true'}
+        <a>
+      {ELSE}
+        <a {IF !$MENU_ELEMENT.props.parent_href || $MENU_ELEMENT.props.parent_href == 'http://'}{ELSE}href="{$MENU_ELEMENT.props.parent_href}"{/IF}>
+      {/IF}
+        {$MENU_ELEMENT.props.name}
+        <i class="fa fa-chevron-down"></i>
+      </a>
+      <div class="dropdown">
+        <div class="row">
+          {IF $MENU_ELEMENT.props.categories_auto == 'true'}
+            {LOOP FROM=$CATS VALUE=SUB_CATS}
+              <div class="col-xs-12 col-sm-4 col-md-3">
+                <div class="cat-title {IF $SUB_CATS.subcats}more{/IF}">
+                  <a href="{$SUB_CATS.cms_url}">{$SUB_CATS.cat_name}</a>
+                </div>
+                {IF $SUB_CATS.subcats}
+                  <ul>
+                    {LOOP FROM=$SUB_CATS.subcats VALUE=SUB_SUB_CATS}
+                      <li>
+                        <a href="{$SUB_SUB_CATS.cms_url}">{$SUB_SUB_CATS.cat_name}</a>
+                      </li>
+                    {/LOOP}
+                  </ul>
+                {/IF}
+              </div>
+            {/LOOP}
+          {ELSE}
+            {LOOP FROM=$MENU_ELEMENT.subcats VALUE=SUB_CATS}
+              {IF $SUB_CATS.cat_id}
+                <div class="col-xs-12 col-sm-4 col-md-3">
+                  <div class="cat-title {IF $SUB_CATS.subcats}more{/IF}">
+                    <a href="{$SUB_CATS.cms_url}">{$SUB_CATS.cat_name}</a>
+                  </div>
+                  {IF $SUB_CATS.subcats}
+                    <ul>
+                      {LOOP FROM=$SUB_CATS.subcats VALUE=SUB_SUB_CATS}
+                        <li>
+                          <a href="{$SUB_SUB_CATS.cms_url}">{$SUB_SUB_CATS.cat_name}</a>
+                        </li>
+                      {/LOOP}
+                    </ul>
+                  {/IF}
+                </div>
+              {/IF}
+            {/LOOP}
+          {/IF}
+        </div>
+      </div>
+    </li>
+  {/IF}
+  {IF $MENU_ELEMENT.props.type == 'links-group' && $MENU_ELEMENT.children}
+    <li class="single-category {IF $MENU_SHOW_TYPE == 'click'}click{/IF}">
+      {IF $MENU_SHOW_TYPE == 'click' || $MENU_ELEMENT.props.parent_is_href == 'false'}
+        <a>
+      {ELSE}
+        <a href="#">
+      {/IF}
+        {$MENU_ELEMENT.props.name}
+        <i class="fa fa-chevron-down"></i>
+      </a>
+      <div class="dropdown">
+        <div class="row">
+          <div class="col-xs-12">
+            <ul>
+              {LOOP FROM=$MENU_ELEMENT.children VALUE=LINK}
+                <li>
+                  {IF $LINK.props.type == 'link'}
+                    <a href="{$LINK.url}">{$LINK.props.name}</a>
+                  {ELSE}
+                    <a href="{$LINK.props.content}" {IF $LINK.props.target == 'true'}target="_blank"{/IF}>{$LINK.props.name}</a>
+                  {/IF}
+                </li>
+              {/LOOP}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </li>
+  {/IF}
+  {IF $MENU_ELEMENT.props.type == 'link'}
+    <li>
+      <a href="{$MENU_ELEMENT.url}">
+        {$MENU_ELEMENT.props.name}
+      </a>
+    </li>
+  {/IF}
+  {IF $MENU_ELEMENT.props.type == 'link-href' && $MENU_ELEMENT.props.content != ''}
+    <li>
+      <a href="{$MENU_ELEMENT.props.content}" {IF $MENU_ELEMENT.props.target == 'true'}target="_blank"{/IF}>
+        {$MENU_ELEMENT.props.name}
+      </a>
+    </li>
+  {/IF}
+{/LOOP}

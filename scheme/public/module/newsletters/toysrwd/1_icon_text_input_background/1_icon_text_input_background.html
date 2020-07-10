@@ -1,0 +1,35 @@
+<section class="newsletter mod-newsletter-1 full-width">
+  <div class="container-fluid">
+    <div class="newsletter-container">
+      <div class="row newsletter-content-wrapper">
+
+        {IF $MODULE.children.newsletter_box[0].children[1].props.value || $MODULE.children.newsletter_box[0].children[0].props.icon}
+          <div class="col-md-1 col-sm-1">
+              {IF $MODULE.children.newsletter_box[0].children[0].props.icon}
+                <i class="{$MODULE.children.newsletter_box[0].children[0].props.icon}"></i>
+              {/IF}
+          </div>
+          <div class="col-md-5 col-sm-5">
+            <div class="newsletter-box-text">
+                {IF $MODULE.children.newsletter_box[0].children[1].props.value} 
+                    <p class="title">{$MODULE.children.newsletter_box[0].children[1].props.value}</p>
+                {/IF}
+                {IF $MODULE.children.newsletter_box[0].children[2].props.value}
+                    <p class="newsletter-box-sub">{$MODULE.children.newsletter_box[0].children[2].props.value}</p>
+                {/IF}
+              </div>
+          </div>
+        {/IF}
+
+        <div class="col-md-6 col-sm-6">
+          <div class="newsletter-box-input">
+              <form class="newsletter-form">
+                  <input type="text" name="email" value="" placeholder="" class="newsletter-input" />
+                  <input type="submit" value="{$L_SING_UP}" class="btn newsletter-button core_addEmailToNewsletter" />
+              </form>
+          </div>
+        </div>
+
+    </div>
+  </div>
+</section>

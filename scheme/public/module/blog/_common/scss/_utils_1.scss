@@ -1,0 +1,46 @@
+.heading {
+  margin-bottom: 0;
+}
+
+.category-description {
+  &.top {
+    margin-top: 0;
+    margin-bottom: 14px;
+    & > p {
+      margin-top: 0;
+      margin-bottom: 14px;
+    }
+  }
+  &.bottom {
+    margin-top: 14px;
+    margin-bottom: 0;
+    & > p {
+      margin-top: 14px;
+      margin-bottom: 0;
+    }
+  }
+  & img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.post-details-single {
+  margin: 0 0 10px;
+  font-weight: 500;
+}
+
+.post-content-single {
+  & .post-img {
+    max-width: 50%;
+    float: right;
+    padding: 0 0 10px 15px;
+  }
+  & .post-content {
+    & > p {
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,157 @@
+.top-bar {
+  display: inline-block;
+  width: 100%;
+  border-bottom: 1px solid $secoundaryColor;
+  & ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    & li {
+      float: left;
+      position: relative;
+      &#mobile-open-contact:after {
+        display: none;
+      }
+      &:not(:first-of-type):after {
+        content: '';
+        position: absolute;
+        width: 1px;
+        top: 12px;
+        bottom: 12px;
+        left: 0;
+        background: $secoundaryColor;
+      }
+      & .icon-language-flag {
+        border: 1px solid $secoundaryColor;
+        margin: 0 2px;
+        position: relative;
+        top: -2px;
+        &.small {
+          height: 14px;
+        }
+      }
+      & .link {
+        display: inline-block;
+        padding: 15px;
+        cursor: pointer;
+        text-decoration: none;
+        &.static {
+          cursor: default;
+          & > a {
+            color: $fontColor;
+            text-decoration: none;
+            &:hover {
+              color: $mainColor;
+            }
+          }
+        }
+        & .fa {
+          font-size: 9px;
+          position: relative;
+          top: -2px;
+        }
+        & .helper-icon {
+          padding-right: 4px;
+          & .fa {
+            position: relative;
+            top: 0;
+            font-size: 16px;
+            color: $fontColor;
+          }
+        }
+        & .main-icon {
+          & .fa {
+            position: relative;
+            top: 0;
+            font-size: 16px;
+            color: $fontColor;
+          }
+        }
+      }
+      & .dropdown {
+        @include opacity(0);
+        @include transition(all 0.2s ease-in-out);
+        @include box-shadow(0 1px 3px rgba(0,0,0,2/10));
+        @include transform(translateY(10px));
+        backface-visibility: hidden;
+        pointer-events: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1;
+        background: $primaryColor;
+        &:after {
+          content: '';
+          position: absolute;
+          top: -10px;
+          right: 0;
+          left: 0;
+          height: 10px;
+        }
+        & ul {
+          padding: 5px 0 0;
+          display: inline-block;
+          width: 100%;
+          & li {
+            display: block;
+            width: 100%;
+            padding: 5px 15px;
+            &:after {
+              display: none;
+            }
+            &:hover {
+              color: $mainColor;
+            }
+          }
+        }
+        @import "_dropdown_quick_cart_1.scss";
+      }
+      & > *[class='dropdown'] {
+        & ul {
+          & li {
+            white-space: nowrap;
+            & a {
+              color: $fontColor;
+              text-decoration: none;
+              cursor: pointer;
+              display: inline-block;
+              width: 100%;
+              &:hover {
+                color: $mainColor;
+              }
+            }
+            &.active {
+              & a {
+                color: $mainColor;
+                cursor: default;
+              }
+            }
+          }
+        }
+      }
+      &:hover {
+        & .link:not(.static) {
+          color: $mainColor;
+        }
+        & .dropdown {
+          @include opacity(1);
+          @include transition(all 0.2s ease-in-out);
+          @include transform(translateY(0));
+          pointer-events: auto;
+          z-index: 2;
+        }
+      }
+    }
+  }
+  & .pull-right {
+    & ul {
+      & li {
+        & .dropdown {
+          left: inherit;
+          right: 0;
+          text-align: right;
+        }
+      }
+    }
+  }
+}

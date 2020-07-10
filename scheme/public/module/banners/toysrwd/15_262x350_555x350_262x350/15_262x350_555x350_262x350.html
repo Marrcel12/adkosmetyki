@@ -1,0 +1,55 @@
+<section class="banner mod-banner-15">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="row">
+          <div class="col-xxs col-xs-3">
+            <div class="slider-img-2">
+              {LOOP FROM=$MODULE.children.banner3Field[1].children VALUE=CHILDREN}
+                {IF $CHILDREN.key == 'banner_link' && $CHILDREN.props.value}
+                  <a href="{$CHILDREN.props.value}">
+                {/IF}
+              {/LOOP}
+                <img src="{$MODULE.children.banner3Field[1].children[0].props.preview}" {LOOP FROM=$MODULE.children.banner3Field[1].children VALUE=CHILDREN}{IF $CHILDREN.key == 'banner_alt' && $CHILDREN.props.value}alt="{$CHILDREN.props.value}"{/IF}{/LOOP} class="{IF $MODULE.children.banner3Field[1].children[0].props.ratio < 0.7485714285714286 || $MODULE.children.banner3Field[1].children[0].props.ratio == 0.0}horizontal{ELSE}vertical{/IF}" />
+              {LOOP FROM=$MODULE.children.banner3Field[1].children VALUE=CHILDREN}
+                {IF $CHILDREN.key == 'banner_link' && $CHILDREN.props.value}
+                  </a>
+                {/IF}
+              {/LOOP}
+            </div>
+          </div>
+          <div class="col-xxs col-xs-6">
+            <div class="slider-img-1">
+              {LOOP FROM=$MODULE.children.banner3Field[0].children VALUE=CHILDREN}
+                {IF $CHILDREN.key == 'banner_link' && $CHILDREN.props.value}
+                  <a href="{$CHILDREN.props.value}">
+                {/IF}
+              {/LOOP}
+                <img src="{$MODULE.children.banner3Field[0].children[0].props.preview}" {LOOP FROM=$MODULE.children.banner3Field[0].children VALUE=CHILDREN}{IF $CHILDREN.key == 'banner_alt' && $CHILDREN.props.value}alt="{$CHILDREN.props.value}"{/IF}{/LOOP} class="{IF $MODULE.children.banner3Field[0].children[0].props.ratio < 1.5857142857142856 || $MODULE.children.banner3Field[0].children[0].props.ratio == 0.0}horizontal{ELSE}vertical{/IF}" />
+              {LOOP FROM=$MODULE.children.banner3Field[0].children VALUE=CHILDREN}
+                {IF $CHILDREN.key == 'banner_link' && $CHILDREN.props.value}
+                  </a>
+                {/IF}
+              {/LOOP}
+            </div>
+          </div>
+          <div class="col-xxs col-xs-3">
+            <div class="slider-img-2">
+              {LOOP FROM=$MODULE.children.banner3Field[2].children VALUE=CHILDREN}
+                {IF $CHILDREN.key == 'banner_link' && $CHILDREN.props.value}
+                  <a href="{$CHILDREN.props.value}">
+                {/IF}
+              {/LOOP}
+                <img src="{$MODULE.children.banner3Field[2].children[0].props.preview}" {LOOP FROM=$MODULE.children.banner3Field[2].children VALUE=CHILDREN}{IF $CHILDREN.key == 'banner_alt' && $CHILDREN.props.value}alt="{$CHILDREN.props.value}"{/IF}{/LOOP} class="{IF $MODULE.children.banner3Field[2].children[0].props.ratio < 0.7485714285714286 || $MODULE.children.banner3Field[2].children[0].props.ratio == 0.0}horizontal{ELSE}vertical{/IF}" />
+              {LOOP FROM=$MODULE.children.banner3Field[2].children VALUE=CHILDREN}
+                {IF $CHILDREN.key == 'banner_link' && $CHILDREN.props.value}
+                  </a>
+                {/IF}
+              {/LOOP}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

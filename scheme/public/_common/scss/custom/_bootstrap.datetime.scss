@@ -1,0 +1,237 @@
+.bootstrap-datetimepicker-widget {
+  background: $primaryColor;
+  width: auto;
+  border: 1px solid $mainColor;
+  padding: 5px;
+  display: none;
+  @include border-radius(5px);
+  @include transform(translateX(4px));
+  &[data-type="date"], &[data-type="time"] {
+    max-width: 262px;
+  }
+  &[data-type="datetime"] {
+    max-width: 462px;
+  }
+  &:before {
+    border-bottom: 7px solid $mainColor;
+    border-bottom-color: $mainColor;
+  }
+  &:after {
+    border-bottom: 6px solid $primaryColor;
+  }
+  & > ul {
+    width: 450px;
+    padding: 0;
+    & > li {
+      float: left;
+    }
+  }
+  & .datepicker {
+    width: 250px;
+    padding: 5px;
+    border: 1px solid $secoundaryColor;
+    background: rgba($secoundaryColor,5/10);
+    @include border-radius(5px);
+    & .datepicker-days, .datepicker-months, .datepicker-years {
+      background: $primaryColor;
+      border: 1px solid $secoundaryColor;
+      padding: 3px;
+      @include border-radius(3px);
+      & .table-condensed {
+        & td.day, th {
+          &:not(.disabled) {
+            &:hover {
+              background: $secoundaryColor;
+            }
+            &.active {
+              background: $mainColor;
+              color: $textColorOnButtons;
+              -webkit-text-shadow: none;
+              -moz-text-shadow: none;
+              -ms-text-shadow: none;
+              -o-text-shadow: none;
+              text-shadow: none;
+            }
+          }
+          &.active.disabled {
+            background: $mainColor;
+            color: $textColorOnButtons;
+            -webkit-text-shadow: none;
+            -moz-text-shadow: none;
+            -ms-text-shadow: none;
+            -o-text-shadow: none;
+            text-shadow: none;
+          }
+        }
+        & td {
+          & span {
+            width: 25%;
+            height: 46px;
+            line-height: 46px;
+            margin: 0 0 1px;
+            &:nth-last-of-type(1), &:nth-last-of-type(2), &:nth-last-of-type(3), &:nth-last-of-type(4) {
+              margin-bottom: 0;
+            }
+            &:not(.disabled) {
+              &:hover {
+                background: $secoundaryColor;
+              }
+              &.active {
+                background: $mainColor;
+                color: $textColorOnButtons;
+                -webkit-text-shadow: none;
+                -moz-text-shadow: none;
+                -ms-text-shadow: none;
+                -o-text-shadow: none;
+                text-shadow: none;
+              }
+            }
+            &.active.disabled {
+              background: $mainColor;
+              color: $textColorOnButtons;
+              -webkit-text-shadow: none;
+              -moz-text-shadow: none;
+              -ms-text-shadow: none;
+              -o-text-shadow: none;
+              text-shadow: none;
+            }
+          }
+        }
+      }
+    }
+  }
+  & .timepicker {
+    width: 195px;
+    padding: 5px;
+    border: 1px solid $secoundaryColor;
+    background: rgba($secoundaryColor,5/10);
+    @include border-radius(5px);
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    & .timepicker-picker, .timepicker-hours, .timepicker-minutes {
+      background: $primaryColor;
+      border: 1px solid $secoundaryColor;
+      padding: 3px;
+      @include border-radius(3px);
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      bottom: 5px;
+      left: 5px;
+      & .table-condensed {
+        position: relative;
+        top: 50%;
+        @include transform(translateY(-50%));
+        & a.btn {
+          background: transparent !important;
+          border: transparent !important;
+          color: rgba($fontColor,5/10) !important;
+          &:hover {
+            color: $fontColor !important;
+          }
+          &[data-action="incrementHours"], &[data-action="incrementMinutes"] {
+            & i {
+              font-style: inherit;
+              font-size: 24px;
+              &:after {
+                content: '\f106';
+                font-family: 'FontAwesome';
+              }
+            }
+          }
+          &[data-action="decrementHours"], &[data-action="decrementMinutes"] {
+            & i {
+              font-style: inherit;
+              font-size: 24px;
+              &:after {
+                content: '\f107';
+                font-family: 'FontAwesome';
+              }
+            }
+          }
+        }
+        & .timepicker-hour, .timepicker-minute, .timepicker-second {
+          width: auto;
+          float: none;
+          margin: 0 auto;
+        }
+        & td {
+          & span {
+            width: 25%;
+            height: 46px;
+            line-height: 46px;
+            margin: 0 0 1px;
+            &:nth-last-of-type(1), &:nth-last-of-type(2), &:nth-last-of-type(3), &:nth-last-of-type(4) {
+              margin-bottom: 0;
+            }
+            &:not(.disabled) {
+              &:hover {
+                background: $secoundaryColor;
+              }
+              &.active {
+                background: $mainColor;
+                color: $textColorOnButtons;
+                -webkit-text-shadow: none;
+                -moz-text-shadow: none;
+                -ms-text-shadow: none;
+                -o-text-shadow: none;
+                text-shadow: none;
+              }
+            }
+            &.active.disabled {
+              background: $mainColor;
+              color: $textColorOnButtons;
+              -webkit-text-shadow: none;
+              -moz-text-shadow: none;
+              -ms-text-shadow: none;
+              -o-text-shadow: none;
+              text-shadow: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 480px) {
+  .bootstrap-datetimepicker-widget {
+    &:after, &:before {
+      display: none;
+    }
+    & > ul {
+      width: 100%;
+      max-width: 250px;
+      & > li {
+        width: 100%;
+        &:last-of-type {
+          clear: both;
+        }
+      }
+    }
+    & .datepicker {
+      width: 100%;
+    }
+    & .timepicker {
+      position: relative;
+      width: 100%;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      margin-top: 5px;
+      & .timepicker-picker, .timepicker-hours, .timepicker-minutes {
+        position: relative;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        & .table-condensed {
+          top: 0;
+          @include transform(translate(0));
+        }
+      }
+    }
+  }
+}

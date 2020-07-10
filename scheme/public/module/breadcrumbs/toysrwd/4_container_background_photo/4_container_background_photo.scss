@@ -1,0 +1,11 @@
+.breadcrumbs.mod-breadcrumbs-4 {
+	width: 100%;
+	margin: 0 0 30px;
+  display: inline-block;
+  @import "../private/scss/_crumbs_1.scss";
+  @import "../private/scss/_category_image_1.scss";
+}
+
+@media all and (max-width: 767px) {
+  @import "../../_common/scss/_crumbs_rwd.scss";
+}

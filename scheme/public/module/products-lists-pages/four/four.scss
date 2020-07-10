@@ -1,0 +1,152 @@
+.products-list-page.mod-products-list-page-4 {
+  max-width: $pageWidth;
+  width: 100%;
+  padding: 25px 0;
+  margin: 0 auto;
+  @import "../../_common/scss/_product_tile.scss";
+  @import "../_common/scss/_utils_1.scss";
+  @import "../_common/scss/_list_options_1.scss";
+  @import "../_common/scss/_column_left_1.scss";
+}
+
+@media all and (min-width: 768px) and (max-width: $pageWidth + $scrollBarWidth) {
+  .products-list-page.mod-products-list-page-4 {
+    & > .container-fluid {
+      & > .row {
+        & > [class*='col-'] {
+          &.left-parameters {
+            width: 25%;
+            width: -webkit-calc( 292.5px );
+            width: -moz-calc( 292.5px );
+            width: -ms-calc( 292.5px );
+            width: -o-calc( 292.5px );
+            width: calc( 292.5px );
+          }
+          &:last-of-type {
+            width: 75%;
+            width: -webkit-calc( 100% - 292.5px );
+            width: -moz-calc( 100% - 292.5px );
+            width: -ms-calc( 100% - 292.5px );
+            width: -o-calc( 100% - 292.5px );
+            width: calc( 100% - 292.5px );
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 1000px) {
+  .products-list-page.mod-products-list-page-4 {
+    & .list-options {
+      @import "../../_common/scss/_pagination_mobile.scss";
+    }
+  }
+}
+
+@media all and (min-width: 768px) {
+  .products-list-page.mod-products-list-page-4 {
+    & > .container-fluid {
+      & > .row {
+        & .left-parameters {
+          top: 0 !important;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 767px) {
+  .products-list-page.mod-products-list-page-4 {
+    padding-top: 0;
+    & > .container-fluid {
+      & > .row {
+        & .left-parameters {
+          top: 0;
+          left: 0;
+          right: 0;
+          background: #ffffff;
+          height: 55px;
+          padding: 5px 15px;
+          z-index: 1;
+          @include opacity(1);
+          -webkit-transition: top 0.05s ease-in-out;
+          -moz-transition: top 0.05s ease-in-out;
+          -ms-transition: top 0.05s ease-in-out;
+          -o-transition: top 0.05s ease-in-out;
+          transition: top 0.05s ease-in-out;
+          &.fixed-scroll {
+            position: relative;
+            @include box-shadow(0 1px 3px rgba(0,0,0,2/10));
+            -webkit-transition: top 0.05s ease-in-out, opacity 0.2s ease-in-out;
+            -moz-transition: top 0.05s ease-in-out, opacity 0.2s ease-in-out;
+            -ms-transition: top 0.05s ease-in-out, opacity 0.2s ease-in-out;
+            -o-transition: top 0.05s ease-in-out, opacity 0.2s ease-in-out;
+            transition: top 0.05s ease-in-out, opacity 0.2s ease-in-out;
+            &.hide-scroll {
+              @include opacity(0);
+              -webkit-transition: top 0.05s ease-in-out, opacity 0.2s ease-in-out;
+              -moz-transition: top 0.05s ease-in-out, opacity 0.2s ease-in-out;
+              -ms-transition: top 0.05s ease-in-out, opacity 0.2s ease-in-out;
+              -o-transition: top 0.05s ease-in-out, opacity 0.2s ease-in-out;
+              transition: top 0.05s ease-in-out, opacity 0.2s ease-in-out;
+            }
+          }
+          &.inside-panel-open {
+            z-index: 20;
+          }
+        }
+      }
+    }
+    & .heading {
+      display: inline-block;
+    }
+    & .heading-products-list-filters {
+      width: 50%;
+      float: left;
+      margin-bottom: 15px;
+      cursor: pointer;
+      & ul {
+        width: 100%;
+        padding: 0 0 5px;
+        border: 1px solid $secoundaryColor;
+        @include border-radius(3px);
+        @include transition(border 0.2s ease-in-out);
+        & li {
+          padding: 0;
+          text-align: center;
+          width: 100%;
+          &:after {
+            display: none;
+          }
+          & .title {
+            font-size: 18px;
+            margin: 0;
+            padding: 10px 0 3px;
+            display: inline-block;
+          }
+        }
+      }
+      &:nth-of-type(2n-1) {
+        padding-right: 7px;
+      }
+      &:nth-of-type(2n) {
+        padding-left: 7px;
+      }
+      & + .column-left.dropdowns {
+        display: none;
+      }
+    }
+    & .category-description{
+      &.descriptionHidden{
+          display: none; 
+      }
+    }
+  }
+}
+
+@media all and (max-width: 480px) {
+  .products-list-page.mod-products-list-page-4 {
+    @import "../_common/scss/list_options_1_rwd.scss";
+  }
+}

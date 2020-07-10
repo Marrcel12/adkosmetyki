@@ -1,0 +1,9 @@
+<section class="blog mod-blog-2">
+  <div class="container-fluid">
+    {IF $BLOG_CONTENT.key == "blog_category" || $BLOG_CONTENT.key == "blog_categories"}
+      {INCLUDE file="./".$TEMPLATE."/scheme/public/module/blog/_common/html/category-list.html" BLOG_CATEGORY=$BLOG_CONTENT CATEGORY_LIST_POSITION="left"}
+    {ELSE}
+      {INCLUDE file="./".$TEMPLATE."/scheme/public/module/blog/_common/html/post.html" BLOG_CONTENT=$BLOG_CONTENT CATEGORY_LIST_POSITION="left"}
+    {/IF}
+  </div>
+</section>

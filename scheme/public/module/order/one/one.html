@@ -1,0 +1,47 @@
+<section class="order mod-order-1" data-shipment="{$POST.shipment}" {IF $INPOST_GMAPS}data-inpost-gmaps="{$INPOST_GMAPS}"{/IF}>
+  {IF $ORDER}
+    {IF $PAY_URL}
+      <form method="POST" action="{$PAY_URL}" class="hidden" id="order-make-pay">
+        {LOOP FROM=$PAY_FIELDS VALUE=FIELD KEY=KEY}
+          <input type="hidden" name="{$KEY}" value="{$FIELD}" />
+        {/LOOP}
+      </form>
+      <script>
+        (function(){
+          document.getElementById('order-make-pay').submit();
+        })();
+      </script>
+    {/IF}
+  {/IF}
+  <div class="container-fluid">
+    <div class="cart-summary-header">
+      <div class="row">
+        <div class="col-xs-4">
+          {IF !$ORDER}
+            <a class="btn btn-primary btn-lg pull-left" href="/cart/">
+              <i class="fa fa-angle-left"></i><span class="hidden-on-mobile"> &nbsp; {$L_BACK_SHOPPING}</span>
+            </a>
+          {ELSE}
+            <a class="btn btn-primary btn-lg pull-left" href="/">
+              <i class="fa fa-angle-left"></i><span class="hidden-on-mobile"> &nbsp; {$L_MAIN_PAGE}</span>
+            </a>
+          {/IF}
+        </div>
+        <div class="col-xs-4 logo">
+          <a href="/" class="logo">
+    				<img src="{$MODULE.children.common_shop_logo[0].props.preview}" alt="" />
+    			</a>
+        </div>
+        <div class="col-xs-4">
+
+        </div>
+      </div>
+    </div>
+    {IF !$ORDER}
+      {INCLUDE file="./".$TEMPLATE."/scheme/public/module/order/_common/html/order.html"}
+    {ELSE}
+      {INCLUDE file="./".$TEMPLATE."/scheme/public/module/order/_common/html/order-finish.html"}
+    {/IF}
+  </div>
+</section>
+{INCLUDE file="./".$TEMPLATE."/scheme/public/module/footers/_common/html/footer-rights.html"}

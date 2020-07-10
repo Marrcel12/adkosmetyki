@@ -1,0 +1,89 @@
+<ul>
+  {IF $MODULE.children.header_email[0].props.value || $SHOP_BASIC_DATA.mainShopEmail}
+    <li data-type="email" class="hidden-on-mobile">
+      <span class="link static">
+        {IF $MODULE.children.header_email[0].props.value}
+          <a href="mailto:{$MODULE.children.header_email[0].props.value}">
+            <span class="helper-icon">
+              <i class="fa fa-envelope"></i>
+            </span>
+            {$MODULE.children.header_email[0].props.value}
+          </a>
+        {ELSEIF $SHOP_BASIC_DATA.mainShopEmail}
+          <a href="mailto:{$SHOP_BASIC_DATA.mainShopEmail}">
+            <span class="helper-icon">
+              <i class="fa fa-envelope"></i>
+            </span>
+            {$SHOP_BASIC_DATA.mainShopEmail}
+          </a>
+        {/IF}
+      </span>
+    </li>
+  {/IF}
+  {IF $MODULE.children.header_phone[0].props.value || $SHOP_BASIC_DATA.ownerPhoneNumber}
+    <li data-type="phone" class="hidden-on-mobile">
+      <span class="link static">
+        {IF $MODULE.children.header_phone[0].props.value}
+          <a href="tel:{$MODULE.children.header_phone[0].props.value}">
+            <span class="helper-icon">
+              <i class="fa fa-phone"></i>
+            </span>
+            {$MODULE.children.header_phone[0].props.value}
+          </a>
+        {ELSEIF $SHOP_BASIC_DATA.ownerPhoneNumber}
+          <a href="tel:{$SHOP_BASIC_DATA.ownerPhoneNumber}">
+            <span class="helper-icon">
+              <i class="fa fa-phone"></i>
+            </span>
+            {$SHOP_BASIC_DATA.ownerPhoneNumber}
+          </a>
+        {/IF}
+      </span>
+    </li>
+  {/IF}
+  {LOOP FROM=$MODULE.children.common_sm[0].children VALUE=SOCIAL}
+    {IF $SOCIAL.props.value}
+      <li data-type="social-{$SOCIAL.key}" class="hidden-on-mobile">
+        <span class="link static">
+          <a href="{$SOCIAL.props.value}" rel="nofollow" target="_blank">
+            <span class="main-icon">
+              {IF $SOCIAL.key == 'sm_facebook'}
+                <i class="fa fa-facebook"></i> Facebook
+              {/IF}
+              {IF $SOCIAL.key == 'sm_instagram'}
+                <i class="fa fa-instagram"></i> Instagram
+              {/IF}
+              {IF $SOCIAL.key == 'sm_youtube'}
+                <i class="fa fa-youtube"></i> Youtube
+              {/IF}
+              {IF $SOCIAL.key == 'sm_googleplus'}
+                <i class="fa fa-google-plus"></i> Google Plus
+              {/IF}
+              {IF $SOCIAL.key == 'sm_snapchat'}
+                <i class="fa fa-snapchat-ghost"></i> Snapchat
+              {/IF}
+              {IF $SOCIAL.key == 'sm_twitter'}
+                <i class="fa fa-twitter"></i> Twitter
+              {/IF}
+              {IF $SOCIAL.key == 'sm_pinterest'}
+                <i class="fa fa-pinterest"></i> Pinterest
+              {/IF}
+            </span>
+          </a>
+        </span>
+      </li>
+    {/IF}
+  {/LOOP}
+  {IF ($MODULE.children.header_email[0].props.value || $SHOP_BASIC_DATA.mainShopEmail) || ($MODULE.children.header_phone[0].props.value || $SHOP_BASIC_DATA.ownerPhoneNumber) || (!empty($MODULE.children.common_sm[0].children))}
+    <li id="mobile-open-contact" class="hidden-on-desktop">
+      <span class="link static">
+        <a href="#">
+          <span class="helper-icon">
+            <i class="fa fa-envelope"></i>
+          </span>
+          <i class="fa fa-chevron-down"></i>
+        </a>
+      </span>
+    </li>
+  {/IF}
+</ul>

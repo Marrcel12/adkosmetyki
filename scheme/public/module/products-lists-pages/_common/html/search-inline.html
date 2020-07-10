@@ -1,0 +1,38 @@
+<div class="col-xxxs-12 col-xxs-6 col-xs-4 col-sm-3 col-md-ex5">
+  <div class="row input-search-box">
+    <div class="col-xs-8">
+      <input class="input-field" type="text" name="q" value="{$QUERY}" title="{$L_SEARCH_STRING_EXPLAIN}" placeholder="{$L_SEARCH_FOR_FRACTIONS}" />
+      {IF $SEARCH_DESC_ACTIVE}
+        <input type="hidden" name="desc" value="1" />
+      {/IF}
+      {IF $CAT_ID}
+        <input type="hidden" name="cats[]" value="{$CAT_ID}" />
+      {ELSEIF !empty($CAT_SELECT)}
+        {LOOP FROM=$CAT_SELECT VALUE=CAT}
+          {IF $CAT.selected}
+            <input type="hidden" name="cats[]" value="{$CAT.id}" />
+          {/IF}
+        {/LOOP}
+      {/IF}
+    </div>
+    <div class="col-xs-4">
+      <button type="submit" class="btn btn-block input-field-search">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="col-xxxs-12 col-xxs-6 col-xs-4 col-sm-3 col-md-ex5">
+  <div class="hidden">
+    <input type="hidden" name="{{:name:}}" value="{{:value:}}" class="choosed-option-pattern" disabled="disabled" />
+    {IF $PRICE_FROM}
+      <input type="hidden" name="from" value="{$PRICE_FROM}" />
+    {/IF}
+    {IF $PRICE_TO}
+      <input type="hidden" name="to" value="{$PRICE_TO}" />
+    {/IF}
+  </div>
+  <select class="select-field-select2 core_chooseSearchPrice" data-initialize="false" data-placeholder="{$L_PRICE}" data-allow-clear="true" {IF $PRICE_FROM}data-from="{$PRICE_FROM}"{/IF} {IF $PRICE_TO}data-to="{$PRICE_TO}"{/IF}>
+    <option value=""></option>
+  </select>
+</div>

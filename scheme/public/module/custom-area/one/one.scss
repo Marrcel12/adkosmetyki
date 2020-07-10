@@ -1,0 +1,17 @@
+.custom-area.mod-custom-area-1 {
+  max-width: $pageWidth;
+	width: 100%;
+	margin: 25px auto;
+	img{
+		max-width:100%;
+		height: auto;
+	}
+	@media(max-width:1024px){
+		p{
+			img{
+				display: block;
+				margin: 0 auto;
+			}
+		}
+	}
+}

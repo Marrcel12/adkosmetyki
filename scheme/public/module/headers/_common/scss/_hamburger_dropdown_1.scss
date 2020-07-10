@@ -1,0 +1,130 @@
+&.hamburger {
+  & > .dropdown {
+    right: 0;
+    left: inherit;
+    text-align: right;
+    padding-bottom: 7px;
+    & .hambureger-elements {
+      min-width: 200px;
+      width: 200px;
+      text-align: right;
+      & > li {
+        position: relative;
+        padding: 5px 15px 5px 30px;
+        & > a {
+          & > .fa {
+            @include transform(rotate(90deg));
+            position: absolute;
+            left: 16px;
+            top: 11px;
+          }
+        }
+        & > .dropdown {
+          min-width: 200px;
+          width: 200px;
+          right: 100%;
+          top: 0;
+          left: inherit;
+          pointer-events: none;
+          text-align: right;
+          padding-bottom: 7px;
+          margin-top: -5px;
+          overflow: visible;
+          @include transform(translateY(0));
+          @include opacity(0);
+          @include transition(opacity 0.2s ease-in-out);
+          & ul {
+            & li {
+              & a {
+                text-align: right;
+              }
+            }
+          }
+        }
+        &.full-width {
+          & > .dropdown {
+            padding: 5px 0 7px;
+            & > .row {
+              overflow: visible;
+              & > [class*='col-'] {
+                width: 100%;
+                text-align: right;
+                & .cat-title {
+                  padding: 5px 15px 5px 30px;
+                  position: relative;
+                  & > a {
+                    text-align: right;
+                  }
+                  &.more {
+                    &:before {
+                      content: '\f078';
+                      position: absolute;
+                      top: 9px;
+                      left: 16px;
+                      font-family: 'FontAwesome';
+                      font-size: 10px;
+                      font-weight: normal;
+                      line-height: 14px;
+                      @include transform(rotate(90deg));
+                    }
+                  }
+                  &:hover {
+                    & a {
+                      color: $mainColor;
+                    }
+                    &.more {
+                      &:before {
+                        color: $mainColor;
+                      }
+                    }
+                  }
+                }
+                & ul {
+                  @include opacity(0);
+                  @include box-shadow(0 1px 3px rgba(0,0,0,2/10));
+                  background: $primaryColor;
+                  pointer-events: none;
+                  position: absolute;
+                  min-width: 200px;
+                  width: 200px;
+                  right: 100%;
+                  margin-top: -5px;
+                  padding-bottom: 7px;
+                  @include transform(translateX(15px));
+                  @include transition(opacity 0.2s ease-in-out);
+                }
+                &:hover {
+                  & .cat-title {
+                    & a {
+                      color: $mainColor;
+                    }
+                    &.more {
+                      &:before {
+                        color: $mainColor;
+                      }
+                    }
+                  }
+                  & ul {
+                    @include opacity(1);
+                    pointer-events: auto;
+                    @include transition(opacity 0.2s ease-in-out);
+                  }
+                }
+              }
+            }
+          }
+        }
+        &:hover {
+          & > a {
+            color: $mainColor;
+          }
+          & > .dropdown {
+            pointer-events: auto;
+            @include opacity(1);
+            @include transition(opacity 0.2s ease-in-out);
+          }
+        }
+      }
+    }
+  }
+}

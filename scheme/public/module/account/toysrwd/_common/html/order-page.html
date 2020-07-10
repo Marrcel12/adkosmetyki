@@ -1,0 +1,412 @@
+<div class="section-form mb-md">
+
+   <section class="third-heading">
+      <ul>
+         <li>
+            <span class="title">{$L_ORDER_NO}: {$ORDER.ord_id}</span>
+         </li>
+      </ul>
+   </section>
+
+</div>
+
+
+<table class="account-table mb-md">
+<thead>
+<tr>
+	<th class="product-name">
+	{$L_PRODUCT}
+	</th>
+	<th class="product-details">
+	{$L_DETAILS}
+	</th>
+	<th class="product-price">
+	{$L_PRICE}
+	</th>
+	<th class="product-count">
+	{$L_AMOUNT}
+	</th>
+	<th class="product-total">
+	{$L_TOTAL_VALUE}
+	</th>
+</tr>
+</thead>
+<tbody>
+{LOOP FROM=$ORDER.products VALUE=ITEM KEY=KEY INDEX=INDEX}
+	<tr data-translate="{$L_PRODUCT} #{$INDEX}">
+		<td class="product-name" data-translate="{$L_PRODUCT}">
+			<span>{$ITEM.op_prod_name} {IF $ITEM.op_prod_symbol}({$ITEM.op_prod_symbol}){/IF}</span>
+		</td>
+		<td class="product-details" data-translate="{$L_DETAILS}">
+		{IF $ITEM.op_options}
+			<span class="full_line minimal">
+				{LOOP FROM=$ITEM.op_options VALUE=V}
+					{IF $V.opo_op_type_orig != 'hidden'}
+						{$V.op_title}: {$V.ov_name},
+					{/IF}
+				{/LOOP}
+			</span>
+		{/IF}
+		</td>
+		<td class="product-price" data-translate="{$L_PRICE}">
+			<span class="core_priceFormat" data-price="{$ITEM.op_price}">{$ITEM.op_price}</span>
+		</td>
+		<td class="product-count" data-translate="{$L_AMOUNT}">
+			{$ITEM.op_amount}
+		</td>
+		<td class="product-total" data-translate="{$L_TOTAL_VALUE}">
+			<span class="core_priceFormat" data-price="{$ITEM.sum}">{$ITEM.sum}</span>
+		</td>
+	</tr>
+{/LOOP}
+</tbody>
+<tfoot>
+<td colspan="5"></td>
+</tfoot>
+</table>
+
+
+<div class="section-form mb-md">
+   <section class="third-heading">
+      <ul>
+         <li>
+            <span class="title">{$L_ORDER_DETAILS}</span>
+         </li>
+      </ul>
+   </section>		
+</div>
+
+<div class="row mb-md" >
+	<div class="col-xs-12">
+		<section class="account-informations">
+      <table class="account-parameters">
+        <tbody>
+          <tr>
+            <td>
+              <span class="parameter-name">{$L_ORDER_NO}</span>
+            </td>
+            <td>
+              <span class="text-field">{$ORDER.ord_id}</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="parameter-name">{$L_DATE}</span>
+            </td>
+            <td>
+              <span class="text-field">{$ORDER.ord_date}</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="parameter-name">{$L_SHIPPING_PRICE}</span>
+            </td>
+            <td>
+              <span class="text-field">
+              	<span class="core_priceFormat" data-price="{$ORDER.shipment.sh_price}">{$ORDER.shipment.sh_price}</span>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="parameter-name">{$L_ORDER_PRODUCTS_PRICE}</span>
+            </td>
+            <td>
+              <span class="text-field">
+              	<span class="core_priceFormat" data-price="{$ORDER.ord_prods_price}">{$ORDER.ord_prods_price}</span>
+                {IF $ORDER.ord_discount > 0}
+                	({$L_DISCOUNT}: -<span class="core_priceFormat" data-price="{$ORDER.ord_discount}">{$ORDER.ord_discount}</span>)
+                {/IF}
+              </span>
+            </td>
+          </tr>
+          {IF $ORDER.ord_points_used}
+	          <tr>
+	            <td>
+	              <span class="parameter-name">{$L_POINTS_GET}</span>
+	            </td>
+	            <td>
+	              <span class="text-field">{$ORDER.ord_points_used}</span>
+	            </td>
+	          </tr>
+	        {/IF}
+          <tr>
+            <td>
+              <span class="parameter-name">{$L_TOTAL_VALUE}</span>
+            </td>
+            <td>
+              <span class="text-field">
+              	<span class="core_priceFormat" data-price="{$ORDER.ord_sum}">{$ORDER.ord_sum}</span>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="parameter-name">{$L_PAYMENT}</span>
+            </td>
+            <td>
+              <span class="text-field">
+              	{$ORDER.payment.pay_name}
+              	{IF $ORDER.payment.pay_desc}
+              		<br /><small>{$ORDER.payment.pay_desc}</small>
+              	{/IF}
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="parameter-name">{$L_PAYMENT_STATUS}</span>
+            </td>
+            <td>
+              <span class="text-field">
+								{IF $ORDER.ord_status_desc}
+									<span class="payment-status-not">{$ORDER.ord_status_desc}</span>
+								{ELSEIF $ORDER.ord_paid == 1}
+									<span class="payment-status-yes">{$L_PAID}</span>
+								{ELSE}
+									<span class="payment-status-not">{$L_PAID_NOT}</span>
+								{/IF}
+                {IF $REPAYMENT && $PAY_URL}
+                  <form method="POST" action="{$PAY_URL}" target="_blank" class="payment-repaid">
+                    {LOOP FROM=$PAY_FIELDS VALUE=PAY KEY=KEY}
+                      <input type="hidden" name="{$KEY}" value="{$PAY}" />
+                    {/LOOP}
+                    <button type="submit" class="btn btn-primary btn-xs">{$L_REPAID}</button>
+                  </form>
+				  <small>{$L_REPAYMENT_WARNING}</small>
+                {/IF}
+              </span>
+            </td>
+          </tr>
+	        {LOOP FROM=$ADDITIONAL VALUE=V KEY=K}
+	        	{IF $V.place == 'payment' && $V.type != 'info'}
+		          <tr>
+		            <td>
+		              <span class="parameter-name">{$V.name}</span>
+		            </td>
+		            <td>
+		              <span class="text-field">
+		              	{IF $V.type == 'midtext' || $V.type == 'bigtext'}<small>{/IF}
+		              		{IF $V.type == 'yesno'}
+                        {IF $V.value}
+                        	{$L_YES}
+                        		{ELSE}
+                        	{$L_NO}
+                        {/IF}
+                      {ELSE}
+                      	{$V.value}
+                      {/IF}
+		              	{IF $V.type == 'midtext' || $V.type == 'bigtext'}</small>{/IF}
+		              </span>
+		            </td>
+		          </tr>
+	        	{/IF}
+	        {/LOOP}
+          <tr>
+            <td>
+              <span class="parameter-name">{$L_STATUS}</span>
+            </td>
+            <td>
+              <span class="text-field">{$ORDER.ord_status}</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="parameter-name">{$L_SHIPMENT}</span>
+            </td>
+            <td>
+              <span class="text-field">
+              	{$ORDER.shipment.sh_name}
+              	{IF $ORDER.shipment.sh_desc}
+              		<br /><small>{$ORDER.shipment.sh_desc}</small>
+              	{/IF}
+              </span>
+            </td>
+          </tr>
+          {IF $ORDER.shipment.trace_link}
+	          <tr>
+	            <td>
+	              <span class="parameter-name">{$L_SH_TRACE_LINK}</span>
+	            </td>
+	            <td>
+	              <span class="text-field">{$ORDER.shipment.trace_link}</span>
+	            </td>
+	          </tr>
+	        {/IF}
+	        {IF $ORDER.shipment.sh_require_address == 'yes'}
+	          <tr>
+	            <td>
+	              <span class="parameter-name">{$L_ADDRESS}</span>
+	            </td>
+	            <td>
+	              <span class="text-field">{$ORDER.ord_code} {$ORDER.ord_city}, {$ORDER.ord_country}</span>
+	            </td>
+	          </tr>
+	          <tr>
+	            <td>
+	              <span class="parameter-name">{$L_USER_STREET}</span>
+	            </td>
+	            <td>
+	              <span class="text-field">{$ORDER.ord_street}</span>
+	            </td>
+	          </tr>
+	        {/IF}
+	        {LOOP FROM=$ADDITIONAL VALUE=V KEY=K}
+	        	{IF $V.place == 'shipment' && $V.type != 'info'}
+		          <tr>
+		            <td>
+		              <span class="parameter-name">{$V.name}</span>
+		            </td>
+		            <td>
+		              <span class="text-field">
+		              	{IF $V.type == 'midtext' || $V.type == 'bigtext'}<small>{/IF}
+		              		{IF $V.type == 'yesno'}
+                        {IF $V.value}
+                        	{$L_YES}
+                        		{ELSE}
+                        	{$L_NO}
+                        {/IF}
+                      {ELSE}
+                      	{$V.value}
+                      {/IF}
+		              	{IF $V.type == 'midtext' || $V.type == 'bigtext'}</small>{/IF}
+		              </span>
+		            </td>
+		          </tr>
+	        	{/IF}
+	        {/LOOP}
+          <tr>
+            <td>
+              <span class="parameter-name">{$L_BUYER}</span>
+            </td>
+            <td>
+              <span class="text-field">{$ORDER.ord_firstname} {$ORDER.ord_lastname}</span>
+            </td>
+          </tr>
+          {IF $ORDER.ord_phone}
+	          <tr>
+	            <td>
+	              <span class="parameter-name">{$L_USER_PHONE}</span>
+	            </td>
+	            <td>
+	              <span class="text-field">{$ORDER.ord_phone}</span>
+	            </td>
+	          </tr>
+          {/IF}
+          <tr>
+            <td>
+              <span class="parameter-name">E-mail</span>
+            </td>
+            <td>
+              <span class="text-field">{$ORDER.ord_email}</span>
+            </td>
+          </tr>
+          {IF $ORDER.ord_note}
+	          <tr>
+	            <td>
+	              <span class="parameter-name">{$L_NOTES}</span>
+	            </td>
+	            <td>
+	              <span class="text-field">
+	              	<small>{$ORDER.ord_note}</small>
+	              </span>
+	            </td>
+	          </tr>
+          {/IF}
+        </tbody>
+      </table>
+    </section>
+	</div>
+</div>
+{IF $ORDER.ord_invoice}
+	<div class="row section-form mb-md">
+
+	  <div class="col-xs-12">
+	    <section class="third-heading">
+	      <ul>
+	        <li>
+	          <span class="title">{$L_REGISTER_BILL_USER_DATA}</span>
+	        </li>
+	      </ul>
+	    </section>
+	  </div>
+
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<section class="account-informations">
+	      <table class="account-parameters">
+	        <tbody>
+	          <tr>
+	            <td>
+	              <span class="parameter-name">{$L_USER_BILL_NAME}</span>
+	            </td>
+	            <td>
+	              <span class="text-field">{$ORDER.ord_bill_company}</span>
+	            </td>
+	          </tr>
+	          <tr>
+	            <td>
+	              <span class="parameter-name">{$L_USER_BILL_VAT}</span>
+	            </td>
+	            <td>
+	              <span class="text-field">{$ORDER.ord_bill_vat}</span>
+	            </td>
+	          </tr>
+	          <tr>
+	            <td>
+	              <span class="parameter-name">{$L_ADDRESS}</span>
+	            </td>
+	            <td>
+	              <span class="text-field">{$ORDER.ord_bill_code} {$ORDER.ord_bill_city}, {$ORDER.ord_bill_country}</span>
+	            </td>
+	          </tr>
+	          <tr>
+	            <td>
+	              <span class="parameter-name">{$L_USER_STREET}</span>
+	            </td>
+	            <td>
+	              <span class="text-field">{$ORDER.ord_bill_street}</span>
+	            </td>
+	          </tr>
+	        </tbody>
+	      </table>
+	    </section>
+		</div>
+	</div>
+{/IF}
+
+
+	  <a href="/orders/" class="btn btn-primary mb-sm">
+	    <i class="fa fa-angle-left"></i> &nbsp; {$L_BACK_SHOPPING}
+	  </a>
+
+
+
+
+      <a href="{$ORDER.ord_pdf_link}" target="_blank" class="btn btn-primary mb-sm pull-right">
+         {IF $ORDER.ord_proform_on}
+            {$L_PROFORMA_INVOICE}
+         {ELSE}
+            PDF
+         {/IF} &nbsp; <i class="fa fa-file-pdf-o"></i>
+      </a>
+
+      {IF $ORDER.ord_inv_link}
+         <a href="{$ORDER.ord_inv_link}" target="_blank" class="btn btn-primary mb-sm pull-right">
+         {$L_VAT_INVOICE} &nbsp; <i class="fa fa-file-pdf-o"></i>
+         </a>
+      {/IF} 
+      <a href="/orders/key/{$ORDER.ord_key}/withdraw/" target="_blank" class="btn btn-primary mb-sm pull-right">
+         {$L_WITHDRAW_FORM_DOWNLOAD} &nbsp; <i class="fa fa-undo"></i>
+      </a>
+      <a href="/ticket/add/{$ORDER.ord_id}/" class="btn btn-primary mb-sm pull-right">
+         {$L_ADD_TICKET} &nbsp; <i class="fa fa-ticket"></i>
+      </a>
+      {IF $CAN_CANCEL}
+         <form method="POST" action="/orders/{$CANCEL_GET}">
+         <button type="submit" name="cancel" value="cancel" class="btn btn-primary mb-sm pull-right">
+            {$L_ORDER_CANCEL} &nbsp; <i class="fa fa-ban"></i>
+         </button>
+         </form>
+      {/IF}

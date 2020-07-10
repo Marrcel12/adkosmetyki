@@ -1,0 +1,35 @@
+<div class="row">
+  {IF $CATEGORY_LIST_POSITION != "right"}
+    <div class="col-sm-3">
+      {INCLUDE file="./".$TEMPLATE."/scheme/public/module/blog/_common/html/categories.html"}
+    </div>
+  {/IF}
+  <div class="col-sm-9">
+    <section class="heading inside to-left">
+      <ul>
+        <li>
+          <h1 class="title">{$BLOG_CONTENT.props.name}</h1>
+        </li>
+      </ul>
+    </section>
+    <div class="row">
+      <div class="col-xs-12 post-details-single">
+        <span class="pull-left">{$BLOG_CONTENT.props.date}</span>
+        <span class="pull-right">{$BLOG_CONTENT.props.author}</span>
+      </div>
+      <div class="col-xs-12 post-content-single">
+        {IF $BLOG_CONTENT.props.image}
+          <img src="{$BLOG_CONTENT.props.image}" alt="{$BLOG_CONTENT.props.name}" class="post-img" />
+        {/IF}
+        <div class="post-content">
+          {$BLOG_CONTENT.props.text}
+        </div>
+      </div>
+    </div>
+  </div>
+  {IF $CATEGORY_LIST_POSITION == "right"}
+    <div class="col-sm-3">
+      {INCLUDE file="./".$TEMPLATE."/scheme/public/module/blog/_common/html/categories.html"}
+    </div>
+  {/IF}
+</div>

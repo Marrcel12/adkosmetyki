@@ -1,0 +1,122 @@
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  & li {
+    float: left;
+    position: relative;
+    padding-bottom: 10px;
+    & a {
+      line-height: 22px;
+      font-weight: 500;
+      font-size: 16px;
+      text-decoration: none;
+      padding: 10px 15px;
+      color: $fontColor;
+      cursor: pointer;
+      & .fa {
+        font-size: 10px;
+        position: relative;
+        top: -2px;
+      }
+    }
+    & .dropdown {
+      @include opacity(0);
+      @include transition(all 0.2s ease-in-out);
+      @include box-shadow(0 1px 3px rgba(0,0,0,2/10));
+      @include transform(translateY(10px));
+      min-width: 150px;
+      backface-visibility: hidden;
+      pointer-events: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 1;
+      background: $primaryColor;
+      &:after {
+        content: '';
+        position: absolute;
+        top: -10px;
+        right: 0;
+        left: 0;
+        height: 10px;
+      }
+      & .row {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        -js-display: flex;
+        display: flex;
+        flex-wrap: wrap;
+        & > [class*='col-'] {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+      & ul {
+        padding: 5px 0 0;
+        display: inline-block;
+        width: 100%;
+        & li {
+          display: block;
+          width: 100%;
+          padding: 5px 15px;
+          cursor: pointer;
+          & a {
+            font-size: 14px;
+            color: $fontColor;
+            padding: 0;
+          }
+          &:hover {
+            color: $mainColor;
+            & a {
+              color: $mainColor;
+            }
+          }
+        }
+      }
+      & .cat-title {
+        padding: 15px 15px 0;
+        display: inline-block;
+        font-weight: 600;
+        & .fa {
+          display: none;
+        }
+      }
+    }
+    &:hover {
+      & a {
+        color: $mainColor;
+      }
+      & .dropdown {
+        @include opacity(1);
+        @include transition(all 0.2s ease-in-out);
+        @include transform(translateY(0));
+        pointer-events: auto;
+        z-index: 2;
+      }
+    }
+    &.single-category {
+      & .dropdown {
+        min-width: 270px;
+        width: 270px;
+        padding-bottom: 7px;
+      }
+    }
+    &.full-width {
+      position: static;
+      & .dropdown {
+        max-width: $pageWidth;
+        width: $pageWidth;
+        left: 0;
+        padding-bottom: 7px;
+        @include transform(translateY(10px));
+      }
+      &:hover {
+        & .dropdown {
+          @include transform(translateY(0));
+        }
+      }
+    }
+  }
+}

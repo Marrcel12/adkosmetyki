@@ -1,0 +1,67 @@
+<div class="row">
+  {IF $CATEGORY_LIST_POSITION != "right"}
+    <div class="col-sm-3 left-parameters">
+      {INCLUDE file="./".$TEMPLATE."/scheme/public/module/blog/_common/html/categories.html"}
+    </div>
+  {/IF}
+  <div class="col-sm-9">
+    <section class="heading inside to-left">
+      <ul>
+        <li>
+          <h1 class="title">
+            {IF $BLOG_CATEGORY.key == "blog_categories"}
+              {$L_ALL_CATEGORIES}
+            {ELSE}
+              {$BLOG_CATEGORY.props.name}
+            {/IF}
+          </h1>
+        </li>
+      </ul>
+    </section>
+    {IF $BLOG_CATEGORY.props.description}
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="category-description top">
+            {$BLOG_CATEGORY.props.description}
+          </div>
+        </div>
+      </div>
+    {/IF}
+    {IF !empty($PAGINATION.blog.P_PAGES)}
+      <div class="list-options">
+        <div class="row">
+          {INCLUDE file="./".$TEMPLATE."/scheme/public/_common/html/pagination.html" PAGINATION_DATA=$PAGINATION.blog}
+        </div>
+      </div>
+    {/IF}
+    <div class="row">
+      {IF $BLOG_CATEGORY.children}
+        <!-- {$BLOG_CATEGORY.children|@debug_print_var} -->
+        {LOOP FROM=$BLOG_CATEGORY.children VALUE=BLOG_POST INDEX=INDEX}
+          <div class="col-xxs-12 col-xs-6">
+            {INCLUDE file="./".$TEMPLATE."/scheme/public/module/blog/_common/html/post-tile.html" POST_ITEM=$BLOG_POST POST_INDEX=$INDEX}
+          </div>
+          {IF $INDEX % 2 == 0}
+            <div class="clearfix"></div>
+          {/IF}
+        {/LOOP}
+      {ELSE}
+        <div class="col-xxs">
+          <span class="list-empty">{$L_NO_ARTICLES_IN_CATEGORY}</span>
+        </div>
+      {/IF}
+    </div>
+    {IF !empty($PAGINATION.blog.P_PAGES)}
+      <div class="list-options">
+        <div class="row">
+          {INCLUDE file="./".$TEMPLATE."/scheme/public/_common/html/pagination.html" PAGINATION_DATA=$PAGINATION.blog}
+        </div>
+      </div>
+    {/IF}
+  </div>
+  {IF $CATEGORY_LIST_POSITION == "right"}
+    <div class="col-sm-3 left-parameters">
+      {INCLUDE file="./".$TEMPLATE."/scheme/public/module/blog/_common/html/categories.html"}
+    </div>
+  {/IF}
+</div>

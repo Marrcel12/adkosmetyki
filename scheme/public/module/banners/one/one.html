@@ -1,0 +1,21 @@
+<section class="banner mod-banner-1 full-width">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="slider-img-1">
+          {LOOP FROM=$MODULE.children.banner1Field[0].children VALUE=CHILDREN}
+            {IF $CHILDREN.key == 'banner_link' && $CHILDREN.props.value}
+              <a href="{$CHILDREN.props.value}">
+            {/IF}
+          {/LOOP}
+            <img src="{$MODULE.children.banner1Field[0].children[0].props.preview}" {LOOP FROM=$MODULE.children.banner1Field[0].children VALUE=CHILDREN}{IF $CHILDREN.key == 'banner_alt' && $CHILDREN.props.value}alt="{$CHILDREN.props.value}"{/IF}{/LOOP} />
+          {LOOP FROM=$MODULE.children.banner1Field[0].children VALUE=CHILDREN}
+            {IF $CHILDREN.key == 'banner_link' && $CHILDREN.props.value}
+              </a>
+            {/IF}
+          {/LOOP}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

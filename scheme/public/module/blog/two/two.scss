@@ -1,0 +1,118 @@
+.blog.mod-blog-2 {
+  max-width: $pageWidth;
+  width: 100%;
+  padding: 25px 0;
+  margin: 0 auto;
+  @media all and (min-width: 481px) {
+    & .padding-left-0 {
+      padding-left: 0;
+    }
+    & .padding-right-0 {
+      padding-right: 0;
+    }
+    & .vertical-center {
+      position: absolute;
+      top: 50%;
+      @include transform(translateY(-50%));
+      &.to-right {
+        right: 0;
+      }
+      &.to-left {
+        left: 0;
+      }
+    }
+  }
+  @import "../../_common/scss/_post_tile.scss";
+  & .post-tile {
+    margin-bottom: 0;
+    & .post-content {
+      padding: 0 30px;
+      & .post-name {
+        font-size: 20px;
+        line-height: 1.4;
+        margin: 0;
+        max-height: 20px * 1.4 * 1;
+      }
+      & .post-desc {
+        font-size: 16px;
+        max-height: 135.8px;
+        & .read-more {
+          bottom: 0;
+        }
+      }
+    }
+  }
+  & .post-tile {
+    margin-bottom: 25px;
+  }
+  @import "../_common/scss/_utils_1.scss";
+  @import "../_common/scss/_list_options_1.scss";
+  @import "../_common/scss/_column_categories_1.scss";
+}
+
+img.responsive-image {
+  width: 100%;
+  height: auto;
+}
+
+@media all and (max-width: 767px) {
+  .blog.mod-blog-2 {
+    & .heading {
+      display: inline-block;
+    }
+    & .heading-blog-list-filters {
+      width: 100%;
+      margin-bottom: 15px;
+      cursor: pointer;
+      & ul {
+        width: 100%;
+        padding: 0 0 5px;
+        border: 1px solid $secoundaryColor;
+        @include border-radius(3px);
+        @include transition(border 0.2s ease-in-out);
+        & li {
+          padding: 0;
+          text-align: center;
+          width: 100%;
+          &:after {
+            display: none;
+          }
+          & .title {
+            font-size: 18px;
+            margin: 0;
+            padding: 10px 0 3px;
+            display: inline-block;
+          }
+        }
+      }
+      & + .column-categories {
+        display: none;
+      }
+    }
+    & .post-tile {
+      & .post-content {
+        & .post-name {
+          font-size: 16px;
+          max-height: 16px * 1.4 * 1;
+        }
+        & .post-desc {
+          font-size: 14px;
+          max-height: 135.8px;
+          & .read-more {
+            bottom: 2px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 480px) {
+  .blog.mod-blog-2 {
+    & .post-tile {
+      & .post-content {
+        padding: 10px 0 25px;
+      }
+    }
+  }
+}

@@ -1,0 +1,100 @@
+.post-tile {
+  margin-bottom: 25px;
+  & > a {
+    text-decoration: none;
+  }
+  & .post-img {
+    width: 100%;
+    padding-bottom: 60%;
+    overflow: hidden;
+    position: relative;
+    & img {
+      width: 100%;
+      height: auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      @include transform(translate(-50%,-50%) translateZ(0));
+      &.vertical {
+        width: auto;
+        height: 100%;
+      }
+      &.horizontal {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+  & .post-content {
+    & .post-name {
+      display: block;
+      font-size: 16px;
+      line-height: 1.4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin: 11px 0 0;
+      max-height: 16px * 1.4 * 1;
+      color: rgba($fontColor,8/10);
+    }
+    & .post-details {
+      display: inline-block;
+      width: 100%;
+      font-size: 12px;
+      color: rgba($fontColor,8/10);
+    }
+    & .post-desc {
+      display: block;
+      display: -webkit-box;
+      line-height: 1.4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin: 6px 0 0;
+      max-height: 14px * 1.4 * 3;
+      color: rgba($fontColor,8/10);
+      position: relative;
+      & .read-more {
+        position: absolute;
+        right: 0;
+        bottom: 2px;
+        background: $primaryColor;
+        font-weight: 500;
+        padding-left: 25px;
+        &:before {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 100%;
+          bottom: 0;
+          width: 25px;
+          background: -moz-linear-gradient(left, rgba($primaryColor,0) 0%, rgba($primaryColor,1) 100%);
+          background: -webkit-linear-gradient(left, rgba($primaryColor,0) 0%,rgba($primaryColor,1) 100%);
+          background: linear-gradient(to right, rgba($primaryColor,0) 0%,rgba($primaryColor,1) 100%);
+        }
+        &:hover {
+          color: $mainColor;
+        }
+      }
+    }
+  }
+  &:hover {
+    & .post-content {
+      & .post-name {
+        color: $fontColor;
+      }
+    }
+  }
+  @media all and (max-width: 767px) {
+    & .post-content {
+      & .post-details {
+        & .pull-left {
+          overflow: hidden;
+          width: 65px;
+          max-height: 17px;
+        }
+      }
+    }
+  }
+}

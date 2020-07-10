@@ -1,0 +1,31 @@
+.search-box {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 30%;
+  padding-right: 120px;
+  z-index: 1;
+  @include transform(translate(-43%,-51.5%));
+  @include box-sizing(content-box);
+  & .input-field {
+    width: 98%;
+    margin: 0;
+    
+    @include border-top-right-radius(0);
+    @include border-bottom-right-radius(0);
+  }
+  & .btn {
+    position: absolute;
+    width: 120px;
+    right: 0;
+    top: 0;
+    @include border-top-left-radius(0);
+    @include border-bottom-left-radius(0);
+  }
+  &.search-box-right {
+    left: auto;
+    right: 0;
+    @include transform(translate(0%,-51.5%));
+  }
+  @import "_quick_search_2.scss";
+}

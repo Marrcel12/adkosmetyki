@@ -1,0 +1,41 @@
+.products-list-page.mod-products-list-page-2 {
+  max-width: $pageWidth;
+  width: 100%;
+  margin: 0 auto 30px;
+  @import "../../../_common/toysrwd/scss/_product_tile.scss";
+  @import "../private/scss/_utils_1.scss";
+  @import "../../../_common/toysrwd/scss/_list_options_1.scss";
+  @import "../private/scss/_column_left_1.scss";
+  @import "../private/scss/_top_parameters.scss";
+  .product-tile .product-desc {
+    min-height: 120px;
+  }
+  .row .col-xs-12 > .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+@media all and (max-width: 1000px) {
+  .products-list-page.mod-products-list-page-2 {
+    & .list-options {
+      @import "../../../_common/toysrwd/scss/_pagination_mobile.scss";
+    }
+  }
+}
+
+@media all and (max-width: 767px) {
+  .products-list-page.mod-products-list-page-2 {
+    & .category-description {
+      &.descriptionHidden {
+        display: none; 
+      }
+    }
+  }
+}
+
+@media all and (max-width: 480px) {
+  .products-list-page.mod-products-list-page-2 {
+    @import "../../_common/scss/list_options_1_rwd.scss";
+  }
+}

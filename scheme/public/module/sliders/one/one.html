@@ -1,0 +1,18 @@
+<section class="slider mod-slider-1 full-width" data-max-width="1920" data-max-height="450">
+  <div class="carousel slider-carousel" data-timeout="{$MODULE.viewOptions.slideShowInMs}">
+		{LOOP FROM=$MODULE.children.slider_group[0].children VALUE=SLIDE INDEX=INDEX}
+      {IF $INDEX <= 10}
+  			<div class="item">
+  				<i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+  				{IF $SLIDE.props.link && $SLIDE.props.link != ""}
+  					<a href="{$SLIDE.props.link}">
+  				{/IF}
+  				<img {IF $INDEX == 1}src="{$SLIDE.props.preview}"{ELSE}data-src="{$SLIDE.props.preview}" class="owl-lazy"{/IF} alt="{$SLIDE.props.name}" onLoad="imageLoaded(this{IF $SLIDE.props.link && $SLIDE.props.link != ""},'link'{/IF})" />
+  				{IF $SLIDE.props.link && $SLIDE.props.link != ""}
+  					</a>
+  				{/IF}
+  			</div>
+      {/IF}
+		{/LOOP}
+  </div>
+</section>

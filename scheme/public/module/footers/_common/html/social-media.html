@@ -1,0 +1,44 @@
+{IF
+  $MODULE.children.common_sm[0].children[0].props.value ||
+  $MODULE.children.common_sm[0].children[1].props.value ||
+  $MODULE.children.common_sm[0].children[2].props.value ||
+  $MODULE.children.common_sm[0].children[3].props.value ||
+  $MODULE.children.common_sm[0].children[4].props.value ||
+  $MODULE.children.common_sm[0].children[5].props.value ||
+  $MODULE.children.common_sm[0].children[6].props.value
+}
+  <div class="col-xs-12">
+    <div class="section-title center">
+      <span>{$L_YOU_ARE_US_ON}</span>
+    </div>
+    <div class="socials">
+      {LOOP FROM=$MODULE.children.common_sm[0].children VALUE=SOCIAL}
+        {IF $SOCIAL.props.value}
+          <a href="{$SOCIAL.props.value}" rel="nofollow" target="_blank">
+            {IF $SOCIAL.key == 'sm_facebook'}
+              <i class="fa fa-facebook"></i>
+            {/IF}
+            {IF $SOCIAL.key == 'sm_instagram'}
+              <i class="fa fa-instagram"></i>
+            {/IF}
+            {IF $SOCIAL.key == 'sm_youtube'}
+              <i class="fa fa-youtube"></i>
+            {/IF}
+            {IF $SOCIAL.key == 'sm_googleplus'}
+              <i class="fa fa-google-plus"></i>
+            {/IF}
+            {IF $SOCIAL.key == 'sm_snapchat'}
+              <i class="fa fa-snapchat-ghost"></i>
+            {/IF}
+            {IF $SOCIAL.key == 'sm_twitter'}
+              <i class="fa fa-twitter"></i>
+            {/IF}
+            {IF $SOCIAL.key == 'sm_pinterest'}
+              <i class="fa fa-pinterest"></i>
+            {/IF}
+          </a>
+        {/IF}
+      {/LOOP}
+    </div>
+  </div>
+{/IF}

@@ -1,0 +1,130 @@
+@function str-replace($string, $search, $replace: '') {
+	$index: str-index($string, $search);
+	
+	@if $index {
+	  @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+	}
+	@return $string;
+  }
+  
+  @mixin element-color($color) {
+	background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="117.4" height="10" viewBox="0 0 31.089 2.646"><g fill="' + str-replace($color, '#', '%23') + '"><path d="M0 0v2.646c1.77 0 1.885-1.852 4.035-1.852 2.15 0 1.819 1.852 3.737 1.852L7.768 0zM7.772 0v2.646c1.77 0 1.885-1.852 4.035-1.852 2.15 0 1.819 1.852 3.737 1.852L15.54 0zM15.544 0v2.646c1.77 0 1.885-1.852 4.035-1.852 2.15 0 1.82 1.852 3.737 1.852L23.312 0zM31.085 0h-7.768v2.646c1.77 0 1.885-1.852 4.035-1.852 2.15 0 1.819 1.852 3.737 1.852z"/></g></svg>');
+  }
+
+#footer.mod-footer-2 {
+  max-width: $pageWidth;
+	margin: 35px auto 0;
+  padding: 17px 0 40px;
+  background: $backgroundColorFooter;
+  color: $footerTextColor;
+  display: block;
+  &:before {
+		content: '';
+		position: absolute;
+		top: -10px;
+		left: 50%;
+		transform: translateX(-50%) rotate(180deg);
+		width: 100vw;
+    height: 10px;
+    z-index: 2;
+		@include element-color($backgroundColorFooter);
+	}
+  &.full-width {
+    max-width: 100%;
+  }
+  @import "../private/scss/_footer_container_1.scss";
+}
+@import "../private/scss/_footer_rights.scss";
+
+@media all and (min-width: 768px) {
+  #footer.mod-footer-2 {
+    & .footer-container {
+      & .menu {
+        display: block !important;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 767px) {
+  #footer.mod-footer-2 {
+    & .footer-container {
+      & .mobile-logo {
+        display: block;
+        text-align: center;
+        padding: 0 0 25px;
+        & img {
+          max-width: 180px;
+        }
+      }
+      & .logo {
+        display: none;
+      }
+      & [class*='col-'] {
+        margin-bottom: 5px;
+      }
+      & .section-title {
+        width: 100%;
+        padding: 8px 15px 0px;
+        background: rgba($fontColor,1/10);
+        position: relative;
+        @include transition(background 0.2s ease-in-out);
+        &:after {
+          content: '\f107';
+          font-family: 'FontAwesome';
+          position: absolute;
+          right: 15px;
+          top: 50%;
+          @include transform(translateY(-50%) rotate(0deg));
+          @include transition(transform 0.2s ease-in-out);
+        }
+        &.open {
+          background: $mainColor;
+          @include transition(background 0.2s ease-in-out);
+          &:after {
+            @include transform(translateY(-50%) rotate(-180deg));
+            @include transition(transform 0.2s ease-in-out);
+          }
+        }
+        &.center {
+          background: transparent;
+          padding: 25px 15px 5px;
+          &:after {
+            content: '';
+            display: none;
+          }
+        }
+      }
+      & .menu {
+        display: none;
+        overflow: hidden;
+        padding: 5px 15px;
+        & li {
+          & .row {
+            & [class*='col-'] {
+              &:first-of-type {
+                padding-left: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 480px) {
+  .footer-rights {
+    & .pull-left {
+      display: none;
+    }
+    & .pull-right {
+      position: relative;
+      right: 50%;
+      @include transform(translateX(50%));
+      & img {
+        margin: 0;
+      }
+    }
+  }
+}

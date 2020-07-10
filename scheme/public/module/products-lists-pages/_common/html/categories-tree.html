@@ -1,0 +1,12 @@
+<ul class="{IF $CAT.class == 'open' || $CAT.cat_rolldown == 'yes'}active{/IF}" style="{IF $CAT.class == 'open' || $CAT.cat_rolldown == 'yes'}display:block;{/IF}">
+  {LOOP FROM=$CATS_TREE VALUE=CAT}
+    <li>
+      <a href="{$CAT.cat_url}{$HASH}" title="{$CAT.cat_name}" class="{IF $CAT.class == 'open' || ($CAT.cat_rolldown == 'yes')}revert{/IF} {IF $CAT.cat_rolldown_force == 'yes' && $CAT.subcats}rolldown{/IF}">
+      	{$CAT.cat_name} {IF $CAT.subcats}<i class="fa fa-chevron-down"></i>{/IF}
+      </a>
+      {IF $CAT.subcats}
+        {INCLUDE file="./".$TEMPLATE."/scheme/public/module/products-lists-pages/_common/html/categories-tree.html" CATS_TREE=$CAT.subcats CAT_CLASS=$CAT.class CAT_ROLLDOWN=$CAT.cat_rolldown}
+      {/IF}
+    </li>
+  {/LOOP}
+</ul>

@@ -1,0 +1,75 @@
+.dropdown {
+  @include opacity(0);
+  @include transition(all 0.2s ease-in-out 0s);
+  @include box-shadow(0 1px 3px rgba(0,0,0,2/10));
+  @include transform(translateY(10px));
+  min-width: 150px;
+  backface-visibility: hidden;
+  pointer-events: none;
+  visibility: hidden;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  background: $primaryColor;
+  &:after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: 0;
+    left: 0;
+    height: 10px;
+  }
+  & .row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    -js-display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    & > [class*='col-'] {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  & ul {
+    padding: 5px 0 0;
+    display: inline-block;
+    width: 100%;
+    & li {
+      display: block;
+      width: 100%;
+      padding: 5px 15px;
+      & a {
+        font-size: 14px;
+        color: $fontColor;
+        padding: 0;
+        font-weight: 400;
+        display: inline-block;
+        width: 100%;
+        cursor: pointer;
+        &:hover {
+          color: $mainColor;
+        }
+      }
+    }
+  }
+  & .cat-title {
+    padding: 15px 15px 0;
+    display: inline-block;
+    font-weight: 600;
+    text-align: left;
+    & .fa {
+      display: none;
+    }
+    & > a {
+      padding: 0;
+      color: $fontColor;
+      display: inline-block;
+      width: 100%;
+      &:hover {
+        color: $mainColor;
+      }
+    }
+  }
+}

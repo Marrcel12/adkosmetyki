@@ -1,0 +1,13 @@
+.news.mod-offers-1 {
+  max-width: $pageWidth;
+  width: 100%;
+  margin: 0 auto;
+  padding: 25px 0;
+  & .heading {
+    & img {
+      position: relative;
+      bottom: 3px;
+      padding-left: 10px;
+    }
+  }
+}

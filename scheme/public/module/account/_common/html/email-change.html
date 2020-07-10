@@ -1,0 +1,33 @@
+<form method="POST" class="core_changeEmail">
+  <div class="row section-form">
+    <div class="col-md-3 hidden-on-mobile"></div>
+    <div class="col-xs-12 col-md-6">
+      <section class="heading inside">
+        <ul>
+          <li>
+            <span class="title">{$L_CHANGE_EMAIL}</span>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <div class="col-md-3 hidden-on-mobile"></div>
+  </div>
+  <div class="row section-desc text-center">
+    <div class="col-xs-12">
+      <strong>{$L_EMAILCHANGE_INFO}</strong>
+    </div>
+  </div>
+  <div class="row section-form">
+    <div class="col-xs-3"></div>
+    <div class="col-xxs-12 col-xs-6">
+      <span class="title-section">E-mail</span>
+      <input class="input-field" type="text" name="user_email" value="{$EMAIL}" data-valid="required|email" />
+    </div>
+    <div class="col-xs-3"></div>
+  </div>
+  <div class="row section-form">
+    <div class="col-xs-12">
+      <button type="submit" name="submit" value="submit" class="btn btn-primary btn-lg btn-register-confirm">{$L_CHANGE}</button>
+    </div>
+  </div>
+</form>

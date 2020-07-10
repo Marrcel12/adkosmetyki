@@ -1,0 +1,98 @@
+.product-card .heading.inside {
+  margin-bottom: 0;
+}
+
+.product-card.mod-product-card-3 {
+  max-width: $pageWidth;
+  width: 100%;
+  padding: 25px 0;
+  margin: 0 auto;
+  @import "../_common/scss/_product_view_2.scss";
+}
+
+@media all and (max-width: 767px) {
+  #product-full-gallery,
+  .zoomContainer {
+    display: none !important;
+  }
+
+  .product-card.mod-product-card-3 {
+    & .product-gallery {
+      & .product-img {
+        & .owl-item {
+          & .item {
+            & img {
+              &.mousetrap {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+    & .product-tabs {
+      & .heading {
+        & ul {
+          & li {
+            width: 100%;
+          }
+        }
+      }
+      & .tab {
+        & .product-opinions {
+          & .opinions {
+            & .opinion-user {
+              width: 100%;
+              text-align: center;
+            }
+            & .opinion-date {
+              text-align: center;
+            }
+            & .opinion-rates {
+              & [class^="col-"] {
+                & .opinion-rate-name {
+                  text-align: center;
+                  padding-right: 0;
+                }
+                & .rate-field {
+                  position: relative;
+                  right: 50%;
+                  @include transform(translateX(50%));
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 420px) {
+  .product-card.mod-product-card-3 {
+    & .product-tabs {
+      & .tab {
+        & .product-opinions {
+          & .opinions {
+            & .opinion-rates {
+              & [class^="col-"] {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+    & .product-informations {
+      & .product-parameters {
+        & .parameter-name {
+          display: inline-block;
+          white-space: initial;
+          width: 100px;
+        }
+      }
+    }
+  }
+}
+
+@import "../_common/scss/_product_full_gallery_1.scss";

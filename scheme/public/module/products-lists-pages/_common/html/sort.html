@@ -1,0 +1,7 @@
+<select class="select-field-select2 core_changeSortType" data-placeholder="{$L_SORT_BY}" data-allow-clear="false">
+  {LOOP FROM=$SORT VALUE=SORT_ITEM INDEX=INDEX}
+    <option value="{$SORT_ITEM.url}{$PAGINATION_DATA.HASH_P}" name="sort" {IF $SORT_ITEM.active}selected{/IF}>
+      {$SORT_ITEM.lang}
+    </option>
+  {/LOOP}
+</select>

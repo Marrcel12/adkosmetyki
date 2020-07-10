@@ -1,0 +1,47 @@
+<section class="product-gallery">
+  {IF !empty($STATUS)}
+    <div class="product-labels">
+      {LOOP FROM=$STATUS VALUE=P_STATUS}
+        <div class="label-{$P_STATUS.status}">{$P_STATUS.txt}</div>
+      {/LOOP}
+    </div>
+  {/IF}
+  <div class="carousel product-img">
+    {LOOP FROM=$IMAGES VALUE=IMAGE KEY=KEY INDEX=INDEX}
+      <div class="item">
+        <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+        <img {IF $INDEX == 1}src="{$IMAGE.src}_480.jpg"{ELSE}data-src="{$IMAGE.src}_480.jpg"{/IF} alt="{$IMAGE.label}" title="{$IMAGE.label}" class="{IF $INDEX > 1}owl-lazy {/IF}{IF $IMAGE.ratio > $GALLERY_RATIO || $IMAGE.ratio == 0.0}horizontal{ELSE}vertical{/IF}" onLoad="imageLoaded(this)" />
+        {IF $CLOUDZOOM}
+          <img src="{$IMAGE.src}_480.jpg" data-zoom-image="{$IMAGE.src}_1200.jpg" alt="{$IMAGE.label}" title="{$IMAGE.label}" class="mousetrap" />
+        {/IF}
+      </div>
+    {/LOOP}
+  </div>
+  {IF count($IMAGES) > 1}
+    <div class="carousel product-slideshow">
+      {LOOP FROM=$IMAGES VALUE=IMAGE KEY=KEY}
+        <div class="item" data-label="{$IMAGE.label}">
+          <img src="{$IMAGE.src}_125.jpg" alt="{$IMAGE.label}" title="{$IMAGE.label}" class="{IF $IMAGE.ratio > 1}horizontal{ELSE}vertical{/IF}" />
+        </div>
+      {/LOOP}
+    </div>
+  {/IF}
+  <div id="product-full-gallery">
+    <div class="preview">
+      <div class="carousel full-product-img">
+        <div class="item"></div>
+      </div>
+    </div>
+    <div class="menu">
+      <div class="close">
+        <i class="close-shape"></i>
+      </div>
+      <div class="carousel full-product-slideshow">
+        <div class="item"></div>
+      </div>
+    </div>
+    <div class="product">
+      <span></span>
+    </div>
+  </div>
+</section>

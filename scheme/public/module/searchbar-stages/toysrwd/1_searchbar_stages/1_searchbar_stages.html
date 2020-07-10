@@ -1,0 +1,37 @@
+{IF !empty($MODULE.active)}
+    <div class="searchbar-stages mod-searchbar-stages-1">
+        <div class="searchbar_stages_inner_wrapper hidden sky-container">
+            {IF $MODULE.children.searchbar_settings[0].children[0].props.show_header}
+            <section class="heading inside">
+                <ul>
+                    <li class="active">
+                        <span class="title">{$MODULE.children.searchbar_settings[0].children[0].props.text_header}</span>
+                    </li>
+                </ul>
+            </section>
+            {/IF}
+            <div
+                id="searchbar-stages-wrapper"
+                class="searchbar_stages_selects_wrapper"
+                data-root-cat-search="{$MODULE.children.searchbar_settings[0].children[0].props.root_category_search}"
+                data-start-category="{$MODULE.children.searchbar_settings[0].children[0].props.start_category}"
+            >
+                {LOOP FROM=$MODULE.children.searchbar_settings[0].children[0].children VALUE=V KEY=K INDEX=INDEX}
+                <div class="searchbar_stages_select_wrapper">
+                    <select
+                            data-initialize="false"
+                            data-placeholder="{$V.props.name}"
+                            data-allow-clear="true"
+                            tabindex="-1"
+                            aria-hidden="true"
+                            class="searchbar_stages_select"
+                            id="searchbar_stages_{$INDEX}"
+                            data-index={$INDEX}
+                            disabled>
+                    </select>
+                </div>
+                {/LOOP}
+            </div>
+        </div>
+    </div>
+{/IF}

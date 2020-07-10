@@ -1,0 +1,7 @@
+.products-list.mod-products-list-1 {
+  max-width: $pageWidth;
+  width: 100%;
+  padding: 25px 0;
+  margin: 0 auto;
+  @import "../../_common/scss/_product_tile.scss";
+}

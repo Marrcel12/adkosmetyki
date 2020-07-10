@@ -1,0 +1,288 @@
+<section class="product-tabs">
+  <section class="heading inside">
+    <ul class="nav">
+      <li class="active" data-rel-tab="description">
+        <span class="title title-desc">{$L_DESCRIPTION}</span>
+      </li>
+      {IF $OPT_INFO_COUNT > $OPTS_COUNT_MOVE}
+        <li data-rel-tab="params">
+          <span class="title ">{$L_PARAMETERS_PRODDESC}</span>
+        </li>
+      {/IF}
+<!--
+      {IF $INFO1}
+        <li data-rel-tab="info-1">
+          <span class="title">{$L_PROD_INFO1}</span>
+        </li>
+      {/IF}
+      {IF $INFO2}
+        <li data-rel-tab="info-2">
+          <span class="title">{$L_PROD_INFO2}</span>
+        </li>
+      {/IF}
+      {IF $INFO3}
+        <li data-rel-tab="info-3">
+          <span class="title">{$L_PROD_INFO3}</span>
+        </li>
+      {/IF}
+      {IF $INFO4}
+        <li data-rel-tab="info-4">
+          <span class="title">{$L_PROD_INFO4}</span>
+        </li>
+      {/IF}
+      {IF $INFO5}
+        <li data-rel-tab="info-5">
+          <span class="title">{$L_PROD_INFO5}</span>
+        </li>
+      {/IF}
+-->
+      {IF $COMMENTS_ENABLE}
+        <li data-rel-tab="comments">
+          <span class="title">{$L_SHOW_COMMENTS} ({$COUNT_COM})</span>
+        </li>
+      {/IF}
+      {IF $MODULE.viewOptions.ask_about_product == 2 || $MODULE.viewOptions.ask_about_product == 3}
+        <li data-rel-tab="asq-question">
+          <span class="title">{$L_ASQ_QUESTION}</span>
+        </li>
+      {/IF}
+    </ul>
+  </section>
+  <div class="tab" data-tab="description">
+    <div class="tab-content">
+      {$DESCLONG}
+    </div>
+  </div>
+  {IF $OPT_INFO_COUNT > $OPTS_COUNT_MOVE}
+    <div class="tab tab-hidden" data-tab="params">
+      <div class="tab-content">
+        <section class="product-informations">
+          <table class="product-parameters">
+            <tbody>
+              {LOOP FROM=$OPTIONS VALUE=OPTION KEY=KEY}
+                {IF $OPTION.type == 'info' && $OPTION.type != 'hidden'}
+                  <tr>
+                    <td>
+                      <span class="parameter-name">{$OPTION.name}</span>
+                    </td>
+                    <td>
+                      {INCLUDE file="./".$TEMPLATE."/scheme/public/_common/html/options/info.html" OPTION_VALUE=$OPTION OPTION_KEY=$KEY}
+                    </td>
+                  </tr>
+                {/IF}
+              {/LOOP}
+            </tbody>
+          </table>
+        </section>
+      </div>
+    </div>
+  {/IF}
+  {IF $INFO1}
+    <div class="tab tab-hidden" data-tab="info-1">
+      <div class="tab-content">
+        {$INFO1}
+      </div>
+    </div>
+  {/IF}
+  {IF $INFO2}
+    <div class="tab tab-hidden" data-tab="info-2">
+      <div class="tab-content">
+        {$INFO2}
+      </div>
+    </div>
+  {/IF}
+  {IF $INFO3}
+    <div class="tab tab-hidden" data-tab="info-3">
+      <div class="tab-content">
+        {$INFO3}
+      </div>
+    </div>
+  {/IF}
+  {IF $INFO4}
+    <div class="tab tab-hidden" data-tab="info-4">
+      <div class="tab-content">
+        {$INFO4}
+      </div>
+    </div>
+  {/IF}
+  {IF $INFO5}
+    <div class="tab tab-hidden" data-tab="info-5">
+      <div class="tab-content">
+        {$INFO5}
+      </div>
+    </div>
+  {/IF}
+  {IF $COMMENTS_ENABLE}
+    <div class="tab tab-hidden" data-tab="comments">
+      <div class="tab-content">
+        <section class="product-opinions">
+          <div class="row">
+            <div class="col-xs-12">
+              {IF $COUNT_COM == 0}
+                <strong class="no-opinions">{$L_COMMENTS_EMPTY}</strong>
+              {ELSE}
+                <ul class="opinions">
+                  {LOOP FROM=$COMMENTS VALUE=COMMENT KEY=KEY}
+                    <li>
+                      {IF $COMMENT.text}
+                        <div class="opinion-text">
+                          {$COMMENT.text}
+                        </div>
+                      {/IF}
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-6">
+                          <span class="opinion-user">{$COMMENT.username}</span>
+                          <span class="opinion-date">({$COMMENT.date})</span>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                          <div class="row opinion-rates">
+                            {IF $COMMENT.quality}
+                              <div class="col-xs-4 pull-right">
+                                <span class="opinion-rate-name">{$L_RATING_QUALITY}</span>
+                                <div class="rate-field rate-{$COMMENT.quality}">
+                                  {INCLUDE file="./".$TEMPLATE."/scheme/public/module/product-card/_common/html/useful/stars.html"}
+                                </div>
+                              </div>
+                            {/IF}
+                            {IF $COMMENT.usability}
+                              <div class="col-xs-4 pull-right">
+                                <span class="opinion-rate-name">{$L_RATING_USABILITY}</span>
+                                <div class="rate-field rate-{$COMMENT.usability}">
+                                  {INCLUDE file="./".$TEMPLATE."/scheme/public/module/product-card/_common/html/useful/stars.html"}
+                                </div>
+                              </div>
+                            {/IF}
+                            {IF $COMMENT.price}
+                              <div class="col-xs-4 pull-right">
+                                <span class="opinion-rate-name">{$L_RATING_PRICE}</span>
+                                <div class="rate-field rate-{$COMMENT.price}">
+                                  {INCLUDE file="./".$TEMPLATE."/scheme/public/module/product-card/_common/html/useful/stars.html"}
+                                </div>
+                              </div>
+                            {/IF}
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  {/LOOP}
+                </ul>
+              {/IF}
+            </div>
+            {IF $POST_COMMENTS_ENABLE}
+              <form method="post">
+                <div class="col-xs-12">
+                  <section class="heading inside to-left">
+                    <ul>
+                      <li>
+                        <h2 class="title">{$L_RATE}</h2>
+                      </li>
+                    </ul>
+                  </section>
+                  <table class="product-add-opinion">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <span class="parameter-name">{$L_RATING_QUALITY}</span>
+                        </td>
+                        <td>
+                          <div class="rate-field choice">
+                            <input type="text" class="rate-value" name="quality" />
+                            {INCLUDE file="./".$TEMPLATE."/scheme/public/module/product-card/_common/html/useful/stars.html"}
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span class="parameter-name">{$L_RATING_USABILITY}</span>
+                        </td>
+                        <td>
+                          <div class="rate-field choice">
+                            <input type="text" class="rate-value" name="usability" />
+                            {INCLUDE file="./".$TEMPLATE."/scheme/public/module/product-card/_common/html/useful/stars.html"}
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span class="parameter-name">{$L_RATING_PRICE}</span>
+                        </td>
+                        <td>
+                          <div class="rate-field choice">
+                            <input type="text" class="rate-value" name="price" />
+                            {INCLUDE file="./".$TEMPLATE."/scheme/public/module/product-card/_common/html/useful/stars.html"}
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span class="parameter-name">{$L_SIGNATURE}</span>
+                        </td>
+                        <td>
+                          <input class="input-field" type="text" value="{$USERNAME}" placeholder="Anonimowy klient" name="username" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span class="parameter-name">{$L_OPINION}</span>
+                        </td>
+                        <td>
+                          <textarea class="textarea-field" rows="4" name="text"></textarea>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col-xs-12">
+                  <button class="btn btn-primary btn-lg btn-opinion-add core_addOpinion" name="{$PROD_ID}">{$L_ADD}</button>
+                </div>
+              </form>
+            {/IF}
+          </div>
+        </section>
+      </div>
+    </div>
+  {/IF}
+  {IF $MODULE.viewOptions.ask_about_product == 2 || $MODULE.viewOptions.ask_about_product == 3}
+    <div class="tab tab-hidden" data-tab="asq-question">
+      <div class="tab-content">
+        <section class="product-opinions">
+          <form method="POST">
+            <div class="col-xs-12">
+              <table class="product-add-opinion">
+                <tbody>
+                  <tr>
+                    <td>
+                      <span class="parameter-name">{$L_SIGNATURE}</span>
+                    </td>
+                    <td>
+                      <input class="input-field" type="text" value="{$USERNAME}" placeholder="" name="username" data-valid="required"  />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="parameter-name">E-mail</span>
+                    </td>
+                    <td>
+                      <input class="input-field" type="text" value="{$USER_EMAIL}" placeholder="" name="email" data-valid="required|email" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="parameter-name">{$L_ASQ_QUESTION}</span>
+                    </td>
+                    <td>
+                      <textarea class="textarea-field" rows="4" name="text" data-valid="required"></textarea>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-xs-12 mar-bot-25">
+              <button class="btn btn-primary btn-lg btn-opinion-add core_askQuestion" data-product-id="{$PROD_ID}">{$L_SEND}</button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  {/IF}
+</section>

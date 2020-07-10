@@ -1,0 +1,24 @@
+<section class="products-list mod-products-list-1">
+  <div class="container-fluid">
+    <section class="heading inside">
+      <ul>
+        <li class="active">
+          <span class="title">
+            {IF $MODULE.viewOptions.products == 'recommended'}{$L_RECOMMENDED}{/IF}
+            {IF $MODULE.viewOptions.products == 'new'}{$L_NEW_MENU}{/IF}
+            {IF $MODULE.viewOptions.products == 'promotion'}{$L_PROMOTION_MENU}{/IF}
+            {IF $MODULE.viewOptions.products == 'bestseller'}{$L_BESTSELLER_MENU}{/IF}
+            {IF $MODULE.viewOptions.products == 'saleout'}{$L_SALEOUT_MENU}{/IF}
+          </span>
+        </li>
+      </ul>
+    </section>
+    <div class="row">
+      {LOOP FROM=$MODULE.subcats VALUE=PRODUCT_ITEM KEY=TYPE INDEX=INDEX}
+        <div class="col-xxs col-xs-6 col-sm-4 col-md-4 col-lg-3">
+          {INCLUDE file="./".$TEMPLATE."/scheme/public/_common/html/product-tile.html" PRODUCT_ITEM=$PRODUCT_ITEM PRODUCT_STATUS="TRUE" PRODUCT_BRUTTO="TRUE" PRODUCT_RWD="0:260,305:480,481:260,600:480,768:260,885:480,1200:260"}
+        </div>
+      {/LOOP}
+    </div>
+  </div>
+</section>

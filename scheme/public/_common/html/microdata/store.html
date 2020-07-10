@@ -1,0 +1,21 @@
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Store",
+    "name": "{$META_TITLE}",
+    "description": "{$META_DESCRIPTION}",
+    "image": "{$META_IMAGE}"
+    {IF $SCHEMA.opened_from_day && $SCHEMA.opened_to_day && $SCHEMA.opened_from_hour && $SCHEMA.opened_to_hour}, "openingHours": "{$SCHEMA.opened_from_day}-{$SCHEMA.opened_to_day} {$SCHEMA.opened_from_hour}-{$SCHEMA.opened_to_hour}"{/IF}
+    {IF $SCHEMA.phone}, "telephone": "{$SCHEMA.phone}"{/IF}
+    {IF $SCHEMA.pricesFrom && $SCHEMA.pricesTo}, "priceRange": "{$SCHEMA.pricesFrom}-{$SCHEMA.pricesTo}"{/IF}
+    {IF $SCHEMA.street || $SCHEMA.city || $SCHEMA.region || $SCHEMA.country}
+      , "address": {
+        "@type": "PostalAddress"
+        {IF $SCHEMA.street}, "streetAddress": "{$SCHEMA.street}"{/IF}
+        {IF $SCHEMA.city}, "addressLocality": "{$SCHEMA.city}"{/IF}
+        {IF $SCHEMA.region}, "addressRegion": "{$SCHEMA.region}"{/IF}
+        {IF $SCHEMA.country}, "addressCountry": "{$SCHEMA.country}"{/IF}
+      }
+    {/IF}
+  }
+</script>

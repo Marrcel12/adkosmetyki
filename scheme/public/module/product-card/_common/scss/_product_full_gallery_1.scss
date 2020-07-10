@@ -1,0 +1,161 @@
+#product-full-gallery {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba($fontColor,3/10);
+  @include opacity(0);
+  @include transition(opacity 0.2s ease-in-out);
+  &.open {
+    @include opacity(1);
+    @include transition(opacity 0.2s ease-in-out);
+  }
+  & .preview {
+    position: absolute;
+    top: 0;
+    right: 120px;
+    bottom: 50px;
+    left: 0;
+    overflow: hidden;
+    & .full-product-img {
+      height: 100%;
+      & .owl-stage-outer {
+        height: 100%;
+        & .owl-stage {
+          height: 100%;
+          & .owl-item {
+            height: 100%;
+            & .item {
+              height: 100%;
+              & img {
+                width: auto;
+                height: 100%;
+                position: relative;
+                left: 50%;
+                top: 50%;
+                @include transform(translate(-50%,-50%));
+                &.vertical {
+                  width: auto;
+                  max-height: 100%;
+                  height: auto;
+                }
+                &.horizontal {
+                  max-width: 100%;
+                  width: auto;
+                  height: auto;
+                }
+              }
+            }
+          }
+        }
+      }
+      @import "../../sliders/_common/scss/_controls_1.scss";
+    }
+  }
+  & .menu {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 120px;
+    background: $primaryColor;
+    @include box-shadow(0 1px 3px rgba(0,0,0,2/10));
+    & .close {
+      position: absolute;
+      width: 46px;
+      height: 46px;
+      left: -70px;
+      top: 20px;
+      padding: 8px;
+      background: rgba($primaryColor,7/10);
+      @include border-radius(3px);
+      & .close-shape {
+        width: 30px;
+        height: 30px;
+        &:before, &:after {
+          height: 3px;
+        }
+      }
+    }
+    & .full-product-slideshow {
+      @include transform(rotate(90deg) translateY(-100%));
+      @include transform-origin(0 0);
+      padding: 0 33px;
+      & .owl-stage-outer {
+        height: 100%;
+        & .owl-stage {
+          height: 100%;
+          & .owl-item {
+            height: 100%;
+            &:last-of-type {
+              margin-right: 0 !important;
+            }
+            & .item {
+              height: 100%;
+              & span {
+                display: inline-block;
+                width: 80px;
+                height: 110px;
+                position: relative;
+                top: 50%;
+                left: 50%;
+                border: 2px solid transparent;
+                @include transform(translate(-50%,-50%) rotate(-90deg));
+                @include transition(border 0.2s ease-in-out);
+                cursor: pointer;
+                overflow: hidden;
+                & img {
+                  height: auto;
+                  width: 80px;
+                  position: relative;
+                  top: 50%;
+                  left: 50%;
+                  @include transform(translate(-50%,-50%) scale(1,1));
+                  @include transition(transform 0.2s ease-in-out);
+                }
+              }
+            }
+            &.current {
+              & .item {
+                & span {
+                  cursor: default;
+                  border: 2px solid $mainColor;
+                  @include transition(border 0.2s ease-in-out);
+                }
+              }
+            }
+            &:not(.current) {
+              & .item {
+                & span:hover {
+                  & img {
+                    @include transform(translate(-50%,-50%) scale(1.15,1.15));
+                    @include transition(transform 0.2s ease-in-out);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      @import "../../sliders/_common/scss/_controls_1.scss";
+    }
+  }
+  & .product {
+    position: absolute;
+    right: 120px;
+    bottom: 0;
+    left: 0;
+    height: 50px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 53px;
+    background: $mainColor;
+  }
+}
+.heading ul {
+    width: 100%;
+}

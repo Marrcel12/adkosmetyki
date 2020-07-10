@@ -1,0 +1,83 @@
+& .quick-cart {
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  @include transform(translateY(-51%));
+  z-index: 1;
+  & .fa {
+    font-size: 34px;
+    color: $cartColor;
+    position: relative;
+    bottom: 5px;
+  }
+  & .counter {
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+    min-width: 24px;
+    height: 24px;
+    font-size: 13px;
+    font-weight: 700;
+    background: $mainColor;
+    padding: 5px;
+    color: $primaryColor;
+    text-align: center;
+    @include transform(translate(50%,50%));
+    @include border-radius(12px);
+    & span {
+      position: relative;
+      top: -2px;
+    }
+  }
+  & .price {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    white-space: pre;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 20px 10px 0;
+    color: $mainColor;
+    @include transform(translate(-100%,-50%));
+  }
+  & .dropdown {
+    @include opacity(0);
+    @include transition(all 0.2s ease-in-out);
+    @include box-shadow(0 1px 3px rgba(0,0,0,2/10));
+    @include transform(translateY(15px));
+    min-width: 350px;
+    backface-visibility: hidden;
+    pointer-events: none;
+    position: absolute;
+    top: 100%;
+    right: -15px;
+    z-index: 1;
+    background: $primaryColor;
+    &:before {
+      content: '';
+      position: absolute;
+      top: -15px;
+      right: -30px;
+      bottom: 0;
+      width: 30px;
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      top: -15px;
+      right: 0;
+      left: 0;
+      height: 15px;
+    }
+    @import "_dropdown_quick_cart_1.scss";
+  }
+  &:hover {
+    & .dropdown {
+      @include opacity(1);
+      @include transition(all 0.2s ease-in-out);
+      @include transform(translateY(5.3px));
+      pointer-events: auto;
+      z-index: 2;
+    }
+  }
+}

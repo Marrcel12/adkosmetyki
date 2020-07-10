@@ -1,0 +1,117 @@
+.product-of-the-day.mod-product-of-the-day-1 {
+  max-width: $pageWidth;
+	width: 100%;
+	margin: 0 auto;
+  padding: 25px 0;
+  & .special-offer-box {
+    width: 100%;
+    margin: 0 0 25px 0;
+    border: 2px solid $mainColor;
+    @include border-radius(10px);
+    & .special-offer-box-content {
+      padding: 15px;
+      & .heading {
+        margin: 0;
+      }
+      & .carousel {
+        opacity: 0;
+        @import "../../_common/scss/_owl_controls.scss";
+        & .product-tile {
+          & .product-img {
+            padding-bottom: 100%;
+          }
+          & .product-desc {
+            & .product-name {
+              font-size: 20px;
+              line-height: 1.2;
+              max-height: 48px;
+              overflow: hidden;
+            }
+            & .product-price {
+              & .price-discount-percent, & .price-special {
+                font-size: 20px;
+              }
+            }
+            & .product-name, & .product-price {
+              text-align: center;
+            }
+          }
+        }
+        & .owl-controls {
+          & .owl-prev {
+            left: 0;
+            background: transparent;
+          }
+          & .owl-next {
+            right: 0;
+            background: transparent;
+          }
+        }
+        & .availability {
+          text-align: center;
+          margin: 15px 0;
+          display: inline-block;
+          width: 100%;
+          & strong {
+            display: block;
+            font-size: 22px;
+          }
+          & img {
+            display: inline-block;
+            width: 15px;
+          }
+        }
+        & .counter {
+          text-align: center;
+          display: inline-block;
+          position: relative;
+          left: 50%;
+          @include transform(translateX(-50%));
+          padding: 5px 15px;
+          &.space {
+            margin: 80px 0 0;
+          }
+          & .counter-time {
+            display: block;
+            font-size: 24px;
+            margin: 10px 0 0;
+            & > span {
+              background: $additionalColor;
+              @include border-radius(4px);
+              padding: 4px 8px;
+              margin: 0 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+  & .tab {
+    &.tab-hidden {
+      @include opacity(0);
+      display: none;
+    }
+    @import "../../_common/scss/_owl_controls.scss";
+  }
+  @import "../../_common/scss/_product_tile.scss";
+}
+
+@media all and (max-width: 991px) {
+  .product-of-the-day.mod-product-of-the-day-1 {
+    & .special-offer-box {
+
+    }
+  }
+}
+
+@media all and (max-width: 767px) {
+  .product-of-the-day.mod-product-of-the-day-1 {
+    & .heading {
+      & ul {
+        & li {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

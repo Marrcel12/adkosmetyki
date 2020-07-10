@@ -1,0 +1,164 @@
+@import '_fonts.scss';
+
+$light-grey: #f2f2f2;
+$bc-color: #f8f8f8;
+$success: #5fb031;
+$fontColor: black;
+
+@mixin before-background($color) {
+	position: relative;
+	background-color: $color;
+	&:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 50%;
+		-webkit-transform: translateX(-50%);
+		-moz-transform: translateX(-50%);
+		-ms-transform: translateX(-50%);
+		-o-transform: translateX(-50%);
+		transform: translateX(-50%);
+		width: 100vw;
+		height: 100%;
+		background-color: $color;
+	}
+}
+
+
+  @mixin ellipsis($font-size, $line-height, $line-clamp) {
+	display: block;
+	display: -webkit-box;
+	height: $font-size * $line-height * $line-clamp;
+	font-size: $font-size;
+	line-height: $line-height;
+	-webkit-line-clamp: $line-clamp;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-height: $font-size * $line-height * $line-clamp;
+  } 
+
+body {
+	color: $fontColor;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 14px;
+	background-color: $light-grey;
+	@import '_defaults.scss';
+	@import '_sweetalert2.scss';
+	@import '_elements.scss';
+
+	
+	.btn {
+		height: 43px;
+		border-radius: 0;
+		border: none !important;
+		padding: 6px 30px;
+		font-weight: 700;
+		line-height: 31px;
+		&:hover, &:focus {
+			border: none !important;
+		}
+	}
+	.btn.btn-lg {
+		font-size: 15px;
+		line-height: 34px;
+	}
+
+	input {
+		padding: 0 15px;
+		color: black;
+	}
+	.second-heading {
+		border-bottom: none;
+    	margin-bottom: 0;
+		padding: 17px 25px;
+		ul {
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+			li {
+				.title {
+					margin: 0;
+				}
+			}
+		}
+		.title {
+			font-size: 20px;
+			font-weight: bold;
+			text-transform: unset;
+		}
+	}
+
+	// register
+	.registrations.mod-registrations-1 {
+		.heading {
+			margin-bottom: 30px;
+			&:before {
+				display: none;
+			}
+			li .title {
+				font-size: 20px;
+			}
+		}
+		.section-form .checkbox-field {
+			background-color: transparent;
+		}
+	}
+
+	// login
+
+	.logins.mod-logins-1 .section-form .checkbox-field {
+		background-color: transparent;
+	}
+
+	// order
+	.order.mod-order-1 > .container-fluid .cart-summary-body > .row > [class*='col-'] .heading {
+		li .title {
+			font-size: 20px;
+		}
+	}
+
+	// account
+	.account.mod-account-1 {
+		.btn.btn-primary.btn-lg {
+			margin-bottom: 15px;
+		}
+	}
+
+	// newsletter popup
+
+	.swal2-container .swal2-modal.swal-shop-newsletter-popup .swal2-content .container-fluid > .row > [class*='col-'] > div .newsletter-form .newsletter-input {
+		border: none;
+		border-radius: 0;
+	}
+	.swal2-container .swal2-modal.swal-shop-newsletter-popup .swal2-content .container-fluid > .row > [class*='col-'] > div .newsletter-form .newsletter-button {
+		background-color: $mainColor !important;
+		border: none !important;
+		border-radius: 0;
+		&:hover {
+			color: white !important;
+		}
+	}
+	.swal2-container .swal2-modal.swal-shop-newsletter-popup .swal2-content .container-fluid > .row {
+		border: 6px solid $mainColor;
+	}
+
+	.swal2-container .swal2-modal.swal-shop-newsletter-popup .swal2-content .container-fluid > .row .col-xs-12 p {
+		&:first-child {
+			font-size: 24px;
+			font-weight: 700;
+		}
+		&:first-child {
+			line-height: 20px;
+		}
+	}
+
+	.swal2-container .swal2-modal.swal-shop-newsletter-popup .swal2-content .container-fluid > .row > [class*='col-'] > div .ss-error-container:before {
+		border-radius: 0;
+	}
+}
+
+
+.ss-error-container:before, .ss-error-container .ss-error-help-open {
+	border-radius: 0;
+}

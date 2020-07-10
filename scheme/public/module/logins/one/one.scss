@@ -1,0 +1,51 @@
+.logins.mod-logins-1 {
+  max-width: $pageWidth;
+	width: 100%;
+	margin: 0 auto;
+  padding: 25px 0;
+  & .heading {
+    margin-bottom: 0;
+  }
+  & .section-desc {
+    margin-bottom: 15px;
+    & strong {
+      font-size: 16px;
+    }
+  }
+  & .section-form {
+    margin-bottom: 15px;
+    margin-left: 0;
+    margin-right: 0;
+    width: 74%;
+    position: relative;
+    left: 50%;
+    @include transform(translateX(-50%));
+    & .title-section {
+      padding: 5px 0;
+      font-weight: 500;
+      display: inline-block;
+    }
+    & .input-field {
+      margin: 0;
+    }
+    & .checkbox-field {
+      padding: 3px 0 3px;
+      margin-bottom: 3px;
+      background: #fff;
+      z-index: 1;
+    }
+    & .btn-register-confirm {
+      margin: 25px 7px;
+    }
+  }
+}
+
+@media all and (max-width: 767px) {
+  .logins.mod-logins-1 {
+    & .section-form {
+      width: 95%;
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }
+}

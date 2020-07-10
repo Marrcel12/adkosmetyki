@@ -1,0 +1,24 @@
+{LOOP FROM=$AVAILABLE_OPTIONS_LIST VALUE=OPTION}
+  {IF count($OPTION.vars)}
+    {IF $OPTION.op_name != $L_PRODUCER || ($OPTION.op_name == $L_PRODUCER && isset($OPT_PRODUCERS_ACTIVE) && $OPT_PRODUCERS_ACTIVE == 'active')}
+      <div class="col-xxxs-12 col-xxs-6 col-xs-4 col-sm-3 col-md-ex5">
+        <div class="hidden">
+          <input type="hidden" name="{{:name:}}" value="1" class="choosed-option-pattern" disabled="disabled" />
+          {LOOP FROM=$OPTION.vars VALUE=OP}
+            {IF $OP.checked}
+              <input type="hidden" name="o_{$OP.ov_id}" value="1" />
+            {/IF}
+          {/LOOP}
+        </div>
+        <select class="select-field-select2 core_chooseParametersMulti" data-initialize="false" data-placeholder="{$OPTION.op_name}" data-allow-clear="true" multiple="multiple">
+          {LOOP FROM=$OPTION.vars VALUE=OP}
+            <option value="1" name="o_{$OP.ov_id}" {IF $OP.checked}selected{/IF}>{$OP.ov_name}</option>
+          {/LOOP}
+        </select>
+      </div>
+    {/IF}
+  {/IF}
+{/LOOP}
+{LOOP FROM=$OPTIONS_HIDDEN_FIELDS VALUE=OPTION_HIDDEN KEY=KEY}
+  <input type="hidden" name="{$KEY}" value="{$OPTION_HIDDEN}" />
+{/LOOP}

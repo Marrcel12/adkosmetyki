@@ -1,0 +1,20 @@
+&.full-width {
+  position: static;
+  & .dropdown {
+    max-width: 100%;
+    width: $pageWidth;
+    left: 0;
+    padding-bottom: 7px;
+    @include transform(translateY(10px));
+    & > .row {
+      max-height: 600px;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+  }
+  &:hover {
+    & .dropdown {
+      @include transform(translateY(0));
+    }
+  }
+}

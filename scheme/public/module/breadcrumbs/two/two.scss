@@ -1,0 +1,25 @@
+.breadcrumbs + .products-list-page,
+.breadcrumbs + .product-card {
+  padding-top: 10px !important;
+}
+
+.breadcrumbs.mod-breadcrumbs-2 {
+	width: 100%;
+	margin: 0 0 15px;
+  display: inline-block;
+  & .breadcrumbs-outer {
+    max-width: $pageWidth - 30px;
+    height: 40px;
+    background: $secoundaryColor;
+    margin: 0 auto;
+    &.full-width {
+      max-width: 100%;
+    }
+    @import "../_common/scss/_crumbs_1.scss";
+    @import "../_common/scss/_category_image_1.scss";
+  }
+}
+
+@media all and (max-width: 767px) {
+  @import "../_common/scss/_crumbs_rwd.scss";
+}

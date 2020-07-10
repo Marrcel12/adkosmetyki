@@ -1,0 +1,43 @@
+<section class="news mod-offers-1">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12">
+        <section class="heading inside">
+          <ul>
+            <li>
+              <span class="title">{$OFFERS_NAME}</span>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        {IF $OFFERS_CHOOSE_TYPE}
+          <div class="row">
+            <div class="col-xs-12">
+              <section class="heading inside">
+                <ul class="nav">
+                  <a href="/offers/type/xml/{$OFFERS_KEY}">
+                    <li>
+                      <span class="title">XML <img src="/admin/view/img/32/file_extension_xml.png" /></span>
+                    </li>
+                  </a>
+                  <a href="/offers/type/xls/{$OFFERS_KEY}">
+                    <li>
+                      <span class="title">Excel <img src="/admin/view/img/32/file_extension_xls.png" /></span>
+                    </li>
+                  </a>
+                </ul>
+              </section>
+            </div>
+          </div>
+        {ELSE}
+          {LOOP FROM=$TOTAL VALUE=VALUE}
+            <a href="{$URL}{$VALUE.num}"><h2>{$L_PRODUCTS} {$VALUE.from} - {$VALUE.to}</h2></a><br>
+          {/LOOP}
+        {/IF}
+      </div>
+    </div>
+  </div>
+</section>
